@@ -2,37 +2,36 @@
 
 @section('content')
     <div class="grid h-fit w-full grid-flow-row grid-cols-3 gap-x-8 gap-y-4">
-
-        <div id="default-carousel" class="relative h-44 w-full" data-carousel="slide">
+        <div id="default-carousel" class="min-w-80 relative h-44 w-full" data-carousel="slide">
             <!-- Carousel wrapper -->
             <div class="relative h-full overflow-hidden rounded-lg">
                 <!-- Item 1 -->
                 <div class="hidden object-cover duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('assets/img/Untitled-1.png') }}"
+                    <img src="{{ asset('img/Untitled-1.png') }}"
                         class="absolute left-1/2 top-1/2 block h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
                         alt="...">
                 </div>
                 <!-- Item 2 -->
                 <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('assets/img/Untitled-1.png') }}"
+                    <img src="{{ asset('img/Untitled-1.png') }}"
                         class="absolute left-1/2 top-1/2 block h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
                         alt="...">
                 </div>
                 <!-- Item 3 -->
                 <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('assets/img/Untitled-1.png') }}"
+                    <img src="{{ asset('img/Untitled-1.png') }}"
                         class="absolute left-1/2 top-1/2 block h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
                         alt="...">
                 </div>
                 <!-- Item 4 -->
                 <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('assets/img/Untitled-1.png') }}"
+                    <img src="{{ asset('img/Untitled-1.png') }}"
                         class="absolute left-1/2 top-1/2 block h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
                         alt="...">
                 </div>
                 <!-- Item 5 -->
                 <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('assets/img/Untitled-1.png') }}"
+                    <img src="{{ asset('img/Untitled-1.png') }}"
                         class="absolute left-1/2 top-1/2 block h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
                         alt="...">
                 </div>
@@ -80,32 +79,216 @@
         </div>
         <div class="col-span-2 h-44">
             <div class="h-full w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
-                <div class="flex h-full w-12 rounded-l-lg bg-gray-700"></div>
+                <div class="from-primary to-primarylight flex h-full w-12 rounded-l-lg bg-gradient-to-r">
+                    <span
+                        class="item-center flex translate-x-7 -rotate-90 transform justify-center whitespace-nowrap font-bold tracking-wide text-white">Donasi
+                        Sekarang!</span>
+                </div>
             </div>
         </div>
-        <div class="col-span-3">
-            <p class="h1 mb-2 block text-center text-xl font-semibold">Campaign Populer</p>
-            <p class="mx-auto mb-8 w-1/2 text-center text-sm font-light">Mereka butuh uluran tangan kita. Karena sedikit
+        <div class="col-span-3 text-center">
+            <p class="h1 mb-2 block text-center text-xl font-semibold text-black">Campaign Populer</p>
+            <p class="mx-auto mb-8 w-1/2 text-center text-sm font-light text-black">Mereka butuh uluran tangan kita. Karena
+                sedikit
                 bantuan
                 dari kita adalah harapan besar bagi mereka.</p>
-            <div class="flex gap-4">
+            <div class="flex flex-wrap justify-center gap-4">
                 <div
-                    class="w-1/4 max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
                     <a href="#">
-                        <img class="rounded-t-lg" src="{{ asset('assets/img/Untitled-1.png') }}" alt="" />
+                        <img class="h-64 rounded-t-lg object-cover" src="{{ asset('img/Untitled-1.png') }}"
+                            alt="" />
                     </a>
                     <div class="p-5">
                         <a href="#">
-                            <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">SMAN Arara 1</h5>
+                            <h5 class="text-xl font-bold tracking-tight text-black dark:text-white">SMAN Arara 1</h5>
                         </a>
-                        <p class="mb-2 text-xs font-normal text-gray-700 dark:text-gray-400">Arara, Jawa Barat</p>
-                        <p class="mb-3 text-sm font-normal text-gray-700 dark:text-gray-400">Butuh donasi untuk memperbaiki
+                        <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Arara, Jawa Barat</p>
+                        <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">Butuh donasi untuk memperbaiki
                             kerusakan sekolah</p>
-                        <div class="mb-1 text-base font-medium dark:text-white">Small</div>
-                        <div class="mb-4 h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
-                            <div class="h-1.5 rounded-full bg-blue-600 dark:bg-blue-500" style="width: 45%"></div>
+                        <div class="mb-1 flex w-full text-xs font-medium dark:text-white">
+                            <p>Terkumpul</p>
+                            <p class="text-primary ms-auto font-bold">50%</p>
+                        </div>
+                        <div class="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
+                            <div class="bg-primary h-1.5 rounded-full dark:bg-blue-500" style="width: 45%"></div>
                         </div>
                     </div>
+                </div>
+                <div
+                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+                    <a href="#">
+                        <img class="h-64 rounded-t-lg object-cover" src="{{ asset('img/Untitled-1.png') }}"
+                            alt="" />
+                    </a>
+                    <div class="p-5">
+                        <a href="#">
+                            <h5 class="text-xl font-bold tracking-tight text-black dark:text-white">SMAN Arara 1</h5>
+                        </a>
+                        <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Arara, Jawa Barat</p>
+                        <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">Butuh donasi untuk memperbaiki
+                            kerusakan sekolah</p>
+                        <div class="mb-1 flex w-full text-xs font-medium dark:text-white">
+                            <p>Terkumpul</p>
+                            <p class="text-primary ms-auto font-bold">50%</p>
+                        </div>
+                        <div class="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
+                            <div class="bg-primary h-1.5 rounded-full dark:bg-blue-500" style="width: 45%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+                    <a href="#">
+                        <img class="h-64 rounded-t-lg object-cover" src="{{ asset('img/Untitled-1.png') }}"
+                            alt="" />
+                    </a>
+                    <div class="p-5">
+                        <a href="#">
+                            <h5 class="text-xl font-bold tracking-tight text-black dark:text-white">SMAN Arara 1</h5>
+                        </a>
+                        <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Arara, Jawa Barat</p>
+                        <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">Butuh donasi untuk memperbaiki
+                            kerusakan sekolah</p>
+                        <div class="mb-1 flex w-full text-xs font-medium dark:text-white">
+                            <p>Terkumpul</p>
+                            <p class="text-primary ms-auto font-bold">50%</p>
+                        </div>
+                        <div class="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
+                            <div class="bg-primary h-1.5 rounded-full dark:bg-blue-500" style="width: 45%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+                    <a href="#">
+                        <img class="h-64 rounded-t-lg object-cover" src="{{ asset('img/Untitled-1.png') }}"
+                            alt="" />
+                    </a>
+                    <div class="p-5">
+                        <a href="#">
+                            <h5 class="text-xl font-bold tracking-tight text-black dark:text-white">SMAN Arara 1</h5>
+                        </a>
+                        <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Arara, Jawa Barat</p>
+                        <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">Butuh donasi untuk memperbaiki
+                            kerusakan sekolah</p>
+                        <div class="mb-1 flex w-full text-xs font-medium dark:text-white">
+                            <p>Terkumpul</p>
+                            <p class="text-primary ms-auto font-bold">50%</p>
+                        </div>
+                        <div class="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
+                            <div class="bg-primary h-1.5 rounded-full dark:bg-blue-500" style="width: 45%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+                    <a href="#">
+                        <img class="h-64 rounded-t-lg object-cover" src="{{ asset('img/Untitled-1.png') }}"
+                            alt="" />
+                    </a>
+                    <div class="p-5">
+                        <a href="#">
+                            <h5 class="text-xl font-bold tracking-tight text-black dark:text-white">SMAN Arara 1</h5>
+                        </a>
+                        <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Arara, Jawa Barat</p>
+                        <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">Butuh donasi untuk memperbaiki
+                            kerusakan sekolah</p>
+                        <div class="mb-1 flex w-full text-xs font-medium dark:text-white">
+                            <p>Terkumpul</p>
+                            <p class="text-primary ms-auto font-bold">50%</p>
+                        </div>
+                        <div class="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
+                            <div class="bg-primary h-1.5 rounded-full dark:bg-blue-500" style="width: 45%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+                    <a href="#">
+                        <img class="h-64 rounded-t-lg object-cover" src="{{ asset('img/Untitled-1.png') }}"
+                            alt="" />
+                    </a>
+                    <div class="p-5">
+                        <a href="#">
+                            <h5 class="text-xl font-bold tracking-tight text-black dark:text-white">SMAN Arara 1</h5>
+                        </a>
+                        <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Arara, Jawa Barat</p>
+                        <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">Butuh donasi untuk memperbaiki
+                            kerusakan sekolah</p>
+                        <div class="mb-1 flex w-full text-xs font-medium dark:text-white">
+                            <p>Terkumpul</p>
+                            <p class="text-primary ms-auto font-bold">50%</p>
+                        </div>
+                        <div class="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
+                            <div class="bg-primary h-1.5 rounded-full dark:bg-blue-500" style="width: 45%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+                    <a href="#">
+                        <img class="h-64 rounded-t-lg object-cover" src="{{ asset('img/Untitled-1.png') }}"
+                            alt="" />
+                    </a>
+                    <div class="p-5">
+                        <a href="#">
+                            <h5 class="text-xl font-bold tracking-tight text-black dark:text-white">SMAN Arara 1</h5>
+                        </a>
+                        <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Arara, Jawa Barat</p>
+                        <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">Butuh donasi untuk memperbaiki
+                            kerusakan sekolah</p>
+                        <div class="mb-1 flex w-full text-xs font-medium dark:text-white">
+                            <p>Terkumpul</p>
+                            <p class="text-primary ms-auto font-bold">50%</p>
+                        </div>
+                        <div class="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
+                            <div class="bg-primary h-1.5 rounded-full dark:bg-blue-500" style="width: 45%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+                    <a href="#">
+                        <img class="h-64 rounded-t-lg object-cover" src="{{ asset('img/Untitled-1.png') }}"
+                            alt="" />
+                    </a>
+                    <div class="p-5">
+                        <a href="#">
+                            <h5 class="text-xl font-bold tracking-tight text-black dark:text-white">SMAN Arara 1</h5>
+                        </a>
+                        <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Arara, Jawa Barat</p>
+                        <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">Butuh donasi untuk memperbaiki
+                            kerusakan sekolah</p>
+                        <div class="mb-1 flex w-full text-xs font-medium dark:text-white">
+                            <p>Terkumpul</p>
+                            <p class="text-primary ms-auto font-bold">50%</p>
+                        </div>
+                        <div class="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
+                            <div class="bg-primary h-1.5 rounded-full dark:bg-blue-500" style="width: 45%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button"
+                class="m-8 block inline-flex h-10 items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Lihat
+                semua <svg class="ms-4 h-3 w-3 text-white dark:text-white" aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M5 1v12m0 0 4-4m-4 4L1 9" />
+                </svg></button>
+            <div class="mt-4 grid h-24 w-11/12 grid-cols-3 gap-10 rounded-lg bg-gray-700">
+                <div class="flex flex-col items-center justify-center">
+                    <p class="text-center text-sm text-white">Sekolah Terbantu</p>
+                    <p class="text-2xl mt-1 font-bold text-white">25.000</p>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                    <p class="text-center text-sm text-white">Donasi Terkumpul</p>
+                    <p class="text-2xl mt-1 font-bold text-white">25.000</p>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                    <p class="text-center text-sm text-white">Total Donatur</p>
+                    <p class="text-2xl mt-1 font-bold text-white">25.000</p>
                 </div>
             </div>
         </div>

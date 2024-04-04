@@ -25,7 +25,13 @@ export default {
                 '"Noto Color Emoji"',
             ],
         },
-        extend: {},
+        extend: {
+            colors: {
+                black: "#4D4D4D",
+                primary: "#EB5231",
+                primarylight: "#FF7051",
+            },
+        },
     },
     plugins: [
         require("flowbite/plugin"),
