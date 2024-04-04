@@ -2,64 +2,58 @@
 
 @section('content')
 
-
-    <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-screen-md mx-10 hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700" style="max-width: 66rem; margin: 0 auto; position: relative;">
-        <img class="object-cover w-full max-h-10 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="{{ asset('assets/img/EduFund.png') }}" alt="" style="width: 100px; height: auto; position: absolute; top: 0; left: 0;">
-        <div class="flex flex-col justify-between p-4 leading-normal">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+<div class="grid h-fit w-full grid-flow-row grid-cols-3 gap-x-8 gap-y-4">
+    <div class="col-span-3 md:col-span-1">
+        <div class="mt-8 text-left">
+            <div class="flex items-center mb-8">
+                <svg class="w-4 h-4 mr-2 text-gray-800 dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 14 10" style="margin-right: 8px;">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                </svg>
+                <a href="/" class="text-sm font-light text-gray-700 text-justify"><b>Kembali ke halaman utama</b></a>
+            </div>
         </div>
-    </a>
-
-    {{-- <div class="p-5">
-        <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy
-                technology acquisitions 2021</h5>
-        </a>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology
-            acquisitions of 2021 so far, in reverse chronological order.</p>
-        <a href="#"
-            class="inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Read more
-            <svg class="ms-2 h-3.5 w-3.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                fill="none" viewBox="0 0 14 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M1 5h12m0 0L9 1m4 4L9 9" />
-            </svg>
-        </a>
-    </div> --}}
-
-    <div class="col-span-2 h-44">
-
     </div>
-    <div class="col-span-3">
-        <p class="h1 mb-2 block text-center text-xl font-semibold">Campaign Populer</p>
-        <p class="mx-auto w-1/2 text-center text-sm font-light">Mereka butuh uluran tangan kita. Karena sedikit bantuan
-            dari kita adalah harapan besar bagi mereka.</p>
-        <div class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
-            <a href="#">
-                <img class="rounded-t-lg" src="{{ asset('assets/img/Untitled-1.png') }}" alt="" />
-            </a>
-            <div class="p-5">
-                <a href="#">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy
-                        technology acquisitions 2021</h5>
-                </a>
-                <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology
-                    acquisitions of 2021 so far, in reverse chronological order.</p>
-                <a href="#"
-                    class="inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    Read more
-                    <svg class="ms-2 h-3.5 w-3.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 5h12m0 0L9 1m4 4L9 9" />
-                    </svg>
-                </a>
+
+    <div class="col-span-3 md:col-span-2">
+        <div class="mb-4 text-left">
+            <p class="h1 mb-2 block text-l font-semibold text-black" style=" margin-right: 1rem; padding-left: 1rem; padding-right: 1rem; margin-buttom: 1rem;">Donasi Sekolahmu</p>
+            <div class="col-span-2 h-44" style="padding-left: 1rem; padding-right: 1rem; margin-top: 1.5rem">
+                <div class="h-full w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
+
+                </div>
             </div>
         </div>
 
+
+
+        <div class="mb-4 text-left">
+            <div class="col-span-2 h-44" style="padding-left: 1rem; padding-right: 1rem; margin-top: 1.5rem; position: relative;">
+                <!-- Garis pembagi atas -->
+                <hr style="position: absolute; top: 50%; transform: translateY(-50%); width: 100%; border: 0; border-top: 1px solid #000000;">
+
+                <!-- Gambar di atas kiri -->
+                <img src="{{ asset('img/Untitled-1.png') }}" alt="Gambar" style="position: absolute; top: 0; left: 0; width: 80px; height: 64px;">
+
+                <!-- Isi card -->
+                <div class="h-full w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
+                    <!-- Isi konten di sini -->
+                </div>
+
+                <!-- Garis pembagi bawah -->
+                <hr style="position: absolute; bottom: 50%; transform: translateY(50%); width: 100%; border: 0; border-top: 1px solid #e2e8f0;">
+            </div>
+        </div>
     </div>
+
+
+
+
+</div>
+
+
+
+
+
 
 
 @endsection
