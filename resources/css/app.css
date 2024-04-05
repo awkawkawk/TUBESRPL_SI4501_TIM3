@@ -1258,6 +1258,10 @@ input:checked + .toggle-bg {
   margin-top: 0.25rem;
 }
 
+.mt-10 {
+    margin-top: 2.5rem;
+}
+
 .mt-16 {
   margin-top: 4rem;
 }
@@ -1278,8 +1282,20 @@ input:checked + .toggle-bg {
   margin-right: 0.5rem;
 }
 
+.mr-10 {
+    margin-right: 2.5rem;
+}
+
+.mr-16 {
+    margin-right: 4rem;
+}
+
 .ml-2 {
   margin-left: 0.5rem;
+}
+
+.ml-4 {
+    margin-left: 1rem;
 }
 
 .mt-10 {
@@ -2615,4 +2631,14 @@ input:checked + .toggle-bg {
 
 .rtl\:space-x-reverse:where([dir="rtl"], [dir="rtl"] *) > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 1;
+}
+
+
+@media (max-width: 767px) {
+    .bg-white {
+        flex-direction: column; /* Stack image and content vertically on smaller screens */
+    }
+    .p-4 {
+        flex: 1; /* Make content area fill remaining space */
+    }
 }
