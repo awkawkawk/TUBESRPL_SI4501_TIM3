@@ -31,6 +31,10 @@ export default {
                 primary: "#EB5231",
                 primarylight: "#FF7051",
             },
+            spacing: {
+                fixcarousel: "14.9rem",
+                fixcarouselitem5: "18.5rem",
+            },
         },
     },
     plugins: [
