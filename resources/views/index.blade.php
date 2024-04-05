@@ -53,8 +53,8 @@
                     class="group absolute start-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
                     data-carousel-prev>
                     <span
-                        class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-1 group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70">
-                        <svg class="h-2 w-2 text-white rtl:rotate-180 dark:text-gray-800" aria-hidden="true"
+                        class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-1 group-focus:ring-white">
+                        <svg class="h-2 w-2 text-white rtl:rotate-180" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M5 1 1 5l4 4" />
@@ -66,8 +66,8 @@
                     class="group absolute end-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
                     data-carousel-next>
                     <span
-                        class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-1 group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70">
-                        <svg class="h-2 w-2 text-white rtl:rotate-180 dark:text-gray-800" aria-hidden="true"
+                        class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-1 group-focus:ring-white">
+                        <svg class="h-2 w-2 text-white rtl:rotate-180" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m1 9 4-4-4-4" />
@@ -79,7 +79,7 @@
         </div>
         <div class="h-44 w-2/3">
             <div
-                class="flex h-full w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
+                class="flex h-full w-full rounded-lg border border-gray-200 bg-white">
 
                 <div class="from-primary to-primarylight flex h-full w-12 rounded-l-lg bg-gradient-to-r">
                     <span
@@ -171,8 +171,8 @@
                         class="group absolute start-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-3 focus:outline-none"
                         data-carousel-prev>
                         <span
-                            class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black group-hover:bg-black/70 group-focus:outline-none group-focus:ring-4 group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70">
-                            <svg class="h-4 w-4 text-white rtl:rotate-180 dark:text-gray-800" aria-hidden="true"
+                            class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black group-hover:bg-black/70 group-focus:outline-none group-focus:ring-4 group-focus:ring-white">
+                            <svg class="h-4 w-4 text-white rtl:rotate-180" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="M5 1 1 5l4 4" />
@@ -184,8 +184,8 @@
                         class="group absolute end-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-3 focus:outline-none"
                         data-carousel-next>
                         <span
-                            class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black group-hover:bg-black/70 group-focus:outline-none group-focus:ring-4 group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70">
-                            <svg class="h-4 w-4 text-white rtl:rotate-180 dark:text-gray-800" aria-hidden="true"
+                            class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black group-hover:bg-black/70 group-focus:outline-none group-focus:ring-4 group-focus:ring-white">
+                            <svg class="h-4 w-4 text-white rtl:rotate-180" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m1 9 4-4-4-4" />
@@ -207,184 +207,184 @@
                 dari kita adalah harapan besar bagi mereka.</p>
             <div class="flex flex-wrap justify-center gap-4 text-left">
                 <div
-                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow">
                     <a href="#">
                         <img class="h-64 rounded-t-lg object-cover" src="{{ asset('img/Untitled-1.png') }}"
                             alt="" />
                     </a>
                     <div class="p-5">
                         <a href="#">
-                            <h5 class="text-xl font-bold tracking-tight text-black dark:text-white">SMAN Arara 1</h5>
+                            <h5 class="text-xl font-bold tracking-tight text-black">SMAN Arara 1</h5>
                         </a>
-                        <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Arara, Jawa Barat</p>
-                        <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">Butuh donasi untuk memperbaiki
+                        <p class="mb-2 text-xs font-normal text-black">Arara, Jawa Barat</p>
+                        <p class="mb-4 text-sm font-normal text-black">Butuh donasi untuk memperbaiki
                             kerusakan sekolah</p>
-                        <div class="mb-1 flex w-full text-xs font-medium dark:text-white">
+                        <div class="mb-1 flex w-full text-xs font-medium">
                             <p>Terkumpul</p>
                             <p class="text-primary ms-auto font-bold">50%</p>
                         </div>
-                        <div class="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
-                            <div class="bg-primary h-1.5 rounded-full dark:bg-blue-500" style="width: 45%"></div>
+                        <div class="h-1.5 w-full rounded-full bg-gray-200">
+                            <div class="bg-primary h-1.5 rounded-full" style="width: 45%"></div>
                         </div>
                     </div>
                 </div>
                 <div
-                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow">
                     <a href="#">
                         <img class="h-64 rounded-t-lg object-cover" src="{{ asset('img/Untitled-1.png') }}"
                             alt="" />
                     </a>
                     <div class="p-5">
                         <a href="#">
-                            <h5 class="text-xl font-bold tracking-tight text-black dark:text-white">SMAN Arara 1</h5>
+                            <h5 class="text-xl font-bold tracking-tight text-black">SMAN Arara 1</h5>
                         </a>
-                        <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Arara, Jawa Barat</p>
-                        <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">Butuh donasi untuk memperbaiki
+                        <p class="mb-2 text-xs font-normal text-black">Arara, Jawa Barat</p>
+                        <p class="mb-4 text-sm font-normal text-black">Butuh donasi untuk memperbaiki
                             kerusakan sekolah</p>
-                        <div class="mb-1 flex w-full text-xs font-medium dark:text-white">
+                        <div class="mb-1 flex w-full text-xs font-medium">
                             <p>Terkumpul</p>
                             <p class="text-primary ms-auto font-bold">50%</p>
                         </div>
-                        <div class="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
-                            <div class="bg-primary h-1.5 rounded-full dark:bg-blue-500" style="width: 45%"></div>
+                        <div class="h-1.5 w-full rounded-full bg-gray-200">
+                            <div class="bg-primary h-1.5 rounded-full" style="width: 45%"></div>
                         </div>
                     </div>
                 </div>
                 <div
-                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow">
                     <a href="#">
                         <img class="h-64 rounded-t-lg object-cover" src="{{ asset('img/Untitled-1.png') }}"
                             alt="" />
                     </a>
                     <div class="p-5">
                         <a href="#">
-                            <h5 class="text-xl font-bold tracking-tight text-black dark:text-white">SMAN Arara 1</h5>
+                            <h5 class="text-xl font-bold tracking-tight text-black">SMAN Arara 1</h5>
                         </a>
-                        <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Arara, Jawa Barat</p>
-                        <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">Butuh donasi untuk memperbaiki
+                        <p class="mb-2 text-xs font-normal text-black">Arara, Jawa Barat</p>
+                        <p class="mb-4 text-sm font-normal text-black">Butuh donasi untuk memperbaiki
                             kerusakan sekolah</p>
-                        <div class="mb-1 flex w-full text-xs font-medium dark:text-white">
+                        <div class="mb-1 flex w-full text-xs font-medium">
                             <p>Terkumpul</p>
                             <p class="text-primary ms-auto font-bold">50%</p>
                         </div>
-                        <div class="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
-                            <div class="bg-primary h-1.5 rounded-full dark:bg-blue-500" style="width: 45%"></div>
+                        <div class="h-1.5 w-full rounded-full bg-gray-200">
+                            <div class="bg-primary h-1.5 rounded-full" style="width: 45%"></div>
                         </div>
                     </div>
                 </div>
                 <div
-                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow">
                     <a href="#">
                         <img class="h-64 rounded-t-lg object-cover" src="{{ asset('img/Untitled-1.png') }}"
                             alt="" />
                     </a>
                     <div class="p-5">
                         <a href="#">
-                            <h5 class="text-xl font-bold tracking-tight text-black dark:text-white">SMAN Arara 1</h5>
+                            <h5 class="text-xl font-bold tracking-tight text-black">SMAN Arara 1</h5>
                         </a>
-                        <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Arara, Jawa Barat</p>
-                        <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">Butuh donasi untuk memperbaiki
+                        <p class="mb-2 text-xs font-normal text-black">Arara, Jawa Barat</p>
+                        <p class="mb-4 text-sm font-normal text-black">Butuh donasi untuk memperbaiki
                             kerusakan sekolah</p>
-                        <div class="mb-1 flex w-full text-xs font-medium dark:text-white">
+                        <div class="mb-1 flex w-full text-xs font-medium">
                             <p>Terkumpul</p>
                             <p class="text-primary ms-auto font-bold">50%</p>
                         </div>
-                        <div class="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
-                            <div class="bg-primary h-1.5 rounded-full dark:bg-blue-500" style="width: 45%"></div>
+                        <div class="h-1.5 w-full rounded-full bg-gray-200">
+                            <div class="bg-primary h-1.5 rounded-full" style="width: 45%"></div>
                         </div>
                     </div>
                 </div>
                 <div
-                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow">
                     <a href="#">
                         <img class="h-64 rounded-t-lg object-cover" src="{{ asset('img/Untitled-1.png') }}"
                             alt="" />
                     </a>
                     <div class="p-5">
                         <a href="#">
-                            <h5 class="text-xl font-bold tracking-tight text-black dark:text-white">SMAN Arara 1</h5>
+                            <h5 class="text-xl font-bold tracking-tight text-black">SMAN Arara 1</h5>
                         </a>
-                        <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Arara, Jawa Barat</p>
-                        <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">Butuh donasi untuk memperbaiki
+                        <p class="mb-2 text-xs font-normal text-black">Arara, Jawa Barat</p>
+                        <p class="mb-4 text-sm font-normal text-black">Butuh donasi untuk memperbaiki
                             kerusakan sekolah</p>
-                        <div class="mb-1 flex w-full text-xs font-medium dark:text-white">
+                        <div class="mb-1 flex w-full text-xs font-medium">
                             <p>Terkumpul</p>
                             <p class="text-primary ms-auto font-bold">50%</p>
                         </div>
-                        <div class="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
-                            <div class="bg-primary h-1.5 rounded-full dark:bg-blue-500" style="width: 45%"></div>
+                        <div class="h-1.5 w-full rounded-full bg-gray-200">
+                            <div class="bg-primary h-1.5 rounded-full" style="width: 45%"></div>
                         </div>
                     </div>
                 </div>
                 <div
-                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow">
                     <a href="#">
                         <img class="h-64 rounded-t-lg object-cover" src="{{ asset('img/Untitled-1.png') }}"
                             alt="" />
                     </a>
                     <div class="p-5">
                         <a href="#">
-                            <h5 class="text-xl font-bold tracking-tight text-black dark:text-white">SMAN Arara 1</h5>
+                            <h5 class="text-xl font-bold tracking-tight text-black">SMAN Arara 1</h5>
                         </a>
-                        <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Arara, Jawa Barat</p>
-                        <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">Butuh donasi untuk memperbaiki
+                        <p class="mb-2 text-xs font-normal text-black">Arara, Jawa Barat</p>
+                        <p class="mb-4 text-sm font-normal text-black">Butuh donasi untuk memperbaiki
                             kerusakan sekolah</p>
-                        <div class="mb-1 flex w-full text-xs font-medium dark:text-white">
+                        <div class="mb-1 flex w-full text-xs font-medium">
                             <p>Terkumpul</p>
                             <p class="text-primary ms-auto font-bold">50%</p>
                         </div>
-                        <div class="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
-                            <div class="bg-primary h-1.5 rounded-full dark:bg-blue-500" style="width: 45%"></div>
+                        <div class="h-1.5 w-full rounded-full bg-gray-200">
+                            <div class="bg-primary h-1.5 rounded-full" style="width: 45%"></div>
                         </div>
                     </div>
                 </div>
                 <div
-                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow">
                     <a href="#">
                         <img class="h-64 rounded-t-lg object-cover" src="{{ asset('img/Untitled-1.png') }}"
                             alt="" />
                     </a>
                     <div class="p-5">
                         <a href="#">
-                            <h5 class="text-xl font-bold tracking-tight text-black dark:text-white">SMAN Arara 1</h5>
+                            <h5 class="text-xl font-bold tracking-tight text-black">SMAN Arara 1</h5>
                         </a>
-                        <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Arara, Jawa Barat</p>
-                        <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">Butuh donasi untuk memperbaiki
+                        <p class="mb-2 text-xs font-normal text-black">Arara, Jawa Barat</p>
+                        <p class="mb-4 text-sm font-normal text-black">Butuh donasi untuk memperbaiki
                             kerusakan sekolah</p>
-                        <div class="mb-1 flex w-full text-xs font-medium dark:text-white">
+                        <div class="mb-1 flex w-full text-xs font-medium">
                             <p>Terkumpul</p>
                             <p class="text-primary ms-auto font-bold">50%</p>
                         </div>
-                        <div class="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
-                            <div class="bg-primary h-1.5 rounded-full dark:bg-blue-500" style="width: 45%"></div>
+                        <div class="h-1.5 w-full rounded-full bg-gray-200">
+                            <div class="bg-primary h-1.5 rounded-full" style="width: 45%"></div>
                         </div>
                     </div>
                 </div>
                 <div
-                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
+                    class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow">
                     <a href="#">
                         <img class="h-64 rounded-t-lg object-cover" src="{{ asset('img/Untitled-1.png') }}"
                             alt="" />
                     </a>
                     <div class="p-5">
                         <a href="#">
-                            <h5 class="text-xl font-bold tracking-tight text-black dark:text-white">SMAN Arara 1</h5>
+                            <h5 class="text-xl font-bold tracking-tight text-black">SMAN Arara 1</h5>
                         </a>
-                        <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Arara, Jawa Barat</p>
-                        <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">Butuh donasi untuk memperbaiki
+                        <p class="mb-2 text-xs font-normal text-black">Arara, Jawa Barat</p>
+                        <p class="mb-4 text-sm font-normal text-black">Butuh donasi untuk memperbaiki
                             kerusakan sekolah</p>
-                        <div class="mb-1 flex w-full text-xs font-medium dark:text-white">
+                        <div class="mb-1 flex w-full text-xs font-medium">
                             <p>Terkumpul</p>
                             <p class="text-primary ms-auto font-bold">50%</p>
                         </div>
-                        <div class="h-1.5 w-full rounded-full bg-gray-200 dark:bg-gray-700">
-                            <div class="bg-primary h-1.5 rounded-full dark:bg-blue-500" style="width: 45%"></div>
+                        <div class="h-1.5 w-full rounded-full bg-gray-200">
+                            <div class="bg-primary h-1.5 rounded-full" style="width: 45%"></div>
                         </div>
                     </div>
                 </div>
                 <button type="button"
-                    class="mt-4 block inline-flex h-10 items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Lihat
-                    semua <svg class="ms-4 h-3 w-3 text-white dark:text-white" aria-hidden="true"
+                    class="mt-4 block inline-flex h-10 items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Lihat
+                    semua <svg class="ms-4 h-3 w-3 text-white" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M5 1v12m0 0 4-4m-4 4L1 9" />
