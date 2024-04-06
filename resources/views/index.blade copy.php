@@ -78,115 +78,125 @@
             </div>
         </div>
         <div class="h-44 w-2/3">
-            <div class="me-16 ms-16 p-1 from-gray-500 to-gray-400 rounded-t-lg bg-gradient-to-r text-center font-bold tracking-wide text-white">
-                Donasi Sekarang!
-            </div>
-            <div id="controls-carousel" class="relative h-36 w-full" data-carousel="static">
-                <!-- Carousel wrapper -->
-                <div class="relative me-16 ms-16 h-36 overflow-hidden rounded-b-lg border border-gray-400 drop-shadow-md">
-                    <!-- Item 1 -->
-                    <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item="active">
-                        <img src="{{ asset('img/Untitled-1.png') }}"
-                            class="absolute right-1/2 top-1/2 me-11 block w-64 -translate-y-1/2" alt="...">
-                        <div
-                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-fit bg-white p-4 text-black md:block">
-                            <h5 class="font-bold">SMAN 1 Blitar</h5>
-                            <p class="text-xs">
-                                Blitar, Jawa Timur
-                            </p>
-                            <p class="text-wrap mt-2 w-5/6 text-xs">
-                                Bantu sekolah kami karena kurang dana dari pemerintah
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Item 2 -->
-                    <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('img/Untitled-1.png') }}"
-                            class="absolute right-1/2 top-1/2 me-11 block w-64 -translate-y-1/2" alt="...">
-                        <div
-                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-fit bg-white p-4 text-black md:block">
-                            <h5 class="font-bold">SMAN 1 Blitar</h5>
-                            <p class="text-xs">
-                                Blitar, Jawa Timur
-                            </p>
-                            <p class="text-wrap mt-2 w-5/6 text-xs">
-                                Bantu sekolah kami karena kurang dana dari pemerintah
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Item 3 -->
-                    <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('img/Untitled-1.png') }}"
-                            class="absolute right-1/2 top-1/2 me-11 block w-64 -translate-y-1/2" alt="...">
-                        <div
-                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-full bg-white p-4 text-black md:block">
-                            <h5 class="font-bold">SMAN 1 Blitar</h5>
-                            <p class="text-xs">
-                                Blitar, Jawa Timur
-                            </p>
-                            <p class="text-wrap mt-2 w-1/2 text-xs">
-                                Bantu sekolah kami karena kurang dana dari pemerintah
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Item 4 -->
-                    <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('img/Untitled-1.png') }}"
-                            class="absolute right-1/2 top-1/2 me-11 block w-64 -translate-y-1/2" alt="...">
-                        <div
-                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-fit bg-white p-4 text-black md:block">
-                            <h5 class="font-bold">SMAN 1 Blitar</h5>
-                            <p class="text-xs">
-                                Blitar, Jawa Timur
-                            </p>
-                            <p class="text-wrap mt-2 w-5/6 text-xs">
-                                Bantu sekolah kami karena kurang dana dari pemerintah
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Item 5 -->
-                    <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
-                        <img src="{{ asset('img/Untitled-1.png') }}"
-                            class="absolute right-1/2 top-1/2 me-11 block w-64 -translate-y-1/2" alt="...">
-                        <div
-                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-fit  bg-white p-4 text-black md:block">
-                            <h5 class="font-bold">SMAN 1 Blitar</h5>
-                            <p class="text-xs">
-                                Blitar, Jawa Timur
-                            </p>
-                            <p class="text-wrap mt-2 w-5/6 text-xs">
-                                Bantu sekolah kami karena kurang dana dari pemerintah
-                            </p>
-                        </div>
-                    </div>
+            <div
+                class="flex h-full w-full rounded-lg border border-gray-200 bg-white">
+
+                <div class="from-primary to-primarylight flex h-full w-12 rounded-l-lg bg-gradient-to-r">
+                    <span
+                        class="item-center flex translate-x-7 -rotate-90 transform justify-center whitespace-nowrap font-bold tracking-wide text-white">Donasi
+                        Sekarang!</span>
                 </div>
-                <!-- Slider controls -->
-                <button type="button"
-                    class="group absolute start-0 top-0 z-30 flex mt-12 cursor-pointer items-center justify-center px-3 focus:outline-none"
-                    data-carousel-prev>
-                    <span
-                        class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black group-hover:bg-black/70 group-focus:outline-none group-focus:ring-4 group-focus:ring-white">
-                        <svg class="h-4 w-4 text-white rtl:rotate-180" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="M5 1 1 5l4 4" />
-                        </svg>
-                        <span class="sr-only">Previous</span>
-                    </span>
-                </button>
-                <button type="button"
-                    class="group absolute end-0 top-0 z-30 flex mt-12 cursor-pointer items-center justify-center px-3 focus:outline-none"
-                    data-carousel-next>
-                    <span
-                        class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black group-hover:bg-black/70 group-focus:outline-none group-focus:ring-4 group-focus:ring-white">
-                        <svg class="h-4 w-4 text-white rtl:rotate-180" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m1 9 4-4-4-4" />
-                        </svg>
-                        <span class="sr-only">Next</span>
-                    </span>
-                </button>
+
+                <div id="controls-carousel" class="relative my-auto h-36 w-full" data-carousel="static">
+                    <!-- Carousel wrapper -->
+                    <div class="relative me-16 ms-16 h-36 overflow-hidden rounded-lg border drop-shadow-md">
+                        <!-- Item 1 -->
+                        <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item="active">
+                            <img src="{{ asset('img/Untitled-1.png') }}"
+                                class="absolute right-1/2 top-1/2 me-6 block w-64 -translate-y-1/2 rounded" alt="...">
+                            <div
+                                class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-fit bg-white p-4 text-black md:block">
+                                <h5 class="font-bold">SMAN 1 Blitar</h5>
+                                <p class="text-xs">
+                                    Blitar, Jawa Timur
+                                </p>
+                                <p class="text-wrap mt-2 w-5/6 text-xs">
+                                    Bantu sekolah kami karena kurang dana dari pemerintah
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Item 2 -->
+                        <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item="active">
+                            <img src="{{ asset('img/Untitled-1.png') }}"
+                                class="absolute right-1/2 top-1/2 me-6 block w-64 -translate-y-1/2 rounded" alt="...">
+                            <div
+                                class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-fit bg-white p-4 text-black md:block">
+                                <h5 class="font-bold">SMAN 1 Blitar</h5>
+                                <p class="text-xs">
+                                    Blitar, Jawa Timur
+                                </p>
+                                <p class="text-wrap mt-2 w-5/6 text-xs">
+                                    Bantu sekolah kami karena kurang dana dari pemerintah
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Item 3 -->
+                        <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
+                            <img src="{{ asset('img/Untitled-1.png') }}"
+                                class="absolute right-1/2 top-1/2 me-6 block w-64 -translate-y-1/2 rounded" alt="...">
+                            <div
+                                class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-full bg-white p-4 text-black md:block">
+                                <h5 class="font-bold">SMAN 1 Blitar</h5>
+                                <p class="text-xs">
+                                    Blitar, Jawa Timur
+                                </p>
+                                <p class="text-wrap mt-2 w-1/2 text-xs">
+                                    Bantu sekolah kami karena kurang dana dari pemerintah
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Item 4 -->
+                        <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item="active">
+                            <img src="{{ asset('img/Untitled-1.png') }}"
+                                class="absolute right-1/2 top-1/2 me-6 block w-64 -translate-y-1/2 rounded" alt="...">
+                            <div
+                                class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-fit bg-white p-4 text-black md:block">
+                                <h5 class="font-bold">SMAN 1 Blitar</h5>
+                                <p class="text-xs">
+                                    Blitar, Jawa Timur
+                                </p>
+                                <p class="text-wrap mt-2 w-5/6 text-xs">
+                                    Bantu sekolah kami karena kurang dana dari pemerintah
+                                </p>
+                            </div>
+                        </div>
+                        <!-- Item 5 -->
+                        <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item="active">
+                            <img src="{{ asset('img/Untitled-1.png') }}"
+                                class="absolute right-1/2 top-1/2 me-6 block w-64 -translate-y-1/2 rounded" alt="...">
+                            <div
+                                class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-fixcarouselitem5  bg-white p-4 text-black md:block">
+                                <h5 class="font-bold">SMAN 1 Blitar</h5>
+                                <p class="text-xs">
+                                    Blitar, Jawa Timur
+                                </p>
+                                <p class="text-wrap mt-2 w-5/6 text-xs">
+                                    Bantu sekolah kami karena kurang dana dari pemerintah
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slider controls -->
+                    <button type="button"
+                        class="group absolute start-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-3 focus:outline-none"
+                        data-carousel-prev>
+                        <span
+                            class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black group-hover:bg-black/70 group-focus:outline-none group-focus:ring-4 group-focus:ring-white">
+                            <svg class="h-4 w-4 text-white rtl:rotate-180" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M5 1 1 5l4 4" />
+                            </svg>
+                            <span class="sr-only">Previous</span>
+                        </span>
+                    </button>
+                    <button type="button"
+                        class="group absolute end-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-3 focus:outline-none"
+                        data-carousel-next>
+                        <span
+                            class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black group-hover:bg-black/70 group-focus:outline-none group-focus:ring-4 group-focus:ring-white">
+                            <svg class="h-4 w-4 text-white rtl:rotate-180" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 9 4-4-4-4" />
+                            </svg>
+                            <span class="sr-only">Next</span>
+                        </span>
+                    </button>
+                </div>
+
+
+
             </div>
         </div>
         <div class="col-span-3">
