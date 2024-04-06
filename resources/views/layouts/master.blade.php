@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['public/css/app.css', 'resources/js/app.js'])
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="resources\css\app.css">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
 <body>
@@ -35,7 +35,7 @@
                     <a href="https://flowbite.com" class="ms-2 flex md:me-24">
                         <img src="{{ asset('assets/img/EduFund2.png') }}" class="me-3 h-10" alt="EduFund" />
                         <span
-                            class="self-center whitespace-nowrap text-xl font-semibold sm:text-2xl"></span>
+                            class="self-center whitespace-nowrap text-xl font-semibold dark:text-white sm:text-2xl"></span>
                     </a>
                 </div>
 
@@ -46,7 +46,7 @@
                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 ps-10 text-sm text-gray-900 focus:border-orange-500 focus:ring-orange-500"
                             placeholder="Search...">
                         <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
-                            <svg class="h-4 w-4 text-gray-500" aria-hidden="true"
+                            <svg class="h-4 w-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
@@ -80,42 +80,42 @@
                 <div class="ms-auto hidden w-full items-center justify-between md:order-2 md:flex md:w-auto"
                     id="navbar-search">
                     <button type="button"
-                        class="flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300"
+                        class="flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
                         aria-expanded="false" data-dropdown-toggle="dropdown-user">
                         <span class="sr-only">Open user menu</span>
                         <img class="h-8 w-8 rounded-full"
                             src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
                     </button>
                 </div>
-                <div class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded bg-white text-base shadow"
+                <div class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded bg-white text-base shadow dark:divide-gray-600 dark:bg-gray-700"
                     id="dropdown-user">
                     <div class="px-4 py-3" role="none">
-                        <p class="text-sm text-gray-900" role="none">
+                        <p class="text-sm text-gray-900 dark:text-white" role="none">
                             Neil Sims
                         </p>
-                        <p class="truncate text-sm font-medium text-gray-900" role="none">
+                        <p class="truncate text-sm font-medium text-gray-900 dark:text-gray-300" role="none">
                             neil.sims@flowbite.com
                         </p>
                     </div>
                     <ul class="py-1" role="none">
                         <li>
                             <a href="#"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                 role="menuitem">Dashboard</a>
                         </li>
                         <li>
                             <a href="#"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                 role="menuitem">Settings</a>
                         </li>
                         <li>
                             <a href="#"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                 role="menuitem">Earnings</a>
                         </li>
                         <li>
                             <a href="#"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                 role="menuitem">Sign out</a>
                         </li>
                     </ul>
@@ -125,64 +125,39 @@
     </nav>
 
     <aside id="logo-sidebar"
-        class="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full bg-white pt-20 transition-transform sm:translate-x-0"
+        class="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full bg-white pt-20 transition-transform dark:border-gray-700 dark:bg-gray-800 sm:translate-x-0"
         aria-label="Sidebar">
         <div class="h-full overflow-y-auto bg-white px-3 pb-4">
             <ul class="space-y-2 font-medium">
                 <li>
                     <a href="#"
-                        class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
-                        <svg class="h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                        class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <svg class="h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 22 21">
                             <path
-                                d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
+                                d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
                             <path
-                                d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
+                                d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
                         </svg>
-                        <span class="ms-3">Home</span>
+                        <span class="ms-3">Dashboard</span>
                     </a>
                 </li>
                 <li>
                     <a href="#"
-                        class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
-                        <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                        class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                             viewBox="0 0 18 18">
                             <path
                                 d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
                         </svg>
-                        <span class="ms-3 flex-1 whitespace-nowrap">Search</span>
+                        <span class="ms-3 flex-1 whitespace-nowrap">Kanban</span>
                         <span
-                            class="ms-3 inline-flex items-center justify-center rounded-full bg-gray-100 px-2 text-sm font-medium text-gray-800">Pro</span>
+                            class="ms-3 inline-flex items-center justify-center rounded-full bg-gray-100 px-2 text-sm font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-300">Pro</span>
                     </a>
                 </li>
                 <li>
-                    <form action="/logout" method="POST">
-                        @csrf <!-- Add CSRF token for security -->
-                        <button type="submit" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
-                            <svg class="h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
-                                <!-- Icon untuk logout di sini -->
-                            </svg>
-                            <span class="ms-3">Logout</span>
-                        </button>
-                    </form>
-                </li>
-                <li>
-                    <a href="{{ route ('profile.edit') }}"
-                        class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
-                        <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900"
-                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                            viewBox="0 0 18 18">
-                            <path
-                                d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
-                        </svg>
-                        <span class="ms-3 flex-1 whitespace-nowrap">Profile</span>
-                        <span
-                            class="ms-3 inline-flex items-center justify-center rounded-full bg-gray-100 px-2 text-sm font-medium text-gray-800">Pro</span>
-                    </a>
-                </li>
-                {{-- <li>
                     <a href="#"
                         class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
                         <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900"
@@ -252,7 +227,7 @@
         </div>
     </aside>
 
-    <div class="flex h-screen flex-col sm:ml-64">
+    <div class="flex h-screen flex-col md:ml-56">
         <div
             class="scrollbar-thumb-rounded-full scrollbar scrollbar-thin scrollbar-thumb-gray-100 mt-16 flex h-32 flex-1 overflow-y-auto overflow-y-scroll rounded-tl-lg bg-gray-100 p-4">
             @yield('content')
@@ -260,7 +235,7 @@
     </div>
 
 
-
+    <script src="{{ asset('./node_modules/flowbite/dist/flowbite.js') }}"></script>
 </body>
 
 </html>
