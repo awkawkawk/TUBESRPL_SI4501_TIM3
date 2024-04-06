@@ -9,3 +9,7 @@ Route::get('/', function () {
 Route::get('/riwayat', function () {
     return view('riwayatcampaign');
 });
+
+Route::get('/riwayat/donatur', function () {
+    return view('lihatdonatur');
+});
