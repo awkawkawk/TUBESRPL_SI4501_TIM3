@@ -1,8 +1,6 @@
+<<<<<<<<< Temporary merge branch 1
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
-
-import defaultTheme from "tailwindcss/defaultTheme";
-import forms from "@tailwindcss/forms";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -14,23 +12,10 @@ export default {
     ],
 
     theme: {
-        fontFamily: {
-            sans: [
-                '"Inter"',
-                "system-ui",
-                "-apple-system",
-                "BlinkMacSystemFont",
-                '"Segoe UI"',
-                "Roboto",
-                '"Helvetica Neue"',
-                "Arial",
-                '"Noto Sans"',
-                "sans-serif",
-                '"Apple Color Emoji"',
-                '"Segoe UI Emoji"',
-                '"Segoe UI Symbol"',
-                '"Noto Color Emoji"',
-            ],
+        extend: {
+            fontFamily: {
+                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+            },
         },
         extend: {
             colors: {
@@ -46,4 +31,5 @@ export default {
     },
 
     plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")],
+
 };
