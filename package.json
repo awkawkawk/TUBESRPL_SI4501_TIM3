@@ -3,8 +3,7 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
-        "watch": "npx tailwindcss -i ./resources/css/input.css -o ./public/css/app.css --watch"
+        "build": "vite build"
     },
     "devDependencies": {
         "@shufo/prettier-plugin-blade": "^1.14.1",
