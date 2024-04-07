@@ -33,18 +33,19 @@
 
                     {{-- Logo --}}
                     <a href="https://flowbite.com" class="ms-2 flex md:me-24">
-                        <img src="{{ asset('img/EduFund2.png') }}" class="me-3 h-10" alt="EduFund" />
-                        <span class="self-center whitespace-nowrap text-xl font-semibold sm:text-2xl"></span>
+                        <img src="{{ asset('assets/img/EduFund2.png') }}" class="me-3 h-10" alt="EduFund" />
+                        <span
+                            class="self-center whitespace-nowrap text-xl font-semibold dark:text-white sm:text-2xl"></span>
                     </a>
                 </div>
 
                 {{-- Search --}}
                 <div class="flex md:order-1">
-                    <div class="relative hidden md:block w-96 ">
+                    <div class="relative hidden md:block">
                         <input type="text" id="search-navbar"
-                            class=" block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 ps-4 text-smtext-gray-900 focus:border-gray-500 focus:ring-0"
+                            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 ps-10 text-sm text-gray-900 focus:border-orange-500 focus:ring-orange-500"
                             placeholder="Search...">
-                        <div class="pointer-events-none absolute inset-y-0 end-4 flex items-center ps-3">
+                        <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
                             <svg class="h-4 w-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 fill="none" viewBox="0 0 20 20">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -54,7 +55,7 @@
                         </div>
                         <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search"
                             aria-expanded="false"
-                            class=" me-1 rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring- focus:ring-gray-200 md:hidden">
+                            class="me-1 rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 md:hidden">
                             <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 20 20">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -122,54 +123,64 @@
                             </li>
                         </ul>
                     </div>
-                @else
-                    <a href="{{ route('login') }}"
-                        class="ms-auto rounded-md px-3 py-2 text-sm text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-2">
-                        Log in
-                    </a>
-
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}"
-                            class="rounded-md px-3 py-2 text-sm text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-3">
-                            Register
-                        </a>
-                    @endif
-                @endauth
-
+                    <ul class="py-1" role="none">
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                role="menuitem">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                role="menuitem">Settings</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                role="menuitem">Earnings</a>
+                        </li>
+                        <li>
+                            <a href="#"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                role="menuitem">Sign out</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
 
     <aside id="logo-sidebar"
-        class="fixed left-0 top-0 z-40 h-screen w-52 -translate-x-full bg-white pt-20 transition-transform md:translate-x-0"
+        class="fixed left-0 top-0 z-40 h-screen w-64 -translate-x-full bg-white pt-20 transition-transform dark:border-gray-700 dark:bg-gray-800 sm:translate-x-0"
         aria-label="Sidebar">
         <div class="h-full overflow-y-auto bg-white px-3 pb-4">
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="#" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="h-4 w-4 text-gray-500 transition duration-75 group-hover:text-gray-900">
+                    <a href="#"
+                        class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <svg class="h-5 w-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                            viewBox="0 0 22 21">
                             <path
                                 d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
                             <path
                                 d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
                         </svg>
-
-
-                        <span class="ms-3 text-sm">Home</span>
+                        <span class="ms-3">Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                            class="h-4 w-4 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900">
-                            <path fill-rule="evenodd"
-                                d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
-                                clip-rule="evenodd" />
+                    <a href="#"
+                        class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
+                        <svg class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
+                            aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                            viewBox="0 0 18 18">
+                            <path
+                                d="M6.143 0H1.857A1.857 1.857 0 0 0 0 1.857v4.286C0 7.169.831 8 1.857 8h4.286A1.857 1.857 0 0 0 8 6.143V1.857A1.857 1.857 0 0 0 6.143 0Zm10 0h-4.286A1.857 1.857 0 0 0 10 1.857v4.286C10 7.169 10.831 8 11.857 8h4.286A1.857 1.857 0 0 0 18 6.143V1.857A1.857 1.857 0 0 0 16.143 0Zm-10 10H1.857A1.857 1.857 0 0 0 0 11.857v4.286C0 17.169.831 18 1.857 18h4.286A1.857 1.857 0 0 0 8 16.143v-4.286A1.857 1.857 0 0 0 6.143 10Zm10 0h-4.286A1.857 1.857 0 0 0 10 11.857v4.286c0 1.026.831 1.857 1.857 1.857h4.286A1.857 1.857 0 0 0 18 16.143v-4.286A1.857 1.857 0 0 0 16.143 10Z" />
                         </svg>
-
-                        <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Search</span>
+                        <span class="ms-3 flex-1 whitespace-nowrap">Kanban</span>
+                        <span
+                            class="ms-3 inline-flex items-center justify-center rounded-full bg-gray-100 px-2 text-sm font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-300">Pro</span>
                     </a>
                 </li>
 

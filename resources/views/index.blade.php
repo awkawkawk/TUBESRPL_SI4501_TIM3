@@ -159,34 +159,37 @@
                             </p>
                         </div>
                     </div>
+                    <!-- Slider controls -->
+                    <button type="button"
+                        class="group absolute start-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-3 focus:outline-none"
+                        data-carousel-prev>
+                        <span
+                            class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black group-hover:bg-black/70 group-focus:outline-none group-focus:ring-4 group-focus:ring-white">
+                            <svg class="h-4 w-4 text-white rtl:rotate-180" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="M5 1 1 5l4 4" />
+                            </svg>
+                            <span class="sr-only">Previous</span>
+                        </span>
+                    </button>
+                    <button type="button"
+                        class="group absolute end-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-3 focus:outline-none"
+                        data-carousel-next>
+                        <span
+                            class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black group-hover:bg-black/70 group-focus:outline-none group-focus:ring-4 group-focus:ring-white">
+                            <svg class="h-4 w-4 text-white rtl:rotate-180" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 9 4-4-4-4" />
+                            </svg>
+                            <span class="sr-only">Next</span>
+                        </span>
+                    </button>
                 </div>
-                <!-- Slider controls -->
-                <button type="button"
-                    class="group absolute start-0 top-0 z-30 flex mt-12 cursor-pointer items-center justify-center px-3 focus:outline-none"
-                    data-carousel-prev>
-                    <span
-                        class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black group-hover:bg-black/70 group-focus:outline-none group-focus:ring-4 group-focus:ring-white">
-                        <svg class="h-4 w-4 text-white rtl:rotate-180" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="M5 1 1 5l4 4" />
-                        </svg>
-                        <span class="sr-only">Previous</span>
-                    </span>
-                </button>
-                <button type="button"
-                    class="group absolute end-0 top-0 z-30 flex mt-12 cursor-pointer items-center justify-center px-3 focus:outline-none"
-                    data-carousel-next>
-                    <span
-                        class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black group-hover:bg-black/70 group-focus:outline-none group-focus:ring-4 group-focus:ring-white">
-                        <svg class="h-4 w-4 text-white rtl:rotate-180" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m1 9 4-4-4-4" />
-                        </svg>
-                        <span class="sr-only">Next</span>
-                    </span>
-                </button>
+
+
+
             </div>
         </div>
         <div class="col-span-3">
