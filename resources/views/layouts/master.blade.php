@@ -41,11 +41,11 @@
 
                 {{-- Search --}}
                 <div class="flex md:order-1">
-                    <div class="relative hidden md:block w-96 ">
+                    <div class="relative hidden md:block">
                         <input type="text" id="search-navbar"
-                            class=" block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 ps-4 text-smtext-gray-900 focus:border-gray-500 focus:ring-0"
+                            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 ps-10 text-sm text-gray-900 focus:border-orange-500 focus:ring-orange-500"
                             placeholder="Search...">
-                        <div class="pointer-events-none absolute inset-y-0 end-4 flex items-center ps-3">
+                        <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
                             <svg class="h-4 w-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 fill="none" viewBox="0 0 20 20">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -55,7 +55,7 @@
                         </div>
                         <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search"
                             aria-expanded="false"
-                            class=" me-1 rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring- focus:ring-gray-200 md:hidden">
+                            class="me-1 rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-200 md:hidden">
                             <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 20 20">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -183,6 +183,7 @@
                             class="ms-3 inline-flex items-center justify-center rounded-full bg-gray-100 px-2 text-sm font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-300">Pro</span>
                     </a>
                 </li>
+
 
             </ul>
         </div>
