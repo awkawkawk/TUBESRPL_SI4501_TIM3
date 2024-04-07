@@ -1,115 +1,148 @@
-@extends('layouts.master')
+@extends('layouts.app')
+
+@section('title', 'Tambah Campaign')
 
 @section('content')
-    <div class="grid h-fit w-full grid-flow-row grid-cols-3 gap-8">
-
-        <div id="default-carousel" class="relative h-44 w-full" data-carousel="slide">
-            <!-- Carousel wrapper -->
-            <div class="relative h-full overflow-hidden rounded-lg">
-                <!-- Item 1 -->
-                <div class="hidden object-cover duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('assets/img/Untitled-1.png') }}"
-                        class="absolute left-1/2 top-1/2 block h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
-                        alt="...">
+<div class="container mx-auto my-8 px-6 md:px-12">
+<div id="additionalGoodsFields"></div>
+    <div class="flex flex-wrap justify-center">
+        <div class="w-full lg:w-8/12 px-4">
+            <div class="relative mb-6 flex w-full min-w-0 flex-col break-words rounded-lg border-0 bg-white shadow-lg">
+                <div class="rounded-t mb-0 px-6 py-6">
+                    <div class="text-center mb-3">
+                        <h6 class="text-gray-700 text-sm font-bold">
+                            Tambah Campaign
+                        </h6>
+                    </div>
+                    <hr class="mt-6 border-b-1 border-gray-300" />
                 </div>
-                <!-- Item 2 -->
-                <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('assets/img/Untitled-1.png') }}"
-                        class="absolute left-1/2 top-1/2 block h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
-                        alt="...">
-                </div>
-                <!-- Item 3 -->
-                <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('assets/img/Untitled-1.png') }}"
-                        class="absolute left-1/2 top-1/2 block h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
-                        alt="...">
-                </div>
-                <!-- Item 4 -->
-                <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('assets/img/Untitled-1.png') }}"
-                        class="absolute left-1/2 top-1/2 block h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
-                        alt="...">
-                </div>
-                <!-- Item 5 -->
-                <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
-                    <img src="{{ asset('assets/img/Untitled-1.png') }}"
-                        class="absolute left-1/2 top-1/2 block h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover"
-                        alt="...">
-                </div>
-                <!-- Slider indicators -->
-                <div class="absolute bottom-3 left-1/2 z-30 flex -translate-x-1/2 space-x-2 rtl:space-x-reverse">
-                    <button type="button" class="h-2 w-2 rounded-full" aria-current="true" aria-label="Slide 1"
-                        data-carousel-slide-to="0"></button>
-                    <button type="button" class="h-2 w-2 rounded-full" aria-current="false" aria-label="Slide 2"
-                        data-carousel-slide-to="1"></button>
-                    <button type="button" class="h-2 w-2 rounded-full" aria-current="false" aria-label="Slide 3"
-                        data-carousel-slide-to="2"></button>
-                    <button type="button" class="h-2 w-2 rounded-full" aria-current="false" aria-label="Slide 4"
-                        data-carousel-slide-to="3"></button>
-                    <button type="button" class="h-2 w-2 rounded-full" aria-current="false" aria-label="Slide 5"
-                        data-carousel-slide-to="4"></button>
-                </div>
-                <!-- Slider controls -->
-                <button type="button"
-                    class="group absolute start-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
-                    data-carousel-prev>
-                    <span
-                        class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-1 group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70">
-                        <svg class="h-2 w-2 text-white rtl:rotate-180 dark:text-gray-800" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M5 1 1 5l4 4" />
-                        </svg>
-                        <span class="sr-only">Previous</span>
-                    </span>
-                </button>
-                <button type="button"
-                    class="group absolute end-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
-                    data-carousel-next>
-                    <span
-                        class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-white/30 group-hover:bg-white/50 group-focus:outline-none group-focus:ring-1 group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70">
-                        <svg class="h-2 w-2 text-white rtl:rotate-180 dark:text-gray-800" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 9 4-4-4-4" />
-                        </svg>
-                        <span class="sr-only">Next</span>
-                    </span>
-                </button>
-            </div>
-        </div>
-        <div class="col-span-2 h-44">
-            <div class="h-full w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
-                <div class="flex h-full w-12 rounded-l-lg bg-gray-700"></div>
-            </div>
-        </div>
-        <div class="col-span-3">
-            <p class="h1 mb-2 block text-center text-xl font-semibold">Campaign Populer</p>
-            <p class="mx-auto w-1/2 text-center text-sm font-light">Mereka butuh uluran tangan kita. Karena sedikit bantuan
-                dari kita adalah harapan besar bagi mereka.</p>
-            <div class="max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800">
-                <a href="#">
-                    <img class="rounded-t-lg" src="{{ asset('assets/img/Untitled-1.png') }}" alt="" />
-                </a>
-                <div class="p-5">
-                    <a href="#">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy
-                            technology acquisitions 2021</h5>
-                    </a>
-                    <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology
-                        acquisitions of 2021 so far, in reverse chronological order.</p>
-                    <a href="#"
-                        class="inline-flex items-center rounded-lg bg-blue-700 px-3 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Read more
-                        <svg class="ms-2 h-3.5 w-3.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M1 5h12m0 0L9 1m4 4L9 9" />
-                        </svg>
-                    </a>
+                <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
+                    <form action="{{ route('campaigns.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <h6 class="text-gray-500 text-sm mt-3 mb-6 font-bold uppercase">
+                            Informasi Campaign
+                        </h6>
+                        <div class="flex flex-wrap">
+                            <div class="w-full px-4">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="campaignImage">
+                                        Foto Campaign
+                                    </label>
+                                    <input type="file" id="campaignImage" name="image" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
+                                </div>
+                            </div>
+                            <div class="w-full px-4">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="campaignName">
+                                        Nama Campaign
+                                    </label>
+                                    <input type="text" id="campaignName" name="name" required class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
+                                </div>
+                            </div>
+                            <div class="w-full px-4">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="campaignDescription">
+                                        Deskripsi Campaign
+                                    </label>
+                                    <textarea rows="4" id="campaignDescription" name="description" required class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150"></textarea>
+                                </div>
+                            </div>
+                            <div class="w-full px-4">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="donationType">
+                                        Jenis Sumbangan
+                                    </label>
+                                    <select id="donationType" name="donation_type" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150" onchange="showDonationOptions()">
+                                        <option value="">Pilih Jenis Sumbangan</option>
+                                        <option value="money">Uang</option>
+                                        <option value="goods">Barang</option>
+                                        <option value="money_and_goods">Uang dan Barang</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div id="donationMoney" class="hidden w-full px-4">
+                                <div class="relative w-full mb-3">
+                                    <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="targetDonation">
+                                        Target Donasi Uang
+                                    </label>
+                                    <input type="number" id="targetDonation" name="target_donation" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
+                                </div>
+                            </div>
+                            <div id="donationGoods" class="hidden w-full px-4">
+                                <div id="goodsContainer" class="flex flex-wrap -mx-3 mb-6">
+                                    <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="targetGoods">
+                                        Target Donasi Barang
+                                    </label>
+                                </div>
+                                <div id="additionalGoodsFields"></div>
+                                <div class="text-right">
+                                    <button type="button" class="inline-block bg-blue-500 text-white active:bg-blue-600 text-sm font-bold uppercase px-3 py-1 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150" onclick="addGoodsField()">
+                                        Tambah Barang
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-6">
+                            <button class="bg-blue-500 text-white active:bg-blue-600 text-sm font-bold px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150" type="submit">
+                                Submit
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
-
         </div>
     </div>
+</div>
+<script>
+// Fungsi untuk menampilkan opsi donasi berdasarkan jenis sumbangan yang dipilih
+function showDonationOptions() {
+    var donationType = document.getElementById('donationType').value;
+    var donationMoneyDiv = document.getElementById('donationMoney');
+    var donationGoodsDiv = document.getElementById('donationGoods');
+    
+    donationMoneyDiv.style.display = donationType === 'money' || donationType === 'money_and_goods' ? 'block' : 'none';
+    donationGoodsDiv.style.display = donationType === 'goods' || donationType === 'money_and_goods' ? 'block' : 'none';
+}
+
+// Fungsi untuk menambahkan field barang baru
+function addGoodsField() {
+    var container = document.getElementById('donationGoods'); // Pastikan ini merujuk ke div yang benar
+
+    // Membuat div baru untuk mengelompokkan input jumlah barang dan dropdown tipe barang
+    var divGroup = document.createElement('div');
+    divGroup.classList.add('flex', 'flex-wrap', 'mb-3');
+
+    // Membuat input untuk jumlah barang
+    var targetGoodsInput = document.createElement('input');
+    targetGoodsInput.type = 'number';
+    targetGoodsInput.name = 'target_goods[]';
+    targetGoodsInput.placeholder = 'Jumlah Barang';
+    targetGoodsInput.classList.add('border', 'px-4', 'py-2', 'rounded', 'mr-3', 'mb-3', 'flex-1');
+    divGroup.appendChild(targetGoodsInput);
+
+    // Membuat dropdown untuk tipe barang
+    var goodsTypeSelect = document.createElement('select');
+    goodsTypeSelect.name = 'goods_type[]';
+    goodsTypeSelect.classList.add('border', 'px-4', 'py-2', 'rounded', 'mr-3', 'mb-3', 'flex-1');
+
+    var defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = 'Pilih Barang';
+    goodsTypeSelect.appendChild(defaultOption);
+
+    var options = ['Kursi', 'Meja', 'Alat Tulis', 'Lain-lain'];
+    options.forEach(function(item) {
+        var option = document.createElement('option');
+        option.value = item.toLowerCase();
+        option.textContent = item;
+        goodsTypeSelect.appendChild(option);
+    });
+
+    divGroup.appendChild(goodsTypeSelect);
+
+    // Memasukkan divGroup sebelum tombol Tambah Barang
+    var addButton = container.querySelector('.text-right');
+    container.insertBefore(divGroup, addButton);
+}
+</script>
 @endsection
