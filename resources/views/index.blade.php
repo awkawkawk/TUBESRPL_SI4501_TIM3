@@ -83,13 +83,13 @@
             </div>
             <div id="controls-carousel" class="relative h-36 w-full" data-carousel="static">
                 <!-- Carousel wrapper -->
-                <div class="relative me-16 ms-16 h-36 overflow-hidden rounded-b-lg border border-gray-400 drop-shadow-md">
+                <div class="relative me-16 ms-16 h-36 overflow-hidden rounded-b-lg border bg-white border-gray-400 drop-shadow-md">
                     <!-- Item 1 -->
                     <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item="active">
                         <img src="{{ asset('img/Untitled-1.png') }}"
-                            class="absolute right-1/2 top-1/2 me-11 block w-64 -translate-y-1/2" alt="...">
+                            class="absolute top-1/2 me-auto block w-64 -translate-y-1/2" alt="...">
                         <div
-                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-fit bg-white p-4 text-black md:block">
+                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-full p-4 text-black md:block">
                             <h5 class="font-bold">SMAN 1 Blitar</h5>
                             <p class="text-xs">
                                 Blitar, Jawa Timur
@@ -102,9 +102,9 @@
                     <!-- Item 2 -->
                     <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('img/Untitled-1.png') }}"
-                            class="absolute right-1/2 top-1/2 me-11 block w-64 -translate-y-1/2" alt="...">
+                            class="absolute top-1/2 me-auto block w-64 -translate-y-1/2" alt="...">
                         <div
-                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-fit bg-white p-4 text-black md:block">
+                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-full p-4 text-black md:block">
                             <h5 class="font-bold">SMAN 1 Blitar</h5>
                             <p class="text-xs">
                                 Blitar, Jawa Timur
@@ -117,14 +117,14 @@
                     <!-- Item 3 -->
                     <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('img/Untitled-1.png') }}"
-                            class="absolute right-1/2 top-1/2 me-11 block w-64 -translate-y-1/2" alt="...">
+                            class="absolute top-1/2 me-auto block w-64 -translate-y-1/2" alt="...">
                         <div
-                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-full bg-white p-4 text-black md:block">
+                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-full p-4 text-black md:block">
                             <h5 class="font-bold">SMAN 1 Blitar</h5>
                             <p class="text-xs">
                                 Blitar, Jawa Timur
                             </p>
-                            <p class="text-wrap mt-2 w-1/2 text-xs">
+                            <p class="text-wrap mt-2 w-5/6 text-xs">
                                 Bantu sekolah kami karena kurang dana dari pemerintah
                             </p>
                         </div>
@@ -132,9 +132,9 @@
                     <!-- Item 4 -->
                     <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('img/Untitled-1.png') }}"
-                            class="absolute right-1/2 top-1/2 me-11 block w-64 -translate-y-1/2" alt="...">
+                            class="absolute top-1/2 me-auto block w-64 -translate-y-1/2" alt="...">
                         <div
-                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-fit bg-white p-4 text-black md:block">
+                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-full p-4 text-black md:block">
                             <h5 class="font-bold">SMAN 1 Blitar</h5>
                             <p class="text-xs">
                                 Blitar, Jawa Timur
@@ -147,9 +147,9 @@
                     <!-- Item 5 -->
                     <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('img/Untitled-1.png') }}"
-                            class="absolute right-1/2 top-1/2 me-11 block w-64 -translate-y-1/2" alt="...">
+                            class="absolute top-1/2 me-auto block w-64 -translate-y-1/2" alt="...">
                         <div
-                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-fit  bg-white p-4 text-black md:block">
+                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-full p-4 text-black md:block">
                             <h5 class="font-bold">SMAN 1 Blitar</h5>
                             <p class="text-xs">
                                 Blitar, Jawa Timur
@@ -372,13 +372,15 @@
                         </div>
                     </div>
                 </div>
-                <button type="button"
-                    class="mt-4 block inline-flex h-10 items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Lihat
-                    semua <svg class="ms-4 h-3 w-3 text-white" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5 1v12m0 0 4-4m-4 4L1 9" />
-                    </svg></button>
+                <div class="w-full text-center">
+                    <button type="button"
+                        class="mt-4 inline-flex h-10 items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Lihat
+                        semua <svg class="ms-4 h-3 w-3 text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 1v12m0 0 4-4m-4 4L1 9" />
+                        </svg></button>
+                </div>
                 <div class="mt-6 grid h-24 w-11/12 grid-cols-3 gap-10 rounded-lg bg-gray-700">
                     <div class="flex flex-col items-center justify-center">
                         <p class="text-center text-sm text-white">Sekolah Terbantu</p>
