@@ -18,11 +18,15 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-  
+
 Route::get('/riwayat', function () {
     return view('riwayatcampaign');
 });
 
 Route::get('/riwayat/donatur', function () {
     return view('lihatdonatur');
+});
+
+Route::get('/verifikasi-sekolah', function () {
+    return view('verifikasi-sekolah');
 });
