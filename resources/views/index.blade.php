@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="h-fit w-full flex flex-wrap">
-        <div id="default-carousel" class="w-1/3 relative mb-8 h-44 drop-shadow-xl" data-carousel="slide">
+        <div id="default-carousel" class="lg:w-1/3 w-full h-64 relative mb-8 lg:h-44 drop-shadow-xl" data-carousel="slide">
             <!-- Carousel wrapper -->
             <div class="relative h-full overflow-hidden rounded-lg me-4">
                 <!-- Item 1 -->
@@ -77,24 +77,24 @@
                 </button> --}}
             </div>
         </div>
-        <div class="h-44 w-2/3">
-            <div class="me-16 ms-16 p-1 from-gray-500 to-gray-400 rounded-t-lg bg-gradient-to-r text-center font-bold tracking-wide text-white">
+        <div class="lg:h-44 lg:w-2/3 h-80 w-full">
+            <div class="me-16 ms-16 p-1 from-gray-500 to-gray-400 rounded-t-lg bg-gradient-to-r text-center font-bold tracking-wide text-white h-8">
                 Donasi Sekarang!
             </div>
-            <div id="controls-carousel" class="relative h-36 w-full" data-carousel="static">
+            <div id="controls-carousel" class="relative lg:h-36 h-full w-full" data-carousel="static">
                 <!-- Carousel wrapper -->
-                <div class="relative me-16 ms-16 h-36 overflow-hidden rounded-b-lg border bg-white border-gray-400 drop-shadow-md">
+                <div class="relative me-16 ms-16 h-full overflow-hidden rounded-b-lg border bg-white border-gray-400 drop-shadow-md">
                     <!-- Item 1 -->
                     <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item="active">
                         <img src="{{ asset('img/Untitled-1.png') }}"
-                            class="absolute top-1/2 me-auto block w-64 -translate-y-1/2" alt="...">
+                            class="absolute w-full lg:h-full h-48 object-cover me-auto block lg:w-64" alt="...">
                         <div
-                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-full p-4 text-black md:block">
+                            class="absolute z-40 lg:ms-64 lg:mt-0 mt-48 h-full w-full p-4 text-black md:block">
                             <h5 class="font-bold">SMAN 1 Blitar</h5>
                             <p class="text-xs">
                                 Blitar, Jawa Timur
                             </p>
-                            <p class="text-wrap mt-2 w-5/6 text-xs">
+                            <p class="text-wrap mt-2 w-full text-xs">
                                 Bantu sekolah kami karena kurang dana dari pemerintah
                             </p>
                         </div>
@@ -102,14 +102,14 @@
                     <!-- Item 2 -->
                     <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('img/Untitled-1.png') }}"
-                            class="absolute top-1/2 me-auto block w-64 -translate-y-1/2" alt="...">
+                            class="absolute w-full lg:h-full h-48 object-cover me-auto block lg:w-64" alt="...">
                         <div
-                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-full p-4 text-black md:block">
+                            class="absolute z-40 lg:ms-64 lg:mt-0 mt-48 h-full w-full p-4 text-black md:block">
                             <h5 class="font-bold">SMAN 1 Blitar</h5>
                             <p class="text-xs">
                                 Blitar, Jawa Timur
                             </p>
-                            <p class="text-wrap mt-2 w-5/6 text-xs">
+                            <p class="text-wrap mt-2 w-full text-xs">
                                 Bantu sekolah kami karena kurang dana dari pemerintah
                             </p>
                         </div>
@@ -117,14 +117,14 @@
                     <!-- Item 3 -->
                     <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('img/Untitled-1.png') }}"
-                            class="absolute top-1/2 me-auto block w-64 -translate-y-1/2" alt="...">
+                            class="absolute w-full lg:h-full h-48 object-cover me-auto block lg:w-64" alt="...">
                         <div
-                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-full p-4 text-black md:block">
+                            class="absolute z-40 lg:ms-64 lg:mt-0 mt-48 h-full w-full p-4 text-black md:block">
                             <h5 class="font-bold">SMAN 1 Blitar</h5>
                             <p class="text-xs">
                                 Blitar, Jawa Timur
                             </p>
-                            <p class="text-wrap mt-2 w-5/6 text-xs">
+                            <p class="text-wrap mt-2 w-full text-xs">
                                 Bantu sekolah kami karena kurang dana dari pemerintah
                             </p>
                         </div>
@@ -132,14 +132,14 @@
                     <!-- Item 4 -->
                     <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('img/Untitled-1.png') }}"
-                            class="absolute top-1/2 me-auto block w-64 -translate-y-1/2" alt="...">
+                            class="absolute w-full lg:h-full h-48 object-cover me-auto block lg:w-64" alt="...">
                         <div
-                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-full p-4 text-black md:block">
+                            class="absolute z-40 lg:ms-64 lg:mt-0 mt-48 h-full w-full p-4 text-black md:block">
                             <h5 class="font-bold">SMAN 1 Blitar</h5>
                             <p class="text-xs">
                                 Blitar, Jawa Timur
                             </p>
-                            <p class="text-wrap mt-2 w-5/6 text-xs">
+                            <p class="text-wrap mt-2 w-full text-xs">
                                 Bantu sekolah kami karena kurang dana dari pemerintah
                             </p>
                         </div>
@@ -147,14 +147,14 @@
                     <!-- Item 5 -->
                     <div class="object-fit hidden duration-700 ease-in-out" data-carousel-item>
                         <img src="{{ asset('img/Untitled-1.png') }}"
-                            class="absolute top-1/2 me-auto block w-64 -translate-y-1/2" alt="...">
+                            class="absolute w-full lg:h-full h-48 object-cover me-auto block lg:w-64" alt="...">
                         <div
-                            class="translate-x-fixcarousel absolute z-40 ms-4 hidden h-full w-full p-4 text-black md:block">
+                            class="absolute z-40 lg:ms-64 lg:mt-0 mt-48 h-full w-full p-4 text-black md:block">
                             <h5 class="font-bold">SMAN 1 Blitar</h5>
                             <p class="text-xs">
                                 Blitar, Jawa Timur
                             </p>
-                            <p class="text-wrap mt-2 w-5/6 text-xs">
+                            <p class="text-wrap mt-2 w-full text-xs">
                                 Bantu sekolah kami karena kurang dana dari pemerintah
                             </p>
                         </div>
@@ -162,7 +162,7 @@
                 </div>
                 <!-- Slider controls -->
                 <button type="button"
-                    class="group absolute start-0 top-0 z-30 flex mt-12 cursor-pointer items-center justify-center px-3 focus:outline-none"
+                    class="group absolute h-full start-0 top-0 z-30 flex my-auto cursor-pointer items-center justify-center px-3 focus:outline-none"
                     data-carousel-prev>
                     <span
                         class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black group-hover:bg-black/70 group-focus:outline-none group-focus:ring-4 group-focus:ring-white">
@@ -175,7 +175,7 @@
                     </span>
                 </button>
                 <button type="button"
-                    class="group absolute end-0 top-0 z-30 flex mt-12 cursor-pointer items-center justify-center px-3 focus:outline-none"
+                    class="group absolute end-0 top-0 z-30 flex h-full my-auto cursor-pointer items-center justify-center px-3 focus:outline-none"
                     data-carousel-next>
                     <span
                         class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black group-hover:bg-black/70 group-focus:outline-none group-focus:ring-4 group-focus:ring-white">
@@ -189,7 +189,7 @@
                 </button>
             </div>
         </div>
-        <div class="col-span-3">
+        <div class="col-span-3 lg:mt-4 mt-16">
             <p class="h1 mb-2 block text-center text-xl font-semibold text-black">Campaign Populer</p>
             <p class="mx-auto mb-8 w-1/2 text-center text-sm font-light text-black">Mereka butuh uluran tangan kita. Karena
                 sedikit
