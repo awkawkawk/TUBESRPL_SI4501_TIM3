@@ -8,21 +8,25 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
     public function up(): void
     {
         Schema::table('campaigns', function (Blueprint $table) {
-            $table->string('image')->nullable(); // Or without nullable if it must be non-null
+            $table->string('image')->nullable();
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
     public function down(): void
     {
         Schema::table('campaigns', function (Blueprint $table) {
-            //
+            $table->dropColumn('image');
         });
     }
 };
