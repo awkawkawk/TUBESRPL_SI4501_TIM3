@@ -1,4 +1,3 @@
-<<<<<<<<< Temporary merge branch 1
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 
