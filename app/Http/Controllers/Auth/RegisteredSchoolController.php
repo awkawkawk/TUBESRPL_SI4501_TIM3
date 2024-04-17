@@ -1,31 +1,19 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\SchoolVerification;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class RegisteredSchoolController extends Controller
 {
-    public function create(): View
+    public function index(): View
     {
         return view('auth.register-school');
     }
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         //
@@ -63,3 +51,4 @@ class RegisteredSchoolController extends Controller
         //
     }
 }
+

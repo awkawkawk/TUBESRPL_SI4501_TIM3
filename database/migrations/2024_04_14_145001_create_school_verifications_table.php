@@ -13,19 +13,17 @@ return new class extends Migration
     {
         Schema::create('school_verifications', function (Blueprint $table) {
             $table->id();
+            $table->string('school_logo');
+            $table->string('school_name');
+            $table->string('school_address');
+            $table->string('school_email');
+            $table->string('school_phone');
+            $table->string('registrant_name');
+            $table->string('registrant_email');
+            $table->string('registrant_number');
+            $table->string('registrant_identity_number');
+            $table->string('registrant_proof');
             $table->timestamps();
-            $table->string('schoolLogo');
-            $table->string('schoolName');
-            $table->string('schoolAddress');
-            $table->string('schoolEmail');
-            $table->string('schoolPhone');
-            $table->string('username');
-            $table->string('password');
-            $table->string('registrantName');
-            $table->string('registrantEmail');
-            $table->string('registrantNumber');
-            $table->string('registrantIdentityNumber');
-            $table->string('registrantProof');
         });
     }
 
