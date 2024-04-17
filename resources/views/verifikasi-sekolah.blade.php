@@ -20,99 +20,26 @@
             <div class="mb-4 text-left" style="margin-left: 2rem; margin-right: 2rem;">
                 <p class="h1 text-l mb-2 block font-semibold text-black" style="margin-bottom: 1rem;">Verifikasi Sekolah</p>
                 <div class="flex w-full flex-wrap">
-                    @php
-                        $schools = [
-                            [
-                                'profile' => 'img/Untitled-1.png',
-                                'alt' => 'SMAN Arara 1',
-                                'title' => 'SMAN Arara 1',
-                                'username' => 'Arara',
-                                'email' => 'arara@gmail.com',
-                                'location' => 'Arara, Jawa Barat',
-                                'schoolEmail' => 'arara@sman1arara.sch.id',
-                                'schoolPhone' => '081234567890',
-                                'registrantName' => 'John Doe',
-                                'registrantEmail' => 'john@example.com',
-                                'registrantNumber' => '0987654321',
-                                'registrantIdentityNumber' => '1234567890',
-                                'registrantProof' => 'Bukti Pendaftaran',
-                            ],
-                            [
-                                'profile' => 'img/sample-riwayat.jpg',
-                                'alt' => 'SMAN Semangat 2',
-                                'title' => 'SMAN Semangat 2',
-                                'username' => 'Semangat',
-                                'email' => 'semangat@gmail.com',
-                                'location' => 'Semangat, Jawa Barat',
-                                'schoolEmail' => 'semangat@sman2semangat.sch.id',
-                                'schoolPhone' => '081234567891',
-                                'registrantName' => 'Jane Doe',
-                                'registrantEmail' => 'jane@example.com',
-                                'registrantNumber' => '1234567890',
-                                'registrantIdentityNumber' => '0987654321',
-                                'registrantProof' => 'Bukti Pendaftaran',
-                            ],
-                            [
-                                'profile' => 'img/sample-riwayat.jpg',
-                                'alt' => 'SMAN Semangat 2',
-                                'title' => 'SMAN Semangat 2',
-                                'username' => 'Semangat',
-                                'email' => 'semangat@gmail.com',
-                                'location' => 'Semangat, Jawa Barat',
-                                'schoolEmail' => 'semangat@sman2semangat.sch.id',
-                                'schoolPhone' => '081234567891',
-                                'registrantName' => 'Jane Doe',
-                                'registrantEmail' => 'jane@example.com',
-                                'registrantNumber' => '1234567890',
-                                'registrantIdentityNumber' => '0987654321',
-                                'registrantProof' => 'Bukti Pendaftaran',
-                            ],
-                            [
-                                'profile' => 'img/sample-riwayat.jpg',
-                                'alt' => 'SMAN Semangat 2',
-                                'title' => 'SMAN Semangat 2',
-                                'username' => 'Semangat',
-                                'email' => 'semangat@gmail.com',
-                                'location' => 'Semangat, Jawa Barat',
-                                'schoolEmail' => 'semangat@sman2semangat.sch.id',
-                                'schoolPhone' => '081234567891',
-                                'registrantName' => 'Jane Doe',
-                                'registrantEmail' => 'jane@example.com',
-                                'registrantNumber' => '1234567890',
-                                'registrantIdentityNumber' => '0987654321',
-                                'registrantProof' => 'Bukti Pendaftaran',
-                            ],
-                            [
-                                'profile' => 'img/sample-riwayat.jpg',
-                                'alt' => 'SMAN Semangat 2',
-                                'title' => 'SMAN Semangat 2',
-                                'username' => 'Semangat',
-                                'email' => 'semangat@gmail.com',
-                                'location' => 'Semangat, Jawa Barat',
-                                'schoolEmail' => 'semangat@sman2semangat.sch.id',
-                                'schoolPhone' => '081234567891',
-                                'registrantName' => 'Jane Doe',
-                                'registrantEmail' => 'jane@example.com',
-                                'registrantNumber' => '1234567890',
-                                'registrantIdentityNumber' => '0987654321',
-                                'registrantProof' => 'Bukti Pendaftaran',
-                            ],
-                        ];
-                    @endphp
+                    @if ($schools->isEmpty())
+                        <p class="m-8 w-full justify-center text-center text-sm">Sedang tidak ada sekolah yang perlu
+                            diverifikasi</p>
+                    @else
+                        @foreach ($schools as $school)
+                            <x-admin-school-verification profile="{{ $school['profile'] }}" alt="{{ $school['alt'] }}"
+                                idDetailSekolah="detailSekolah{{ $loop->iteration }}"
+                                idDetailPendaftar="detailPendaftar{{ $loop->iteration }}"
+                                verificationId="{{ $loop->iteration }}" title="{{ $school['title'] }}"
+                                schoolName="{{ $school['school_name'] }}" email="{{ $school['school_email'] }}"
+                                location="{{ $school['school_address'] }}" schoolEmail="{{ $school['school_email'] }}"
+                                schoolPhone="{{ $school['school_phone'] }}"
+                                registrantName="{{ $school['registrant_name'] }}"
+                                registrantEmail="{{ $school['registrant_email'] }}"
+                                registrantNumber="{{ $school['registrant_number'] }}"
+                                registrantIdentityNumber="{{ $school['registrant_identity_number'] }}"
+                                registrantProof="{{ $school['registrant_proof'] }}" />
+                        @endforeach
+                    @endif
 
-                    @foreach ($schools as $school)
-                        <x-admin-school-verification profile="{{ $school['profile'] }}" alt="{{ $school['alt'] }}"
-                            idDetailSekolah="detailSekolah{{ $loop->iteration }}"
-                            idDetailPendaftar="detailPendaftar{{ $loop->iteration }}"
-                            verificationId="{{ $loop->iteration }}" title="{{ $school['title'] }}"
-                            username="{{ $school['username'] }}" email="{{ $school['email'] }}"
-                            location="{{ $school['location'] }}" schoolEmail="{{ $school['schoolEmail'] }}"
-                            schoolPhone="{{ $school['schoolPhone'] }}" registrantName="{{ $school['registrantName'] }}"
-                            registrantEmail="{{ $school['registrantEmail'] }}"
-                            registrantNumber="{{ $school['registrantNumber'] }}"
-                            registrantIdentityNumber="{{ $school['registrantIdentityNumber'] }}"
-                            registrantProof="{{ $school['registrantProof'] }}" />
-                    @endforeach
                 </div>
             </div>
         </div>

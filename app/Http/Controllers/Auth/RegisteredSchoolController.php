@@ -24,11 +24,10 @@ class RegisteredSchoolController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-
         $request->validate([
             'school_name' => ['required', 'string', 'max:255'],
             'school_address' => ['required', 'string', 'max:255'],
-            'school_phone' => ['required', 'string', 'max:15','min:11', 'unique:school_verifications'],
+            'school_phone' => ['required', 'string', 'max:15', 'min:11', 'unique:school_verifications'],
             'school_email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:school_verifications'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -43,5 +42,11 @@ class RegisteredSchoolController extends Controller
 
         // Redirect atau tindakan lain setelah data berhasil disimpan
         return redirect(route('index'))->with('success', 'Registrasi sekolah berhasil. Silahkan tunggu verifikasi dari admin :)');
+    }
+
+    public function showVerificationPage()
+    {
+        $schools = SchoolVerification::all();
+        return view('verifikasi-sekolah', compact('schools'));
     }
 }
