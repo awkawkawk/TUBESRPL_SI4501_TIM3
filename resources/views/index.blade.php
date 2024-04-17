@@ -2,6 +2,32 @@
 
 @section('content')
     <div class="flex h-fit w-full flex-wrap">
+        @if (session('success'))
+            <div id="toast-success"
+                class="mb-4 flex w-full max-w-xs items-center rounded-lg bg-white p-4 text-gray-500 shadow dark:bg-gray-800 dark:text-gray-400"
+                role="alert">
+                <div
+                    class="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-500 dark:bg-green-800 dark:text-green-200">
+                    <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                        viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z" />
+                    </svg>
+                    <span class="sr-only">Check icon</span>
+                </div>
+                <div class="ms-3 text-sm font-normal">{{ session('success') }}</div>
+                <button type="button"
+                    class="-mx-1.5 -my-1.5 ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-white p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 focus:ring-2 focus:ring-gray-300 dark:bg-gray-800 dark:text-gray-500 dark:hover:bg-gray-700 dark:hover:text-white"
+                    data-dismiss-target="#toast-success" aria-label="Close">
+                    <span class="sr-only">Close</span>
+                    <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                    </svg>
+                </button>
+            </div>
+        @endif
         <div id="default-carousel" class="relative mb-8 h-64 w-full drop-shadow-xl lg:h-44 lg:w-1/3" data-carousel="slide">
             <!-- Carousel wrapper -->
             <div class="relative me-4 h-full overflow-hidden rounded-lg">
@@ -101,8 +127,8 @@
                     data-carousel-next>
                     <span
                         class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-black group-hover:bg-black/70 group-focus:outline-none group-focus:ring-4 group-focus:ring-white">
-                        <svg class="h-4 w-4 text-white rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 6 10">
+                        <svg class="h-4 w-4 text-white rtl:rotate-180" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m1 9 4-4-4-4" />
                         </svg>
@@ -118,16 +144,10 @@
                 bantuan
                 dari kita adalah harapan besar bagi mereka.</p>
             <div class="flex flex-wrap justify-center gap-4 text-left">
-                @foreach(range(1, 8) as $index)
-                    <x-campaign-card
-                        link="#"
-                        image-path="img/Untitled-1.png"
-                        alt-text="Deskripsi gambar SMAN Arara 1"
-                        title="SMAN Arara 1"
-                        location="Arara, Jawa Barat"
-                        description="Butuh donasi untuk memperbaiki kerusakan sekolah"
-                        percentage-collected="90"
-                    />
+                @foreach (range(1, 8) as $index)
+                    <x-campaign-card link="#" image-path="img/Untitled-1.png"
+                        alt-text="Deskripsi gambar SMAN Arara 1" title="SMAN Arara 1" location="Arara, Jawa Barat"
+                        description="Butuh donasi untuk memperbaiki kerusakan sekolah" percentage-collected="90" />
                 @endforeach
                 <div class="w-full text-center">
                     <button type="button"
@@ -153,6 +173,7 @@
                     </div>
                 </div>
             </div>
+
 
         </div>
 
