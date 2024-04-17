@@ -3,7 +3,7 @@
         <div class="flex items-center px-5 py-3">
             <img src="{{ asset($profile) }}" alt="{{ $alt }}" class="h-10 w-10 rounded-full object-cover">
             <div class="ml-4">
-                <p class="font-bold text-black">{{ $username }}</p>
+                <p class="font-bold text-black">{{ $schoolName }}</p>
                 <p class="text-sm text-gray-600">{{ $email }}</p>
             </div>
         </div>
@@ -45,7 +45,7 @@
                 Konfirmasi
             </button>
             <button type="button"
-                class="w-1/2 rounded-br-lg bg-red-700 border-gray-200 bg-white px-4 py-3 text-sm font-medium text-white hover:bg-red-600 hover:text-gray-100 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500">
+                class="w-1/2 rounded-br-lg bg-gray-400 border-gray-200 bg-white px-4 py-3 text-sm font-medium text-white hover:bg-red-600 hover:text-gray-100 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500">
                 Tolak
             </button>
         </div>
