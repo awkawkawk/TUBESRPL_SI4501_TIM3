@@ -14,7 +14,8 @@ Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns
 
 Route::get('/daftar-campaigns', [CampaignController::class, 'index'])->name('daftar');
 
-Route::get('/campaignss', [CampaignController::class, 'index']);
+Route::get('/campaigns', [CampaignController::class, 'index']);
+
 
 
 
