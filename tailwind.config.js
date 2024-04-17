@@ -1,4 +1,3 @@
-<<<<<<<<< Temporary merge branch 1
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 
@@ -30,6 +29,9 @@ export default {
         },
     },
 
-    plugins: [require("@tailwindcss/forms"), require("flowbite/plugin")],
-
+    plugins: [
+        require("@tailwindcss/forms"),
+        require("flowbite/plugin"),
+        require("tailwind-scrollbar"),
+    ],
 };
