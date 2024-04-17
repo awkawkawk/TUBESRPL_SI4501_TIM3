@@ -11,7 +11,7 @@ class CampaignController extends Controller
     public function index()
     {
         $campaigns = Campaign::all();  // Fetch all campaigns
-        return view('campaigns.index', compact('campaigns'));  // Return a view and pass the campaigns data
+        return view('profile.campaigns.index', compact('campaigns'));  // Return a view and pass the campaigns data
     }
     public function store(Request $request)
     {
