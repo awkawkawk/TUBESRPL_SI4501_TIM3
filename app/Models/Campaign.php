@@ -12,10 +12,11 @@ class Campaign extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 
-        'description', 
-        'target_donation', 
-        'image_path'
+        'name',
+        'description',
+        'target_donation',
+        'image_path',
+        'status'
     ];
 
     // Define any relationships here if necessary

@@ -13,7 +13,10 @@ Route::get('/campaigns/create', [CampaignController::class, 'create'])->name('ca
 // Route untuk menyimpan data campaign baru
 Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns.store');
 
-Route::get('/daftar-campaigns', [CampaignController::class, 'index'])->name('daftar');
+// Route::get('/daftar-campaigns', [CampaignController::class, 'index'])->name('daftar');
+
+Route::get('/campaigns/riwayat', [CampaignController::class, 'index'])->name('riwayatcampaign.index');
+
 
 
 Route::get('/home', function () {
@@ -28,9 +31,9 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/riwayat', function () {
-    return view('riwayatcampaign');
-});
+// Route::get('/riwayat', function () {
+//     return view('riwayatcampaign');
+// });
 
 Route::get('/riwayat/donatur', function () {
     return view('lihatdonatur');

@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Storage;
 
 class CampaignController extends Controller
 {
+    public function index()
+    {
+        $campaigns = Campaign::all();
+        return view('campaign.riwayatcampaign', compact('campaigns'));
+    }
+    //untuk menampilkan riwayat
+
     public function store(Request $request)
     {
         $request->validate([
