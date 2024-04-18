@@ -10,10 +10,11 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
+        <!-- Nomor Handphone -->
         <div>
-            <x-input-label for="alamat" :value="__('Alamat Sekolah')" />
-            <x-text-input id="alamat" class="block mt-1 w-full" type="text" name="alamat" :value="old('alamat')" required autofocus autocomplete="alamat" />
-            <x-input-error :messages="$errors->get('alamat')" class="mt-2" />
+            <x-input-label for="nomor" :value="__('Nomor Handphone')" />
+            <x-text-input id="nomor" class="block mt-1 w-full" type="text" name="nomor" :value="old('nomor')" required autofocus autocomplete="nomor" />
+            <x-input-error :messages="$errors->get('nomor')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
