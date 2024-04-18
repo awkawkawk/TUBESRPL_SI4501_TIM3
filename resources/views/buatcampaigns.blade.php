@@ -93,4 +93,52 @@
         </div>
     </div>
 </div>
+<script>
+function showDonationOptions() {
+    var donationType = document.getElementById("donationType").value;
+    var donationMoney = document.getElementById("donationMoney");
+    var donationGoods = document.getElementById("donationGoods");
+
+    // Sembunyikan kedua form terlebih dahulu
+    donationMoney.style.display = "none";
+    donationGoods.style.display = "none";
+
+    // Tampilkan form berdasarkan pilihan
+    if (donationType === "money") {
+        donationMoney.style.display = "block";
+    } else if (donationType === "goods") {
+        donationGoods.style.display = "block";
+        addGoodsField(); // Tambahkan minimal satu form barang saat memilih barang
+    } else if (donationType === "money_and_goods") {
+        donationMoney.style.display = "block";
+        donationGoods.style.display = "block";
+        addGoodsField(); // Tambahkan minimal satu form barang saat memilih uang dan barang
+    }
+}
+
+function addGoodsField() {
+    var goodsContainer = document.getElementById("goodsContainer");
+    var newField = document.createElement("div");
+    newField.classList.add("flex", "flex-wrap", "-mx-3", "mb-6");
+    newField.innerHTML = `
+        <div class="px-3 mb-6 md:mb-0 w-full md:w-1/2">
+            <input type="text" name="goods_amount[]" placeholder="Jumlah Barang" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
+        </div>
+        <div class="px-3 mb-6 md:mb-0 w-full md:w-1/2">
+            <input type="text" name="goods_type[]" placeholder="Jenis Barang" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
+        </div>
+        <div class="px-3">
+            <button type="button" onclick="removeGoodsField(this)" class="bg-red-500 text-white active:bg-red-600 text-sm font-bold uppercase px-3 py-1 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150">
+                Hapus
+            </button>
+        </div>
+    `;
+    goodsContainer.appendChild(newField);
+}
+
+function removeGoodsField(element) {
+    var fieldToRemove = element.parentNode.parentNode;
+    fieldToRemove.parentNode.removeChild(fieldToRemove);
+}
+</script>
 @endsection

@@ -1,42 +1,37 @@
 <?php
 
-<<<<<<< HEAD
-=======
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Auth\RegisteredSchoolController;
->>>>>>> 27ab42580768b8b39179df09a90587611d76073f
+use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\RegisteredSchoolController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-<<<<<<< HEAD
-    return view('buatcampaigns');
-});
-
-Route::get('/campaigns/create', [CampaignController::class, 'create'])->name('campaigns.create');
-
-// Route untuk menyimpan data campaign baru
-Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns.store');
-
-Route::get('/daftar-campaigns', [CampaignController::class, 'index'])->name('daftar');
-
-Route::get('/campaigns', [CampaignController::class, 'index']);
-=======
     return view('index');
-})->name('index');
->>>>>>> 27ab42580768b8b39179df09a90587611d76073f
-
-
-
-
-<<<<<<< HEAD
-=======
-Route::get('/riwayat', function () {
-    return view('riwayatcampaign');
 });
+
+Route::get('/home', function () {
+    return view('index');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
+
+// Route::get('/riwayat', function () {
+//     return view('riwayatcampaign');
+// });
+
+Route::get('/buatcampaign', function () {
+    return view('buatcampaign');
+});
+
 
 Route::get('/riwayat/donatur', function () {
     return view('lihatdonatur');
 });
 
 Route::get('/verifikasi-sekolah', [RegisteredSchoolController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
->>>>>>> 27ab42580768b8b39179df09a90587611d76073f
