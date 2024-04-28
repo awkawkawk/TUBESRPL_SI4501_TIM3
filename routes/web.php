@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-})->name('index');
+})->name('/');
 
 Route::get('/home', function () {
     return view('index');
@@ -28,4 +28,4 @@ Route::get('/riwayat/donatur', function () {
     return view('lihatdonatur');
 });
 
-Route::get('/verifikasi-sekolah', [RegisteredSchoolController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
+Route::get('/verifikasi-sekolah', [App\Http\Controllers\SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');

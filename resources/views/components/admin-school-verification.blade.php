@@ -3,8 +3,8 @@
         <div class="flex items-center px-5 py-3">
             <img src="{{ asset($profile) }}" alt="{{ $alt }}" class="h-10 w-10 rounded-full object-cover">
             <div class="ml-4">
-                <p class="font-bold text-black">{{ $schoolName }}</p>
-                <p class="text-sm text-gray-600">{{ $email }}</p>
+                <p class="font-bold text-black">{{ $title }}</p>
+                <p class="text-sm text-gray-600">{{ $desc }}</p>
             </div>
         </div>
         <div class="inline-flex w-full rounded-md shadow-sm" role="group">
@@ -37,7 +37,7 @@
             <h4 class="text-sm font-bold text-black">No Identitas:</h4>
             <p class="mb-2 text-sm font-normal text-black text-wrap">{{ $registrantIdentityNumber }}</p>
             <h4 class="text-sm font-bold text-black">Bukti:</h4>
-            <p class="mb-2 text-sm font-normal text-black text-wrap">{{ $registrantProof }}</p>
+            <a href="{{ $registrantProof }}" class="mb-2 text-sm font-normal text-blue-500 text-wrap">{{ $registrantProof }}</a>
         </div>
         <div class="inline-flex w-full rounded-md shadow-sm" role="group">
             <button type="button"
