@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CampaignController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -34,10 +35,24 @@ require __DIR__.'/auth.php';
 //     return view('riwayatcampaign');
 // });
 
+Route::get('/buatcampaign', function () {
+    return view('buatcampaign');
+});
+
+
 Route::get('/riwayat/donatur', function () {
     return view('lihatdonatur');
 });
 
 Route::get('/verifikasi-sekolah', function () {
     return view('verifikasi-sekolah');
+});
+
+// test
+Route::get('/donation/donasiuang', function () {
+    return view('donation/donasiuang');
+});
+
+Route::get('/donation/donasiuang/pembayaran', function () {
+    return view('donation/donasiuangnext');
 });

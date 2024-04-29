@@ -25,8 +25,9 @@
                     <div class="mb-8 grid grid-cols-4 gap-x-4 lg:gap-x-8" style="grid-template-columns: 2fr 1fr 1fr 0.5fr">
                         <!-- Identitas Sekolah -->
                         <div>
-                            <p class="h1 mb-1 block text-xl font-semibold text-black" >SMP Negeri 01 Arara</p> <!-- nama sekolah -->
-                            <p class="mb-4 text-s font-normal text-black dark:text-gray-400">Arara, Jawa Barat</p> <!-- alamat sekolah -->
+                            <p class="h1 mb-0 block text-xl font-semibold text-black" >SMP Negeri 01 Arara</p> <!-- nama sekolah -->
+                            <p class="mb-1 text-s font-normal text-black dark:text-gray-400">Arara, Jawa Barat</p> <!-- alamat sekolah -->
+                            <p class="mb-0 mt-2 block text-s font-semibold text-black dark:text-gray-400">Perbaikan Ruang Belajar</p> <!-- Nama Campaign -->
                             <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">Membutuhkan donasi untuk memperbaiki ruang belajar kelas IV. Kondisi ruangan sudah tidak layak dan tidak aman bagi siswa belajar.</p>
                             <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">06 April 2024</p>
                         </div>

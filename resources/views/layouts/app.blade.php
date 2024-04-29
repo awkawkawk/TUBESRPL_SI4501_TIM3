@@ -29,7 +29,7 @@
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                {{-- {{ $slot }} --}}
             </main>
         </div>
         <script src="{{ asset('./node_modules/flowbite/dist/flowbite.js') }}"></script>

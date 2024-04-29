@@ -11,9 +11,16 @@ class CampaignController extends Controller
     public function index()
     {
         $campaigns = Campaign::all();
-        return view('campaign.riwayatcampaign', compact('campaigns'));
+        return view('riwayatcampaign', compact('campaigns'));
     }
     //untuk menampilkan riwayat
+
+    public function create()
+    {
+        $campaigns = Campaign::all();
+        return view('buatcampaign', compact('campaigns'));
+    }
+
 
     public function store(Request $request)
     {
