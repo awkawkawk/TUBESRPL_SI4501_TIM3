@@ -16,7 +16,7 @@ Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns
 
 // Route::get('/daftar-campaigns', [CampaignController::class, 'index'])->name('daftar');
 
-Route::get('/campaigns/riwayat', [CampaignController::class, 'index'])->name('riwayatcampaign.index');
+// Route::get('/campaigns/riwayat', [CampaignController::class, 'index'])->name('riwayatcampaign.index');
 
 
 Route::get('/home', function () {
@@ -59,4 +59,8 @@ Route::get('/donasi/donasiuang/pembayaran', function () {
 
 Route::get('/donasi/donasibarang', function () {
     return view('donation/donasibarang');
+});
+
+Route::get('/campaigns/riwayat', function () {
+    return view('riwayatcampaign');
 });
