@@ -49,10 +49,14 @@ Route::get('/verifikasi-sekolah', function () {
 });
 
 // test
-Route::get('/donation/donasiuang', function () {
+Route::get('/donasi/donasiuang', function () {
     return view('donation/donasiuang');
 });
 
-Route::get('/donation/donasiuang/pembayaran', function () {
+Route::get('/donasi/donasiuang/pembayaran', function () {
     return view('donation/donasiuangnext');
+});
+
+Route::get('/donasi/donasibarang', function () {
+    return view('donation/donasibarang');
 });
