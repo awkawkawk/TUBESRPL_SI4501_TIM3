@@ -106,7 +106,7 @@ class SchoolVerificationController extends Controller
 
     public function showVerificationPage()
     {
-        $schools = school::all();
+        $schools = school::where('status', 'perlu diverifikasi')->get();
         return view('verifikasi-sekolah', compact('schools'));
     }
 }

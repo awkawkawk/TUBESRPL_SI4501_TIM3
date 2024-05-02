@@ -22,14 +22,15 @@
                 <div class="flex w-full flex-wrap">
                     @if ($schools->isEmpty())
                         <p class="m-8 w-full justify-center text-center text-sm"><i>Sedang tidak ada sekolah yang perlu
-                            diverifikasi</i></p>
+                                diverifikasi</i></p>
                     @else
                         @foreach ($schools as $school)
-                            <x-admin-school-verification profile="{{ $school['logo_sekolah'] }}" alt="{{ $school['nama_sekolah'] }}"
-                                idDetailSekolah="detailSekolah{{ $loop->iteration }}"
+                            <x-admin-school-verification profile="{{ $school['logo_sekolah'] }}"
+                                alt="{{ $school['nama_sekolah'] }}" idDetailSekolah="detailSekolah{{ $loop->iteration }}"
                                 idDetailPendaftar="detailPendaftar{{ $loop->iteration }}"
-                                verificationId="{{ $loop->iteration }}" title="{{ $school['nama_sekolah'] }}" desc="{{ $school['alamat_sekolah'] }}"
-                                location="{{ $school['alamat_sekolah'] }}" schoolEmail="{{ $school['email_sekolah'] }}"
+                                verificationId="{{ $loop->iteration }}" title="{{ $school['nama_sekolah'] }}"
+                                desc="{{ $school['alamat_sekolah'] }}" location="{{ $school['alamat_sekolah'] }}"
+                                schoolEmail="{{ $school['email_sekolah'] }}"
                                 schoolPhone="{{ $school['no_telepon_sekolah'] }}"
                                 registrantName="{{ $school['nama_pendaftar'] }}"
                                 registrantEmail="{{ $school['email_pendaftar'] }}"
