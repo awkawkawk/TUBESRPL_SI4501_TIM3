@@ -32,7 +32,7 @@
                     </button>
 
                     {{-- Logo --}}
-                    <a href="https://flowbite.com" class="ms-2 flex md:me-24">
+                    <a href="/" class="ms-2 flex md:me-24">
                         <img src="{{ asset('img/EduFund2.png') }}" class="me-3 h-10" alt="EduFund" />
                         <span class="self-center whitespace-nowrap text-xl font-semibold sm:text-2xl"></span>
                     </a>

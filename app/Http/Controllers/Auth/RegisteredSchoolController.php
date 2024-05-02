@@ -24,29 +24,29 @@ class RegisteredSchoolController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'school_name' => ['required', 'string', 'max:255'],
-            'school_address' => ['required', 'string', 'max:255'],
-            'school_phone' => ['required', 'string', 'max:15', 'min:11', 'unique:school_verifications'],
-            'school_email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:school_verifications'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        // $request->validate([
+        //     'nama_sekolah' => ['required', 'string', 'max:255'],
+        //     'alamat_sekolah' => ['required', 'string', 'max:255'],
+        //     'no_hp_sekolah' => ['required', 'string', 'max:15', 'min:11', 'unique:school_verifications'],
+        //     'email_sekolah' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:school_verifications'],
+        //     'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        // ]);
 
-        $schoolVerification = SchoolVerification::create([
-            'school_name' => $request->school_name,
-            'school_address' => $request->school_address,
-            'school_phone' => $request->school_phone,
-            'school_email' => $request->school_email,
-            'password' => Hash::make($request->password),
-        ]);
+        // $schoolVerification = SchoolVerification::create([
+        //     'nama_sekolah' => $request->nama_sekolah,
+        //     'alamat_sekolah' => $request->alamat_sekolah,
+        //     'no_hp_sekolah' => $request->no_hp_sekolah,
+        //     'email_sekolah' => $request->email_sekolah,
+        //     'password' => Hash::make($request->password),
+        // ]);
 
-        // Redirect atau tindakan lain setelah data berhasil disimpan
-        return redirect(route('index'))->with('success', 'Registrasi sekolah berhasil. Silahkan tunggu verifikasi dari admin :)');
+        // // Redirect atau tindakan lain setelah data berhasil disimpan
+        // return redirect(route('index'))->with('success', 'Registrasi sekolah berhasil. Silahkan tunggu verifikasi dari admin :)');
     }
 
     public function showVerificationPage()
     {
-        $schools = SchoolVerification::all();
-        return view('verifikasi-sekolah', compact('schools'));
+        // $schools = SchoolVerification::all();
+        // return view('verifikasi-sekolah', compact('schools'));
     }
 }

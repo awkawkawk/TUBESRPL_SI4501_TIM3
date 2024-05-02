@@ -1,10 +1,10 @@
 <div class="mb-8 w-1/2 pe-8" school-verification-id="{{ $verificationId }}">
     <div class="rounded-lg border border-gray-200 bg-white shadow-sm">
         <div class="flex items-center px-5 py-3">
-            <img src="{{ asset($profile) }}" alt="{{ $alt }}" class="h-10 w-10 rounded-full object-cover">
+            <img src="{{ $profile }}" alt="{{ $alt }}" class="h-10 w-10 rounded-full object-cover" referrerpolicy="no-referrer">
             <div class="ml-4">
-                <p class="font-bold text-black">{{ $schoolName }}</p>
-                <p class="text-sm text-gray-600">{{ $email }}</p>
+                <p class="font-bold text-black">{{ $title }}</p>
+                <p class="text-sm text-gray-600">{{ $desc }}</p>
             </div>
         </div>
         <div class="inline-flex w-full rounded-md shadow-sm" role="group">
@@ -37,7 +37,7 @@
             <h4 class="text-sm font-bold text-black">No Identitas:</h4>
             <p class="mb-2 text-sm font-normal text-black text-wrap">{{ $registrantIdentityNumber }}</p>
             <h4 class="text-sm font-bold text-black">Bukti:</h4>
-            <p class="mb-2 text-sm font-normal text-black text-wrap">{{ $registrantProof }}</p>
+            <a href="{{ $registrantProof }}" target="_blank" class="mb-2 text-sm font-normal text-blue-500 text-wrap">{{ $registrantProof }}</a>
         </div>
         <div class="inline-flex w-full rounded-md shadow-sm" role="group">
             <button type="button"
@@ -45,7 +45,7 @@
                 Konfirmasi
             </button>
             <button type="button"
-                class="w-1/2 rounded-br-lg bg-gray-400 border-gray-200 bg-white px-4 py-3 text-sm font-medium text-white hover:bg-red-600 hover:text-gray-100 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500">
+                class="w-1/2 rounded-br-lg border-gray-200 bg-red-600 px-4 py-3 text-sm font-medium text-white hover:bg-red-600 hover:text-gray-100 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500">
                 Tolak
             </button>
         </div>
