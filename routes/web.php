@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisteredSchoolController;
-use App\Http\Controllers\SchoolVerificationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -29,5 +28,4 @@ Route::get('/riwayat/donatur', function () {
     return view('lihatdonatur');
 });
 
-Route::get('/verifikasi-sekolah', [SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
-Route::post('/verifikasi-sekolah/accept/{id}', 'SchoolVerificationController@respondVerification');
+Route::get('/verifikasi-sekolah', [App\Http\Controllers\SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
