@@ -47,6 +47,22 @@
                                 </div>
                             </div>
                             <div class="w-full px-4">
+    <div class="relative w-full mb-3">
+        <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="tanggal_dibuat">
+            Tanggal Dibuat
+        </label>
+        <input type="date" id="tanggal_dibuat" name="tanggal_dibuat" required class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
+    </div>
+</div>
+<div class="w-full px-4">
+    <div class="relative w-full mb-3">
+        <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="tanggal_selesai">
+            Tanggal Selesai
+        </label>
+        <input type="date" id="tanggal_selesai" name="tanggal_selesai" required class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
+    </div>
+</div>
+                            <div class="w-full px-4">
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="donationType">
                                         Jenis Sumbangan
@@ -125,10 +141,10 @@ function addGoodsField() {
     newField.classList.add("w-full", "px-3", "mb-6", "md:mb-0");
     newField.innerHTML = `
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <input type="text" name="goods_type[]" placeholder="Jenis Barang" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
+            <input type="text" name="jenis_barang" placeholder="Jenis Barang" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
         </div>
         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-            <input type="number" name="goods_amount[]" placeholder="Jumlah Barang" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
+            <input type="number" name="jumlah_barang" placeholder="Jumlah Barang" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
         </div>
         <div class="px-3">
             <button type="button" onclick="removeGoodsField(this)" class="bg-red-500 text-white text-sm font-bold uppercase px-3 py-1 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150">

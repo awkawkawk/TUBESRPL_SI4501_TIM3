@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('id_campaign')->constrained('campaigns');
             $table->string('nama_barang');
             $table->integer('jumlah_barang');
-            $table->integer('target_uang');
             $table->timestamps();
         });
     }

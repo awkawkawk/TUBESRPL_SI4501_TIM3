@@ -23,13 +23,16 @@ class CampaignController extends Controller
         ]);
 
         $campaign = new Campaign();
-        $campaign->id_sekolah = $request->id_sekolah;
+        $campaign->id_sekolah = rand(0,100);
         $campaign->nama_campaign = $request->nama_campaign;
         $campaign->deskripsi_campaign = $request->deskripsi_campaign;
-        $campaign->status = $request->status;
-        $campaign->catatan_campaign = $request->catatan_campaign;
+        $campaign->status = 'Menunggu Verifikasi';
+        $campaign->catatan_campaign = '$request->catatan_campaign';
         $campaign->tanggal_dibuat = $request->tanggal_dibuat;
         $campaign->tanggal_selesai = $request->tanggal_selesai;
+        if ($request->hasFile('foto_campaign')) {
+            $campaign->foto_campaign = $request->file('foto_campaign')->store('public/campaign_photos');
+        }
         $campaign->save();
 
         return redirect()->route('campaigns.index')->with('success', 'Kampanye berhasil ditambahkan!');
