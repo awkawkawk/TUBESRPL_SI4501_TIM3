@@ -11,22 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('school_verifications', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('schoolLogo');
-            $table->string('schoolName');
-            $table->string('schoolAddress');
-            $table->string('schoolEmail');
-            $table->string('schoolPhone');
-            $table->string('username');
-            $table->string('password');
-            $table->string('registrantName');
-            $table->string('registrantEmail');
-            $table->string('registrantNumber');
-            $table->string('registrantIdentityNumber');
-            $table->string('registrantProof');
-        });
+        // Schema::create('school_verifications', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('school_logo')->nullable();;
+        //     $table->string('school_name');
+        //     $table->string('school_address');
+        //     $table->string('school_phone')->unique();
+        //     $table->string('school_email')->unique();
+        //     $table->string('password');
+        //     $table->string('registrant_name')->nullable();;
+        //     $table->string('registrant_email')->nullable();;
+        //     $table->string('registrant_number')->nullable();;
+        //     $table->string('registrant_identity_number')->nullable();;
+        //     $table->string('registrant_proof')->nullable();;
+        //     $table->timestamps();
+        // });
+
     }
 
     /**
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('school_verifications');
+        // Schema::dropIfExists('school_verifications');
     }
 };

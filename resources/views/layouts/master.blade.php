@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+ <!DOCTYPE html>
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
@@ -22,7 +22,7 @@
                     <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar"
                         aria-controls="logo-sidebar" type="button"
                         class="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 sm:hidden">
-                        <span class="sr-only">Open sidebar</span>
+                        <span class="sr-only">Buka sidebar</span>
                         <svg class="h-6 w-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
                             <path clip-rule="evenodd" fill-rule="evenodd"
@@ -32,25 +32,25 @@
                     </button>
 
                     {{-- Logo --}}
-                    <a href="https://flowbite.com" class="ms-2 flex md:me-24">
+                    <a href="/" class="ms-2 flex md:me-24">
                         <img src="{{ asset('img/EduFund2.png') }}" class="me-3 h-10" alt="EduFund" />
                         <span class="self-center whitespace-nowrap text-xl font-semibold sm:text-2xl"></span>
                     </a>
                 </div>
 
-                {{-- Search --}}
+                {{-- Pencarian --}}
                 <div class="flex md:order-1">
                     <div class="relative hidden md:block w-96 ">
                         <input type="text" id="search-navbar"
                             class=" block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 ps-4 text-smtext-gray-900 focus:border-gray-500 focus:ring-0"
-                            placeholder="Search...">
+                            placeholder="Cari...">
                         <div class="pointer-events-none absolute inset-y-0 end-4 flex items-center ps-3">
                             <svg class="h-4 w-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 fill="none" viewBox="0 0 20 20">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                             </svg>
-                            <span class="sr-only">Search icon</span>
+                            <span class="sr-only">Ikon pencarian</span>
                         </div>
                         <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search"
                             aria-expanded="false"
@@ -60,13 +60,13 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                             </svg>
-                            <span class="sr-only">Search</span>
+                            <span class="sr-only">Cari</span>
                         </button>
                     </div>
                     <button data-collapse-toggle="navbar-search" type="button"
                         class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden"
                         aria-controls="navbar-search" aria-expanded="false">
-                        <span class="sr-only">Open main menu</span>
+                        <span class="sr-only">Buka menu utama</span>
                         <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 17 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -75,16 +75,16 @@
                     </button>
                 </div>
 
-                {{-- Button --}}
+                {{-- Tombol --}}
                 @auth
                     <div class="ms-auto hidden w-full items-center justify-between md:order-2 md:flex md:w-auto"
                         id="navbar-search">
                         <button type="button"
                             class="flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300"
                             aria-expanded="false" data-dropdown-toggle="dropdown-user">
-                            <span class="sr-only">Open user menu</span>
+                            <span class="sr-only">Buka menu pengguna</span>
                             <img class="h-8 w-8 rounded-full"
-                                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="user photo">
+                                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="foto pengguna">
                         </button>
                     </div>
                     <div class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded bg-white text-base shadow"
@@ -100,21 +100,20 @@
                         <ul class="py-1" role="none">
                             <li>
                                 <a href="{{ route('profile.edit') }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                    role="menuitem">Profile</a>
+                                    role="menuitem">Profil</a>
                             </li>
                             <li>
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                    role="menuitem">Settings</a>
+                                    role="menuitem">Pengaturan</a>
                             </li>
                             <li>
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                    role="menuitem">Earnings</a>
+                                    role="menuitem">Pendapatan</a>
                             </li>
                             <li>
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     role="menuitem"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign
-                                    out</a>
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
                                 <form id="logout-form" method="POST" action="{{ route('logout') }}"
                                     style="display: none;">
                                     @csrf
@@ -125,13 +124,13 @@
                 @else
                     <a href="{{ route('login') }}"
                         class="ms-auto rounded-md px-3 py-2 text-sm text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-2">
-                        Log in
+                        Masuk
                     </a>
 
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}"
                             class="rounded-md px-3 py-2 text-sm text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-3">
-                            Register
+                            Daftar
                         </a>
                     @endif
                 @endauth
@@ -156,7 +155,7 @@
                         </svg>
 
 
-                        <span class="ms-3 text-sm">Home</span>
+                        <span class="ms-3 text-sm">Beranda</span>
                     </a>
                 </li>
                 <li>
@@ -169,7 +168,7 @@
                                 clip-rule="evenodd" />
                         </svg>
 
-                        <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Search</span>
+                        <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Cari</span>
                     </a>
                 </li>
 

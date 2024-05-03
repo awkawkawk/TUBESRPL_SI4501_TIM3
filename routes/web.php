@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\Auth\RegisteredSchoolController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
-});
+})->name('/');
 
 
 Route::get('/campaigns/create', [CampaignController::class, 'create'])->name('campaigns.create');
@@ -44,9 +44,7 @@ Route::get('/riwayat/donatur', function () {
     return view('lihatdonatur');
 });
 
-Route::get('/verifikasi-sekolah', function () {
-    return view('verifikasi-sekolah');
-});
+
 
 // test
 Route::get('/donasi/donasiuang', function () {
@@ -64,3 +62,6 @@ Route::get('/donasi/donasibarang', function () {
 Route::get('/campaigns/riwayat', function () {
     return view('riwayatcampaign');
 });
+
+Route::get('/verifikasi-sekolah', [App\Http\Controllers\SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
+
