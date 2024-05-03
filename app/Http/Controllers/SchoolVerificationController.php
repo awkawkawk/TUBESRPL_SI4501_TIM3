@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\Hash;
@@ -108,5 +109,18 @@ class SchoolVerificationController extends Controller
     {
         $schools = school::where('status', 'perlu diverifikasi')->get();
         return view('verifikasi-sekolah', compact('schools'));
+    }
+
+    public function respondVerification(Request $request, $id)
+    {
+        $schoolVerification = school::findOrFail($id);
+
+        if ($request->input('response') == 'confirm') {
+            $schoolVerification->update(['status' => 'valid']);
+        } elseif ($request->input('response') == 'decline') {
+            $schoolVerification->update(['status' => 'perlu revisi']);
+        }
+
+        return redirect()->back()->with('success', 'Respon berhasil disimpan');
     }
 }

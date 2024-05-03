@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+
     <div class="grid h-fit w-full grid-flow-row">
         <div class="col-span-2 md:col-span-1">
             <div class="mt-4 text-left">
@@ -25,21 +26,27 @@
                                 diverifikasi</i></p>
                     @else
                         @foreach ($schools as $school)
-                            <x-admin-school-verification profile="{{ $school['logo_sekolah'] }}"
-                                alt="{{ $school['nama_sekolah'] }}" idDetailSekolah="detailSekolah{{ $loop->iteration }}"
-                                idDetailPendaftar="detailPendaftar{{ $loop->iteration }}"
-                                verificationId="{{ $loop->iteration }}" title="{{ $school['nama_sekolah'] }}"
-                                desc="{{ $school['alamat_sekolah'] }}" location="{{ $school['alamat_sekolah'] }}"
-                                schoolEmail="{{ $school['email_sekolah'] }}"
-                                schoolPhone="{{ $school['no_telepon_sekolah'] }}"
-                                registrantName="{{ $school['nama_pendaftar'] }}"
-                                registrantEmail="{{ $school['email_pendaftar'] }}"
-                                registrantNumber="{{ $school['no_hp_pendaftar'] }}"
-                                registrantIdentityNumber="{{ $school['identitas_pendaftar'] }}"
-                                registrantProof="{{ $school['bukti_id_pendaftar'] }}" />
+                            <form action="{{ route('response.verification', $school['id']) }}" method="POST"
+                                class="flex w-full">
+                                @csrf
+                                @method('POST')
+                                <x-admin-school-verification profile="{{ $school['logo_sekolah'] }}"
+                                    alt="{{ $school['nama_sekolah'] }}"
+                                    idDetailSekolah="detailSekolah{{ $loop->iteration }}"
+                                    idDetailPendaftar="detailPendaftar{{ $loop->iteration }}"
+                                    verificationId="{{ $loop->iteration }}" title="{{ $school['nama_sekolah'] }}"
+                                    desc="{{ $school['alamat_sekolah'] }}" location="{{ $school['alamat_sekolah'] }}"
+                                    schoolEmail="{{ $school['email_sekolah'] }}"
+                                    schoolPhone="{{ $school['no_telepon_sekolah'] }}"
+                                    registrantName="{{ $school['nama_pendaftar'] }}"
+                                    registrantEmail="{{ $school['email_pendaftar'] }}"
+                                    registrantNumber="{{ $school['no_hp_pendaftar'] }}"
+                                    registrantIdentityNumber="{{ $school['identitas_pendaftar'] }}"
+                                    registrantProof="{{ $school['bukti_id_pendaftar'] }}" />
+
                         @endforeach
                     @endif
-
+</form>
                 </div>
             </div>
         </div>
