@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisteredSchoolController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RiwayatCampaignController;
 
 Route::get('/', function () {
     return view('index');
@@ -15,9 +16,6 @@ Route::get('/campaigns/create', [CampaignController::class, 'create'])->name('ca
 Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns.store');
 
 // Route::get('/daftar-campaigns', [CampaignController::class, 'index'])->name('daftar');
-
-// Route::get('/campaigns/riwayat', [CampaignController::class, 'index'])->name('riwayatcampaign.index');
-
 
 Route::get('/home', function () {
     return view('index');
@@ -64,4 +62,8 @@ Route::get('/campaigns/riwayat', function () {
 });
 
 Route::get('/verifikasi-sekolah', [App\Http\Controllers\SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
+
+
+//test
+Route::get('/campaign/riwayat', [RiwayatCampaignController::class, 'index']);
 
