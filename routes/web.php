@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Auth\RegisteredSchoolController;
+use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\RegisteredSchoolController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,9 +21,14 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/riwayat', function () {
-    return view('riwayatcampaign');
+// Route::get('/riwayat', function () {
+//     return view('riwayatcampaign');
+// });
+
+Route::get('/buatcampaign', function () {
+    return view('buatcampaign');
 });
+
 
 Route::get('/riwayat/donatur', function () {
     return view('lihatdonatur');
