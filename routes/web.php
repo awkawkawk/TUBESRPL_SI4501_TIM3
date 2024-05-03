@@ -5,11 +5,11 @@ use App\Http\Controllers\Auth\RegisteredSchoolController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('index');
+    return view('create');
 })->name('/');
 
 Route::get('/home', function () {
-    return view('index');
+    return view('create');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -29,3 +29,6 @@ Route::get('/riwayat/donatur', function () {
 });
 
 Route::get('/verifikasi-sekolah', [App\Http\Controllers\SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
+
+Route::get('/campaigns/create', [CampaignController::class, 'create'])->name('campaigns.create');
+Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns.store');
