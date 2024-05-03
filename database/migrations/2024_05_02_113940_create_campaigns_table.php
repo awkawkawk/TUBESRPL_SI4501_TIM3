@@ -4,25 +4,35 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCampaignsTable extends Migration
+return new class extends Migration
 {
-    public function up()
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
     {
         Schema::create('campaigns', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');  // asumsi relasi dengan users
-            $table->string('name');
-            $table->text('description');
-            $table->string('photo')->nullable();
+            $table->foreignId('id_sekolah')->constrained('schools');
+            $table->string('nama_campaign');
+            $table->string('foto_campaign');
+            $table->text('deskripsi_campaign');
+            $table->text('jenis_donasi');
+            $table->string('status');
+            $table->text('catatan_campaign')->nullable();
+            $table->date('tanggal_dibuat');
+            $table->date('tanggal_selesai');
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
+        
     }
+    
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::dropIfExists('campaigns');
     }
-}
-?>
+};

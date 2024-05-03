@@ -24,18 +24,18 @@
                         <div class="flex flex-wrap">
                             <div class="w-full px-4">
                                 <div class="relative w-full mb-3">
-                                    <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="campaignImage">
+                                    <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="foto_campaign">
                                         Foto Campaign
                                     </label>
-                                    <input type="file" id="campaignImage" name="image" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
+                                    <input type="file" id="foto_campaign" name="foto_campaign" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
                                 </div>
                             </div>
                             <div class="w-full px-4">
                                 <div class="relative w-full mb-3">
-                                    <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="campaignName">
+                                    <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="nama_campaign">
                                         Nama Campaign
                                     </label>
-                                    <input type="text" id="campaignName" name="name" required class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
+                                    <input type="text" id="nama_campaign" name="nama_campaign" required class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
                                 </div>
                             </div>
                             <div class="w-full px-4">
@@ -43,7 +43,7 @@
                                     <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="campaignDescription">
                                         Deskripsi Campaign
                                     </label>
-                                    <textarea rows="4" id="campaignDescription" name="description" required class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150"></textarea>
+                                    <textarea rows="4" id="deskripsi_campaign" name="deskripsi_campaign" required class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150"></textarea>
                                 </div>
                             </div>
                             <div class="w-full px-4">
@@ -51,7 +51,7 @@
                                     <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="donationType">
                                         Jenis Sumbangan
                                     </label>
-                                    <select id="donationType" name="donation_type" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150" onchange="showDonationOptions()">
+                                    <select id="jenis_donasi" name="jenis_donasi" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150" onchange="showDonationOptions()">
                                         <option value="">Pilih Jenis Sumbangan</option>
                                         <option value="money">Uang</option>
                                         <option value="goods">Barang</option>
@@ -59,27 +59,27 @@
                                     </select>
                                 </div>
                             </div>
-                            <div id="donationMoney" class="hidden w-full px-4">
+                            <div id="target_uang" class="hidden w-full px-4">
                                 <div class="relative w-full mb-3">
                                     <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="targetDonation">
                                         Target Donasi Uang
                                     </label>
-                                    <input type="number" id="targetDonation" name="target_donation" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
+                                    <input type="number" id="target_uang" name="target_uang" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
                                 </div>
                             </div>
-                            <div id="donationGoods" class="hidden w-full px-4">
+                            <div id="nama_barang" class="hidden w-full px-4">
                                 <div id="goodsContainer" class="flex flex-wrap -mx-3 mb-6">
                                     <div class="px-3 mb-6 md:mb-0 w-full">
-                                        <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="goods_type">
+                                        <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="nama_barang">
                                             Jenis Barang
                                         </label>
-                                        <input type="text" name="goods_type[]" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150" placeholder="Jenis Barang">
+                                        <input type="text" name="nama_barang" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150" placeholder="Jenis Barang">
                                     </div>
                                     <div class="px-3 mb-6 md:mb-0 w-full">
-                                        <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="goods_amount">
+                                        <label class="block uppercase text-gray-700 text-xs font-bold mb-2" for="jumlah_barang">
                                             Jumlah Barang
                                         </label>
-                                        <input type="number" name="goods_amount[]" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150" placeholder="Jumlah Barang">
+                                        <input type="number" name="jumlah_barang" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150" placeholder="Jumlah Barang">
                                     </div>
                                 </div>
                                 <div class="text-right">
@@ -102,9 +102,9 @@
 </div>
 <script>
 function showDonationOptions() {
-    var donationType = document.getElementById("donationType").value;
-    var donationMoney = document.getElementById("donationMoney");
-    var donationGoods = document.getElementById("donationGoods");
+    var donationType = document.getElementById("jenis_donasi").value;
+    var donationMoney = document.getElementById("target_uang");
+    var donationGoods = document.getElementById("nama_barang");
 
     donationMoney.style.display = "none";
     donationGoods.style.display = "none";

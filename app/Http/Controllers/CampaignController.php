@@ -1,10 +1,11 @@
 <?php
 // app/Http/Controllers/CampaignController.php
 
+// app/Http/Controllers/CampaignController.php
+
 namespace App\Http\Controllers;
 
 use App\Models\Campaign;
-use App\Models\Target;
 use Illuminate\Http\Request;
 
 class CampaignController extends Controller
@@ -12,42 +13,25 @@ class CampaignController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
-            'description' => 'required|string',
-            'image' => 'nullable|image',
-            'donation_type' => 'required|string',
-            'target_donation' => 'required_if:donation_type,money,money_and_goods|numeric',
-            'goods_type' => 'array|required_if:donation_type,goods,money_and_goods',
-            'goods_amount' => 'array|required_with:goods_type'
+            'id_sekolah' => 'required|exists:schools,id',
+            'nama_campaign' => 'required|string',
+            'deskripsi_campaign' => 'required|string',
+            'status' => 'required|string',
+            'catatan_campaign' => 'nullable|string',
+            'tanggal_dibuat' => 'required|date',
+            'tanggal_selesai' => 'required|date'
         ]);
 
         $campaign = new Campaign();
-        $campaign->user_id = auth()->id();  // Asumsi user logged in
-        $campaign->name = $request->name;
-        $campaign->description = $request->description;
-        $campaign->photo = $request->file('image') ? $request->file('image')->store('public/campaigns') : null;
+        $campaign->id_sekolah = $request->id_sekolah;
+        $campaign->nama_campaign = $request->nama_campaign;
+        $campaign->deskripsi_campaign = $request->deskripsi_campaign;
+        $campaign->status = $request->status;
+        $campaign->catatan_campaign = $request->catatan_campaign;
+        $campaign->tanggal_dibuat = $request->tanggal_dibuat;
+        $campaign->tanggal_selesai = $request->tanggal_selesai;
         $campaign->save();
 
-        if ($request->donation_type !== 'goods') {
-            $target = new Target([
-                'type' => 'money',
-                'description' => 'Target Uang',
-                'amount' => $request->target_donation
-            ]);
-            $campaign->targets()->save($target);
-        }
-
-        if ($request->donation_type !== 'money') {
-            foreach ($request->goods_type as $index => $goods_type) {
-                $target = new Target([
-                    'type' => 'goods',
-                    'description' => $goods_type,
-                    'amount' => $request->goods_amount[$index]
-                ]);
-                $campaign->targets()->save($target);
-            }
-        }
-
-        return redirect()->route('campaigns.index')->with('success', 'Campaign berhasil ditambahkan!');
+        return redirect()->route('campaigns.index')->with('success', 'Kampanye berhasil ditambahkan!');
     }
 }
