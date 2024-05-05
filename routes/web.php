@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisteredSchoolController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RiwayatCampaignController;
+use App\Http\Controllers\DonationController;
+use App\Http\Controllers\CampaignController;
 
 Route::get('/', function () {
     return view('index');
@@ -57,13 +59,29 @@ Route::get('/donasi/donasibarang', function () {
     return view('donation/donasibarang');
 });
 
-Route::get('/campaigns/riwayat', function () {
-    return view('riwayatcampaign');
+Route::get('/donasi', function () {
+    return view('donation/index');
 });
+
 
 Route::get('/verifikasi-sekolah', [App\Http\Controllers\SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
 
 
 //test
 Route::get('/campaign/riwayat', [RiwayatCampaignController::class, 'index']);
+
+// Route::get('/donasi', [DonationController::class, 'index']);
+// Route::get('/donation/donasi/uang/{id}', [DonationController::class, 'showForm'])->name('donations.form');
+// Route::post('/donation/summary', [DonationController::class, 'showSummary'])->name('donation.summary');
+// Route::post('/donation/store', [DonationController::class, 'store'])->name('donations.store');
+
+Route::get('/donasi', [DonationController::class, 'index']);
+Route::get('/donation/donasi/uang/{id}', [DonationController::class, 'showForm'])->name('donations.form');
+Route::get('/donation/summary', [DonationController::class, 'showSummary'])->name('donation.summary.get');
+Route::post('/donation/summary', [DonationController::class, 'showSummary'])->name('donation.summary');
+Route::post('/donation/store', [DonationController::class, 'store'])->name('donations.store');
+
+
+
+
 

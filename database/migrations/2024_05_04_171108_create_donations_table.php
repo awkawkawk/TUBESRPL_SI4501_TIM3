@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('donations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_campaign')->constrained('campaigns');
-            $table->foreignId('id_user')->constrained('users');
-            $table->date('tanggal_donasi');
+            $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
+            $table->foreignId('id_campaign')->constrained('campaigns')->onDelete('cascade');
+            $table->text('pesan')->nullable();
+            $table->boolean('syarat_ketentuan')->default(false);
+            $table->string('status');
+            $table->string('jasa_kirim')->nullable();
+            $table->string('nomor_resi')->nullable();
             $table->timestamps();
         });
     }
