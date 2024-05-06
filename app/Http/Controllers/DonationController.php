@@ -7,6 +7,8 @@ use App\Models\Donation;
 use App\Models\Campaign;
 use App\Models\MethodPayment;
 use App\Models\MoneyDonation;
+use App\Models\Target;
+use App\Models\ItemDonation;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 
@@ -18,6 +20,7 @@ class DonationController extends Controller
         $campaigns = Campaign::where('status', 'Sedang Berjalan')->get();
         return view('donation.index', compact('campaigns'));
     }
+
 
     public function showForm($id)
     {
@@ -31,88 +34,43 @@ class DonationController extends Controller
     }
 
 
-//     public function showSummary(Request $request)
-// {
-//     // Validasi input form
-//     $request->validate([
-//         'nominal' => 'required|numeric',
-//         'metode_pembayaran' => 'required',
-//         'nama_pemilik' => 'required',
-//         'nomor_rekening' => 'required',
-//         'pesan' => 'nullable',
-//         'syarat_ketentuan' => 'accepted',
-//     ]);
+    public function showSummary(Request $request)
+    {
+        // Validasi input form
+        $request->validate([
+            'nominal' => 'required|numeric',
+            'metode_pembayaran' => 'required',
+            'nama_pemilik' => 'required',
+            'nomor_rekening' => 'required',
+            'pesan' => 'nullable',
+            'syarat_dan_ketentuan' => 'accepted',
+        ]);
 
-//     // Simpan data donasi ke session
-//     $request->session()->put('donation', $request->all());
+        // Simpan data donasi ke session
+        $request->session()->put('donation', $request->all());
 
-//     // Ambil id_bank dari request
-//     $id_bank = $request->id_bank;
+        // Ambil data bank dari MethodPayment
+        $id_bank = $request->metode_pembayaran;
+        $bank = MethodPayment::findOrFail($id_bank);
+        $nama_pemilik = $bank->nama_pemilik;
+        $tujuan_pembayaran = $bank->metode_pembayaran;
+        $nomor_rekening = $bank->nomor_rekening;
 
-//     // Ambil data bank dari MethodPayment
-//     $bank = MethodPayment::findOrFail($id_bank);
-//     $nama_pemilik = $bank->nama_pemilik;
-//     $nomor_rekening = $bank->nomor_rekening;
+        // Ambil data lain dari request atau session
+        $nama_bank = $request->nama_bank;
+        $nomor_rek = $request->nomor_rekening;
+        $pentransfer = $request->nama_pemilik;
+        $nominal = $request->nominal;
+        $selectedCampaignId = $request->id_campaign; // Perubahan di sini
+        $metode_pembayaran = $request->metode_pembayaran;
+        $waktu_donasi = now(); // Tanggal dan waktu donasi saat ini
 
-//     // Ambil data lain dari request atau session
-//     $nama_bank = $request->nama_bank;
-//     $nomor_rekening = $request->nomor_rekening;
-//     $nominal = $request->nominal;
-//     $selectedCampaignId = $request->selected_campaign_id;
-//     $metode_pembayaran = $request->metode_pembayaran;
-//     $waktu_donasi = now(); // Tanggal dan waktu donasi saat ini
+        // Ambil data campaign yang dipilih
+        $selectedCampaign = Campaign::findOrFail($selectedCampaignId);
 
-//     // Ambil data campaign yang dipilih
-//     $selectedCampaign = Campaign::findOrFail($selectedCampaignId);
-
-//     // Kembalikan view dengan data yang diperlukan
-//     return view('donation.summary')
-//         ->with('nama_bank', $nama_bank)
-//         ->with('nomor_rekening', $nomor_rekening)
-//         ->with('nominal', $nominal)
-//         ->with('selectedCampaign', $selectedCampaign)
-//         ->with('metode_pembayaran', $metode_pembayaran)
-//         ->with('nama_pemilik', $nama_pemilik)
-//         ->with('waktu_donasi', $waktu_donasi);
-// }
-
-public function showSummary(Request $request)
-{
-    // Validasi input form
-    $request->validate([
-        'nominal' => 'required|numeric',
-        'metode_pembayaran' => 'required',
-        'nama_pemilik' => 'required',
-        'nomor_rekening' => 'required',
-        'pesan' => 'nullable',
-        'syarat_dan_ketentuan' => 'accepted',
-    ]);
-
-    // Simpan data donasi ke session
-    $request->session()->put('donation', $request->all());
-
-    // Ambil data bank dari MethodPayment
-    $id_bank = $request->metode_pembayaran;
-    $bank = MethodPayment::findOrFail($id_bank);
-    $nama_pemilik = $bank->nama_pemilik;
-    $tujuan_pembayaran = $bank->metode_pembayaran;
-    $nomor_rekening = $bank->nomor_rekening;
-
-    // Ambil data lain dari request atau session
-    $nama_bank = $request->nama_bank;
-    $nomor_rek = $request->nomor_rekening;
-    $pentransfer = $request->nama_pemilik;
-    $nominal = $request->nominal;
-    $selectedCampaignId = $request->id_campaign; // Perubahan di sini
-    $metode_pembayaran = $request->metode_pembayaran;
-    $waktu_donasi = now(); // Tanggal dan waktu donasi saat ini
-
-    // Ambil data campaign yang dipilih
-    $selectedCampaign = Campaign::findOrFail($selectedCampaignId);
-
-    // Kembalikan view dengan data yang diperlukan
-    return view('donation.summary', compact('nama_bank','tujuan_pembayaran', 'nomor_rekening', 'nomor_rek', 'pentransfer', 'nominal', 'selectedCampaign', 'metode_pembayaran', 'nama_pemilik', 'waktu_donasi'));
-}
+        // Kembalikan view dengan data yang diperlukan
+        return view('donation.summary', compact('nama_bank','tujuan_pembayaran', 'nomor_rekening', 'nomor_rek', 'pentransfer', 'nominal', 'selectedCampaign', 'metode_pembayaran', 'nama_pemilik', 'waktu_donasi'));
+    }
 
 
 
@@ -153,7 +111,15 @@ public function showSummary(Request $request)
         $request->session()->forget('donation');
 
         // Redirect ke halaman index dengan pesan sukses
-        return redirect('/donasi')->with('success', 'Terimakasih Donasinya Orang Baik');
+        return redirect('/donation')->with('success', 'Terimakasih Donasinya Orang Baik');
 
     }
+
+
+
+
+
+    
+
+
 }

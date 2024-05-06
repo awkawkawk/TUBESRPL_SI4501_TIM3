@@ -17,25 +17,27 @@
     <div class="md:col-span-1">
         <div class="container" style="display: flex; justify-content: center;">
             <div class="w-full sm:max-w-lg mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg" >
-                <p class="h1 mt-2 mb-1 block text-xl font-semibold text-black" >Perbaikan Ruang Belajar</p> <!-- Nama Campaign Yang Dipilih -->
-                <p class="mb-2 text-s font-normal text-black dark:text-gray-400">SMP Negeri 1 Arara</p> <!-- Asal Sekolah -->
+                <p class="h1 mt-2 mb-1 block text-xl font-semibold text-black" >{{ $selectedCampaign->nama_campaign }}</p> <!-- Nama Campaign Yang Dipilih -->
+                <p class="mb-2 text-s font-normal text-black dark:text-gray-400">{{ $selectedCampaign->school->nama_sekolah }}</p> <!-- Asal Sekolah -->
                 <hr>
-                <form method="POST" action="" style="margin: 0 auto;">
-                    <input type="hidden" name="_token" value="QQNGnmJ72kqGCnrFCdDWu3totvNFA3FPM0zepJcG" autocomplete="off">
-
+                <form method="POST" action="{{ route('donation.summaryItems') }}" style="margin: 0 auto;">
+                    @csrf
                      <!-- Pilih Barang Yang Disumbangkan -->
                     <div class="mb-2 mt-6 flex flex-wrap">
                         <div class="w-full md:w-3/6 pr-1">
-                            <label class="block font-medium text-sm text-gray-700" for="metode_pembayaran">Barang Donasi</label>
-                            <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="metode_pembayaran" name="metode_pembayaran" required>
-                                <option value="mandiri" style="font-size: 14px;">Buku</option>
-                                <option value="bca" style="font-size: 14px;">Alat Tulis</option>
-                                <option value="bsi" style="font-size: 14px;">Meja</option>
+                            <label class="block font-medium text-sm text-gray-700" for="nama_barang">Barang Donasi</label>
+                            <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" name="nama_barang[]" required>
+                                <option value="" disabled selected style="font-size: 14px;">Pilih Barang</option>
+                                @foreach ($targetDonasi as $target)
+                                    <option value="{{ $target->nama_barang }}" style="font-size: 14px;">{{ $target->nama_barang }}</option>
+                                @endforeach
                             </select>
                         </div>
+
+                        <!-- Buat elemen untuk input jumlah barang -->
                         <div class="w-full md:w-2/6 pl-3">
-                            <label class="block font-medium text-sm text-gray-700" for="nominal">Jumlah Barang</label>
-                            <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="nominal" type="number" name="nominal" required>
+                            <label class="block font-medium text-sm text-gray-700" for="jumlah_barang">Jumlah Barang</label>
+                            <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" type="number" name="jumlah_barang[]" required>
                         </div>
                         <div class="w-full md:w-1/6 pl-8 mt-6">
                             <button onclick="addRow()" style="width: 42px; height: 42px;" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >+</button>
@@ -48,13 +50,13 @@
                     <!-- Input Jasa Kirim -->
                     <div class="mb-4 mt-6">
                         <label class="block font-medium text-sm text-gray-700" for="nama">Layanan Jasa Kirim</label>
-                        <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="nama" type="text" name="nama" placeholder="Anda dapat mengisinya nanti">
+                        <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="jasa_kirim" type="text" name="jasa_kirim" placeholder="Anda dapat mengisinya nanti">
                     </div>
 
                     <!-- Input Nomor Rekening -->
                     <div class="mb-6">
                         <label class="block font-medium text-sm text-gray-700" for="nomor_rekening">Nomor Resi Pengiriman</label>
-                        <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="nomor_rekening" type="text" name="nomor_rekening" placeholder="Anda dapat mengisinya nanti">
+                        <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="nomor_resi" type="text" name="nomor_resi" placeholder="Anda dapat mengisinya nanti">
                     </div>
 
                     <!-- Input Pesan -->
@@ -73,7 +75,7 @@
 
                     <!-- Button Lanjutkan Pembayaran -->
                     <button type="submit" class="mt-2 w-full bg-primary text-white font-bold py-2 px-8 rounded-lg">
-                        Kirim Donasi
+                        Lanjutkan Donasi Anda
                     </button>
                 </form>
             </div>
@@ -92,10 +94,12 @@
         var selectContainer = document.createElement('div');
         selectContainer.classList.add('w-full', 'md:w-3/6', 'pr-1');
         selectContainer.innerHTML = `
-            <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="metode_pembayaran" name="metode_pembayaran" required>
-                <option value="mandiri" style="font-size: 14px;">Buku</option>
-                <option value="bca" style="font-size: 14px;">Alat Tulis</option>
-                <option value="bsi" style="font-size: 14px;">Meja</option>
+            <label class="block font-medium text-sm text-gray-700" for="nama_barang">Barang Donasi</label>
+            <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" name="nama_barang[]" required>
+                <option value="" disabled selected style="font-size: 14px;">Pilih Barang</option>
+                @foreach ($targetDonasi as $target)
+                    <option value="{{ $target->nama_barang }}" style="font-size: 14px;">{{ $target->nama_barang }}</option>
+                @endforeach
             </select>
         `;
         newRow.appendChild(selectContainer);
@@ -104,7 +108,8 @@
         var inputContainer = document.createElement('div');
         inputContainer.classList.add('w-full', 'md:w-2/6', 'pl-3');
         inputContainer.innerHTML = `
-            <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="nominal" type="number" name="nominal" required>
+        <label class="block font-medium text-sm text-gray-700" for="jumlah_barang">Jumlah Barang</label>
+        <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" type="number" name="jumlah_barang[]" required>
         `;
         newRow.appendChild(inputContainer);
 
@@ -112,7 +117,7 @@
         var removeButtonContainer = document.createElement('div');
         removeButtonContainer.classList.add('w-full', 'md:w-1/6', 'pl-8', 'mt-1');
         removeButtonContainer.innerHTML = `
-            <button onclick="removeRow(this)" style="width: 42px; height: 42px;" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">-</button>
+            <button onclick="removeRow(this)" style="width: 42px; height: 42px;" class="mt-5 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">-</button>
         `;
         newRow.appendChild(removeButtonContainer);
 

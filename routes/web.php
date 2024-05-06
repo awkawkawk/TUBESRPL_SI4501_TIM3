@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RiwayatCampaignController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\DonationItemController;
 
 Route::get('/', function () {
     return view('index');
@@ -31,9 +32,6 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-// Route::get('/riwayat', function () {
-//     return view('riwayatcampaign');
-// });
 
 Route::get('/buatcampaign', function () {
     return view('buatcampaign');
@@ -46,17 +44,8 @@ Route::get('/riwayat/donatur', function () {
 
 
 
-// test
-Route::get('/donasi/donasiuang', function () {
-    return view('donation/donasiuang');
-});
-
-Route::get('/donasi/donasiuang/pembayaran', function () {
-    return view('donation/donasiuangnext');
-});
-
-Route::get('/donasi/donasibarang', function () {
-    return view('donation/donasibarang');
+Route::get('/donation/item/summary', function () {
+    return view('donation/summaryItems');
 });
 
 Route::get('/donasi', function () {
@@ -70,17 +59,16 @@ Route::get('/verifikasi-sekolah', [App\Http\Controllers\SchoolVerificationContro
 //test
 Route::get('/campaign/riwayat', [RiwayatCampaignController::class, 'index']);
 
-// Route::get('/donasi', [DonationController::class, 'index']);
-// Route::get('/donation/donasi/uang/{id}', [DonationController::class, 'showForm'])->name('donations.form');
-// Route::post('/donation/summary', [DonationController::class, 'showSummary'])->name('donation.summary');
-// Route::post('/donation/store', [DonationController::class, 'store'])->name('donations.store');
-
-Route::get('/donasi', [DonationController::class, 'index']);
-Route::get('/donation/donasi/uang/{id}', [DonationController::class, 'showForm'])->name('donations.form');
-Route::get('/donation/summary', [DonationController::class, 'showSummary'])->name('donation.summary.get');
-Route::post('/donation/summary', [DonationController::class, 'showSummary'])->name('donation.summary');
+Route::get('/donation', [DonationController::class, 'index']);
+Route::get('/donation/money/{id}', [DonationController::class, 'showForm'])->name('donations.form');
+Route::get('/donation/money/summary', [DonationController::class, 'showSummary'])->name('donation.summary.get');
+Route::post('/donation/money/summary', [DonationController::class, 'showSummary'])->name('donation.summary');
 Route::post('/donation/store', [DonationController::class, 'store'])->name('donations.store');
 
+Route::get('/donation/item/{id}', [DonationItemController::class, 'showFormItem'])->name('donations.form.items');
+Route::post('/donation/item/summaryItems', [DonationItemController::class, 'showSummaryItem'])->name('donation.summaryItems');
+
+Route::post('/donation/storeItems', [DonationItemController::class, 'storeItems'])->name('donations.storeItems');
 
 
 
