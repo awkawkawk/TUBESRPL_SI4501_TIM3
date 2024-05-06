@@ -1,37 +1,75 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register.school') }}">
+    <form method="POST" enctype="multipart/form-data" action="{{ route('register.school') }}">
         @csrf
+        {{-- Pendaftar --}}
+        <div>
+            <x-input-label for="nama_pendaftar" :value="__('Nama Pendaftar')" />
+            <x-text-input id="nama_pendaftar" class="mt-1 block w-full" type="text" name="nama_pendaftar" :value="old('nama_pendaftar')" required
+                autofocus autocomplete="nama_pendaftar" />
+            <x-input-error :messages="$errors->get('nama_pendaftar')" class="mt-2" />
+        </div>
+        <div class="mt-4">
+            <x-input-label for="no_hp_pendaftar" :value="__('Nomor Handphone Pendaftar')" />
+            <x-text-input id="no_hp_pendaftar" class="mt-1 block w-full" type="tel" name="no_hp_pendaftar" :value="old('no_hp_pendaftar')" required
+                autocomplete="tel" />
+            <x-input-error :messages="$errors->get('no_hp_pendaftar')" class="mt-2" />
+        </div>
+        <div class="mt-4">
+            <x-input-label for="email_pendaftar" :value="__('Email Pendaftar')" />
+            <x-text-input id="email_pendaftar" class="mt-1 block w-full" type="Email" name="email_pendaftar" :value="old('email_pendaftar')" required
+                autocomplete="email_pendaftar" />
+            <x-input-error :messages="$errors->get('email_pendaftar')" class="mt-2" />
+        </div>
+        <div class="mt-4">
+            <x-input-label for="identitas_pendaftar" :value="__('Identitas Pendaftar')" />
+            <x-text-input id="identitas_pendaftar" class="mt-1 block w-full" type="text" name="identitas_pendaftar" :value="old('identitas_pendaftar')" required
+                autocomplete="identitas_pendaftar" />
+            <x-input-error :messages="$errors->get('identitas_pendaftar')" class="mt-2" />
+        </div>
+        <div class="mt-4">
+            <x-input-label for="bukti_id_pendaftar" :value="__('Bukti ID Pendaftar')" />
+            <x-file-input id="bukti_id_pendaftar" class="mt-1 block w-full" name="bukti_id_pendaftar" required
+                autofocus autocomplete="bukti_id_pendaftar" />
+            <x-input-error :messages="$errors->get('bukti_id_pendaftar')" class="mt-2" />
+        </div>
+        <!-- Logo Sekolah -->
+        <div class="mt-4">
+            <x-input-label for="logo_sekolah" :value="__('Logo Sekolah')" />
+            <x-file-input id="logo_sekolah" class="mt-1 block w-full" name="logo_sekolah" required
+                autofocus autocomplete="logo_sekolah" />
+            <x-input-error :messages="$errors->get('logo_sekolah')" class="mt-2" />
+        </div>
 
         <!-- Nama Sekolah -->
-        <div>
-            <x-input-label for="school_name" :value="__('Nama Sekolah')" />
-            <x-text-input id="school_name" class="mt-1 block w-full" type="text" name="school_name" :value="old('school_name')" required
-                autofocus autocomplete="school_name" />
-            <x-input-error :messages="$errors->get('school_name')" class="mt-2" />
+        <div class="mt-4">
+            <x-input-label for="nama_sekolah" :value="__('Nama Sekolah')" />
+            <x-text-input id="nama_sekolah" class="mt-1 block w-full" type="text" name="nama_sekolah" :value="old('nama_sekolah')" required
+                autofocus autocomplete="nama_sekolah" />
+            <x-input-error :messages="$errors->get('nama_sekolah')" class="mt-2" />
         </div>
 
         <!-- Alamat Sekolah -->
         <div class="mt-4">
-            <x-input-label for="school_address" :value="__('Alamat Sekolah')" />
-            <x-text-input id="school_address" class="mt-1 block w-full" type="text" name="school_address" :value="old('school_address')"
-                required autocomplete="school_address" />
-            <x-input-error :messages="$errors->get('school_address')" class="mt-2" />
+            <x-input-label for="alamat_sekolah" :value="__('Alamat Sekolah')" />
+            <x-text-input id="alamat_sekolah" class="mt-1 block w-full" type="text" name="alamat_sekolah" :value="old('alamat_sekolah')"
+                required autocomplete="alamat_sekolah" />
+            <x-input-error :messages="$errors->get('alamat_sekolah')" class="mt-2" />
         </div>
 
         <!-- Nomor Handphone Sekolah -->
         <div class="mt-4">
-            <x-input-label for="school_phone" :value="__('Nomor Handphone Sekolah')" />
-            <x-text-input id="school_phone" class="mt-1 block w-full" type="tel" name="school_phone" :value="old('school_phone')"
+            <x-input-label for="no_telepon_sekolah" :value="__('Nomor Handphone Sekolah')" />
+            <x-text-input id="no_telepon_sekolah" class="mt-1 block w-full" type="tel" name="no_telepon_sekolah" :value="old('no_telepon_sekolah')"
                 required autocomplete="tel" />
-            <x-input-error :messages="$errors->get('school_phone')" class="mt-2" />
+            <x-input-error :messages="$errors->get('no_telepon_sekolah')" class="mt-2" />
         </div>
 
         <!-- Email Sekolah -->
         <div class="mt-4">
-            <x-input-label for="school_email" :value="__('Email Sekolah')" />
-            <x-text-input id="school_email" class="mt-1 block w-full" type="Email" name="school_email" :value="old('school_email')"
-                required autocomplete="school_email" />
-            <x-input-error :messages="$errors->get('school_email')" class="mt-2" />
+            <x-input-label for="email_sekolah" :value="__('Email Sekolah')" />
+            <x-text-input id="email_sekolah" class="mt-1 block w-full" type="Email" name="email_sekolah" :value="old('email_sekolah')"
+                required autocomplete="email_sekolah" />
+            <x-input-error :messages="$errors->get('email_sekolah')" class="mt-2" />
         </div>
 
         <!-- Kata Sandi -->
