@@ -22,61 +22,47 @@
 
                 <!-- Ringkasan Donasi -->
                 <div class="border border-gray-300 focus-within:border-indigo-500 rounded-md shadow-sm block w-full px-3 py-2 bg-blue-100 mt-6">
-
-
                     <div class="flex justify-between items-center mt-2">
                         <p class="mb-2 text-sm font-normal text-black dark:text-gray-400">Nama Campaign</p>
-                        <p class="mb-2 text-sm font-normal text-black dark:text-gray-400"></p>
+                        <p class="mb-2 text-sm font-normal text-black dark:text-gray-400">{{ $selectedCampaign->nama_campaign }}</p>
                     </div>
-
-
 
                     <div class="flex justify-between items-center">
                         <p class="mb-2 text-sm font-normal text-black dark:text-gray-400">Donasi Ke</p>
-                        <p class="mb-2 text-sm font-normal text-black dark:text-gray-400"></p>
+                        <p class="mb-2 text-sm font-normal text-black dark:text-gray-400">{{ $selectedCampaign->school->nama_sekolah }}</p>
                     </div>
-
-
-
-
 
                     <div class="flex justify-between items-center">
                         <p class="mb-2 text-sm font-normal text-black dark:text-gray-400">Jasa Kirim</p>
-                        <p class="mb-2 text-sm font-normal text-black dark:text-gray-400">JNE</p>
+                        <p class="mb-2 text-sm font-normal text-black dark:text-gray-400">{{ session('item.jasa_kirim') }}</p>
                     </div>
-
-
 
                     <div class="flex justify-between items-center">
                         <p class="mb-2 text-sm font-normal text-black dark:text-gray-400">Nomor Resi</p>
-                        <p class="mb-2 text-sm font-normal text-black dark:text-gray-400">234567</p>
+                        <p class="mb-2 text-sm font-normal text-black dark:text-gray-400">{{ session('item.nomor_resi') }}</p>
                     </div>
-
-
 
                     <div class="flex justify-between items-center">
                         <p class="mb-2 text-sm font-semibold text-black dark:text-gray-400">Nama Barang</p>
                         <p class="mb-2 text-sm font-semibold text-black dark:text-gray-400">Jumlah Barang</p>
                     </div>
 
-                    <div class="flex justify-between items-center">
-                        <p class="mb-1 ml-4 text-sm font-normal text-black dark:text-gray-400">Proyektor</p>
-                        <p class="mb-1 text-sm font-normal text-black dark:text-gray-400">2</p>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <p class="mb-1 ml-4 text-sm font-normal text-black dark:text-gray-400">Buku</p>
-                        <p class="mb-1 text-sm font-normal text-black dark:text-gray-400">20</p>
-                    </div>
-
+                    @foreach(session('item.nama_barang') as $index => $namaBarang)
+                        <div class="flex justify-between items-center">
+                            <p class="mb-1 ml-4 text-sm font-normal text-black dark:text-gray-400">{{ $namaBarang }}</p>
+                            <!-- Jumlah barang sudah disimpan di dalam session, sehingga Anda dapat mengaksesnya dengan menggunakan index yang sama -->
+                            <p class="mb-1 text-sm font-normal text-black dark:text-gray-400">{{ session('item.jumlah_barang')[$index] }}</p>
+                        </div>
+                    @endforeach
 
                     <div class="flex justify-between items-center">
                         <p class="mb-2 text-sm font-normal text-black dark:text-gray-400">Waktu Donasi</p>
-                        <p class="mb-2 text-sm font-normal text-black dark:text-gray-400"></p>
+                        <p class="mb-2 text-sm font-normal text-black dark:text-gray-400">{{ session('item.waktu_donasi')->format('d F Y') }}</p>
                     </div>
 
                 </div>
 
-                <form method="POST" action="{{ route('donations.store') }}">
+                <form method="POST" action="{{ route('donations.storeItems') }}">
                     @csrf
                     <!-- Isi dengan elemen form lainnya seperti yang Anda perlukan -->
                     <p class="mb-2 mt-4 text-xs font-normal text-black dark:text-gray-400">* Anda dapat melakukan perubahan pada jasa kirim atau nomor resi setelah Kirim Donasi

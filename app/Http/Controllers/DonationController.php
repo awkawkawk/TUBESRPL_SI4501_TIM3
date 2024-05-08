@@ -76,10 +76,6 @@ class DonationController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi input form
-        $request->validate([
-            // tambahkan validasi sesuai kebutuhan
-        ]);
 
         // Ambil data donasi dari session
         $donationData = $request->session()->get('donation');
@@ -114,12 +110,5 @@ class DonationController extends Controller
         return redirect('/donation')->with('success', 'Terimakasih Donasinya Orang Baik');
 
     }
-
-
-
-
-
-    
-
 
 }

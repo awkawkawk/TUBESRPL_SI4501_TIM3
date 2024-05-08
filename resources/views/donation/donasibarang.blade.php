@@ -20,7 +20,7 @@
                 <p class="h1 mt-2 mb-1 block text-xl font-semibold text-black" >{{ $selectedCampaign->nama_campaign }}</p> <!-- Nama Campaign Yang Dipilih -->
                 <p class="mb-2 text-s font-normal text-black dark:text-gray-400">{{ $selectedCampaign->school->nama_sekolah }}</p> <!-- Asal Sekolah -->
                 <hr>
-                <form method="POST" action="{{ route('donation.summaryItems') }}" style="margin: 0 auto;">
+                <form method="POST" action="{{ route('donations.post.form.items',['id' => $selectedCampaign->id]) }}" style="margin: 0 auto;">
                     @csrf
                      <!-- Pilih Barang Yang Disumbangkan -->
                     <div class="mb-2 mt-6 flex flex-wrap">

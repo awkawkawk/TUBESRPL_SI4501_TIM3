@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Donation;
+use App\Models\Target;
 use App\Models\Campaign;
+use App\Models\Donation;
+use App\Models\ItemDonation;
+use Illuminate\Http\Request;
 use App\Models\MethodPayment;
 use App\Models\MoneyDonation;
-use App\Models\Target;
-use App\Models\ItemDonation;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class DonationItemController extends Controller
 {
@@ -21,13 +22,10 @@ class DonationItemController extends Controller
         $namaSekolah = $selectedCampaign->school->nama_sekolah;
         $targetDonasi = Target::where('id_campaign', $id)->where('nama_barang', '!=', 'Uang')->get();
 
-        // Menampilkan view dengan data campaign yang dipilih
-        return view('donation.donasibarang', compact('selectedCampaign', 'targetDonasi'));
+        return view('donation.donasibarang', compact('selectedCampaign','targetDonasi','id'));
     }
 
-
-    public function showSummaryItem(Request $request)
-    {
+    public function postFormItem(Request $request, $id){
         // Validasi input form
         $request->validate([
             'nama_barang' => 'required|array',
@@ -38,12 +36,11 @@ class DonationItemController extends Controller
             'syarat_dan_ketentuan' => 'required|accepted',
         ]);
 
-        // Ambil data dari request
-        $selectedCampaignId = $request->id_campaign;
         $waktu_donasi = now(); // Tanggal dan waktu donasi saat ini
 
         // Ambil data campaign yang dipilih
-        $selectedCampaign = Campaign::findOrFail($selectedCampaignId);
+        $selectedCampaign = Campaign::findOrFail($id);
+        $namaSekolah = $selectedCampaign->school->nama_sekolah;
 
         // Simpan data donasi ke session
         $request->session()->put('item.nama_barang', $request->nama_barang);
@@ -51,46 +48,45 @@ class DonationItemController extends Controller
         $request->session()->put('item.jasa_kirim', $request->jasa_kirim);
         $request->session()->put('item.nomor_resi', $request->nomor_resi);
         $request->session()->put('item.pesan', $request->pesan);
+        $request->session()->put('item.waktu_donasi', $waktu_donasi);
+        $request->session()->put('item.id_campaign', $id);
 
-        // Kembalikan view dengan data yang diperlukan
-        return view('donation.summaryItems', compact('selectedCampaign', 'waktu_donasi'));
+
+        // Menampilkan view dengan data campaign yang dipilih
+        return view('donation.summaryItems', compact('selectedCampaign', 'namaSekolah', 'waktu_donasi'));
     }
-
 
 
     public function storeItems(Request $request)
     {
-        // Validasi input
-        $request->validate([
-            'nama_barang' => 'required|array',
-            'jumlah_barang' => 'required|numeric|min:1',
-            'jasa_kirim' => 'nullable|string',
-            'nomor_resi' => 'nullable|string',
-            'pesan' => 'nullable|string',
-            'syarat_dan_ketentuan' => 'required|accepted',
-        ]);
+        
+        $donationData = $request->session()->get('item');
 
         // Simpan data donasi ke tabel Donasi
-        $donasi = new Donasi();
-        $donasi->id_user = auth()->id();
-        $donasi->id_campaign = $request->id_campaign;
-        $donasi->pesan = $request->pesan;
-        $donasi->syarat_ketentuan = $request->has('syarat_dan_ketentuan') ? true : false;
-        $donasi->status = 'Menunggu Verifikasi';
-        $donasi->jasa_kirim = $request->nama;
-        $donasi->nomor_resi = $request->nomor_resi;
-        $donasi->save();
+        $donation = Donation::create([
+            'id_user' => auth()->id(),
+            'id_campaign' => $donationData['id_campaign'],
+            'pesan' => $donationData['pesan'],
+            'syarat_ketentuan' => $request->has('syarat_ketentuan') ? true : false,
+            'status' => 'Proses Pengiriman',
+            'jasa_kirim' => $donationData['jasa_kirim'],
+            'nomor_resi' => $donationData['nomor_resi'],
+        ]);
 
         // Simpan data barang donasi ke tabel ItemDonasi
-        foreach ($request->metode_pembayaran as $index => $barang_id) {
-            $itemDonasi = new ItemDonasi();
-            $itemDonasi->id_donasi = $donasi->id; // Ambil ID donasi yang baru saja dibuat
-            $itemDonasi->nama_barang = Target::findOrFail($barang_id)->nama_barang; // Ambil nama barang dari tabel Target
-            $itemDonasi->jumlah_barang = $request->nominal[$index];
-            $itemDonasi->save();
+        foreach ($donationData['nama_barang'] as $index => $namaBarang) {
+            ItemDonation::create([
+                'id_donasi' => $donation->id,
+                'nama_barang' => $namaBarang,
+                'jumlah_barang' => $donationData['jumlah_barang'][$index],
+            ]);
         }
+
+        // Hapus data donasi dari session
+        $request->session()->forget('donation');
 
         // Redirect atau kirim response sesuai kebutuhan
         return redirect('/donation')->with('success', 'Terimakasih Donasinya Orang Baik');
     }
+
 }
