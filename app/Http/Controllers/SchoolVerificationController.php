@@ -62,9 +62,11 @@ class SchoolVerificationController extends Controller
             // Buat permintaan ke Imgur API
             $response = Http::withHeaders([
                 'Authorization' => 'Client-ID c2fe122c365bf4a',
-            ])->timeout(60)->post('https://api.imgur.com/3/image', [
-                'image' => $base64Image,
-            ]);
+            ])
+                ->timeout(60)
+                ->post('https://api.imgur.com/3/image', [
+                    'image' => $base64Image,
+                ]);
 
             // Ambil respons JSON
             $responseData = $response->json();
@@ -87,9 +89,11 @@ class SchoolVerificationController extends Controller
             // Buat permintaan ke Imgur API
             $response = Http::withHeaders([
                 'Authorization' => 'Client-ID c2fe122c365bf4a',
-            ])->timeout(60)->post('https://api.imgur.com/3/image', [
-                'image' => $base64File,
-            ]);
+            ])
+                ->timeout(60)
+                ->post('https://api.imgur.com/3/image', [
+                    'image' => $base64File,
+                ]);
 
             // Ambil respons JSON
             $responseData = $response->json();
@@ -118,7 +122,17 @@ class SchoolVerificationController extends Controller
         if ($request->input('response') == 'confirm') {
             $schoolVerification->update(['status' => 'valid']);
         } elseif ($request->input('response') == 'decline') {
-            $schoolVerification->update(['status' => 'perlu revisi']);
+            // Ambil nomor pendaftar dari request
+            $nomorPendaftar = $schoolVerification->no_hp_pendaftar;
+
+            // Ambil pesan catatan dari request
+            $pesan = $request->input('catatan');
+
+            // Buat link WhatsApp dengan nomor penerima dan pesan
+            $url = "https://wa.me/$nomorPendaftar?text=" . urlencode("Maaf, pendaftaran Anda ditolak karena: $pesan");
+            $schoolVerification->update(['status' => 'ditolak']);
+            return redirect()->away($url);
+
         }
 
         return redirect()->back()->with('success', 'Respon berhasil disimpan');

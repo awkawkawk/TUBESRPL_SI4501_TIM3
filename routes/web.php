@@ -30,4 +30,4 @@ Route::get('/riwayat/donatur', function () {
 });
 
 Route::get('/verifikasi-sekolah', [SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
-Route::post('/verifikasi-sekolah/accept/{id}', 'SchoolVerificationController@respondVerification');
+Route::post('/verifikasi-sekolah/{id}', 'SchoolVerificationController@respondVerification')->name('response.verification');
