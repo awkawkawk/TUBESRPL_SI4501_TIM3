@@ -241,10 +241,16 @@
         </div>
     </aside>
 
+
     <div class="flex h-screen flex-col sm:ml-64">
         <div
             class="scrollbar-thumb-rounded-full scrollbar scrollbar-thin scrollbar-thumb-gray-100 mt-16 flex h-32 flex-1 overflow-y-auto overflow-y-scroll rounded-tl-lg bg-gray-100 p-4">
             @yield('content')
+
+            <!-- Page Content -->
+            <main>
+                {{-- {{ $slot }} --}}
+            </main>
         </div>
     </div>
 
