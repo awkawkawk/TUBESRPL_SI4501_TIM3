@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CampaignController;
+use App\Http\Controllers\RegisteredSchoolController;
 use App\Http\Controllers\Auth\RegisteredSchoolController;
 use App\Http\Controllers\SchoolVerificationController;
 use Illuminate\Support\Facades\Route;
@@ -10,7 +12,7 @@ use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\DonationItemController;
 
 Route::get('/', function () {
-    return view('index');
+    return view('create');
 })->name('/');
 
 
@@ -22,7 +24,7 @@ Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns
 // Route::get('/daftar-campaigns', [CampaignController::class, 'index'])->name('daftar');
 
 Route::get('/home', function () {
-    return view('index');
+    return view('create');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -33,7 +35,6 @@ Route::middleware('auth')->group(function () {
 
 
 require __DIR__.'/auth.php';
-
 
 Route::get('/buatcampaign', function () {
     return view('buatcampaign');
@@ -61,6 +62,8 @@ Route::get('/donasi', function () {
 
 Route::get('/verifikasi-sekolah', [App\Http\Controllers\SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
 
+Route::get('/campaigns/create', [CampaignController::class, 'create'])->name('campaigns.create');
+Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns.store');
 
 //test
 Route::get('/campaign/riwayat', [RiwayatCampaignController::class, 'index']);

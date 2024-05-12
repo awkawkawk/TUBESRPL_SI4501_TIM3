@@ -28,7 +28,5 @@ class Campaign extends Model
     {
         return $this->hasMany(Target::class, 'id_campaign');
     }
-
-    
-
 }
+
