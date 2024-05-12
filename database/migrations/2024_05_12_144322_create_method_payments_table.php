@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('donations', function (Blueprint $table) {
+        Schema::create('method_payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_campaign')->constrained('campaigns');
-            $table->foreignId('id_user')->constrained('users');
-            $table->date('tanggal_donasi');
-            $table->timestamps();
+            $table->string('metode_pembayaran');
+            $table->string('nomor_rekening');
+            $table->string('nama_pemilik');
+            $table->timestamps();;
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('donations');
+        Schema::dropIfExists('method_payments');
     }
 };
