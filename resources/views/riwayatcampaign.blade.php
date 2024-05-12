@@ -51,12 +51,17 @@
                                     <path d="M9 12l2 2l4 -4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                                 <span class="mr-1">{{ $target->nama_barang }}</span>
-                                @endforeach
 
-                                {{-- @foreach($campaign->targets as $target)
-                                <span>10</span>
-                                @endforeach --}}
+                                <span>
+                                    @if($target->nama_barang == 'Uang')
+                                        Rp. {{ number_format($target->jumlah_barang, 0, ',', '.') }}
+                                    @else
+                                        {{ number_format($target->jumlah_barang, 0, ',', '.') }}
+                                    @endif
+                                </span>
+
                             </p>
+                            @endforeach
 
                         </div>
 
@@ -92,14 +97,14 @@
                             </div>
 
                             <div class="flex justify-center items-center">
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded-lg relative flex items-center">
+                                <a href="{{ route('lihat.donatur', ['campaignId' => $campaign->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded-lg relative flex items-center">
                                     Lihat Donatur
                                     <span class="ml-2">
                                         <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
                                         </svg>
                                     </span>
-                                </button>
+                                </a>
                             </div>
                         @elseif($campaign->status == 'Selesai')
                             <div class="flex justify-center items-center">
@@ -108,14 +113,14 @@
                                 </button>
                             </div>
                             <div class="flex justify-center items-center">
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded-lg relative flex items-center">
+                                <a href="{{ route('lihat.donatur', ['campaignId' => $campaign->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded-lg relative flex items-center">
                                     Lihat Donatur
                                     <span class="ml-2">
                                         <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"/>
                                         </svg>
                                     </span>
-                                </button>
+                                </a>
                             </div>
                         @elseif($campaign->status == 'Menunggu Verifikasi')
                             <div class="flex justify-center items-center">

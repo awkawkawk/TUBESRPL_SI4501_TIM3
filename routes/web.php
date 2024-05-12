@@ -64,6 +64,7 @@ Route::get('/verifikasi-sekolah', [App\Http\Controllers\SchoolVerificationContro
 
 //test
 Route::get('/campaign/riwayat', [RiwayatCampaignController::class, 'index']);
+Route::get('/campaign/riwayat/donatur/{campaignId}', [RiwayatCampaignController::class, 'donatur'])->name('lihat.donatur');
 
 Route::get('/donation', [DonationController::class, 'index']);
 Route::get('/donation/money/{id}', [DonationController::class, 'showForm'])->name('donations.form');
@@ -73,8 +74,6 @@ Route::post('/donation/store', [DonationController::class, 'store'])->name('dona
 
 Route::get('/donation/item/{id}', [DonationItemController::class, 'showFormItem'])->name('donations.form.items');
 Route::post('/donation/item/{id}', [DonationItemController::class, 'postFormItem'])->name('donations.post.form.items');
-
-
 Route::post('/donation/storeItems', [DonationItemController::class, 'storeItems'])->name('donations.storeItems');
 
 

@@ -29,6 +29,11 @@ class Campaign extends Model
         return $this->hasMany(Target::class, 'id_campaign');
     }
 
-    
+    public function donations()
+    {
+        return $this->hasMany(Donation::class);
+    }
+
+
 
 }
