@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisteredSchoolController;
+use App\Http\Controllers\SchoolVerificationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RiwayatCampaignController;
 use App\Http\Controllers\DonationController;
@@ -30,11 +31,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
 require __DIR__.'/auth.php';
 
 
 Route::get('/buatcampaign', function () {
     return view('buatcampaign');
+});
+
+Route::get('/riwayat', function () {
+    return view('riwayatcampaign');
 });
 
 
@@ -72,5 +78,9 @@ Route::post('/donation/item/{id}', [DonationItemController::class, 'postFormItem
 Route::post('/donation/storeItems', [DonationItemController::class, 'storeItems'])->name('donations.storeItems');
 
 
+Route::get('/verifikasi-sekolah', [SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
 
+Route::post('/verifikasi-sekolah/{id}', [SchoolVerificationController::class, 'respondVerification'])->name('response.verification');
+
+require __DIR__.'/auth.php';
 
