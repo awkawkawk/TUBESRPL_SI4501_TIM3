@@ -1,4 +1,4 @@
-<div class="mb-8 w-1/2 pe-8" school-verification-id="{{ $verificationId }}">
+<div class="mb-8 w-1/3 pe-8" school-verification-id="{{ $verificationId }}">
     <div class="rounded-lg border border-gray-200 bg-white shadow-sm">
         <div class="flex items-center px-5 py-3">
             <img src="{{ $profile }}" alt="{{ $alt }}" class="h-10 w-10 rounded-full object-cover"

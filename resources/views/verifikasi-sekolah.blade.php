@@ -25,9 +25,9 @@
                         <p class="m-8 w-full justify-center text-center text-sm"><i>Sedang tidak ada sekolah yang perlu
                                 diverifikasi</i></p>
                     @else
-                        @foreach ($schools as $school)
+                    @foreach ($schools as $school)
                             <form action="{{ route('response.verification', $school['id']) }}" method="POST"
-                                class="flex w-full">
+                                class="flex flex-wrap w-full">
                                 @csrf
                                 @method('POST')
                                 <x-admin-school-verification profile="{{ $school['logo_sekolah'] }}"
