@@ -35,11 +35,6 @@ class MethodPaymentSeeder extends Seeder
                 'nama_pemilik' => 'PT. Edu Fund',
             ],
             [
-                'metode_pembayaran' => 'DANA',
-                'nomor_rekening' => '081236367878',
-                'nama_pemilik' => 'PT. Edu Fund',
-            ],
-            [
                 'metode_pembayaran' => 'GoPay',
                 'nomor_rekening' => '081236367878',
                 'nama_pemilik' => 'PT. Edu Fund',

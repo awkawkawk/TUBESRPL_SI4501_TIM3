@@ -51,11 +51,11 @@
                         <p class="mb-2 text-xs font-normal text-black">{{ $campaign->school->alamat_sekolah }}</p>
                         <p class="mb-4 text-sm font-normal text-black">{{ $campaign->deskripsi_campaign }}</p>
                         <div class="mb-1 flex w-full text-xs font-medium">
-                            <p>Terkumpul</p>
+                            {{-- <p>Terkumpul</p>
                             <p class="text-primary ms-auto font-bold">90%</p>
                         </div>
                         <div class="h-1.5 w-full rounded-full bg-gray-200">
-                            <div class="bg-primary h-1.5 rounded-full" style="width: 90%"></div>
+                            <div class="bg-primary h-1.5 rounded-full" style="width: 90%"></div> --}}
                         </div>
                         <!-- Tombol "Donasi Uang" pada setiap card campaign -->
                         <div class="flex justify-center items-center mt-4">
