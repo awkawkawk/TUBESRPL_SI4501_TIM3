@@ -12,9 +12,9 @@
 
         <!-- Nomor Handphone -->
         <div>
-            <x-input-label for="nomor" :value="__('Nomor Handphone')" />
-            <x-text-input id="nomor" class="block mt-1 w-full" type="text" name="nomor" :value="old('nomor')" required autofocus autocomplete="nomor" />
-            <x-input-error :messages="$errors->get('nomor')" class="mt-2" />
+            <x-input-label for="phone" :value="__('Nomor Handphone')" />
+            <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')" required autofocus autocomplete="phone" />
+            <x-input-error :messages="$errors->get('phone')" class="mt-2" />
         </div>
 
         <!-- Email Address -->

@@ -17,10 +17,28 @@
         @csrf
         @method('patch')
 
-        <div>
+            <div class="flex justify-center items-center mt-6">
+                <label for="edit-photo" class="cursor-pointer">
+                  <div class="flex items-center">
+                       <div class="rounded-full overflow-hidden w-20 h-20 flex justify-center items-center relative">
+                             <img id="preview-photo" src="{{ asset('img/profile2.jpeg') }}" alt="" class="object-cover w-full h-full" />
+                                 <span class="absolute left-0 right-0 bg-gray-900 bg-opacity-50 text-white text-xs py-1 px-2 rounded text-center top-1/2 transform -translate-y-1/2">Klik untuk mengubah foto</span>
+                        </div>
+                        <input type="file" id="edit-photo" name="edit-photo" class="hidden" accept="image/*" />
+                  </div>
+                </label>
+            </div>
+        
+          <div>
             <x-input-label for="name" :value="__('Nama')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        </div>
+
+        <div>
+            <x-input-label for="phone" :value="__('Nomor Handphone')" />
+            <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', $user->phone)" required autofocus autocomplete="phone" />
+            <x-input-error class="mt-2" :messages="$errors->get('Nomor Handphone')" />
         </div>
 
         <div>
@@ -61,4 +79,18 @@
             @endif
         </div>
     </form>
+    <script>
+    document.getElementById('edit-photo').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+            const preview = document.getElementById('preview-photo');
+            preview.src = e.target.result;
+        }
+
+        reader.readAsDataURL(file);
+    });
+</script>
+
 </section>
