@@ -61,7 +61,7 @@ class SchoolVerificationController extends Controller
             // Buat permintaan ke Imgur API
             $response = Http::withHeaders([
                 'Authorization' => 'Client-ID c2fe122c365bf4a',
-            ])->timeout(60)->post('https://api.imgur.com/3/image', [
+            ])->timeout(3600)->post('https://api.imgur.com/3/image', [
                 'image' => $base64Image,
             ]);
 

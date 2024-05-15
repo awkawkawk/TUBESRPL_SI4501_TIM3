@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('catatan_campaign')->nullable();
             $table->date('tanggal_dibuat');
             $table->date('tanggal_selesai');
-            $table->timestamps();
+            $table->integer('percentage_collected')->default(0);
         });
     }
 

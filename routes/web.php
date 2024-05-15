@@ -1,8 +1,11 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Auth\RegisteredSchoolController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SchoolVerificationController;
+use App\Http\Controllers\CampaignVerificationController;
+use App\Http\Controllers\Auth\RegisteredSchoolController;
 
 Route::get('/', function () {
     return view('index');
@@ -28,4 +31,10 @@ Route::get('/riwayat/donatur', function () {
     return view('lihatdonatur');
 });
 
-Route::get('/verifikasi-sekolah', [App\Http\Controllers\SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
+Route::get('/verifikasi-sekolah', [SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
+
+Route::get('/verifikasi-campaign', [CampaignVerificationController::class, 'showVerificationPage'])->name('verifikasi.campaign');
+
+Route::post('/verifikasi-campaign/{id}', [CampaignVerificationController::class, 'respondVerification'])->name('response.verification.campaign');
+
+Route::get('/search', [SearchController::class, 'search'])->name('search.result');
