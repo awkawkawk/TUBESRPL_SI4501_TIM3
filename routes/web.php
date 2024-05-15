@@ -82,5 +82,7 @@ Route::get('/verifikasi-sekolah', [SchoolVerificationController::class, 'showVer
 
 Route::post('/verifikasi-sekolah/{id}', [SchoolVerificationController::class, 'respondVerification'])->name('response.verification');
 
+Route::get('/campaign/detail/{id}', [DetailsCampaignController::class, 'showDetails'])->name('show.details');
+
 require __DIR__.'/auth.php';
 
