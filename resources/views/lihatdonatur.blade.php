@@ -18,6 +18,7 @@
         <div class="mb-4 text-left" style="margin-left: 2rem; margin-right: 2rem;"> <!-- Atur jarak di sini -->
             <p class="h1 mb-2 block text-l font-semibold text-black" style="margin-bottom: 1rem;">Riwayat Donasi Sekolahmu</p>
 
+
             <div class="w-full lg:max-w-full lg:flex">
                 <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t-lg lg:rounded-t-none lg:rounded-l-lg text-center overflow-hidden" style="background-image: url('{{  asset('img/campaigns/' . $campaign->foto)  }}')" title="Campaign Anda">
                 </div>
@@ -38,7 +39,7 @@
 
                         </div>
 
-                        <!-- Donasi Masuk -->
+                        {{-- <!-- Donasi Masuk -->
                         <div>
                             <p class="h1 mb-2 block text-sm font-semibold text-black" style="margin-top:5px" >Donasi Terkumpul</p> <!-- nama sekolah -->
                             @foreach($campaign->targets as $target)
@@ -60,7 +61,85 @@
                             </p>
                             @endforeach
 
+                        </div> --}}
+                        <!-- Donasi Masuk -->
+                        <div>
+                            <p class="h1 mb-2 block text-sm font-semibold text-black" style="margin-top:5px" >Donasi Terkumpul</p> <!-- nama sekolah -->
+                            {{-- @foreach($campaign->donations as $donation)
+                                @foreach($donation->donationItems as $donationItem)
+                                    <p class="mb-1 text-sm font-normal text-black dark:text-gray-400 flex items-center">
+                                        <svg class="h-5 w-5 text-green-500 mr-2" fill="none" width="24" height="24" viewBox="0 0 24 24" stroke="none">
+                                            <circle cx="12" cy="12" r="10" fill="#42BB4E" />
+                                            <path d="M9 12l2 2l4 -4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                        <span class="mr-1">{{ $donationItem->nama_barang }}</span>
+
+                                        <span>
+                                            @if($donationItem->nama_barang == 'Uang')
+                                                Rp. {{ number_format($donationItem->jumlah_barang, 0, ',', '.') }}
+                                            @else
+                                                {{ number_format($donationItem->jumlah_barang, 0, ',', '.') }}
+                                            @endif
+                                        </span>
+
+                                    </p>
+                                @endforeach
+                            @endforeach --}}
+                            @if ($campaign->groupedDonationItems->isNotEmpty())
+                                @foreach ($campaign->groupedDonationItems as $donationItem)
+                                    <p
+                                        class="mb-1 text-sm font-normal text-black dark:text-gray-400 flex items-center">
+                                        <svg class="h-5 w-5 text-green-500 mr-2" fill="none"
+                                                                    width="24" height="24" viewBox="0 0 24 24"
+                                                                    stroke="none">
+                                                                    <circle cx="12" cy="12" r="10"
+                                                                        fill="#42BB4E" />
+                                                                    <path d="M9 12l2 2l4 -4" stroke="white" stroke-width="2"
+                                                                        stroke-linecap="round" stroke-linejoin="round" />
+                                                                </svg>
+                                                                <span
+                                                                    class="mr-1">{{ $donationItem['nama_barang'] }}</span>
+
+                                                                <span>
+                                                                    @if ($donationItem['nama_barang'] == 'Uang')
+                                                                        Rp.
+                                                                        {{ number_format($donationItem['jumlah_barang'], 0, ',', '.') }}
+                                                                    @else
+                                                                        {{ number_format($donationItem['jumlah_barang'], 0, ',', '.') }}
+                                                                    @endif
+                                                                </span>
+                                                            </p>
+                                                        @endforeach
+                                                    @else
+                                                        <p class="text-sm font-normal text-black dark:text-gray-400">No
+                                                            donation
+                                                            items available.</p>
+                                                    @endif
+                                                    @if ($campaign->totalDonationMoney > 0)
+                                                        <p
+                                                            class="mb-1 text-sm font-normal text-black dark:text-gray-400 flex items-center">
+                                                            <svg class="h-5 w-5 text-green-500 mr-2" fill="none"
+                                                                width="24" height="24" viewBox="0 0 24 24"
+                                                                stroke="none">
+                                                                <circle cx="12" cy="12" r="10"
+                                                                    fill="#42BB4E" />
+                                                                <path d="M9 12l2 2l4 -4" stroke="white" stroke-width="2"
+                                                                    stroke-linecap="round" stroke-linejoin="round" />
+                                                            </svg>
+                                                            <span class="mr-1">Uang</span>
+
+                                                            <span>
+                                                                Rp.
+                                                                {{ number_format($campaign->totalDonationMoney, 0, ',', '.') }}
+                                                            </span>
+                                                        </p>
+                                                    @else
+                                                        <p class="text-sm font-normal text-black dark:text-gray-400">No
+                                                            donation
+                                                            money available.</p>
+                                                    @endif
                         </div>
+
 
                         <!-- Target Donasi -->
                         <div>
@@ -86,13 +165,9 @@
 
                     <!-- Status -->
                     <div class="mb-2 grid grid-cols-2 gap-x-4 lg:gap-x-8" style="grid-template-columns: 50%, 50%">
+                        <a href="{{ route('campaign.riwayat') }}">
                         <div class="flex justify-center items-center">
-                            <button class="text-white font-bold py-2 px-8 rounded-lg" style="background-color: #42BB4E;">
-                                Sedang Berlangsung
-                            </button>
-                        </div>
 
-                        <div class="flex justify-center items-center">
                             <button class="bg-primary text-white font-bold py-2 px-8 rounded-lg relative flex items-center"
                                     onmouseover="this.style.backgroundColor='#d47502';"
                                     onmouseout="this.style.backgroundColor='bg-primary';">
@@ -111,9 +186,12 @@
                                 </script>
                             </button>
                         </div>
+                        </a>
                     </div>
                 </div>
             </div>
+
+
 
             <div class="mb-4"></div> <!--Sampai Sini -->
 

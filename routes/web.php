@@ -63,7 +63,7 @@ Route::get('/verifikasi-sekolah', [App\Http\Controllers\SchoolVerificationContro
 
 
 //test
-Route::get('/campaign/riwayat', [RiwayatCampaignController::class, 'index']);
+Route::get('/campaign/riwayat', [RiwayatCampaignController::class, 'index'])->name('campaign.riwayat');
 Route::get('/campaign/riwayat/donatur/{campaignId}', [RiwayatCampaignController::class, 'donatur'])->name('lihat.donatur');
 
 Route::get('/donation', [DonationController::class, 'index']);

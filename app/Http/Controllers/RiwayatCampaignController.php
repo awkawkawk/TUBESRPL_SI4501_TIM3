@@ -13,24 +13,62 @@ use Illuminate\Support\Facades\Auth;
 
 class RiwayatCampaignController extends Controller
 {
-    public function index(Request $request)
-    {
-
+        public function index(Request $request)
+        {
         $user = Auth::user();
-        $campaigns = Campaign::where('id_sekolah', $user->id)->get();
+        $campaigns = Campaign::with('targets', 'donations', 'donations.donationItems', 'donations.donationMoney')
+            ->where('id_sekolah', $user->id)
+            ->get();
+
+            $campaigns->each(function ($campaign) {
+                $groupedDonationItems = $campaign->donations->flatMap(function ($donation) {
+                    return $donation->donationItems;
+                })->groupBy('nama_barang')->map(function ($items, $nama_barang) {
+                    return [
+                        'nama_barang' => $nama_barang,
+                        'jumlah_barang' => $items->sum('jumlah_barang')
+                    ];
+                });
+
+                $campaign->groupedDonationItems = $groupedDonationItems->isEmpty() ? collect() : $groupedDonationItems;
+
+                $totalDonationMoney = $campaign->donations->flatMap(function ($donation) {
+                    return $donation->donationMoney;
+                })->sum('nominal');
+
+                $campaign->totalDonationMoney = $totalDonationMoney;
+            });
+
         return view('riwayatcampaign', compact('campaigns'));
+        }
 
-
-    }
 
     public function donatur($campaignId)
-    {
-        // Ambil kampanye berdasarkan ID
-        $campaign = Campaign::findOrFail($campaignId);
+{
+    $campaign = Campaign::with('targets', 'donations', 'donations.donationItems', 'donations.donationMoney')
+                ->findOrFail($campaignId);
 
-        // Ambil semua donasi untuk kampanye ini
-        $donations = Donation::where('id_campaign', $campaignId)->get();
+    $groupedDonationItems = $campaign->donations->flatMap(function ($donation) {
+        return $donation->donationItems;
+    })->groupBy('nama_barang')->map(function ($items, $nama_barang) {
+        return [
+            'nama_barang' => $nama_barang,
+            'jumlah_barang' => $items->sum('jumlah_barang')
+        ];
+    });
 
-        return view('lihatdonatur', compact('campaign', 'donations'));
-    }
+    $campaign->groupedDonationItems = $groupedDonationItems->isEmpty() ? collect() : $groupedDonationItems;
+
+    $totalDonationMoney = $campaign->donations->flatMap(function ($donation) {
+        return $donation->donationMoney;
+    })->sum('nominal');
+
+    $campaign->totalDonationMoney = $totalDonationMoney;
+
+    // Ambil semua donasi untuk kampanye ini
+    $donations = Donation::where('id_campaign', $campaignId)->get();
+
+    return view('lihatdonatur', compact('campaign', 'donations'));
+}
+
 }
