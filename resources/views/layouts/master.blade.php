@@ -84,7 +84,7 @@
                             aria-expanded="false" data-dropdown-toggle="dropdown-user">
                             <span class="sr-only">Buka menu pengguna</span>
                             <img class="h-8 w-8 rounded-full"
-                                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="foto pengguna">
+                                src="{{Auth::user()->profile_picture}}" alt="foto pengguna">
                         </button>
                     </div>
                     <div class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded bg-white text-base shadow"
