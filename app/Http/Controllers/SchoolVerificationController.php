@@ -65,7 +65,7 @@ class SchoolVerificationController extends Controller
         // Ambil gambar dari form request
         if ($request->hasFile('logo_sekolah')) {
             $image = $request->file('logo_sekolah');
-            dd($request);
+            // dd($request);
 
             // Baca isi gambar dan konversi ke base64
             $imageData = file_get_contents($image->path());
