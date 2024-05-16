@@ -175,6 +175,30 @@
                         <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Cari</span>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ route('campaign.riwayat') }}" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
+
+                        <svg class="h-4 w-4 text-zinc-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z"/>  <polyline points="12 8 12 12 14 14" />
+                        <path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5" /></svg>
+
+                        <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Riwayat Donasi</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('index.donation') }}" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
+
+                        <svg class="h-4 w-4 text-zinc-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h3.172a1 1 0 00.707-.293l2.414-2.414a1 1 0 01.707-.293H20"/>
+                          </svg>
+
+
+                        <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Donasi Sekarang</span>
+                    </a>
+                </li>
 
 
             </ul>

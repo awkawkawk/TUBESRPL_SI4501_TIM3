@@ -76,7 +76,7 @@ Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns
 Route::get('/campaign/riwayat', [RiwayatCampaignController::class, 'index'])->name('campaign.riwayat');
 Route::get('/campaign/riwayat/donatur/{campaignId}', [RiwayatCampaignController::class, 'donatur'])->name('lihat.donatur');
 
-Route::get('/donation', [DonationController::class, 'index']);
+Route::get('/donation', [DonationController::class, 'index'])->name('index.donation');
 Route::get('/donation/money/{id}', [DonationController::class, 'showForm'])->name('donations.form');
 Route::get('/donation/money/summary', [DonationController::class, 'showSummary'])->name('donation.summary.get');
 Route::post('/donation/money/summary', [DonationController::class, 'showSummary'])->name('donation.summary');
