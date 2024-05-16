@@ -30,17 +30,101 @@
                                 <div class="w-1/2 p-4">
                                     <div>
                                         <p class="text-xl font-bold text-black">{{ $detail->nama_campaign }}</p>
-                                        <p class="mb-2 font-normal text-black">{{ $detail->school->nama_sekolah }}
-                                            <i>({{ $detail->school->alamat_sekolah }})</i>
+                                        <p class="font-normal text-black">{{ $detail->school->nama_sekolah }}
+                                            <!-- <i>({{ $detail->school->alamat_sekolah }})</i> -->
                                         </p>
+                                        <p class="mb-2 font-normal text-black">{{ $detail->school->alamat_sekolah }}</p>
                                         <p class="mb-2 text-sm font-normal text-black">{{ $detail->deskripsi_campaign }}</p>
-                                        <p class="mb-2 mt-4 text-sm font-normal text-black">Detail Kebutuhan:</p>
-                                        @foreach ($detail->targets as $target)
+                                        <p class="h1 mb-2 block text-sm font-semibold text-black"
+                                                style="margin-top:5px">Donasi Terkumpul</p>
+
+
+                                        @if ($detail->groupedDonationItems->isNotEmpty())
+                                            @foreach ($detail->groupedDonationItems as $donationItem)
+                                                <p
+                                                    class="mb-1 text-sm font-normal text-black dark:text-gray-400 flex items-center">
+                                                    <svg class="h-5 w-5 text-green-500 mr-2" fill="none"
+                                                        width="24" height="24" viewBox="0 0 24 24"
+                                                        stroke="none">
+                                                        <circle cx="12" cy="12" r="10"
+                                                            fill="#42BB4E" />
+                                                        <path d="M9 12l2 2l4 -4" stroke="white" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                    <span
+                                                        class="mr-1">{{ $donationItem['nama_barang'] }}</span>
+
+                                                    <span>
+                                                        @if ($donationItem['nama_barang'] == 'Uang')
+                                                            Rp.
+                                                            {{ number_format($donationItem['jumlah_barang'], 0, ',', '.') }}
+                                                        @else
+                                                            {{ number_format($donationItem['jumlah_barang'], 0, ',', '.') }}
+                                                        @endif
+                                                    </span>
+                                                </p>
+                                            @endforeach
+                                            @else
+                                                <p class="text-sm font-normal text-black dark:text-gray-400">No
+                                                    donation
+                                                    items available.</p>
+                                            @endif
+                                            @if ($detail->totalDonationMoney > 0)
+                                                <p
+                                                    class="mb-1 text-sm font-normal text-black dark:text-gray-400 flex items-center">
+                                                    <svg class="h-5 w-5 text-green-500 mr-2" fill="none"
+                                                        width="24" height="24" viewBox="0 0 24 24"
+                                                        stroke="none">
+                                                        <circle cx="12" cy="12" r="10"
+                                                            fill="#42BB4E" />
+                                                        <path d="M9 12l2 2l4 -4" stroke="white" stroke-width="2"
+                                                            stroke-linecap="round" stroke-linejoin="round" />
+                                                    </svg>
+                                                    <span class="mr-1">Uang</span>
+
+                                                    <span>
+                                                        Rp.
+                                                        {{ number_format($detail->totalDonationMoney, 0, ',', '.') }}
+                                                    </span>
+                                                </p>
+                                            @else
+                                                <p class="text-sm font-normal text-black dark:text-gray-400">No
+                                                    donation
+                                                    money available.</p>
+                                            @endif
+
                                             <div>
-                                                <p class="inline-flex text-sm font-semibold">{{ $target->nama_barang }}</p> : <p
-                                                    class="inline-flex text-sm font-normal">{{ $target->jumlah_barang }}</p>
+                                                <!-- Konten Target Donasi -->
+                                                <p class="h1 mb-2block text-sm font-semibold text-black" style="margin-top:5px">
+                                                    Target Donasi</p>
+                                                <div class="card mb-2">
+                                                    <div class="card-body">
+
+                                                        @foreach ($detail->targets as $target)
+                                                            <p
+                                                                class="mb-1 text-sm font-normal text-black dark:text-gray-400 flex items-center my-1">
+                                                                <svg class="h-5 w-5 text-red-500 mr-2" fill="#BB4242"
+                                                                    viewBox="0 0 24 24" stroke="#BB4242">
+                                                                    <circle cx="12" cy="12" r="9" />
+                                                                    <line x1="9" y1="12" x2="15"
+                                                                        y2="12" stroke="white" stroke-width="2" />
+                                                                </svg>
+                                                                <span class="mr-1">{{ $target->nama_barang }}</span>
+                                                                <span>
+                                                                    @if ($target->nama_barang == 'Uang')
+                                                                        Rp.
+                                                                        {{ number_format($target->jumlah_barang, 0, ',', '.') }}
+                                                                    @else
+                                                                        {{ number_format($target->jumlah_barang, 0, ',', '.') }}
+                                                                    @endif
+                                                                </span>
+                                                            </p>
+                                                        @endforeach
+
+                                                    </div>
+                                                </div>
                                             </div>
-                                        @endforeach
+
                                         <div class="mb-1 mt-4 flex w-full text-sm font-medium">
                                             <p>Terkumpul</p>
                                             <p class="text-primary ms-auto font-bold">20%</p>
@@ -63,22 +147,22 @@
                                                 Donasi Barang
                                             </a>
                                         </div>
-
                                     </div>
                                 </div>
                             @endforeach
                         </div>
+                        @foreach($donations as $donation)
                         <div class="container mt-4 p-4 rounded-lg border border-gray-200 bg-white w-full">
                             <div class=" flex">
                                 <img src="https://th.bing.com/th/id/OIP.5zo7tOSILLwpx1s_73fTNwHaJQ?rs=1&pid=ImgDetMain" class="my-auto me-4 h-16 w-16 object-cover rounded-full" alt="User Image">
                                 <div class="">
-                                    <h5 class="">Robert</h5>
-                                    <h6 class="">10 Januari 2024</h6>
-                                    <p class="">Semoga siswa-siswa yang belajar tetap kuat dan semangat dalam
-                                        menimba ilmu</p>
+                                    <h5 class="">{{ $donation->user->nama }}</h5>
+                                    <h6 class="">{{ $donation->created_at->format('d F Y') }}</h6>
+                                    <p class="">{{ $donation->pesan }}</p>
                                 </div>
                             </div>
                         </div>
+                        @endforeach
                     </div>
                     <div class="w-1/3 ps-4">
                         <p class="pb-4">Campaign dari sekolah ini:</p>
