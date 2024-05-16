@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('alamat_sekolah');
             $table->string('no_telepon_sekolah')->unique();
             $table->string('email_sekolah')->unique();
-            $table->string('password');
             $table->string('nama_pendaftar')->nullable();
             $table->string('no_hp_pendaftar')->nullable();
             $table->string('email_pendaftar')->nullable();

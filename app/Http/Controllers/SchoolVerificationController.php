@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\View\View;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+use App\Models\Post;
+use App\Models\User;
 use App\Models\School;
+use Illuminate\View\View;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Validation\ValidationException;
 
 class SchoolVerificationController extends Controller
 {
@@ -41,13 +45,21 @@ class SchoolVerificationController extends Controller
             'alamat_sekolah' => $validatedData['alamat_sekolah'],
             'no_telepon_sekolah' => $validatedData['no_telepon_sekolah'],
             'email_sekolah' => $validatedData['email_sekolah'],
-            'password' => Hash::make($validatedData['password']),
             'nama_pendaftar' => $validatedData['nama_pendaftar'],
             'no_hp_pendaftar' => $validatedData['no_hp_pendaftar'],
             'email_pendaftar' => $validatedData['email_pendaftar'],
             'identitas_pendaftar' => $validatedData['identitas_pendaftar'],
             'bukti_id_pendaftar' => $validatedData['bukti_id_pendaftar'],
             'status' => 'perlu diverifikasi',
+        ]);
+
+        $user = User::create([
+            'nama' => $validatedData['nama_sekolah'],
+            'email' => $validatedData['email_sekolah'],
+            'password' => Hash::make($validatedData['password']), // Menggunakan Hash untuk menyimpan password terenkripsi
+            'phone' => $validatedData['no_telepon_sekolah'],
+            'tipe_user' => 'sekolah', // atau tipe user lain yang sesuai
+            'id_sekolah' => $schoolVerification->id,
         ]);
 
         // Ambil gambar dari form request
@@ -61,9 +73,12 @@ class SchoolVerificationController extends Controller
             // Buat permintaan ke Imgur API
             $response = Http::withHeaders([
                 'Authorization' => 'Client-ID c2fe122c365bf4a',
-            ])->timeout(3600)->post('https://api.imgur.com/3/image', [
-                'image' => $base64Image,
-            ]);
+
+            ])
+                ->timeout(32400)
+                ->post('https://api.imgur.com/3/image', [
+                    'image' => $base64Image,
+                ]);
 
             // Ambil respons JSON
             $responseData = $response->json();
@@ -86,9 +101,11 @@ class SchoolVerificationController extends Controller
             // Buat permintaan ke Imgur API
             $response = Http::withHeaders([
                 'Authorization' => 'Client-ID c2fe122c365bf4a',
-            ])->timeout(60)->post('https://api.imgur.com/3/image', [
-                'image' => $base64File,
-            ]);
+            ])
+                ->timeout(32400)
+                ->post('https://api.imgur.com/3/image', [
+                    'image' => $base64File,
+                ]);
 
             // Ambil respons JSON
             $responseData = $response->json();
@@ -108,5 +125,27 @@ class SchoolVerificationController extends Controller
     {
         $schools = school::where('status', 'perlu diverifikasi')->get();
         return view('verifikasi-sekolah', compact('schools'));
+    }
+
+    public function respondVerification(Request $request, $id)
+    {
+        $schoolVerification = school::findOrFail($id);
+
+        if ($request->input('response') == 'confirm') {
+            $schoolVerification->update(['status' => 'valid']);
+        } elseif ($request->input('response') == 'decline') {
+            // Ambil nomor pendaftar dari request
+            $nomorPendaftar = $schoolVerification->no_hp_pendaftar;
+
+            // Ambil pesan catatan dari request
+            $pesan = $request->input('catatan');
+
+            // Buat link WhatsApp dengan nomor penerima dan pesan
+            $url = "https://wa.me/$nomorPendaftar?text=" . urlencode("Maaf, pendaftaran Anda ditolak karena: $pesan");
+            $schoolVerification->update(['status' => 'ditolak']);
+            return redirect()->away($url);
+        }
+
+        return redirect()->back()->with('success', 'Respon berhasil disimpan');
     }
 }
