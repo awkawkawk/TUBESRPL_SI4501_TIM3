@@ -48,7 +48,6 @@
             <x-input-error :messages="$errors->get('nama_sekolah')" class="mt-2" />
         </div>
 
-        <!-- Alamat Sekolah -->
         <div class="mt-4">
             <x-input-label for="alamat_sekolah" :value="__('Alamat Sekolah')" />
             <x-text-input id="alamat_sekolah" class="mt-1 block w-full" type="text" name="alamat_sekolah" :value="old('alamat_sekolah')"
@@ -56,7 +55,6 @@
             <x-input-error :messages="$errors->get('alamat_sekolah')" class="mt-2" />
         </div>
 
-        <!-- Nomor Handphone Sekolah -->
         <div class="mt-4">
             <x-input-label for="no_telepon_sekolah" :value="__('Nomor Handphone Sekolah')" />
             <x-text-input id="no_telepon_sekolah" class="mt-1 block w-full" type="tel" name="no_telepon_sekolah" :value="old('no_telepon_sekolah')"
@@ -64,7 +62,6 @@
             <x-input-error :messages="$errors->get('no_telepon_sekolah')" class="mt-2" />
         </div>
 
-        <!-- Email Sekolah -->
         <div class="mt-4">
             <x-input-label for="email_sekolah" :value="__('Email Sekolah')" />
             <x-text-input id="email_sekolah" class="mt-1 block w-full" type="Email" name="email_sekolah" :value="old('email_sekolah')"
@@ -72,7 +69,6 @@
             <x-input-error :messages="$errors->get('email_sekolah')" class="mt-2" />
         </div>
 
-        <!-- Kata Sandi -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Kata Sandi')" />
             <x-text-input id="password" class="mt-1 block w-full" type="password" name="password" required
@@ -80,7 +76,6 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
-        <!-- Konfirmasi Kata Sandi -->
         <div class="mt-4">
             <x-input-label for="password_confirmation" :value="__('Konfirmasi Kata Sandi')" />
             <x-text-input id="password_confirmation" class="mt-1 block w-full" type="password"

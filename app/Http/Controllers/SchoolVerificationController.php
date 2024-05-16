@@ -65,6 +65,7 @@ class SchoolVerificationController extends Controller
         // Ambil gambar dari form request
         if ($request->hasFile('logo_sekolah')) {
             $image = $request->file('logo_sekolah');
+            dd($request);
 
             // Baca isi gambar dan konversi ke base64
             $imageData = file_get_contents($image->path());
@@ -73,6 +74,7 @@ class SchoolVerificationController extends Controller
             // Buat permintaan ke Imgur API
             $response = Http::withHeaders([
                 'Authorization' => 'Client-ID c2fe122c365bf4a',
+
             ])
                 ->timeout(32400)
                 ->post('https://api.imgur.com/3/image', [

@@ -29,12 +29,22 @@ class Donation extends Model
     // Definisikan relasi dengan model User
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_user');
+    return $this->belongsTo(User::class, 'id_user');
     }
 
     // Definisikan relasi dengan model MethodPayment
     public function methodPayment()
     {
         return $this->belongsTo(MethodPayment::class, 'rekening');
+    }
+
+    public function donationItems()
+    {
+        return $this->hasMany(ItemDonation::class, 'id_donasi');
+    }
+
+    public function donationMoney()
+    {
+        return $this->hasMany(MoneyDonation::class, 'id_donasi');
     }
 }
