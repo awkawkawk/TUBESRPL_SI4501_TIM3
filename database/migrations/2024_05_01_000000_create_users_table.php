@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('profile_picture')->nullable();
             $table->string('phone')->unique();
             $table->string('tipe_user');
-            $table->foreignId('id_sekolah')->constrained('schools');
+            $table->foreignId('id_sekolah')->nullable()->constrained('schools');
             $table->rememberToken();
             $table->timestamps();
         });
