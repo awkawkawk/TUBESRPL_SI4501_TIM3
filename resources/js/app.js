@@ -6,3 +6,4 @@ import "./detailToggleSchoolVerificitaion";
 window.Alpine = Alpine;
 
 Alpine.start();
+

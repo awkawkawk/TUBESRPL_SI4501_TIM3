@@ -39,11 +39,13 @@
                 </div>
 
                 {{-- Pencarian --}}
+                <form action="{{ route('search.result') }}" method="GET">
+                @csrf
                 <div class="flex md:order-1">
                     <div class="relative hidden md:block w-96 ">
                         <input type="text" id="search-navbar"
                             class=" block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 ps-4 text-smtext-gray-900 focus:border-gray-500 focus:ring-0"
-                            placeholder="Cari...">
+                            placeholder="Cari..." name="keyword" value="{{ $query ?? '' }}">
                         <div class="pointer-events-none absolute inset-y-0 end-4 flex items-center ps-3">
                             <svg class="h-4 w-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 fill="none" viewBox="0 0 20 20">
@@ -52,7 +54,7 @@
                             </svg>
                             <span class="sr-only">Ikon pencarian</span>
                         </div>
-                        <button type="button" data-collapse-toggle="navbar-search" aria-controls="navbar-search"
+                        <button type="submit" data-collapse-toggle="navbar-search" aria-controls="navbar-search"
                             aria-expanded="false"
                             class=" me-1 rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring- focus:ring-gray-200 md:hidden">
                             <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -73,6 +75,7 @@
                                 d="M1 1h15M1 7h15M1 13h15" />
                         </svg>
                     </button>
+                    </form>
                 </div>
 
                 {{-- Tombol --}}
@@ -83,8 +86,9 @@
                             class="flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300"
                             aria-expanded="false" data-dropdown-toggle="dropdown-user">
                             <span class="sr-only">Buka menu pengguna</span>
-                            <img class="h-8 w-8 rounded-full"
-                                src="https://flowbite.com/docs/images/people/profile-picture-5.jpg" alt="foto pengguna">
+                            <!-- {{Auth::user()->profile_picture}} -->
+                            <img class="h-8 w-8 rounded-full object-cover"
+                                src="{{Auth::user()->profile_picture}}" referrerpolicy="no-referrer" alt="foto pengguna">
                         </button>
                     </div>
                     <div class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded bg-white text-base shadow"

@@ -1,15 +1,11 @@
-import defaultTheme from "tailwindcss/defaultTheme";
-import forms from "@tailwindcss/forms";
-
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
-        "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
-        "./storage/framework/views/*.php",
-        "./resources/views/**/*.blade.php",
+        "./resources/**/*.blade.php",
+        "./resources/**/*.js",
+        "./resources/**/*.vue",
         "./node_modules/flowbite/**/*.js",
     ],
-
     theme: {
         fontFamily: {
             sans: [
@@ -29,22 +25,11 @@ export default {
                 '"Noto Color Emoji"',
             ],
         },
-        extend: {
-            colors: {
-                black: "#4D4D4D",
-                primary: "#EB5231",
-                primarylight: "#FF7051",
-            },
-            spacing: {
-                fixcarousel: "14.9rem",
-                fixcarouselitem5: "18.5rem",
-            },
-        },
+        extend: {},
     },
-
     plugins: [
-        require("@tailwindcss/forms"),
         require("flowbite/plugin"),
-        require("tailwind-scrollbar"),
+        require("tailwind-scrollbar")({ nocompatible: true }),
     ],
 };
+
