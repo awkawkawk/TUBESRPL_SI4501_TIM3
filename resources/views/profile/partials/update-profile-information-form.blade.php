@@ -9,11 +9,11 @@
         </p>
     </header>
 
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}" enctype="multipart/form-data">
+    <!-- <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
-    </form>
+    </form> -->
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
@@ -24,7 +24,7 @@
                              <img id="preview-photo" src="{{ asset('img/profile2.jpeg') }}" alt="" class="object-cover w-full h-full" />
                                  <span class="absolute left-0 right-0 bg-gray-900 bg-opacity-50 text-white text-xs py-1 px-2 rounded text-center top-1/2 transform -translate-y-1/2">Klik untuk mengubah foto</span>
                         </div>
-                        <input type="file" id="edit-photo" name="edit-photo" class="hidden" accept="image/*" />
+                        <input aria-describedby="file_input" type="file" id="edit-photo" name="edit-photo" class="hidden" accept="image/*" />
                   </div>
                 </label>
             </div>

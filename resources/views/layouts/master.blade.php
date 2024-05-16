@@ -83,8 +83,9 @@
                             class="flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300"
                             aria-expanded="false" data-dropdown-toggle="dropdown-user">
                             <span class="sr-only">Buka menu pengguna</span>
-                            <img class="h-8 w-8 rounded-full"
-                                src="{{Auth::user()->profile_picture}}" alt="foto pengguna">
+                            <!-- {{Auth::user()->profile_picture}} -->
+                            <img class="h-8 w-8 rounded-full object-cover"
+                                src="{{Auth::user()->profile_picture}}" referrerpolicy="no-referrer" alt="foto pengguna">
                         </button>
                     </div>
                     <div class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded bg-white text-base shadow"

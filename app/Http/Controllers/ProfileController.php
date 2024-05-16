@@ -28,14 +28,22 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
-
+        // $request->user()->fill($request->validated());
+        // dd($request->hasFile('edit-photo'));
         if ($request->hasFile('edit-photo')) {
             $image = $request->file('edit-photo');
+            // dd($request);
 
             // Baca isi gambar dan konversi ke base64
-            $imageData = file_get_contents($image->path());
-            $base64Image = base64_encode($imageData);
+            // dd($image);
+            if ($image) {
+                // Read the contents of the image file and convert it to base64
+                $imageData = file_get_contents($image->path());
+                $base64Image = base64_encode($imageData);
+            } else {
+                // Handle the case where $image is null
+                echo "Image is null!";
+            }
 
             // Buat permintaan ke Imgur API
             $response = Http::withHeaders([
@@ -73,8 +81,6 @@ class ProfileController extends Controller
             return back()->with('error', 'Failed to upload image to Imgur.');
         }
     }
-
-    return back()->with('error', 'No image uploaded.');
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
