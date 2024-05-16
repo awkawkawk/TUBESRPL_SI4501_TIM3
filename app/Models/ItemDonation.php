@@ -19,4 +19,6 @@ class ItemDonation extends Model
     {
         return $this->belongsTo(Donation::class, 'id_donasi');
     }
+
+    
 }
