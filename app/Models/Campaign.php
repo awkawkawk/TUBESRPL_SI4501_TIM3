@@ -33,7 +33,5 @@ class Campaign extends Model
     {
         return $this->hasMany(Donation::class, 'id_campaign');
     }
-
-
-
 }
+

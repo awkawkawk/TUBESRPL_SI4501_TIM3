@@ -15,14 +15,18 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_sekolah')->constrained('schools');
             $table->string('nama_campaign');
+            $table->string('foto_campaign');
             $table->text('deskripsi_campaign');
+            $table->text('jenis_donasi');
             $table->string('status');
             $table->text('catatan_campaign')->nullable();
-            $table->date('tanggal_dibuat');
+            $table->integer('percentage_collected')->default(0);
             $table->date('tanggal_selesai')->nullable();
             $table->timestamps();
         });
+        
     }
+    
 
     /**
      * Reverse the migrations.
