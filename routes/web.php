@@ -10,6 +10,9 @@ use App\Http\Controllers\RiwayatCampaignController;
 use App\Http\Controllers\DonationController;
 //use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\DonationItemController;
+use App\Http\Controllers\DonationHistoryController;
+
+Route::get('/donation-history', [DonationHistoryController::class, 'index'])->name('donation.history');
 
 Route::get('/', function () {
     return view('create');
