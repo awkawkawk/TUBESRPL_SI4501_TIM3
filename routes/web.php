@@ -8,7 +8,6 @@ use App\Http\Controllers\CampaignVerificationController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\RegisteredSchoolController;
 use App\Http\Controllers\SchoolVerificationController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RiwayatCampaignController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DonationItemController;
@@ -38,18 +37,18 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/buatcampaign', function () {
-    return view('buatcampaign');
-});
+// Route::get('/buatcampaign', function () {
+//     return view('buatcampaign');
+// });
 
-Route::get('/riwayat', function () {
-    return view('riwayatcampaign');
-});
+// Route::get('/riwayat', function () {
+//     return view('riwayatcampaign');
+// });
 
 
-Route::get('/riwayat/donatur', function () {
-    return view('lihatdonatur');
-});
+// Route::get('/riwayat/donatur', function () {
+//     return view('lihatdonatur');
+// });
 
 Route::get('/verifikasi-sekolah', [SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
 
@@ -59,12 +58,12 @@ Route::post('/verifikasi-campaign/{id}', [CampaignVerificationController::class,
 
 Route::get('/search', [SearchController::class, 'search'])->name('search.result');
 
-Route::get('/donation/item/summary', function () {
-    return view('donation/summaryItems');
+Route::get('/managedonation/money', function () {
+    return view('managedonation/editmoney');
 });
 
-Route::get('/donasi', function () {
-    return view('donation/index');
+Route::get('/managedonation/item', function () {
+    return view('managedonation/edititem');
 });
 
 Route::get('/verifikasi-sekolah', [App\Http\Controllers\SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
@@ -85,6 +84,7 @@ Route::post('/donation/store', [DonationController::class, 'store'])->name('dona
 Route::get('/donation/item/{id}', [DonationItemController::class, 'showFormItem'])->name('donations.form.items');
 Route::post('/donation/item/{id}', [DonationItemController::class, 'postFormItem'])->name('donations.post.form.items');
 Route::post('/donation/storeItems', [DonationItemController::class, 'storeItems'])->name('donations.storeItems');
+
 
 
 Route::get('/verifikasi-sekolah', [SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
