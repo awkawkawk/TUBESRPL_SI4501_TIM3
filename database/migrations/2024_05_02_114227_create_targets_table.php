@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('targets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_campaign')->constrained('campaigns');
-            $table->string('nama_barang');
-            $table->integer('jumlah_barang');
+            $table->foreignId('campaign_id')->constrained()->onDelete('cascade');
+            $table->string('type');
+            $table->decimal('money_amount', 15, 0)->nullable();
+            $table->json('goods')->nullable();
             $table->timestamps();
         });
     }

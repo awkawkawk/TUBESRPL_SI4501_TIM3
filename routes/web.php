@@ -8,13 +8,9 @@ use App\Http\Controllers\CampaignVerificationController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\RegisteredSchoolController;
 use App\Http\Controllers\SchoolVerificationController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RiwayatCampaignController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DonationItemController;
-use App\Http\Controllers\DonationHistoryController;
-
-Route::get('/donation-history', [DonationHistoryController::class, 'index'])->name('donation.history');
 
 Route::get('/', function () {
     return view('index');
@@ -73,7 +69,11 @@ Route::get('/donasi', function () {
 Route::get('/verifikasi-sekolah', [App\Http\Controllers\SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
 
 Route::get('/campaigns/create', [CampaignController::class, 'create'])->name('campaigns.create');
+Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.index');
 Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns.store');
+Route::delete('/campaigns/{campaign}', [CampaignController::class, 'destroy'])->name('campaigns.destroy');
+Route::get('/campaigns/{campaign}/edit', [CampaignController::class, 'edit'])->name('campaigns.edit');
+Route::put('/campaigns/{campaign}', [CampaignController::class, 'update'])->name('campaigns.update');
 
 //test
 Route::get('/campaign/riwayat', [RiwayatCampaignController::class, 'index'])->name('campaign.riwayat');

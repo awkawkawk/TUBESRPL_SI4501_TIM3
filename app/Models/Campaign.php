@@ -15,9 +15,7 @@ class Campaign extends Model
                         'deskripsi_campaign',
                         'status',
                         'catatan_campaign',
-                        'tanggal_dibuat',
-                        'tanggal_selesai',
-                        'foto'];
+                        'foto_campaign'];
 
     public function school()
     {
@@ -26,7 +24,7 @@ class Campaign extends Model
 
     public function targets()
     {
-        return $this->hasMany(Target::class, 'id_campaign');
+        return $this->hasOne(Target::class, 'campaign_id');
     }
 
     public function donations()

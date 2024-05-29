@@ -17,16 +17,16 @@ return new class extends Migration
             $table->string('nama_campaign');
             $table->string('foto_campaign');
             $table->text('deskripsi_campaign');
-            $table->text('jenis_donasi');
             $table->string('status');
             $table->text('catatan_campaign')->nullable();
             $table->integer('percentage_collected')->default(0);
+            $table->date('tanggal_mulai')->nullable();
             $table->date('tanggal_selesai')->nullable();
             $table->timestamps();
         });
-        
+
     }
-    
+
 
     /**
      * Reverse the migrations.
