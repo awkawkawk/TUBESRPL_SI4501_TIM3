@@ -111,7 +111,12 @@ class DonationController extends Controller
 
     }
 
+    public function editMoney()
+    {
+        $donation = Donation::with(['user', 'moneyDonations', 'donationItems'])->get();
+        return view('managedonation.editmoney', compact('donation'));
+    }
 
-    
+
 
 }

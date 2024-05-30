@@ -81,6 +81,8 @@ Route::get('/donation/money/summary', [DonationController::class, 'showSummary']
 Route::post('/donation/money/summary', [DonationController::class, 'showSummary'])->name('donation.summary');
 Route::post('/donation/store', [DonationController::class, 'store'])->name('donations.store');
 
+Route::get('/edit/donation/money', [DonationController::class, 'editMoney'])->name('donationMoney.edit');
+
 Route::get('/donation/item/{id}', [DonationItemController::class, 'showFormItem'])->name('donations.form.items');
 Route::post('/donation/item/{id}', [DonationItemController::class, 'postFormItem'])->name('donations.post.form.items');
 Route::post('/donation/storeItems', [DonationItemController::class, 'storeItems'])->name('donations.storeItems');
