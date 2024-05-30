@@ -19,20 +19,18 @@
         <div class="col-span-3 md:col-span-2">
             <div class="mb-4 text-left" style="margin-left: 2rem; margin-right: 2rem;">
                 <p class="h1 text-l mb-2 block font-semibold text-black" style="margin-bottom: 1rem;">Hasil Pencarian:</p>
-                <div class="flex w-full flex-wrap">
+                <div class="flex flex-wrap gap-4">
                     @if ($campaigns->isEmpty())
                         <p>Tidak ada kampanye yang ditemukan.</p>
                     @else
-                        <ul>
                             @foreach ($campaigns as $campaign)
-                                <x-campaign-card link="#"
-                                    {{-- link="{{ route('campaign.show', $campaign->id) }}" --}}
+                                <x-campaign-card link="#" {{-- link="{{ route('campaign.show', $campaign->id) }}" --}}
                                     image-path="{{ $campaign->image_path }}" alt-text="{{ $campaign->nama_campaign }}"
-                                    title="{{ $campaign->nama_campaign }}" location="{{ $campaign->school->alamat_sekolah }}"
+                                    title="{{ $campaign->nama_campaign }}"
+                                    location="{{ $campaign->school->alamat_sekolah }}"
                                     description="{{ $campaign->deskripsi_campaign }}"
                                     percentage-collected="{{ $campaign->percentage_collected }}" />
                             @endforeach
-                        </ul>
                     @endif
                 </div>
             </div>

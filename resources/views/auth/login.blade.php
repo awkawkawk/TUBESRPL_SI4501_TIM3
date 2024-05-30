@@ -1,8 +1,8 @@
 <x-guest-layout>
-    <section class="gradient-form h-full bg-neutral-200 dark:bg-neutral-700">
-        <div class="container">
+    @section('title', 'Masuk ke EduFund')
+        <div class="">
             <div class="flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
-                <div class="h-screen w-screen">
+                <div class="h-full w-full">
                     <div class="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
                         <div class="g-0 lg:flex lg:flex-wrap">
                             <!-- Left column container-->
@@ -94,5 +94,4 @@
                 </div>
             </div>
         </div>
-    </section>
 </x-guest-layout>

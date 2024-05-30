@@ -23,8 +23,8 @@ Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns
 
 // Route::get('/daftar-campaigns', [CampaignController::class, 'index'])->name('daftar');
 
-Route::get('/home', function () {
-    return view('create');
+Route::get('/dashboard', function () {
+    return view('index');
 })
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
@@ -37,7 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/buatcampaign', function () {
-        return view('buatcampaign');
+        return view('create');
     });
 
     Route::get('/riwayat', function () {

@@ -1,6 +1,7 @@
 <x-guest-layout>
+    @section('title', 'Daftarkan Sekolahmu ke EduFund')
     <section class="gradient-form h-full bg-neutral-200 dark:bg-neutral-700">
-        <div class="container">
+        <div class="">
             <div class="flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
                 <div class="h-screen w-screen">
                     <div class="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
@@ -11,10 +12,11 @@
                                     <!-- Session Status -->
                                     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-                                    <form method="POST" action="{{ route('login') }}">
+                                    <form method="POST" action="{{ route('register.school') }}"" enctype="multipart/form-data">
                                         @csrf
 
                                         <p class="mb-4 mt-6">Please register your account</p>
+                                        {{$errors}}
 
                                         {{-- Pendaftar --}}
                                         <div>
@@ -86,7 +88,7 @@
 
                                         <div class="mt-4">
                                             <x-input-label for="email_sekolah" :value="__('Email Sekolah')" />
-                                            <x-text-input id="email_sekolah" class="mt-1 block w-full" type="Email"
+                                            <x-text-input id="email_sekolah" class="mt-1 block w-full" type="email"
                                                 name="email_sekolah" :value="old('email_sekolah')" required
                                                 autocomplete="email_sekolah" />
                                             <x-input-error :messages="$errors->get('email_sekolah')" class="mt-2" />

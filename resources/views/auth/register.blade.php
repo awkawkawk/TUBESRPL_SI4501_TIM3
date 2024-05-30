@@ -1,6 +1,7 @@
 <x-guest-layout>
+    @section('title', 'Daftar ke EduFund')
     <section class="gradient-form h-full bg-neutral-200 dark:bg-neutral-700">
-        <div class="container">
+        <div class="">
             <div class="flex h-full flex-wrap items-center justify-center text-neutral-800 dark:text-neutral-200">
                 <div class="h-screen w-screen">
                     <div class="block rounded-lg bg-white shadow-lg dark:bg-neutral-800">
@@ -11,7 +12,7 @@
                                     <!-- Session Status -->
                                     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-                                    <form method="POST" action="{{ route('login') }}">
+                                    <form method="POST" action="{{ route('register.post') }}">
                                         @csrf
 
                                         <p class="mb-4 mt-8">Please register your account</p>

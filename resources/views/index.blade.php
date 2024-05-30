@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Halaman Utama')
+
 @section('content')
     <div class="flex h-fit w-full flex-wrap">
         @if (session('success'))
