@@ -8,7 +8,6 @@ use App\Http\Controllers\CampaignVerificationController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\RegisteredSchoolController;
 use App\Http\Controllers\SchoolVerificationController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RiwayatCampaignController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DonationItemController;
@@ -44,6 +43,10 @@ Route::get('/buatcampaign', function () {
 
 Route::get('/riwayat', function () {
     return view('riwayatcampaign');
+});
+
+Route::get('/edit/donatur', function () {
+    return view('donatur.managedonatur');
 });
 
 
