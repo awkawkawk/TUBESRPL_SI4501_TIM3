@@ -8,10 +8,12 @@ use App\Http\Controllers\CampaignVerificationController;
 use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\RegisteredSchoolController;
 use App\Http\Controllers\SchoolVerificationController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RiwayatCampaignController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DonationItemController;
+use App\Http\Controllers\SchoolController;
+
+
 
 Route::get('/', function () {
     return view('index');
@@ -94,3 +96,5 @@ Route::post('/verifikasi-sekolah/{id}', [SchoolVerificationController::class, 'r
 Route::get('/campaign/detail/{id}', [DetailsCampaignController::class, 'showDetails'])->name('show.details');
 
 require __DIR__.'/auth.php';
+
+Route::resource('schools', SchoolController::class);
