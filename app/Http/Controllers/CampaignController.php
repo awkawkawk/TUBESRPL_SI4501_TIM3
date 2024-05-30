@@ -1,5 +1,4 @@
 <?php
-
 // app/Http/Controllers/CampaignController.php
 
 // app/Http/Controllers/CampaignController.php
@@ -26,7 +25,7 @@ class CampaignController extends Controller
                 'tanggal_selesai' => 'required|date'
             ]);
             $campaign = new Campaign();
-            $campaign->id_sekolah = 1; //sebelumnya ini menggunakan pake math random, tidak dianjurkan karena punya relasi dengan table schools
+            $campaign->id_sekolah = auth()->id(); //sebelumnya ini menggunakan pake math random, tidak dianjurkan karena punya relasi dengan table schools
             $campaign->nama_campaign = $request->nama_campaign;
             $campaign->deskripsi_campaign = $request->deskripsi_campaign;
             $campaign->status = 'Menunggu Verifikasi';
@@ -46,6 +45,7 @@ class CampaignController extends Controller
         }
 
     }
+
     public function index()
     {
         $campaigns = Campaign::all();
