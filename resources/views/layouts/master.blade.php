@@ -16,7 +16,7 @@
 
 <body>
 
-    <nav class="fixed top-0 z-50 w-full bg-white">
+    <nav class="fixed top-0 z-50 w-full bg-white font-sans">
         <div class="px-3 py-3 lg:px-5 lg:pl-3">
             <div class="flex items-center">
                 <div class="flex items-center justify-start rtl:justify-end">
@@ -34,7 +34,7 @@
 
                     {{-- Logo --}}
                     <a href="/" class="ms-2 flex md:me-24">
-                        <img src="{{ asset('img/EduFund2.png') }}" class="me-3 h-10" alt="EduFund" />
+                        <img src="{{ asset('assets/img/EduFundv2-text.png') }}" class="ms-6 w-24" alt="EduFund" />
                         <span class="self-center whitespace-nowrap text-xl font-semibold sm:text-2xl"></span>
                     </a>
                 </div>
