@@ -15,7 +15,7 @@
                                     <form method="POST" action="{{ route('register.post') }}">
                                         @csrf
 
-                                        <p class="mb-4 mt-8">Please register your account</p>
+                                        <p class="mb-4 mt-8">Silahkan daftarkan akun kamu</p>
 
                                         <!-- Name -->
                                         <div>
@@ -67,10 +67,17 @@
                                         <x-primary-button class="bg-primary my-6 flex w-full text-center hover:bg-primarydark">
                                             {{ __('Daftar') }}
                                         </x-primary-button>
-                                        <a class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                        {{-- <a class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                             href="{{ route('register.school') }}">
                                             {{ __('Ingin Daftarkan Sekolah Anda?') }}
-                                        </a>
+                                        </a> --}}
+                                        <div class="flex items-center justify-between pb-6">
+                                            <p class="mb-0 me-2"></p>
+                                            <a href="{{ route('register.school') }}"
+                                                class="px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0 dark:hover:bg-rose-950 dark:focus:bg-rose-950">
+                                                Ingin Daftarkan Sekolah Anda?
+                                            </a>
+                                        </div>
                                     </form>
                                 </div>
                             </div>

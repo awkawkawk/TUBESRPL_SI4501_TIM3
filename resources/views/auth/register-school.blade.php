@@ -15,8 +15,8 @@
                                     <form method="POST" action="{{ route('register.school') }}"" enctype="multipart/form-data">
                                         @csrf
 
-                                        <p class="mb-4 mt-6">Please register your account</p>
-                                        {{$errors}}
+                                        <p class="mb-4 mt-6">Silahkan daftarkan sekolah anda!</p>
+                                        {{-- {{$errors}} --}}
 
                                         {{-- Pendaftar --}}
                                         <div>
@@ -40,14 +40,14 @@
                                             <x-input-error :messages="$errors->get('email_pendaftar')" class="mt-2" />
                                         </div>
                                         <div class="mt-4">
-                                            <x-input-label for="identitas_pendaftar" :value="__('Identitas Pendaftar')" />
+                                            <x-input-label for="identitas_pendaftar" :value="__('Nomor Induk Pegawai (NIP)')" />
                                             <x-text-input id="identitas_pendaftar" class="mt-1 block w-full"
                                                 type="text" name="identitas_pendaftar" :value="old('identitas_pendaftar')" required
                                                 autocomplete="identitas_pendaftar" />
                                             <x-input-error :messages="$errors->get('identitas_pendaftar')" class="mt-2" />
                                         </div>
                                         <div class="mt-4">
-                                            <x-input-label for="bukti_id_pendaftar" :value="__('Bukti ID Pendaftar')" />
+                                            <x-input-label for="bukti_id_pendaftar" :value="__('Foto Nomor Induk Pegawai (NIP)')" />
                                             <x-file-input id="bukti_id_pendaftar" class="mt-1 block w-full"
                                                 name="bukti_id_pendaftar" required autofocus
                                                 autocomplete="bukti_id_pendaftar" />
@@ -113,10 +113,17 @@
                                         <x-primary-button class="bg-primary my-6 flex w-full text-center hover:bg-primarydark">
                                             {{ __('Daftar') }}
                                         </x-primary-button>
-                                        <a class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                        {{-- <a class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                             href="{{ route('login') }}">
                                             {{ __('Sudah terdaftar?') }}
-                                        </a>
+                                        </a> --}}
+                                        <div class="flex items-center justify-between pb-6">
+                                            <p class="mb-0 me-2"></p>
+                                            <a href="{{ route('login') }}"
+                                                class="px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0 dark:hover:bg-rose-950 dark:focus:bg-rose-950">
+                                                Sudah terdaftar?
+                                            </a>
+                                        </div>
                                     </form>
                                 </div>
                             </div>

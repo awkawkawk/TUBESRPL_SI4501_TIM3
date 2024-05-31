@@ -14,7 +14,7 @@
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
 
-                                        <p class="mb-4 mt-8">Please login to your account</p>
+                                        <p class="mb-4 mt-8">Silahkan login ke akun kamu</p>
 
                                         <!-- Email Address -->
                                         <div>
@@ -27,7 +27,7 @@
 
                                         <!-- Password -->
                                         <div class="mt-4">
-                                            <x-input-label for="password" :value="__('Password')" />
+                                            <x-input-label for="password" :value="__('Kata Sandi')" />
 
                                             <x-text-input id="password" class="mt-1 block w-full" type="password"
                                                 name="password" required autocomplete="current-password" />
@@ -41,7 +41,7 @@
                                                 <input id="remember_me" type="checkbox"
                                                     class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500"
                                                     name="remember" />
-                                                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+                                                <span class="ms-2 text-sm text-gray-600">{{ __('Ingat saya?') }}</span>
                                             </label>
                                         </div>
 
@@ -53,7 +53,7 @@
 
                                             <a class="mt-8 w-full rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                                                 href="{{ route('password.request') }}">
-                                                {{ __('Lupa password?') }}
+                                                {{ __('Lupa kata sandi?') }}
                                             </a>
                                         </div>
 
@@ -62,7 +62,7 @@
                                             <p class="mb-0 me-2"></p>
                                             <a href="{{ route('register') }}"
                                                 class="px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0 dark:hover:bg-rose-950 dark:focus:bg-rose-950">
-                                                Don't have an account?
+                                                Belum punya akun?
                                             </a>
                                         </div>
                                     </form>

@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@section('title', 'Pencarian - EduFund')
 @section('content')
     <div class="grid h-fit w-full grid-flow-row">
         <div class="col-span-2 md:col-span-1">
@@ -24,7 +24,7 @@
                         <p>Tidak ada kampanye yang ditemukan.</p>
                     @else
                             @foreach ($campaigns as $campaign)
-                                <x-campaign-card link="#" {{-- link="{{ route('campaign.show', $campaign->id) }}" --}}
+                                <x-campaign-card link="/campaign/detail/{{$campaign->id}}" {{-- link="{{ route('campaign.show', $campaign->id) }}" --}}
                                     image-path="{{ $campaign->image_path }}" alt-text="{{ $campaign->nama_campaign }}"
                                     title="{{ $campaign->nama_campaign }}"
                                     location="{{ $campaign->school->alamat_sekolah }}"

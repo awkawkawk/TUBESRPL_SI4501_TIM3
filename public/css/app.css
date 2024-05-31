@@ -2078,28 +2078,12 @@ input:checked + .toggle-bg {
   border-bottom-right-radius: 0.5rem;
 }
 
-.rounded-tl-\[128px\] {
-  border-top-left-radius: 128px;
+.rounded-tl-\[1\.25rem\] {
+  border-top-left-radius: 1.25rem;
 }
 
 .rounded-tl-lg {
   border-top-left-radius: 0.5rem;
-}
-
-.rounded-tl-\[2rem\] {
-  border-top-left-radius: 2rem;
-}
-
-.rounded-tl-\[1rem\] {
-  border-top-left-radius: 1rem;
-}
-
-.rounded-tl-\[1\.5rem\] {
-  border-top-left-radius: 1.5rem;
-}
-
-.rounded-tl-\[1\.25rem\] {
-  border-top-left-radius: 1.25rem;
 }
 
 .border {
