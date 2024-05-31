@@ -12,10 +12,12 @@ use App\Http\Controllers\Controller;
 use Cloudinary\Api\Upload\UploadApi;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Routing\Route;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\Rules\Password;
 use Cloudinary\Configuration\Configuration;
 use Illuminate\Validation\ValidationException;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class SchoolVerificationController extends Controller
 {
@@ -42,16 +44,16 @@ class SchoolVerificationController extends Controller
         ]);
 
         // Konfigurasi Cloudinary
-        Configuration::instance([
-            'cloud' => [
-                'cloud_name' => 'dmgrpklyt',
-                'api_key' => '188857334657329',
-                'api_secret' => 'r21rFH10pZg46_M9Hk-ckjffRX4',
-            ],
-            'url' => [
-                'secure' => true,
-            ],
-        ]);
+        // Configuration::instance([
+        //     'cloud' => [
+        //         'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
+        //         'api_key' => env('CLOUDINARY_API_KEY'),
+        //         'api_secret' => env('CLOUDINARY_API_SECRET'),
+        //     ],
+        //     'url' => [
+        //         'secure' => true,
+        //     ],
+        // ]);
 
         $schoolData = [
             'nama_sekolah' => $validatedData['nama_sekolah'],
@@ -68,33 +70,35 @@ class SchoolVerificationController extends Controller
 
         // Ambil gambar dari form request
         if ($request->hasFile('logo_sekolah')) {
-            $image = $request->file('logo_sekolah');
+            $image = $request->file('logo_sekolah')->getRealPath();
 
             // Unggah gambar ke Cloudinary ke dalam folder 'logo_sekolah'
-            $uploadResult = (new UploadApi())->upload($image->getRealPath(), [
+            $uploadResult = cloudinary()->upload($image, [
                 'folder' => 'logo_sekolah',
-            ]);
+            ])->getSecurePath();
 
             // Ambil URL gambar yang diunggah
-            $imageUrl = $uploadResult['secure_url'];
+            // $imageUrl = $uploadResult['secure_url'];
 
             // Tambahkan URL gambar ke dalam array data sekolah
-            $schoolData['logo_sekolah'] = $imageUrl;
+            $schoolData['logo_sekolah'] = $uploadResult;
         }
 
         if ($request->hasFile('bukti_id_pendaftar')) {
-            $file = $request->file('bukti_id_pendaftar');
+            $file = $request->file('bukti_id_pendaftar')->getRealPath();
 
             // Unggah file ke Cloudinary ke dalam folder 'bukti'
-            $uploadResult = (new UploadApi())->upload($file->getRealPath(), [
-                'folder' => 'bukti',
-            ]);
+            $uploadResult = cloudinary()
+                ->upload($file, [
+                    'folder' => 'bukti',
+                ])
+                ->getSecurePath();
 
             // Ambil URL file yang diunggah
-            $fileUrl = $uploadResult['secure_url'];
+            // $fileUrl = $uploadResult['secure_url'];
 
             // Tambahkan URL file ke dalam array data sekolah
-            $schoolData['bukti_id_pendaftar'] = $fileUrl;
+            $schoolData['bukti_id_pendaftar'] = $uploadResult;
         }
 
         // Jika validasi berhasil, simpan data sekolah ke dalam database

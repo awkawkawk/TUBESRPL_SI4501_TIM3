@@ -87,7 +87,6 @@
                      <button type="button" class="flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300"
                          aria-expanded="false" data-dropdown-toggle="dropdown-user">
                          <span class="sr-only">Buka menu pengguna</span>
-                         <!-- {{ Auth::user()->profile_picture }} -->
                          <img class="h-8 w-8 rounded-full object-cover"
                              src="{{ Auth::user()->profile_picture ? Auth::user()->profile_picture : asset('assets/img/default_profile_picture.jpg') }}"
                              referrerpolicy="no-referrer" alt="foto pengguna">
@@ -135,12 +134,10 @@
                      Masuk
                  </a>
 
-                 @if (Route::has('register'))
                      <a href="{{ route('register') }}"
                          class="rounded-md px-3 py-2 text-sm text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-3">
                          Daftar
                      </a>
-                 @endif
              @endauth
 
          </div>

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\ProfileController;
@@ -13,16 +14,24 @@ use App\Http\Controllers\RegisteredSchoolController;
 use App\Http\Controllers\SchoolVerificationController;
 use App\Http\Controllers\CampaignVerificationController;
 
+// Route::get('/', function () {
+//     return view('index');
+// })->name('/');
+
 Route::get('/', [LandingPageController::class, 'index'])->name('index');
 Route::get('/dashboard', [LandingPageController::class, 'index'])
-    ->name('landing.page')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
-
-Route::get('/campaigns/create', [CampaignController::class, 'create'])->name('campaigns.create');
-
 // Route untuk menyimpan data campaign baru
 Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns.store');
+
+// Route::get('/daftar-campaigns', [CampaignController::class, 'index'])->name('daftar');
+
+// Route::get('/dashboard', function () {
+//     return view('index');
+// })
+//     ->middleware(['auth', 'verified'])
+//     ->name('dashboard');
 
 Route::get('/search', [SearchController::class, 'search'])->name('search.result');
 
