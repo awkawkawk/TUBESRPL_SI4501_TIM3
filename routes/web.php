@@ -12,6 +12,7 @@ use App\Http\Controllers\RiwayatCampaignController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DonationItemController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\DonaturController;
 
 Route::get('/', function () {
     return view('index');
@@ -46,9 +47,7 @@ Route::get('/riwayat', function () {
     return view('riwayatcampaign');
 });
 
-Route::get('/edit/donatur', function () {
-    return view('donatur.managedonatur');
-});
+Route::get('/edit/donatur', [DonaturController::class, 'index'])->name('admin.donatur.index');
 
 
 Route::get('/riwayat/donatur', function () {
@@ -97,8 +96,17 @@ Route::post('/verifikasi-sekolah/{id}', [SchoolVerificationController::class, 'r
 
 Route::get('/campaign/detail/{id}', [DetailsCampaignController::class, 'showDetails'])->name('show.details');
 
-
-Route::get('/admin/manage/berita', [NewsController::class, 'index'])->name('admin.berita.index');
+Route::prefix('admin')->group(function () {
+    Route::prefix('manage/berita')->group(function () {
+        Route::get('/', [NewsController::class, 'index'])->name('admin.berita.index');
+        Route::get('/create', [NewsController::class, 'create'])->name('admin.berita.create');
+        Route::post('/', [NewsController::class, 'store'])->name('admin.berita.store');
+        Route::get('/{id}/edit', [NewsController::class, 'edit'])->name('admin.berita.edit');
+        Route::post('/{id}', [NewsController::class, 'update'])->name('admin.berita.update');
+        Route::delete('/{id}', [NewsController::class, 'destroy'])->name('admin.berita.delete');
+        Route::get('/{id}', [NewsController::class, 'detail'])->name('admin.berita.detail');
+    });
+});
 
 
 require __DIR__.'/auth.php';

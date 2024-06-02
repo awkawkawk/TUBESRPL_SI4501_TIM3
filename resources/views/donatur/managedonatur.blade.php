@@ -20,23 +20,24 @@
 
     <div class="col-span-2 h-auto">
         <div class="h-auto w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
-            <div class="mb-4 grid grid-cols-8 gap-x-4 lg:gap-x-8" style="grid-template-columns: 0.1fr 0.5fr 1fr 1fr 1fr 0.4fr 1fr 0.5fr 0.5fr">
-                <!-- Profil Donatur -->
+            @foreach  ($donaturs as $key => $donatur)
+                <div class="mb-4 grid grid-cols-8 gap-x-4 lg:gap-x-8" style="grid-template-columns: 0.1fr 0.5fr 1fr 1fr 1fr 0.4fr 1fr 0.5fr 0.5fr">
+                    <!-- Profil Donatur -->
 
-                <div>
-                    <p class="h1 mb-1 ml-8 block text-sm font-semibold text-black mt-12">1.</p>
-                </div>
+                    <div>
+                        <p class="h1 mb-1 ml-8 block text-sm font-semibold text-black mt-12">{{ $key + 1 }}.</p>
+                    </div>
 
                 <div class="flex justify-center items-center mt-2">
                     <div class="rounded-full overflow-hidden w-20 h-20 flex justify-center items-center">
-                        <img src="{{ asset('img/campaigns/sunjae.jpeg') }}" alt="" class="object-cover w-full h-full" />
+                        <img src="{{ asset('img/campaigns/'. $donatur->profile_picture) }}" alt="" class="object-cover w-full h-full" />
                     </div>
                 </div>
 
                  <!-- Nama Donatur -->
                  <div>
                     <p class="h1 mb-1 block text-sm font-semibold text-black mt-6">Nama Lengkap</p>
-                    <p class="text-sm font-normal text-black dark:text-gray-400">Sun Jae</p>
+                    <p class="text-sm font-normal text-black dark:text-gray-400">{{$donatur->nama}}</p>
                     <!-- <p class="h1 mb-1 block text-l font-semibold text-black mt-1">Sun Jae</p> -->
                 </div>
 
@@ -44,14 +45,14 @@
 
                 <div>
                     <p class="h1 mb-2 block text-sm font-semibold text-black mt-6">Email</p>
-                    <p class="text-sm font-normal text-black dark:text-gray-400">sunjae@gmail.com</p>
+                    <p class="text-sm font-normal text-black dark:text-gray-400">{{$donatur->email}}</p>
 
                 </div>
 
                 <!-- No Hp -->
                 <div>
                     <p class="h1 mb-2 block text-sm font-semibold text-black mt-6">Nomor Hp</p>
-                    <p class="mr-6 text-sm font-normal text-black dark:text-gray-400">08123456789</p>
+                    <p class="mr-6 text-sm font-normal text-black dark:text-gray-400">{{$donatur->phone}}</p>
                     </p>
                 </div>
 
@@ -64,7 +65,7 @@
                 </div>
                 <div>
                     <p class="h1 mb-2 block text-sm font-semibold text-black mt-6">Tanggal Daftar</p>
-                    <p class="mb-4 mr-6 text-sm font-normal text-black dark:text-gray-400">12 May 2024</p>
+                    <p class="mb-4 mr-6 text-sm font-normal text-black dark:text-gray-400">{{$donatur->created_at}}</p>
                 </div>
                 <div class="ml-4 mt-4">
                     <button class="text-white font-bold py-2 px-2 rounded-lg mt-4 flex items-center justify-center" style="background-color: #b3b53c;">
@@ -83,6 +84,7 @@
                     </button>
                 </div>
             </div>
+            @endforeach
         </div>
     </div>
 
