@@ -11,6 +11,7 @@ use App\Http\Controllers\SchoolVerificationController;
 use App\Http\Controllers\RiwayatCampaignController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DonationItemController;
+use App\Http\Controllers\NewsController;
 
 Route::get('/', function () {
     return view('index');
@@ -95,5 +96,9 @@ Route::get('/verifikasi-sekolah', [SchoolVerificationController::class, 'showVer
 Route::post('/verifikasi-sekolah/{id}', [SchoolVerificationController::class, 'respondVerification'])->name('response.verification');
 
 Route::get('/campaign/detail/{id}', [DetailsCampaignController::class, 'showDetails'])->name('show.details');
+
+
+Route::get('/admin/manage/berita', [NewsController::class, 'index'])->name('admin.berita.index');
+
 
 require __DIR__.'/auth.php';
