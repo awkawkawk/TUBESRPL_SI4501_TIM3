@@ -74,6 +74,7 @@ Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns
 Route::delete('/campaigns/{campaign}', [CampaignController::class, 'destroy'])->name('campaigns.destroy');
 Route::get('/campaigns/{campaign}/edit', [CampaignController::class, 'edit'])->name('campaigns.edit');
 Route::put('/campaigns/{campaign}', [CampaignController::class, 'update'])->name('campaigns.update');
+Route::get('/campaigns/history', [CampaignController::class, 'history'])->name('campaigns.history');
 
 //test
 Route::get('/campaign/riwayat', [RiwayatCampaignController::class, 'index'])->name('campaign.riwayat');
@@ -97,3 +98,4 @@ Route::post('/verifikasi-sekolah/{id}', [SchoolVerificationController::class, 'r
 Route::get('/campaign/detail/{id}', [DetailsCampaignController::class, 'showDetails'])->name('show.details');
 
 require __DIR__.'/auth.php';
+

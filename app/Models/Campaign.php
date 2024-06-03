@@ -15,6 +15,8 @@ class Campaign extends Model
                         'deskripsi_campaign',
                         'status',
                         'catatan_campaign',
+                        'tanggal_mulai',
+                        'tanggal_selesai',
                         'foto_campaign'];
 
     public function school()

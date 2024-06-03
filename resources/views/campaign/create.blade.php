@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('title', 'Tambah Campaign')
 
@@ -47,6 +47,24 @@
                 <div class="mt-4">
                     <label for="campaign-description" class="block text-gray-700 text-base font-bold mb-2">Deskripsi Campaign</label>
                     <textarea id="campaign-description" name="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-none" rows="5"></textarea>
+                </div>
+
+                <div class="w-full mt-4">
+                    <div class="relative w-full mb-3">
+                        <label class="block text-gray-700 text-base font-bold mb-2" for="tanggal_selesai">
+                            Tanggal Mulai
+                        </label>
+                        <input type="date" id="tanggal_mulai" name="tanggal_mulai" required class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
+                    </div>
+                </div>
+
+                <div class="w-full mt-4">
+                    <div class="relative w-full mb-3">
+                        <label class="block text-gray-700 text-base font-bold mb-2" for="tanggal_selesai">
+                            Tanggal Selesai
+                        </label>
+                        <input type="date" id="tanggal_selesai" name="tanggal_selesai" required class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
+                    </div>
                 </div>
 
                 <div class="w-full mt-4">

@@ -6,6 +6,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Campaign;
+use App\Models\Donation;
 use App\Models\Target;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -82,6 +83,8 @@ class CampaignController extends Controller
         // Update the campaign details
         $campaign->nama_campaign = $request->nama_campaign;
         $campaign->deskripsi_campaign = $request->description;
+        $campaign->tanggal_mulai = $request->tanggal_mulai;
+        $campaign->tanggal_selesai = $request->tanggal_selesai;
         $campaign->save();
 
         // Update the associated target
@@ -123,6 +126,12 @@ class CampaignController extends Controller
         $campaign->delete();
 
         return redirect()->route('campaigns.index')->with('success', 'Campaign deleted successfully.');
+    }
+
+    public function history()
+    {
+        $donations = Donation::all();;
+        return view('campaign.history', compact('donations'));
     }
 
 }
