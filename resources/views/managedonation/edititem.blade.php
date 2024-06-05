@@ -23,58 +23,88 @@
             <p class="h1 mt-2 ml-4 mb-4 block text-l font-semibold text-black">Donasi Barang</p>
         </div>
 
+        @foreach($donation as $donations)
+        @if($donations->jasa_kirim != null)
         <div class="h-auto w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
             <div class="mb-4 grid grid-cols-8 gap-x-4 lg:gap-x-8" style="grid-template-columns: 0.1fr 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr">
                 <!-- Profil Donatur -->
 
                 <div>
-                    <p class="h1 mb-1 ml-8 block text-sm font-semibold text-black mt-12">1.</p>
+                    <p class="h1 mb-1 ml-8 block text-sm font-semibold text-black mt-12">{{ $loop->iteration }}.</p>
                 </div>
 
                 <div class="flex justify-center items-center mt-2">
                     <div class="rounded-full overflow-hidden w-20 h-20 flex justify-center items-center">
-                        <img src="{{ asset('img/campaigns/sunjae.jpeg') }}" alt="" class="object-cover w-full h-full" />
+                        <img src="{{ asset('img/campaigns/' . $donations->user->profile_picture) }}" alt="" class="object-cover w-full h-full" />
                     </div>
                 </div>
 
                  <!-- Nama Donatur -->
                  <div>
                     <p class="h1 mb-1 block text-sm font-semibold text-black mt-6">Nama Donatur</p>
-                    <p class="h1 mb-1 block text-l font-semibold text-black mt-1">Sun Jae</p>
-                    <p class="text-sm font-normal text-black dark:text-gray-400">sunjae@gmail.com</p>
+                    <p class="h1 mb-1 block text-l font-semibold text-black mt-1">{{ $donations->user->nama}}</p>
+                    <p class="text-sm font-normal text-black dark:text-gray-400">{{ $donations->user->email}}</p>
                 </div>
 
                 <!-- Sumbangan -->
 
+
+
                 <div>
-                    <p class="h1 mb-2 block text-sm font-semibold text-black mt-6">Jumlah Donasi</p>
-                    <p class="text-sm font-normal text-black dark:text-gray-400 flex items-center">
-                        Proyektor <span class="ml-2">2</span>
-                    </p>
-                    <p class="text-sm font-normal text-black dark:text-gray-400 flex items-center">
-                        Papan Tulis <span class="ml-2">2</span>
-                    </p>
+                    <p class="h1 mb-2 block text-sm font-semibold text-black mt-6">Donasi</p>
+                    @foreach($donations->moneyDonations as $money)
+                    <div>
+
+                        <p class="mb-1 mt-1 text-sm font-normal text-black dark:text-gray-400 flex items-center">
+                            <span>Rp. {{ number_format($money->nominal, 0, ',', '.') }} {{ $money->nama_barang }}</span>
+                        </p>
+                    </div>
+                    @endforeach
+
+                    @foreach($donations->donationItems as $items)
+                    <div>
+
+                        <p class="mb-1 mt-1 text-sm font-normal text-black dark:text-gray-400 flex items-center">
+                            <span class="mr-1">{{ $items->nama_barang }}</span>
+                            <span>{{ $items->jumlah_barang }}</span>
+                        </p>
+                    </div>
+                    @endforeach
+
 
                 </div>
 
                 <div>
-                    <p class="h1 mb-2 block text-sm font-semibold text-black mt-6">Pengiriman</p>
-                    <p class="mr-6 text-sm font-normal text-black dark:text-gray-400">JNE</p>
-                    <p class="mr-6 text-sm font-normal text-black dark:text-gray-400">9999999999</p>
+                    <p class="h1 mb-2 block text-sm font-semibold text-black mt-6">Jasa Kirim</p>
+                    @foreach($donations->moneyDonations as $money)
+                    <div>
+
+                        <p class="mr-6 text-sm font-normal text-black dark:text-gray-400">{{ $money->nama_pemilik }}</p>
+                        <p class="mr-6 text-sm font-normal text-black dark:text-gray-400">{{ $money->nama_bank }}</p>
+                        <p class="mr-6 text-sm font-normal text-black dark:text-gray-400">{{ $money->nomor_rekening }}</p>
                     </p>
+                    </div>
+                    @endforeach
+
+                    <div>
+
+                        <p class="mr-6 text-sm font-normal text-black dark:text-gray-400">{{ $donations->jasa_kirim }}</p>
+                        <p class="mr-6 text-sm font-normal text-black dark:text-gray-400">{{ $donations->nomor_resi }}</p>                    </p>
+
+                    </div>
                 </div>
 
 
                 <!-- Doa Donatur -->
                 <div>
                     <p class="h1 mb-2 block text-sm font-semibold text-black mt-6">Pesan</p>
-                    <p class="mb-4 mr-6 text-sm font-normal text-black dark:text-gray-400">Semangat!!!</p>
+                    <p class="mb-4 mr-6 text-sm font-normal text-black dark:text-gray-400">{{ $donations->pesan }}</p>
                     </p>
                 </div>
                 <div>
                     <p class="h1 mb-2 block text-sm font-semibold text-black mt-6">Status</p>
-                    <p class="mb-4 mr-6 text-sm font-normal text-black dark:text-gray-400">Sedang Dikirim</p>
-                    <p class="text-xs font-normal text-black dark:text-gray-400">Update : 12 May 2024</p>
+                    <p class="mb-4 mr-6 text-sm font-normal text-black dark:text-gray-400">{{ $donations->status }}</p>
+                    <p class="text-xs font-normal text-black dark:text-gray-400">Update : {{ $donations->updated_at->format('d F Y') }}</p>
                 </div>
                 <div>
                     <button class="text-white font-bold py-2 px-2 rounded-lg mt-4 flex items-center justify-center" style="background-color: #b3b53c;">
@@ -91,10 +121,10 @@
                 </div>
             </div>
         </div>
+        <div class="mb-1"></div>
+        @endif
+        @endforeach
     </div>
-
-
-    <div class="mb-1"></div>
 
 </div>
 

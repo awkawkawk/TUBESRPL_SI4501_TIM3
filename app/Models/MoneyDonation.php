@@ -26,6 +26,11 @@ class MoneyDonation extends Model
         return $this->belongsTo(Bank::class, 'id_bank');
     }
 
+    public function user()
+    {
+    return $this->belongsTo(User::class, 'id_user');
+    }
+
 
 
 

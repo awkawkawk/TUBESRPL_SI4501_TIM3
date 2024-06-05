@@ -58,10 +58,6 @@ Route::post('/verifikasi-campaign/{id}', [CampaignVerificationController::class,
 
 Route::get('/search', [SearchController::class, 'search'])->name('search.result');
 
-Route::get('/managedonation/money', function () {
-    return view('managedonation/editmoney');
-});
-
 Route::get('/managedonation/item', function () {
     return view('managedonation/edititem');
 });
@@ -81,8 +77,17 @@ Route::get('/donation/money/summary', [DonationController::class, 'showSummary']
 Route::post('/donation/money/summary', [DonationController::class, 'showSummary'])->name('donation.summary');
 Route::post('/donation/store', [DonationController::class, 'store'])->name('donations.store');
 
+// manage donation
 Route::get('/edit/donation/money', [DonationController::class, 'editMoney'])->name('donationMoney.edit');
+Route::get('/edit/donation/money/{id}', [DonationController::class, 'showform_editMoney'])->name('moneyform.edit');
+Route::post('/edit/donation/money/summary', [DonationController::class, 'showSummaryEdit'])->name('donation.summary.edit');
+Route::put('/edit/donation/store', [DonationController::class, 'update'])->name('donations.update');
 
+
+
+Route::get('/edit/donation/itemDonation', [DonationController::class, 'editItem'])->name('donationItem.edit');
+
+// item donation
 Route::get('/donation/item/{id}', [DonationItemController::class, 'showFormItem'])->name('donations.form.items');
 Route::post('/donation/item/{id}', [DonationItemController::class, 'postFormItem'])->name('donations.post.form.items');
 Route::post('/donation/storeItems', [DonationItemController::class, 'storeItems'])->name('donations.storeItems');
@@ -96,3 +101,9 @@ Route::post('/verifikasi-sekolah/{id}', [SchoolVerificationController::class, 'r
 Route::get('/campaign/detail/{id}', [DetailsCampaignController::class, 'showDetails'])->name('show.details');
 
 require __DIR__.'/auth.php';
+
+//test fe
+
+Route::get('/managedonation/money/edit/id', function () {
+    return view('managedonation/formeditmoney');
+});

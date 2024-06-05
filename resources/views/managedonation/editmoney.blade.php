@@ -18,8 +18,13 @@
     <p class="h1 mb-2 mt-2 ml-2 mb-4 block text-l font-semibold text-black" >Daftar Donasi Masuk</p>
 
     <div class="col-span-2 h-auto">
+        <div class="flex space-x-4">
+            <p class="h1 mt-2 ml-2 mb-4 block text-l font-semibold text-black">Donasi Uang</p>
+            <p class="h1 mt-2 ml-4 mb-4 block text-l font-normal text-black">Donasi Barang</p>
+        </div>
 
         @foreach($donation as $donations)
+        @if($donations->jasa_kirim == null)
 
         <div class="h-auto w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
             <div class="mb-4 grid grid-cols-8 gap-x-4 lg:gap-x-8" style="grid-template-columns: 0.1fr 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr">
@@ -71,7 +76,7 @@
                 </div>
 
                 <div>
-                    <p class="h1 mb-2 block text-sm font-semibold text-black mt-6">Keterangan</p>
+                    <p class="h1 mb-2 block text-sm font-semibold text-black mt-6">Informasi Bank</p>
                     @foreach($donations->moneyDonations as $money)
                     <div>
 
@@ -103,11 +108,13 @@
                     <p class="text-xs font-normal text-black dark:text-gray-400">Update : {{ $donations->updated_at->format('d F Y') }}</p>
                 </div>
                 <div>
-                    <button class="text-white font-bold py-2 px-2 rounded-lg mt-4 flex items-center justify-center" style="background-color: #b3b53c;">
-                        <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                        </svg>
-                    </button>
+                    <a href="{{ route('moneyform.edit', ['id' => $donations->id]) }}">
+                        <button class="text-white font-bold py-2 px-2 rounded-lg mt-4 flex items-center justify-center" style="background-color: #b3b53c;">
+                            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                            </svg>
+                        </button>
+                    </a>
 
                     <button class="text-white font-bold py-2 px-2 rounded-lg mt-4 flex items-center justify-center" style="background-color: #f57171;">
                         <svg class="h-6 w-6 text-stone-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>
@@ -118,6 +125,7 @@
             </div>
         </div>
         <div class="mb-1"></div>
+        @endif
         @endforeach
     </div>
 
