@@ -51,7 +51,7 @@
             </div>
             <div class="flex justify-end">
                 <button type="submit" class="bg-primary text-white font-bold py-2 px-8 rounded-lg">
-                    Tambah
+                    Simpan
                 </button>
             </div>
         </form>

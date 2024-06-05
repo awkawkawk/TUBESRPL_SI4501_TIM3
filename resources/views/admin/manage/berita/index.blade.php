@@ -23,7 +23,7 @@
         <div class=" items-center mt-4 mb-8">
             <a href="{{ route('admin.berita.create')}}"
                 class="bg-primary text-white font-bold py-2 px-8 rounded-lg ml-14">
-                Create
+                Tambah
             </a>
         </div>
         @if(session('success'))
