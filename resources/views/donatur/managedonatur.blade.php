@@ -1,4 +1,3 @@
-@ -0,0 +1,99 @@
 @extends('layouts.master')
 
 @section('content')
@@ -36,9 +35,8 @@
 
                  <!-- Nama Donatur -->
                  <div>
-                    <p class="h1 mb-1 block text-sm font-semibold text-black mt-6">Nama Lengkap</p>
+                    <p class="h1 mb-2 block text-sm font-semibold text-black mt-6">Nama Lengkap</p>
                     <p class="text-sm font-normal text-black dark:text-gray-400">{{$donatur->nama}}</p>
-                    <!-- <p class="h1 mb-1 block text-l font-semibold text-black mt-1">Sun Jae</p> -->
                 </div>
 
                 <!-- Email -->
@@ -63,6 +61,8 @@
                     <p class="mb-4 mr-6 text-sm font-normal text-black dark:text-gray-400" >{{$donatur->tipe_user}}</p>
                     </p>
                 </div>
+
+                 <!-- Tanggal Daftar -->
                 <div>
                     <p class="h1 mb-2 block text-sm font-semibold text-black mt-6">Tanggal Daftar</p>
                     <p class="mb-4 mr-6 text-sm font-normal text-black dark:text-gray-400">{{$donatur->created_at}}</p>

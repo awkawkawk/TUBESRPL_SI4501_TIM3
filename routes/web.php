@@ -53,6 +53,7 @@ Route::get('/edit/donatur/{id}', [DonaturController::class, 'edit'])->name('admi
 
 // Rute untuk menampilkan formulir edit
 Route::get('edit/donatur/{id}', [DonaturController::class, 'edit'])->name('admin.donatur.edit');
+Route::get('/donatur', [DonaturController::class, 'index'])->name('donatur.editdonatur');
 
 // Rute untuk memperbarui data donatur
 Route::put('edit/donatur/{id}', [DonaturController::class, 'update'])->name('admin.donatur.update');

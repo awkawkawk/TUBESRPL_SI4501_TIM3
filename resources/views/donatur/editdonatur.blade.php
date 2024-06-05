@@ -34,16 +34,6 @@
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Simpan') }}</x-primary-button>
-
-            @if (session('status') === 'profile-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
-                >{{ __('Disimpan.') }}</p>
-            @endif
         </div>
       
         <!-- <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Update</button> -->
