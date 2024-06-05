@@ -98,4 +98,3 @@ Route::post('/verifikasi-sekolah/{id}', [SchoolVerificationController::class, 'r
 Route::get('/campaign/detail/{id}', [DetailsCampaignController::class, 'showDetails'])->name('show.details');
 
 require __DIR__.'/auth.php';
-

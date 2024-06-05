@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string('status');
             $table->text('catatan_campaign')->nullable();
             $table->integer('percentage_collected')->default(0);
-            $table->date('tanggal_mulai')->nullable();
-            $table->date('tanggal_selesai')->nullable();
             $table->timestamps();
         });
 

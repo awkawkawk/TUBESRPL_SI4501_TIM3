@@ -52,73 +52,59 @@
                     <label for="campaign-description" class="block text-gray-700 text-base font-bold mb-2">Deskripsi Campaign</label>
                     <textarea id="campaign-description" name="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline resize-none" rows="5">{{ $campaign->deskripsi_campaign }}</textarea>
                 </div>
-
-                <div class="w-full mt-4">
-                    <div class="relative w-full mb-3">
-                        <label class="block text-gray-700 text-base font-bold mb-2" for="tanggal_mulai">
-                            Tanggal Mulai
-                        </label>
-                        <input type="date" id="tanggal_mulai" name="tanggal_mulai" value="{{ $campaign->tanggal_mulai }}" required class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
-                    </div>
-                </div>
-
-                <div class="w-full mt-4">
-                    <div class="relative w-full mb-3">
-                        <label class="block text-gray-700 text-base font-bold mb-2" for="tanggal_selesai">
-                            Tanggal Selesai
-                        </label>
-                        <input type="date" id="tanggal_selesai" name="tanggal_selesai" value="{{ $campaign->tanggal_selesai }}" required class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
-                    </div>
-                </div>
+                @php
+                    $uangCount = $campaign->targets->where('nama_barang', 'Uang')->count();
+                    $goodsCount = $campaign->targets->where('nama_barang', '!=', 'Uang')->count();
+                    $jenisDonasi = '';
+                    if ($uangCount == 1 && $goodsCount == 0) {
+                        $jenisDonasi = 'money';
+                    } elseif ($uangCount > 0 && $goodsCount > 0) {
+                        $jenisDonasi = 'money_and_goods';
+                    } elseif ($goodsCount > 0) {
+                        $jenisDonasi = 'goods';
+                    }
+                @endphp
 
                 <div class="w-full mt-4">
                     <div class="relative w-full mb-3">
                         <label class="block text-base font-bold text-gray-700 mb-2" for="jenis_donasi">
                             Jenis Sumbangan
                         </label>
-                        <select id="jenis_donasi" name="jenis_donasi" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
+                        <select id="jenis_donasi" name="jenis_donasi" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring-blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
                             <option value="">Pilih Jenis Sumbangan</option>
-                            <option value="money" {{ $campaign->targets->type == 'money' ? 'selected' : '' }}>Uang</option>
-                            <option value="goods" {{ $campaign->targets->type == 'goods' ? 'selected' : '' }}>Barang</option>
-                            <option value="money_and_goods" {{ $campaign->targets->type == 'money_and_goods' ? 'selected' : '' }}>Uang dan Barang</option>
+                            <option value="money" {{ $jenisDonasi == 'money' ? 'selected' : '' }}>Uang</option>
+                            <option value="goods" {{ $jenisDonasi == 'goods' ? 'selected' : '' }}>Barang</option>
+                            <option value="money_and_goods" {{ $jenisDonasi == 'money_and_goods' ? 'selected' : '' }}>Uang dan Barang</option>
                         </select>
                     </div>
                 </div>
 
-                <div id="target_uang" class="{{ $campaign->targets->type == 'money' || $campaign->targets->type == 'money_and_goods' ? '' : 'hidden' }} w-full mt-4">
-                    <div class="relative w-full mb-3">
-                        <label class="block text-gray-700 text-base font-bold mb-2" for="targetDonation">
-                            Target Donasi Uang
-                        </label>
-                        <input type="number" id="target_uang" min="0" name="target_uang" value="{{ $campaign->targets->money_amount }}" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150" placeholder="Input Nominal">
-                    </div>
+                <div id="target_uang" class="{{ $jenisDonasi == 'money' || $jenisDonasi == 'money_and_goods' ? '' : 'hidden' }} mt-4">
+                    <label for="target_uang" class="block text-gray-700 text-base font-bold mb-2">Target Donasi Uang</label>
+                    <input type="number" id="target_uang" name="target_uang" min="0" value="{{ $campaign->targets->firstWhere('nama_barang', 'Uang')->jumlah_barang ?? '' }}" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring-blue-500 focus:border-blue-500 w-full transition-all duration-150" placeholder="Input Nominal">
                 </div>
 
-                <div id="nama_barang" class="{{ $campaign->targets->type == 'goods' || $campaign->targets->type == 'money_and_goods' ? '' : 'hidden' }} w-full mt-4">
+                <div id="nama_barang" class="{{ $jenisDonasi == 'goods' || $jenisDonasi == 'money_and_goods' ? '' : 'hidden' }} mt-4">
+                    <label class="block text-gray-700 text-base font-bold mb-2">Target Barang</label>
                     <div id="goodsContainer" class="flex flex-wrap -mx-3 mb-6">
-
-                        @if ($campaign->targets->goods)
-                            @foreach (json_decode($campaign->targets->goods, true) as $good)
+                        @foreach ($campaign->targets as $target)
+                            @if ($target->nama_barang != 'Uang')
                                 <div class="w-full flex py-3 mb-6 md:mb-0 items-center">
                                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                        <input type="text" name="jenis_barang[]" value="{{ $good["name"] }}" placeholder="Jenis Barang" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
+                                        <input type="text" name="jenis_barang[]" value="{{ $target->nama_barang }}" placeholder="Nama Barang" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring-blue-500 focus:border-blue-500 w-full transition-all duration-150">
                                     </div>
                                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                        <input type="number" name="jumlah_barang[]" value="{{ $good["quantity"] }}" placeholder="Jumlah Barang" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
+                                        <input type="number" name="jumlah_barang[]" value="{{ $target->jumlah_barang }}" placeholder="Jumlah Barang" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring-blue-500 focus:border-blue-500 w-full transition-all duration-150">
                                     </div>
                                     <div class="px-3">
-                                        <button type="button" onclick="removeGoodsField(this)" class="bg-red-500 text-white text-sm font-bold uppercase px-3 py-1 rounded shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150">
-                                            Hapus
-                                        </button>
+                                        <button type="button" onclick="removeGoodsField(this)" class="bg-red-500 text-white text-sm font-bold uppercase px-3 py-1 rounded shadow hover:shadow-lg transition-all duration-150">Hapus</button>
                                     </div>
                                 </div>
-                            @endforeach
-                        @endif
+                            @endif
+                        @endforeach
                     </div>
                     <div class="text-right">
-                        <button type="button" class="bg-blue-500 text-white text-sm font-bold px-3 py-1 rounded shadow outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" onclick="addGoodsField()">
-                            Tambah Barang
-                        </button>
+                        <button type="button" onclick="addGoodsField()" class="bg-blue-500 text-white text-sm font-bold px-3 py-1 rounded shadow transition-all duration-150">Tambah Barang</button>
                     </div>
                 </div>
 

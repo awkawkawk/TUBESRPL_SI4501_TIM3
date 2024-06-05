@@ -10,9 +10,8 @@ class Target extends Model
     use HasFactory;
     protected $table = 'targets';
     protected $fillable = [
-        'type',
-        'money_amount',
-        'goods',
+        'nama_barang',
+        'jumlah_barang',
         'id_campaign'
     ];
     public function campaign()

@@ -38,31 +38,38 @@ class CampaignController extends Controller
             'nama_campaign' => $request->nama_campaign,
             'foto_campaign' => $photoPath,
             'deskripsi_campaign' => $request->description,
-            'tanggal_mulai' => $request->tanggal_mulai,
-            'tanggal_selesai' => $request->tanggal_selesai,
             'id_sekolah' => 1, // Assuming the user is authenticated as a school // auth()->user->id
             'status' => 'Menunggu Verifikasi',
         ]);
 
-        $target = new Target([
-            'type' => $request->input('jenis_donasi'),
-            'money_amount' => $request->input('target_uang'),
-        ]);
+        // Handle targets based on jenis_donasi
+        $jenisDonasi = $request->input('jenis_donasi');
 
-        if ($request->input('jenis_donasi') == 'goods' || $request->input('jenis_donasi') == 'money_and_goods') {
-            $goods = [];
-            $jumlahBarang = $request->input('jumlah_barang', []);
-            foreach ($request->input('jenis_barang', []) as $key => $namaBarang) {
-                $goods[] = [
-                    'name' => $namaBarang,
-                    'quantity' => $jumlahBarang[$key] ?? 1,
-                ];
+        if ($jenisDonasi == 'money') {
+            $campaign->targets()->create([
+                'nama_barang' => 'Uang',
+                'jumlah_barang' => $request->input('target_uang'),
+            ]);
+        } elseif ($jenisDonasi == 'goods' || $jenisDonasi == 'money_and_goods') {
+            if ($jenisDonasi == 'money_and_goods') {
+                $campaign->targets()->create([
+                    'nama_barang' => 'Uang',
+                    'jumlah_barang' => $request->input('target_uang'),
+                ]);
             }
-            $target->goods = json_encode($goods);
+
+            $jumlahBarang = $request->input('jumlah_barang', []);
+            $jenisBarang = $request->input('jenis_barang', []);
+
+            foreach ($jenisBarang as $key => $namaBarang) {
+                if (isset($jumlahBarang[$key])) {
+                    $campaign->targets()->create([
+                        'nama_barang' => $namaBarang,
+                        'jumlah_barang' => $jumlahBarang[$key],
+                    ]);
+                }
+            }
         }
-
-        $campaign->targets()->save($target);
-
 
         return redirect()->route('campaigns.index')->with('success', 'Campaign berhasil ditambahkan!');
     }
@@ -74,43 +81,54 @@ class CampaignController extends Controller
 
     public function update(Request $request, Campaign $campaign)
     {
-        // Handle the photo upload if a new photo is provided
+        // Handle photo upload if provided
         if ($request->hasFile('photo')) {
             $photoPath = $request->file('photo')->store('campaign_photos', 'public');
             $campaign->foto_campaign = $photoPath;
         }
 
-        // Update the campaign details
+        // return dd($request->jenis_barang);
+
+        // Update campaign details
         $campaign->nama_campaign = $request->nama_campaign;
         $campaign->deskripsi_campaign = $request->description;
-        $campaign->tanggal_mulai = $request->tanggal_mulai;
-        $campaign->tanggal_selesai = $request->tanggal_selesai;
         $campaign->save();
 
-        // Update the associated target
-        $target = $campaign->targets->first(); // Assuming there is only one target per campaign
+        // Delete existing targets
+        $campaign->targets()->delete();
 
-        $target->type = $request->input('jenis_donasi');
-        $target->money_amount = $request->input('target_uang', 0);
+        // Handle targets based on jenis_donasi
+        $jenisDonasi = $request->input('jenis_donasi');
 
-        if ($request->input('jenis_donasi') == 'goods' || $request->input('jenis_donasi') == 'money_and_goods') {
-            $goods = [];
-            $jumlahBarang = $request->input('jumlah_barang', []);
-            foreach ($request->input('jenis_barang', []) as $key => $namaBarang) {
-                $goods[] = [
-                    'name' => $namaBarang,
-                    'quantity' => $jumlahBarang[$key] ?? 1,
-                ];
+        if ($jenisDonasi == 'money') {
+            $campaign->targets()->create([
+                'nama_barang' => 'Uang',
+                'jumlah_barang' => $request->input('target_uang'),
+            ]);
+        } elseif ($jenisDonasi == 'goods' || $jenisDonasi == 'money_and_goods') {
+            if ($jenisDonasi == 'money_and_goods') {
+                $campaign->targets()->create([
+                    'nama_barang' => 'Uang',
+                    'jumlah_barang' => $request->input('target_uang'),
+                ]);
             }
-            $target->goods = json_encode($goods);
-        } else {
-            $target->goods = null;
-        }
 
-        $target->save();
+            $jumlahBarang = $request->input('jumlah_barang', []);
+            $jenisBarang = $request->input('jenis_barang', []);
+
+            foreach ($jenisBarang as $key => $namaBarang) {
+                if (isset($jumlahBarang[$key])) {
+                    $campaign->targets()->create([
+                        'nama_barang' => $namaBarang,
+                        'jumlah_barang' => $jumlahBarang[$key],
+                    ]);
+                }
+            }
+        }
 
         return redirect()->route('campaigns.index')->with('success', 'Campaign berhasil diperbarui!');
     }
+
 
     public function destroy(Campaign $campaign)
     {
