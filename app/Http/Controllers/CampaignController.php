@@ -39,7 +39,7 @@ class CampaignController extends Controller
             'foto_campaign' => $photoPath,
             'deskripsi_campaign' => $request->description,
             'id_sekolah' => 1, // Assuming the user is authenticated as a school // auth()->user->id
-            'status' => 'Menunggu Verifikasi',
+            'status' => 'perlu diverifikasi',
         ]);
 
         // Handle targets based on jenis_donasi
