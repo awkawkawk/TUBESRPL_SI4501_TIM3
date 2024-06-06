@@ -24,9 +24,9 @@ Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns
 
 // Route::get('/daftar-campaigns', [CampaignController::class, 'index'])->name('daftar');
 
-Route::get('/home', function () {
-    return view('create');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/home', function () {
+//     return view('create');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
