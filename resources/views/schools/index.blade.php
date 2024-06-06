@@ -2,6 +2,34 @@
 
 @section('content')
 
+@if(session('success'))
+    @if(session('success') == 'Sekolah berhasil dihapus.')
+        <div class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 flex items-center bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded shadow-lg" role="alert">
+            <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M10 15l-5.5-5.5 1.4-1.4L10 12.2l4.6-4.6 1.4 1.4L10 15z"/>
+            </svg>
+            <span class="block sm:inline">{{ session('success') }}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                <svg class="fill-current h-6 w-6 text-red-500 cursor-pointer" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" onclick="this.parentElement.parentElement.remove();">
+                    <path d="M14.348 5.652a.5.5 0 010 .707L10.707 10l3.641 3.641a.5.5 0 01-.707.707L10 10.707l-3.641 3.641a.5.5 0 01-.707-.707L9.293 10 5.652 6.359a.5.5 0 01.707-.707L10 9.293l3.641-3.641a.5.5 0 01.707 0z"/>
+                </svg>
+            </span>
+        </div>
+    @else
+        <div class="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 flex items-center bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded shadow-lg" role="alert">
+            <svg class="fill-current w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M10 15l-5.5-5.5 1.4-1.4L10 12.2l4.6-4.6 1.4 1.4L10 15z"/>
+            </svg>
+            <span class="block sm:inline">{{ session('success') }}</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                <svg class="fill-current h-6 w-6 text-green-500 cursor-pointer" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" onclick="this.parentElement.parentElement.remove();">
+                    <path d="M14.348 5.652a.5.5 0 010 .707L10.707 10l3.641 3.641a.5.5 0 01-.707.707L10 10.707l-3.641 3.641a.5.5 0 01-.707-.707L9.293 10 5.652 6.359a.5.5 0 01.707-.707L10 9.293l3.641-3.641a.5.5 0 01.707 0z"/>
+                </svg>
+            </span>
+        </div>
+    @endif
+@endif
+
 <div class="grid h-fit w-full grid-flow-row">
     <div class="col-span-2 md:col-span-1">
         <div class="mt-4 text-left">
@@ -65,21 +93,23 @@
 
                     <!-- Actions -->
                     <div class="flex flex-col space-y-2 mt-6">
-                        <a href="{{ route('schools.edit', $school->id) }}" class="text-white font-bold py-2 px-2 rounded-lg bg-yellow-500 flex items-center justify-center">
-                            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                            </svg>
-                        </a>
-
-                        <form action="{{ route('schools.destroy', $school->id) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="text-white font-bold py-2 px-2 rounded-lg bg-red-500 flex items-center justify-center">
+                        <div class="flex space-x-2">
+                            <a href="{{ route('schools.edit', $school->id) }}" class="text-white font-bold py-2 px-2 rounded-lg bg-yellow-500 flex items-center justify-center">
                                 <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
                                 </svg>
-                            </button>
-                        </form>
+                            </a>
+
+                            <form action="{{ route('schools.destroy', $school->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-white font-bold py-2 px-2 rounded-lg bg-red-500 flex items-center justify-center">
+                                    <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                                    </svg>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
