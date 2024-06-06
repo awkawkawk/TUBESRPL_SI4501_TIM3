@@ -17,7 +17,7 @@ class DonationController extends Controller
 {
     public function index()
     {
-        $campaigns = Campaign::where('status', 'Sedang Berjalan')->get();
+        $campaigns = Campaign::where('status', 'valid')->get();
         return view('donation.index', compact('campaigns'));
     }
 
@@ -165,60 +165,20 @@ class DonationController extends Controller
         return view('managedonation.summarymoney', compact('nama_bank','tujuan_pembayaran', 'nomor_rekening', 'nomor_rek', 'pentransfer', 'nominal', 'selectedCampaign', 'metode_pembayaran', 'nama_pemilik', 'waktu_donasi', ));
     }
 
-
-
-    // public function update(Request $request, $id)
-    // {
-    //     // Ambil data donasi dari session
-    //     $donationData = $request->session()->get('donation');
-
-    //     // Ambil data donasi yang akan diupdate
-    //     $donation = Donation::findOrFail($id);
-
-    //     // Update data donasi
-    //     $donation->update([
-    //         'pesan' => $donationData['pesan'],
-    //     ]);
-
-    //     // Ambil data donasi uang yang akan diupdate
-    //     $moneyDonation = MoneyDonation::where('id_donasi', $donation->id)->first();
-
-    //     // Update data donasi uang
-    //     $moneyDonation->update([
-    //         'id_bank' => $donationData['metode_pembayaran'],
-    //         'nama_bank' => $methodPayment->metode_pembayaran, // Ganti dengan nama kolom yang sesuai
-    //         'nama_pemilik' => $donationData['nama_pemilik'],
-    //         'nomor_rekening' => $donationData['nomor_rekening'],
-    //         'nominal' => $donationData['nominal'],
-    //     ]);
-
-    //     // Hapus data donasi dari session
-    //     $request->session()->forget('donation');
-
-    //     // Redirect ke halaman index dengan pesan sukses
-    //     return redirect('/edit/donation/money')->with('success', 'Data Donasi Berhasil Diupdate');
-    // }
-
     public function update(Request $request, $id)
-{
-    // Validasi input form
+    {
 
-    // Ambil data donasi dari session
     $donationData = $request->session()->get('donation');
 
-    // Ambil data donasi yang akan diupdate
     // $id_donasi = $request->id_donasi;
     $donation = Donation::findOrFail($id);
 
-    // Update data donasi
     $donation->update([
         'pesan' => $donationData['pesan'],
     ]);
 
-    // Ambil data donasi uang yang akan diupdate
     $moneyDonation = MoneyDonation::where('id_donasi', $donation->id)->first();
 
-    // Update data donasi uang
     $moneyDonation->update([
         'id_bank' => $donationData['metode_pembayaran'],
         'nama_bank' => $donationData['tujuan_pembayaran'],
@@ -233,8 +193,6 @@ class DonationController extends Controller
     // Redirect ke halaman index dengan pesan sukses
     return redirect()->route('donations.index')->with('success', 'Data Donasi Berhasil Diupdate');
 }
-
-
 
     //edit item donation
     public function editItem()

@@ -163,7 +163,7 @@
                                 <!-- Status -->
                                 <div class="mt-4 w-full col-span-4 lg:col-span-2">
                                     <!-- Konten Tombol Status -->
-                                    @if ($campaign->status == 'Sedang Berjalan')
+                                    @if ($campaign->status == 'valid')
                                         <div class="flex items-center">
                                             <button class="text-white font-bold py-2 px-8 rounded-lg"
                                                 style="background-color: #42BB4E;">
