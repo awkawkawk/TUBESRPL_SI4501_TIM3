@@ -1,8 +1,6 @@
 <?php
 // app/Http/Controllers/CampaignController.php
 
-// app/Http/Controllers/CampaignController.php
-
 namespace App\Http\Controllers;
 
 use App\Models\Campaign;
@@ -10,6 +8,7 @@ use App\Models\Donation;
 use App\Models\Target;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class CampaignController extends Controller
 {
@@ -39,7 +38,7 @@ class CampaignController extends Controller
             'foto_campaign' => $photoPath,
             'deskripsi_campaign' => $request->description,
             'id_sekolah' => 1, // Assuming the user is authenticated as a school // auth()->user->id
-            'status' => 'perlu diverifikasi',
+            'status' => 'pending',
         ]);
 
         // Handle targets based on jenis_donasi
@@ -71,7 +70,7 @@ class CampaignController extends Controller
             }
         }
 
-        return redirect()->route('campaigns.index')->with('success', 'Campaign berhasil ditambahkan!');
+        return redirect()->route('campaign.riwayat')->with('success', 'Campaign berhasil ditambahkan!');
     }
 
     public function edit(Campaign $campaign)
@@ -86,8 +85,6 @@ class CampaignController extends Controller
             $photoPath = $request->file('photo')->store('campaign_photos', 'public');
             $campaign->foto_campaign = $photoPath;
         }
-
-        // return dd($request->jenis_barang);
 
         // Update campaign details
         $campaign->nama_campaign = $request->nama_campaign;
@@ -126,7 +123,7 @@ class CampaignController extends Controller
             }
         }
 
-        return redirect()->route('campaigns.index')->with('success', 'Campaign berhasil diperbarui!');
+        return redirect()->route('campaign.riwayat')->with('success', 'Campaign berhasil diperbarui!');
     }
 
 

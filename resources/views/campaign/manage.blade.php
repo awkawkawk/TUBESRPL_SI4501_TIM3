@@ -1,7 +1,5 @@
 @extends('layouts.master')
 
-@section('title', 'Tambah Campaign')
-
 @section('content')
 <div class="container mx-auto my-8 px-6 md:px-6">
     <div class="md:col-span-1">
@@ -32,8 +30,6 @@
                     <!-- Your content goes here -->
                     <div class="p-5 bg-white rounded-3xl w-full text-left min-h-[620px]">
                         <h3 class="font-bold text-xl block w-full">{{ $campaign->nama_campaign}}</h3>
-                        <p class="italic">Arara, Jawa Barat</p>
-
                         <p class="text-sm py-5">{{ $campaign->deskripsi_campaign }}</p>
                         <div class="w-full flex justify-between pb-2">
                             <span>Terkumpul</span>

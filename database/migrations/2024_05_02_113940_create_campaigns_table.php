@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('deskripsi_campaign');
             $table->string('status');
             $table->text('catatan_campaign')->nullable();
+            $table->enum('jenis_donasi');
             $table->integer('percentage_collected')->default(0);
             $table->timestamps();
         });

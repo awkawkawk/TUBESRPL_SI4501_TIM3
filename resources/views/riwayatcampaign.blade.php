@@ -163,7 +163,7 @@
                                 <!-- Status -->
                                 <div class="mt-4 w-full col-span-4 lg:col-span-2">
                                     <!-- Konten Tombol Status -->
-                                    @if ($campaign->status == 'Sedang Berjalan')
+                                    @if ($campaign->status == 'valid')
                                         <div class="flex items-center">
                                             <button class="text-white font-bold py-2 px-8 rounded-lg"
                                                 style="background-color: #42BB4E;">
@@ -214,10 +214,10 @@
                                                 class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-8 rounded-lg">
                                                 Tidak Lulus Verifikasi
                                             </button>
-                                            <button
+                                            <a href="{{ route('campaigns.edit', $campaign->id) }}"
                                                 class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-8 rounded-lg relative flex ms-auto">
                                                 Edit Campaign
-                                            </button>
+                                            </a>
                                         </div>
                                     @endif
                                 </div>
@@ -398,7 +398,7 @@
                                                 </span>
                                             </a>
                                         </div>
-                                    @elseif($campaign->status == 'Menunggu Verifikasi')
+                                    @elseif($campaign->status == 'pending')
                                         <div class="flex justify-center items-center">
                                             <button class="bg-primary text-white font-bold py-2 px-8 rounded-lg">
                                                 Menunggu Verifikasi
