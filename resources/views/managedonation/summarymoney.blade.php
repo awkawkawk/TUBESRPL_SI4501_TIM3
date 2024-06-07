@@ -99,7 +99,7 @@
                     @endif
                 </div>
 
-                <form method="POST" action="{{ route('donations.update') }}">
+                <form method="POST" action="{{ route('donations.update',  ['id' => session('formdonation')]) }}">
                     @method('PUT')
                     @csrf
                     <!-- Isi dengan elemen form lainnya seperti yang Anda perlukan -->

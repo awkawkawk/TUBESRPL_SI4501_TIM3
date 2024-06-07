@@ -24,7 +24,7 @@
         </div>
 
         @foreach($donation as $donations)
-        @if($donations->jasa_kirim == null)
+        @if($donations->jenis_donasi == 'uang')
 
         <div class="h-auto w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
             <div class="mb-4 grid grid-cols-8 gap-x-4 lg:gap-x-8" style="grid-template-columns: 0.1fr 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr">
@@ -116,11 +116,21 @@
                         </button>
                     </a>
 
-                    <button class="text-white font-bold py-2 px-2 rounded-lg mt-4 flex items-center justify-center" style="background-color: #f57171;">
-                        <svg class="h-6 w-6 text-stone-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>
-                            <line x1="4" y1="7" x2="20" y2="7" />  <line x1="10" y1="11" x2="10" y2="17" />  <line x1="14" y1="11" x2="14" y2="17" />  <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />  <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                        </svg>
-                    </button>
+                    <form action="{{ route('donations.destroy', ['id' => $donations->id]) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus donasi ini?');" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button class="text-white font-bold py-2 px-2 rounded-lg mt-4 flex items-center justify-center" style="background-color: #f57171;">
+                            <svg class="h-6 w-6 text-stone-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z"/>
+                                <line x1="4" y1="7" x2="20" y2="7" />
+                                <line x1="10" y1="11" x2="10" y2="17" />
+                                <line x1="14" y1="11" x2="14" y2="17" />
+                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                            </svg>
+                        </button>
+                    </form>
+
                 </div>
             </div>
         </div>

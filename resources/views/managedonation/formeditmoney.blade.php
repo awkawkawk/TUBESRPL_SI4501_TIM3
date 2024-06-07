@@ -21,11 +21,11 @@
                 <p class="h1 mt-2 mb-1 block text-xl font-semibold text-black" >{{ $selectedCampaign->nama_campaign }}</p> <!-- Nama Campaign Yang Dipilih -->
                 <p class="mb-2 text-s font-normal text-black dark:text-gray-400">{{ $selectedCampaign->school->nama_sekolah }}</p> <!-- Asal Sekolah -->
                 <hr>
-                <form method="POST" action="{{ route('donations.update', ['id' => $formdonation->id]) }}" style="margin: 0 auto;">
-                    @method('PUT')
+                <form method="POST" action="{{ route('donation.summary.edit') }}" style="margin: 0 auto;">
                     @csrf
                     <!-- Input-hidden -->
                     <input type="hidden" name="id_campaign" value="{{ $selectedCampaign->id }}">
+                    <input type="hidden" name="id_donasi" value="{{ $formdonation->id }}">
                     <!-- Input Nominal Donasi -->
                     <div class="mb-4 mt-6">
                         <label class="block font-medium text-sm text-gray-700" for="nominal">Nominal Donasi</label>

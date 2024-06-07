@@ -59,7 +59,7 @@ class DonationItemController extends Controller
 
     public function storeItems(Request $request)
     {
-        
+
         $donationData = $request->session()->get('item');
 
         // Simpan data donasi ke tabel Donasi
@@ -71,6 +71,7 @@ class DonationItemController extends Controller
             'status' => 'Proses Pengiriman',
             'jasa_kirim' => $donationData['jasa_kirim'],
             'nomor_resi' => $donationData['nomor_resi'],
+            'jenis_donasi' => 'barang',
         ]);
 
         // Simpan data barang donasi ke tabel ItemDonasi
@@ -87,6 +88,13 @@ class DonationItemController extends Controller
 
         // Redirect atau kirim response sesuai kebutuhan
         return redirect('/donation')->with('success', 'Terimakasih Donasinya Orang Baik');
+    }
+
+    //edit item
+    public function editItem()
+    {
+        $donation = Donation::with(['user', 'moneyDonations', 'donationItems'])->get();
+        return view('managedonation.edititem', compact('donation'));
     }
 
 }

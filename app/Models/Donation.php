@@ -18,6 +18,7 @@ class Donation extends Model
         'status',
         'jasa_kirim',
         'nomor_resi',
+        'jenis_donasi',
     ];
 
     // Definisikan relasi dengan model Campaign

@@ -86,10 +86,13 @@ Route::get('/edit/donation/money', [DonationController::class, 'editMoney'])->na
 Route::get('/edit/donation/money/{id}', [DonationController::class, 'showform_editMoney'])->name('moneyform.edit');
 Route::post('/edit/donation/money/summary', [DonationController::class, 'showSummaryEdit'])->name('donation.summary.edit');
 Route::put('/edit/donation/update/{id}', [DonationController::class, 'update'])->name('donations.update');
+Route::delete('/donation/delete/{id}', [DonationController::class, 'destroy'])->name('donations.destroy');
 
 
 
-Route::get('/edit/donation/itemDonation', [DonationController::class, 'editItem'])->name('donationItem.edit');
+
+
+Route::get('/edit/donation/itemDonation', [DonationItemController::class, 'editItem'])->name('donationItem.edit');
 
 // item donation
 Route::get('/donation/item/{id}', [DonationItemController::class, 'showFormItem'])->name('donations.form.items');
