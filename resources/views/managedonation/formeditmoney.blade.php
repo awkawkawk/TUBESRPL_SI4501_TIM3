@@ -54,7 +54,7 @@
                     <!-- Input Pesan -->
                     <div class="mb-4 mt-6">
                         <label class="block font-medium text-sm text-gray-700" for="pesan">Pesan (Opsional)</label>
-                        <textarea class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="pesan" name="pesan" rows="4" placeholder="{{ $formdonation->pesan }}" ></textarea>
+                        <textarea class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="pesan" name="pesan" rows="4" placeholder="{{ $formdonation->pesan }}" value="{{ $formdonation->pesan }}" ></textarea>
                     </div>
                     <!-- Checkbox Syarat dan Ketentuan -->
                     {{-- <div class="mb-4">

@@ -97,4 +97,100 @@ class DonationItemController extends Controller
         return view('managedonation.edititem', compact('donation'));
     }
 
+    public function showform_editItem($id)
+    {
+        $formdonation = Donation::with(['user', 'moneyDonations', 'donationItems'])->findOrFail($id);
+        $selectedCampaign = Campaign::findOrFail($id);
+        $namaSekolah = $selectedCampaign->school->nama_sekolah;
+        $targetDonasi = Target::where('id_campaign', $formdonation->id_campaign)->where('nama_barang', '!=', 'Uang')->get();
+        return view('managedonation.formedititem', compact('formdonation', 'selectedCampaign', 'namaSekolah', 'targetDonasi'));
+    }
+
+    // public function showSummaryEdit(Request $request){
+    //     // Validasi input form
+    //     $request->validate([
+    //         'nama_barang' => 'required|array',
+    //         'jumlah_barang' => 'required|array',
+    //         'jasa_kirim' => 'nullable|string',
+    //         'nomor_resi' => 'nullable|string',
+    //         'pesan' => 'nullable|string',
+    //     ]);
+
+    //     $waktu_donasi = now(); // Tanggal dan waktu donasi saat ini
+
+    //     // Ambil data campaign yang dipilih
+    //     $selectedCampaignId = $request->id_campaign;
+    //     $selectedCampaign = Campaign::findOrFail($selectedCampaignId);
+    //     $namaSekolah = $selectedCampaign->school->nama_sekolah;
+    //     $formdonation = Donation::findOrFail($request->$id);
+
+    //     // Simpan data donasi ke session
+    //     $request->session()->put('item.nama_barang', $request->nama_barang);
+    //     $request->session()->put('item.jumlah_barang', $request->jumlah_barang);
+    //     $request->session()->put('item.jasa_kirim', $request->jasa_kirim);
+    //     $request->session()->put('item.nomor_resi', $request->nomor_resi);
+    //     $request->session()->put('item.pesan', $request->pesan);
+    //     $request->session()->put('item.waktu_donasi', $waktu_donasi);
+    //     $request->session()->put('item.id_campaign', $id);
+    //     $request->session()->put('formdonation', $formdonation->id);
+
+
+    //     return view('managedonation.summaryItem', compact('selectedCampaign', 'namaSekolah', 'formdonation', 'waktu_donasi'));
+    // }
+
+    public function updateItem(Request $request, $id)
+    {
+    // Validasi input form
+    $request->validate([
+        'nama_barang.*' => 'required',
+        'jumlah_barang.*' => 'required|numeric',
+        'jasa_kirim' => 'nullable|required',
+        'nomor_resi' => 'nullable|required',
+        'pesan' => 'nullable',
+    ]);
+
+    $formdonation = Donation::findOrFail($id);
+    $formdonation->jasa_kirim = $request->jasa_kirim;
+    $formdonation->nomor_resi = $request->nomor_resi;
+    $formdonation->pesan = $request->pesan;
+    $formdonation->save();
+
+    // Hapus item donasi lama
+    $formdonation->donationItems()->delete();
+
+    // Buat item donasi baru
+    for ($i = 0; $i < count($request->nama_barang); $i++) {
+        $donationItem = new ItemDonation();
+        $donationItem->id_donasi = $formdonation->id;
+        $donationItem->nama_barang = $request->nama_barang[$i];
+        $donationItem->jumlah_barang = $request->jumlah_barang[$i];
+        $donationItem->save();
+    }
+
+    $selectedCampaignId = $request->id_campaign;
+    $selectedCampaign = Campaign::findOrFail($selectedCampaignId);
+
+    $request->session()->put('donation', $request->all());
+    $request->session()->put('campaign_id', $selectedCampaignId);
+    $request->session()->put('donation_id', $id);
+    $request->session()->put('formdonation', $formdonation->id);
+
+    return redirect('/edit/donation/item');
+
+    }
+
+
+    public function destroy($id)
+    {
+
+        $donation = Donation::findOrFail($id);
+
+        ItemDonation::where('id_donasi', $id)->delete();
+
+        $donation->delete();
+
+        return redirect()->route('donationItem.edit', ['id' => $id])->with('success', 'Donasi berhasil dihapus');
+    }
+
+
 }

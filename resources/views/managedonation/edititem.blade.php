@@ -24,13 +24,13 @@
         </div>
 
         @foreach($donation as $donations)
-        @if($donations->jasa_kirim != null)
+        @if($donations->jenis_donasi == 'barang')
         <div class="h-auto w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">
             <div class="mb-4 grid grid-cols-8 gap-x-4 lg:gap-x-8" style="grid-template-columns: 0.1fr 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr">
                 <!-- Profil Donatur -->
 
                 <div>
-                    <p class="h1 mb-1 ml-8 block text-sm font-semibold text-black mt-12">{{ $loop->iteration }}.</p>
+                    <p class="h1 mb-1 ml-8 block text-sm font-semibold text-black mt-12">{{$loop->index + 1}}.</p>
                 </div>
 
                 <div class="flex justify-center items-center mt-2">
@@ -107,17 +107,28 @@
                     <p class="text-xs font-normal text-black dark:text-gray-400">Update : {{ $donations->updated_at->format('d F Y') }}</p>
                 </div>
                 <div>
-                    <button class="text-white font-bold py-2 px-2 rounded-lg mt-4 flex items-center justify-center" style="background-color: #b3b53c;">
-                        <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
-                        </svg>
-                    </button>
+                    <a href="{{ route('itemform.edit', ['id' => $donations->id]) }}">
+                        <button class="text-white font-bold py-2 px-2 rounded-lg mt-4 flex items-center justify-center" style="background-color: #b3b53c;">
+                            <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                            </svg>
+                        </button>
+                    </a>
 
-                    <button class="text-white font-bold py-2 px-2 rounded-lg mt-4 flex items-center justify-center" style="background-color: #f57171;">
-                        <svg class="h-6 w-6 text-stone-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>
-                            <line x1="4" y1="7" x2="20" y2="7" />  <line x1="10" y1="11" x2="10" y2="17" />  <line x1="14" y1="11" x2="14" y2="17" />  <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />  <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
-                        </svg>
-                    </button>
+                    <form action="{{ route('donations.item.destroy', ['id' => $donations->id]) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus donasi ini?');" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button class="text-white font-bold py-2 px-2 rounded-lg mt-4 flex items-center justify-center" style="background-color: #f57171;">
+                            <svg class="h-6 w-6 text-stone-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z"/>
+                                <line x1="4" y1="7" x2="20" y2="7" />
+                                <line x1="10" y1="11" x2="10" y2="17" />
+                                <line x1="14" y1="11" x2="14" y2="17" />
+                                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                            </svg>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

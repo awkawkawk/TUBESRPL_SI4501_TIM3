@@ -31,7 +31,7 @@
                 <!-- Profil Donatur -->
 
                 <div>
-                    <p class="h1 mb-1 ml-8 block text-sm font-semibold text-black mt-12">{{ $loop->iteration }}.</p>
+                    <p class="h1 mb-1 ml-8 block text-sm font-semibold text-black mt-12">{{$loop->index + 1}}.</p>
                 </div>
 
                 <div class="flex justify-center items-center mt-2">
