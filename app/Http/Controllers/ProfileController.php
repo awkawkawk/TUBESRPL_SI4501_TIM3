@@ -28,11 +28,9 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        // $request->user()->fill($request->validated());
-        // dd($request->hasFile('edit-photo'));
         if ($request->hasFile('edit-photo')) {
             $image = $request->file('edit-photo');
-            // dd($request);
+           
 
             // Baca isi gambar dan konversi ke base64
             // dd($image);

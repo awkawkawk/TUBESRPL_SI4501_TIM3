@@ -54,7 +54,15 @@ class DonaturController extends Controller
 
         $user->save();
 
-        return redirect()->route('donatur.editdonatur', ['id' => $user->id]);
+        return redirect()->route('admin.donatur.index')->with('success', 'user successfully updated');;
+    }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('admin.donatur.index')->with('success', 'user successfully deleted');
     }
 
     

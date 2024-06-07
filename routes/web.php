@@ -47,16 +47,14 @@ Route::get('/riwayat', function () {
     return view('riwayatcampaign');
 });
 
-// manage donatur
-Route::get('/edit/donatur', [DonaturController::class, 'index'])->name('admin.donatur.index');
-Route::get('/edit/donatur/{id}', [DonaturController::class, 'edit'])->name('admin.donatur.edit');
 
 // Rute untuk menampilkan formulir edit
 Route::get('edit/donatur/{id}', [DonaturController::class, 'edit'])->name('admin.donatur.edit');
-Route::get('/donatur', [DonaturController::class, 'index'])->name('donatur.editdonatur');
+Route::get('/donatur', [DonaturController::class, 'index'])->name('admin.donatur.index');
 
 // Rute untuk memperbarui data donatur
 Route::put('edit/donatur/{id}', [DonaturController::class, 'update'])->name('admin.donatur.update');
+Route::get('/donatur/{id}', [DonaturController::class, 'destroy'])->name('admin.donatur.destroy');
 
 
 Route::get('/riwayat/donatur', function () {
