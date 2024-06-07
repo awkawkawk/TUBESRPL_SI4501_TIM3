@@ -11,6 +11,8 @@ use App\Models\Target;
 use App\Models\ItemDonation;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use App\Models\RequestPencairan;
+
 
 
 class DonationController extends Controller
@@ -76,15 +78,12 @@ class DonationController extends Controller
 
     public function store(Request $request)
     {
-
-        // Ambil data donasi dari session
         $donationData = $request->session()->get('donation');
 
-        // Ambil nama bank dari tabel method_payments
         $methodPayment = MethodPayment::findOrFail($donationData['metode_pembayaran']);
-        $namaBank = $methodPayment->metode_pembayaran; // Ganti dengan nama kolom yang sesuai
+        $namaBank = $methodPayment->metode_pembayaran;
 
-        // Simpan data donasi ke database
+
         $donation = Donation::create([
             'id_user' => auth()->id(),
             'id_campaign' => $donationData['id_campaign'],
@@ -93,8 +92,7 @@ class DonationController extends Controller
             'status' => 'Menunggu Verifikasi',
         ]);
 
-        // Simpan data donasi uang ke database
-        MoneyDonation::create([
+        $moneyDonation = MoneyDonation::create([
             'id_donasi' => $donation->id,
             'id_bank' => $donationData['metode_pembayaran'],
             'nama_bank' => $namaBank,
@@ -103,12 +101,29 @@ class DonationController extends Controller
             'nominal' => $donationData['nominal'],
         ]);
 
-        // Hapus data donasi dari session
+        $idCampaign = $moneyDonation->donation->id_campaign;
+
+        $existingRequestPencairan = RequestPencairan::whereHas('moneyDonation.donation', function ($query) use ($idCampaign) {
+            $query->where('id_campaign', $idCampaign);
+        })->first();
+
+        if ($existingRequestPencairan) {
+            $existingRequestPencairan->nominal_terkumpul += $donationData['nominal'];
+            $existingRequestPencairan->save();
+        } else {
+            RequestPencairan::create([
+                'id_money_donation' => $moneyDonation->id,
+                'nominal_terkumpul' => $donationData['nominal'],
+                'nominal_sisa' => 0,
+                'status' => 'Pending',
+            ]);
+        }
+
+
         $request->session()->forget('donation');
 
-        // Redirect ke halaman index dengan pesan sukses
-        return redirect('/donation')->with('success', 'Terimakasih Donasinya Orang Baik');
 
+        return redirect('/donation')->with('success', 'Terimakasih Donasinya Orang Baik');
     }
 
     //
@@ -129,7 +144,7 @@ class DonationController extends Controller
 
     public function showSummaryEdit(Request $request)
     {
-        // Validasi input form
+
         $request->validate([
             'nominal' => 'required|numeric',
             'metode_pembayaran' => 'required',
@@ -165,6 +180,7 @@ class DonationController extends Controller
         return view('managedonation.summarymoney', compact('nama_bank','tujuan_pembayaran', 'nomor_rekening', 'nomor_rek', 'pentransfer', 'nominal', 'selectedCampaign', 'metode_pembayaran', 'nama_pemilik', 'waktu_donasi', ));
     }
 
+
     public function update(Request $request, $id)
     {
 
@@ -186,15 +202,10 @@ class DonationController extends Controller
         'nomor_rekening' => $donationData['nomor_rekening'],
         'nominal' => $donationData['nominal'],
     ]);
-
-    // Hapus data donasi dari session
-    $request->session()->forget('donation');
-
-    // Redirect ke halaman index dengan pesan sukses
-    return redirect()->route('donations.index')->with('success', 'Data Donasi Berhasil Diupdate');
 }
 
-    //edit item donation
+
+    //edit item
     public function editItem()
     {
         $donation = Donation::with(['user', 'moneyDonations', 'donationItems'])->get();

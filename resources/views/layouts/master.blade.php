@@ -11,6 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/icofont/icofont.min.css') }}">
+
 </head>
 
 <body>
@@ -200,7 +202,7 @@
                     </a>
                 </li>
 
-                
+
 
 
             </ul>
@@ -216,6 +218,12 @@
 
 
     <script src="{{ asset('./node_modules/flowbite/dist/flowbite.js') }}"></script>
+    <script src="https://apexcharts.com/samples/assets/irregular-data-series.js"></script>
+    <script src="https://apexcharts.com/samples/assets/ohlc.js"></script>
+    <script src="{{ asset('js/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('js/apex.init.js') }}"></script>
+    @yield('pagescript')
+
 </body>
 
 </html>

@@ -11,6 +11,9 @@ use App\Http\Controllers\SchoolVerificationController;
 use App\Http\Controllers\RiwayatCampaignController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DonationItemController;
+use App\Http\Controllers\RequestPencairanController;
+use App\Http\Controllers\DashboardController;
+
 
 Route::get('/', function () {
     return view('index');
@@ -29,6 +32,7 @@ Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -81,7 +85,7 @@ Route::post('/donation/store', [DonationController::class, 'store'])->name('dona
 Route::get('/edit/donation/money', [DonationController::class, 'editMoney'])->name('donationMoney.edit');
 Route::get('/edit/donation/money/{id}', [DonationController::class, 'showform_editMoney'])->name('moneyform.edit');
 Route::post('/edit/donation/money/summary', [DonationController::class, 'showSummaryEdit'])->name('donation.summary.edit');
-Route::put('/edit/donation/store', [DonationController::class, 'update'])->name('donations.update');
+Route::put('/edit/donation/update/{id}', [DonationController::class, 'update'])->name('donations.update');
 
 
 
@@ -99,6 +103,11 @@ Route::get('/verifikasi-sekolah', [SchoolVerificationController::class, 'showVer
 Route::post('/verifikasi-sekolah/{id}', [SchoolVerificationController::class, 'respondVerification'])->name('response.verification');
 
 Route::get('/campaign/detail/{id}', [DetailsCampaignController::class, 'showDetails'])->name('show.details');
+
+Route::get('/pencairan', [RequestPencairanController::class, 'index'])->name('list.pencairan');
+Route::get('/pencairan/{RequestPencairan}/request', [RequestPencairanController::class, 'request'])->name('pencairan.request');
+Route::put('/pencairan/{RequestPencairan}', [RequestPencairanController::class, 'create'])->name('pencairan.create');
+Route::get('/pencairan/history', [RequestPencairanController::class, 'history'])->name('pencairan.history');
 
 require __DIR__.'/auth.php';
 
