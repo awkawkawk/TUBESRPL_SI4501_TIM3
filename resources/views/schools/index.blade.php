@@ -52,7 +52,7 @@
 
         @foreach($schools as $school)
             <div class="h-auto w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800 mb-4">
-                <div class="mb-4 grid grid-cols-7 gap-x-4 lg:gap-x-8" style="grid-template-columns: 0.1fr 0.3fr 1fr 1fr 1fr 1fr 0.2fr">
+                <div class="mb-4 grid grid-cols-8 gap-x-4 lg:gap-x-8" style="grid-template-columns: 0.1fr 0.3fr 1fr 1fr 1fr 1fr 1fr 0.4fr">
                     <!-- Profil Sekolah -->
                     <div>
                         <p class="h1 mb-1 ml-8 block text-sm font-semibold text-black mt-12">{{ $loop->iteration }}.</p>
@@ -68,7 +68,12 @@
                     <div>
                         <p class="h1 mb-1 block text-sm font-semibold text-black mt-6">Nama Sekolah</p>
                         <p class="h1 mb-1 block text-l font-semibold text-black mt-1">{{ $school->nama_sekolah }}</p>
-                        <p class="text-sm font-normal text-black dark:text-gray-400">{{ $school->email_sekolah }}</p>
+                    </div>
+
+                    <!-- Email Sekolah -->
+                    <div>
+                        <p class="h1 mb-1 block text-sm font-semibold text-black mt-6">Email Sekolah</p>
+                        <p class="text-sm font-normal text-black dark:text-gray-400 mt-1">{{ $school->email_sekolah }}</p>
                     </div>
 
                     <!-- Alamat Sekolah -->
@@ -93,7 +98,7 @@
 
                     <!-- Actions -->
                     <div class="flex flex-col space-y-2 mt-6">
-                        <div class="flex space-x-2">
+                        <div class="flex space-x-4">
                             <a href="{{ route('schools.edit', $school->id) }}" class="text-white font-bold py-2 px-2 rounded-lg bg-yellow-500 flex items-center justify-center">
                                 <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
@@ -111,9 +116,11 @@
                             </form>
                         </div>
                     </div>
+
                 </div>
             </div>
         @endforeach
+
     </div>
 </div>
 

@@ -12,6 +12,7 @@ use App\Http\Controllers\RiwayatCampaignController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\DonationItemController;
 use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\UserController;
 
 
 
@@ -98,3 +99,5 @@ Route::get('/campaign/detail/{id}', [DetailsCampaignController::class, 'showDeta
 require __DIR__.'/auth.php';
 
 Route::resource('schools', SchoolController::class);
+
+
