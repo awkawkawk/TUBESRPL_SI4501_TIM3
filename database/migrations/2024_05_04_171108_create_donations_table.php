@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('id_campaign')->constrained('campaigns')->onDelete('cascade');
             $table->text('pesan')->nullable();
             $table->boolean('syarat_ketentuan')->default(false);
-            $table->string('status');
+            // $table->string('status');
             $table->string('jasa_kirim')->nullable();
             $table->string('nomor_resi')->nullable();
             $table->string('jenis_donasi')->nullable();

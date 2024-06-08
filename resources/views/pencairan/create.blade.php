@@ -38,7 +38,7 @@
                     <p class="h1 mt-2 mb-1 block text-xl font-semibold text-black">
                     </p> <!-- Nama Campaign Yang Dipilih -->
                     <p class="mb-2 text-s font-normal text-black dark:text-gray-400">
-                        Asal Sekolah</p> <!-- Asal Sekolah -->
+                       Form Pencairan Dana</p> <!-- Asal Sekolah -->
 
                     <hr>
                     <form method="POST" action="{{ route('pencairan.create', $RequestPencairan->id) }}" method="POST"

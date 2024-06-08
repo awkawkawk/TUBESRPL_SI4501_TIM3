@@ -41,7 +41,7 @@
                 @foreach ($campaigns as $campaign)
                 <div class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow">
                     <a href="{{ $link ?? '#' }}">
-                        <img class="h-64 rounded-t-lg object-cover" src="{{  asset('img/campaigns/' . $campaign->foto)  }}"
+                        <img class="h-64 rounded-t-lg object-cover" src="{{ $campaign->foto_campaign }}"
                             alt="{{ $altText ?? '' }}" />
                     </a>
                     <div class="p-5">
@@ -66,7 +66,7 @@
 
                         <!-- Tombol "Donasi Barang" pada setiap card campaign -->
                         <div class="flex justify-center items-center mt-4">
-                            <a href="{{ route('donations.form.items', ['id' => $campaign->id]) }}" class="bg-primary text-white font-bold py-2 px-8 rounded-lg">
+                            <a href="{{ route('donations.form.items', ['id' => $campaign->id]) }}" class="bg-primary text-white font-bold py-2 px-6 rounded-lg">
                             Donasi Barang
                             </a>
                         </div>

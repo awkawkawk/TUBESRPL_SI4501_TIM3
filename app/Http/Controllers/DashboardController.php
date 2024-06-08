@@ -31,7 +31,7 @@ class DashboardController extends Controller
 
 
         $campaignChartData =  [
-            $campaign->where('status', 'berlangsung')->count(),
+            $campaign->where('status', 'valid')->count(),
             $campaign->where('status', 'pending')->count(),
             $campaign->where('status', 'rejected')->count(),
         ];
@@ -43,7 +43,7 @@ class DashboardController extends Controller
 
 
         $MoneyChartData =  [
-            $donasi->where('status', 'verified')->count(),
+            $donasi->where('status', 'valid')->count(),
             $donasi->where('status', 'pending')->count(),
             $donasi->where('status', 'rejected')->count(),
         ];

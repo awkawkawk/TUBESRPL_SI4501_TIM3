@@ -178,6 +178,16 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('campaigns.create') }}" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
+                        <svg class="h-4 w-4 text-zinc-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0
+                            002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"/>
+                          </svg>
+                        <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Tambah Campaign</span>
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('campaign.riwayat') }}" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
                         <svg class="h-4 w-4 text-zinc-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
                         stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -216,7 +226,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('dashboard') }}" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
+                    <a href="{{ route('dashboard_edufund') }}" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
                           <svg class="h-4 w-4 text-zinc-500" fill="none"  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M10 3.2a9 9 0 1 0 10.8 10.8a1 1 0 0 0 -1 -1h-3.8a4.1 4.1 0 1 1 -5 -5v-4a.9 .9 0 0 0 -1 -.8" />
                             <path d="M15 3.5a9 9 0 0 1 5.5 5.5h-4.5a9 9 0 0 0 -1 -1v-4.5" /></svg>

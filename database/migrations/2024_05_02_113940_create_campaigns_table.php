@@ -21,7 +21,7 @@ return new class extends Migration
 //             $table->enum('jenis_donasi', ['uang', 'barang', 'uang_barang']);
 //             $table->string('status')->nullable();
             $table->text('catatan_campaign')->nullable();
-            $table->enum('jenis_donasi');
+            $table->enum('jenis_donasi', ['uang', 'barang', 'uang_barang']);
             $table->integer('percentage_collected')->default(0);
             $table->timestamps();
         });

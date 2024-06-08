@@ -152,7 +152,7 @@ class CampaignController extends Controller
         $donations = Donation::all();;
         return view('campaign.history', compact('donations'));
     }
-    
+
     // public function store(Request $request)
     // {
     //     $request->validate([

@@ -69,7 +69,7 @@ class DonationItemController extends Controller
             'id_campaign' => $donationData['id_campaign'],
             'pesan' => $donationData['pesan'],
             'syarat_ketentuan' => $request->has('syarat_ketentuan') ? true : false,
-            'status' => 'Proses Pengiriman',
+            'status' => 'dikirim',
             'jasa_kirim' => $donationData['jasa_kirim'],
             'nomor_resi' => $donationData['nomor_resi'],
             'jenis_donasi' => 'barang',
@@ -81,6 +81,7 @@ class DonationItemController extends Controller
                 'id_donasi' => $donation->id,
                 'nama_barang' => $namaBarang,
                 'jumlah_barang' => $donationData['jumlah_barang'][$index],
+                 'status' => 'dikirim',
             ]);
         }
 

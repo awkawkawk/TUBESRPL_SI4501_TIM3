@@ -89,7 +89,7 @@ class DonationController extends Controller
             'id_campaign' => $donationData['id_campaign'],
             'pesan' => $donationData['pesan'],
             'syarat_ketentuan' => $request->has('syarat_ketentuan') ? true : false,
-            'status' => 'Menunggu Verifikasi',
+            'status' => 'pending',
             'jenis_donasi' => 'uang',
         ]);
 
@@ -100,6 +100,7 @@ class DonationController extends Controller
             'nama_pemilik' => $donationData['nama_pemilik'],
             'nomor_rekening' => $donationData['nomor_rekening'],
             'nominal' => $donationData['nominal'],
+            'status' => 'pending',
         ]);
 
         $idCampaign = $moneyDonation->donation->id_campaign;

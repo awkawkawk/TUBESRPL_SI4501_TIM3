@@ -44,7 +44,7 @@
                                         <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">
                                             {{ $campaign->deskripsi_campaign }}</p>
                                         <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Dibuat Tanggal :
-                                            {{ $campaign->tanggal_dibuat }}</p>
+                                            {{ $campaign->created_at }}</p>
                                         <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">
                                             @if ($campaign->status == 'Selesai')
                                                 Selesai Tanggal : {{ $campaign->tanggal_selesai }}
@@ -182,7 +182,7 @@
                                                 </span> --}}
                                             </a>
                                         </div>
-                                    @elseif($campaign->status == 'Selesai')
+                                    @elseif($campaign->status == 'selesai')
                                         <div class="flex justify-center items-center">
                                             <button
                                                 class="bg-zinc-500 hover:bg-zinc-600 text-white font-bold py-2 px-8 rounded-lg">
@@ -202,7 +202,7 @@
                                                 </span> --}}
                                             </a>
                                         </div>
-                                    @elseif($campaign->status == 'Menunggu Verifikasi')
+                                    @elseif($campaign->status == 'pending')
                                         <div class="flex">
                                             <button class="bg-primary text-white font-bold py-2 px-8 rounded-lg">
                                                 Menunggu Verifikasi

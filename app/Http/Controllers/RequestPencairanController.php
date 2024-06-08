@@ -16,14 +16,13 @@ class RequestPencairanController extends Controller
 {
     public function index()
     {
-       $user = Auth::user();
-       $donasi = MoneyDonation::all();
-       $request = RequestPencairan::all();
-    //    $requests = RequestPencairan::where('id_sekolah', $user->id)->get();
-    //    $campaigns = Campaign::where('id_sekolah', $user->id)->get();
+        $user=Auth::user();
+        $school = $user->school;
 
-    return view('pencairan.index', compact('request', 'donasi'));
-    }
+        $request = RequestPencairan::whereHas('moneyDonation.donation.campaign', function ($query) use ($school) {
+            $query->where('id_sekolah', $school->id);
+        })->get();
+    return view('pencairan.index', compact('request', 'school'));}
 
 
     public function request(RequestPencairan $RequestPencairan)
