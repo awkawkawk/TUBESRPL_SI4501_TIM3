@@ -16,7 +16,7 @@ use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
+    Route::post('register', [RegisteredUserController::class, 'store'])->name('register.post');
 
     Route::get('/register-school', [SchoolVerificationController::class, 'index'])->name('register.school.form');
 
