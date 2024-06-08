@@ -50,9 +50,9 @@ Route::post('/verifikasi-campaign/{id}', [CampaignVerificationController::class,
 
 Route::get('/search', [SearchController::class, 'search'])->name('search.result');
 
-Route::get('/managedonation/item', function () {
-    return view('managedonation/edititem');
-});
+// Route::get('/managedonation/item', function () {
+//     return view('managedonation/edititem');
+// });
 
 Route::get('/verifikasi-sekolah', [App\Http\Controllers\SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
 

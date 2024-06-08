@@ -10,14 +10,17 @@ use App\Models\MoneyDonation;
 use App\Models\TahapPencairan;
 use App\Models\RequestPencairan;
 use App\Models\Histories;
+use Illuminate\Support\Facades\Auth;
 
 class RequestPencairanController extends Controller
 {
     public function index()
     {
-
+       $user = Auth::user();
        $donasi = MoneyDonation::all();
        $request = RequestPencairan::all();
+    //    $requests = RequestPencairan::where('id_sekolah', $user->id)->get();
+    //    $campaigns = Campaign::where('id_sekolah', $user->id)->get();
 
     return view('pencairan.index', compact('request', 'donasi'));
     }
@@ -29,12 +32,13 @@ class RequestPencairanController extends Controller
         $sisanominal = $RequestPencairan->nominal_sisa;
         $tahap1 = $totalNominal * 0.3;
         $tahap2 = $totalNominal * 0.4;
+        $tahap3 = $totalNominal * 0.3;
 
-        if ($sisanominal == 0) {
-            $tahap3 = $totalNominal;
-        } else {
-            $tahap3 = $sisanominal;
-        }
+        // if ($sisanominal == 0) {
+        //     $tahap3 = $totalNominal;
+        // } else {
+        //     $tahap3 = $sisanominal;
+        // }
 
         $options = [];
 
@@ -68,17 +72,17 @@ class RequestPencairanController extends Controller
         $sisanominal = $requestPencairan->nominal_sisa;
         $tahap1 = $totalNominal * 0.3;
         $tahap2 = $totalNominal * 0.4;
-        $tahap3 = $sisanominal;
+        $tahap3 = $totalNominal * 0.3;
 
         switch ($selectedTahap) {
             case 'Tahap 1':
                 $requestPencairan->nominal_sisa = $totalNominal - $tahap1;
                 break;
             case 'Tahap 2':
-                $requestPencairan->nominal_sisa = $totalNominal - $tahap2;
+                $requestPencairan->nominal_sisa = $totalNominal - $tahap2 - $tahap1;
                 break;
             case 'Tahap 3':
-                $requestPencairan->nominal_sisa = 0;
+                $requestPencairan->nominal_sisa = $totalNominal - $tahap3 - $tahap2 - $tahap3;
                 break;
             default:
                 return redirect()->back()->with('error', 'Pilihan tahap tidak valid.');

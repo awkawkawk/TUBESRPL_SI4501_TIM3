@@ -12,6 +12,7 @@ use App\Models\MoneyDonation;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class DonationItemController extends Controller
 {
@@ -106,41 +107,10 @@ class DonationItemController extends Controller
         return view('managedonation.formedititem', compact('formdonation', 'selectedCampaign', 'namaSekolah', 'targetDonasi'));
     }
 
-    // public function showSummaryEdit(Request $request){
-    //     // Validasi input form
-    //     $request->validate([
-    //         'nama_barang' => 'required|array',
-    //         'jumlah_barang' => 'required|array',
-    //         'jasa_kirim' => 'nullable|string',
-    //         'nomor_resi' => 'nullable|string',
-    //         'pesan' => 'nullable|string',
-    //     ]);
-
-    //     $waktu_donasi = now(); // Tanggal dan waktu donasi saat ini
-
-    //     // Ambil data campaign yang dipilih
-    //     $selectedCampaignId = $request->id_campaign;
-    //     $selectedCampaign = Campaign::findOrFail($selectedCampaignId);
-    //     $namaSekolah = $selectedCampaign->school->nama_sekolah;
-    //     $formdonation = Donation::findOrFail($request->$id);
-
-    //     // Simpan data donasi ke session
-    //     $request->session()->put('item.nama_barang', $request->nama_barang);
-    //     $request->session()->put('item.jumlah_barang', $request->jumlah_barang);
-    //     $request->session()->put('item.jasa_kirim', $request->jasa_kirim);
-    //     $request->session()->put('item.nomor_resi', $request->nomor_resi);
-    //     $request->session()->put('item.pesan', $request->pesan);
-    //     $request->session()->put('item.waktu_donasi', $waktu_donasi);
-    //     $request->session()->put('item.id_campaign', $id);
-    //     $request->session()->put('formdonation', $formdonation->id);
-
-
-    //     return view('managedonation.summaryItem', compact('selectedCampaign', 'namaSekolah', 'formdonation', 'waktu_donasi'));
-    // }
-
     public function updateItem(Request $request, $id)
     {
-    // Validasi input form
+
+    Log::info('updateItem method called');
     $request->validate([
         'nama_barang.*' => 'required',
         'jumlah_barang.*' => 'required|numeric',
@@ -170,13 +140,15 @@ class DonationItemController extends Controller
     $selectedCampaignId = $request->id_campaign;
     $selectedCampaign = Campaign::findOrFail($selectedCampaignId);
 
-    $request->session()->put('donation', $request->all());
-    $request->session()->put('campaign_id', $selectedCampaignId);
-    $request->session()->put('donation_id', $id);
-    $request->session()->put('formdonation', $formdonation->id);
+    // $request->session()->put('donation', $request->all());
+    // $request->session()->put('campaign_id', $selectedCampaignId);
+    // $request->session()->put('donation_id', $id);
+    // $request->session()->put('formdonation', $formdonation->id);
 
-    return redirect('/edit/donation/item');
+    // return redirect()->route('donationItem.edit');
 
+    // return redirect()->route('donationItem.edit')->with('success', 'Donasi berhasil di edit');
+    return view('managedonation.edititem');
     }
 
 

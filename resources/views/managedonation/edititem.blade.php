@@ -19,8 +19,8 @@
 
     <div class="col-span-2 h-auto">
         <div class="flex space-x-4">
-            <p class="h1 mt-2 ml-2 mb-4 block text-l font-normal text-black">Donasi Uang</p>
-            <p class="h1 mt-2 ml-4 mb-4 block text-l font-semibold text-black">Donasi Barang</p>
+            <a href="{{ route('donationMoney.edit') }}" class="h1 mt-2 ml-2 mb-4 block text-l font-normal text-black">Donasi Uang</a>
+            <a href="{{ route('donationItem.edit') }}" class="h1 mt-2 ml-2 mb-4 block text-l font-semibold text-black">Donasi Barang</a>
         </div>
 
         @foreach($donation as $donations)
@@ -30,7 +30,8 @@
                 <!-- Profil Donatur -->
 
                 <div>
-                    <p class="h1 mb-1 ml-8 block text-sm font-semibold text-black mt-12">{{$loop->index + 1}}.</p>
+                    <p class="h1 mb-1 ml-8 block text-sm font-semibold text-black mt-12">ID</p>
+                    <p class="h1 mb-1 ml-8 block text-sm font-semibold text-black mt-1">{{$donations->id}}</p>
                 </div>
 
                 <div class="flex justify-center items-center mt-2">

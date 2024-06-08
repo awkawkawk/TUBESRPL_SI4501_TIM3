@@ -21,6 +21,9 @@ class DashboardController extends Controller
        $metode = MethodPayment::all();
        $schoolCount = school::count();
        $totalnominal = MoneyDonation::sum('nominal');
+       $totalsaldo = RequestPencairan::sum('nominal_terkumpul');
+       $totalrequest = RequestPencairan::sum('nominal_sisa');
+       $totalcair = $totalsaldo - $totalrequest;
 
 
     // Chart graph
@@ -80,6 +83,6 @@ class DashboardController extends Controller
          })->toArray();
 
 
-    return view('dashboard', compact('table','userChartLabels', 'userBarChart', 'donasiLineChart','donasiChartLabels', 'schoolCount','totalnominal', 'ItemChartLabel', 'ItemChartData','MoneyChartLabel' ,'MoneyChartData' ,'campaignChartLabel', 'campaignChartData', 'donasi', 'metode', 'campaign'));
+    return view('dashboard', compact('totalcair','table','userChartLabels', 'userBarChart', 'donasiLineChart','donasiChartLabels', 'schoolCount','totalnominal', 'ItemChartLabel', 'ItemChartData','MoneyChartLabel' ,'MoneyChartData' ,'campaignChartLabel', 'campaignChartData', 'donasi', 'metode', 'campaign'));
     }
 }

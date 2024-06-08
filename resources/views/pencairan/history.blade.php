@@ -54,7 +54,7 @@
                                         <td>{{ optional($m->TahapPencairan)->name }}</td>
                                         <td>{{ optional($m->MethodPayment)->metode_pembayaran }}</td>
                                         <td>{{ $m->nomor_rekening }}</td>
-                                        <td>{{ $m->nominal_pencairan }}</td>
+                                        <td>Rp. {{ number_format($m->nominal_pencairan, 0, ',', '.') }}</td>
                                         <td>
                                             @unless ($m->pendukung === null)
                                                 <img src="{{ asset('storage/cover_images/' . $m->pendukung) }}"

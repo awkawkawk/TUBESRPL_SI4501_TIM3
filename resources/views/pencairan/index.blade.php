@@ -1,44 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    {{-- <div class="flex flex-col">
-        <div class="flex flex-col">
-            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                    <div class="overflow-hidden">
-                        <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
-                            <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
-                                <tr>
-                                    <th scope="col" class="px-6 py-4">#</th>
-                                    <th scope="col" class="px-6 py-4">Nama Campaign</th>
-                                    <th scope="col" class="px-6 py-4">Dana Total</th>
-                                    <th scope="col" class="px-6 py-4">Dana Sisa</th>
-                                    <th scope="col" class="px-6 py-4">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($donasi as $d)
-                                    <tr class="border-b border-neutral-200 dark:border-white/10">
-                                        <td class="whitespace-nowrap px-6 py-4 font-medium">1</td>
-                                        <td class="whitespace-nowrap px-6 py-4">{{ $d->id }}</td>
-                                        <td class="whitespace-nowrap px-6 py-4">
-                                            {{ $d->Donation->Campaign->nama_campaign }}</td>
-                                        <td class="whitespace-nowrap px-6 py-4">{{ $d->nominal }}</td>
-                                        <td class="whitespace-nowrap px-6 py-4"><a
-                                                href="{{ route('pencairan.request', $d->id) }}">create</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> --}}
-
     <div class="w-full">
-        {{-- //card// --}}
         @foreach ($request as $d)
             <div class="flex mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 <div class="flex-1 flex justify-center items-center">
@@ -50,18 +13,23 @@
                             style="background-image: cover">
                     @endunless
                 </div>
-                <div class="flex-1 flex flex-col justify-center items-center">
+                <div class="flex-1 flex flex-col justify-center ml-2">
+                    <h1>Nama Campaign</h1>
                     <h1>{{ $d->MoneyDonation->Donation->Campaign->nama_campaign }}</h1>
-                    <h3>Area Jawa Barat</h3>
-                    <h3>22-2-2024</h3>
                 </div>
                 <div class="flex-1 flex flex-col justify-center items-center">
                     <h3>Donasi Terkumpul</h3>
-                    <h3>Rp. {{ $d->nominal_terkumpul }}</h3>
+                    <h3>Rp.  {{ number_format($d->nominal_terkumpul, 0, ',', '.') }}</h3>
                 </div>
                 <div class="flex-1 flex flex-col justify-center items-center">
-                    <h3>Target Donasi</h3>
-                    <h3>Rp. {{ $d->nominal_terkumpul }}</h3>
+                    <h3>Sisa Donasi</h3>
+                    <h3>Rp.
+                        @if (is_null($d->id_tahap_pencairan))
+                        {{ number_format($d->nominal_terkumpul, 0, ',', '.') }}
+                        @else
+                        {{ number_format($d->nominal_sisa, 0, ',', '.') }}
+                        @endif
+                    </h3>
                 </div>
                 <div class="flex-1 flex justify-center items-center">
                     <a href="{{ route('pencairan.request', $d->id) }}"
