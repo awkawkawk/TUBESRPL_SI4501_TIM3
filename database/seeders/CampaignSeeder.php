@@ -16,22 +16,22 @@ class CampaignSeeder extends Seeder
     {
         DB::table('campaigns')->insert([
             'id' => 1,
-            'id_sekolah' => 2,
+            'id_sekolah' => 1,
             'nama_campaign' => 'Perbaikan Perpustakaan',
             'deskripsi_campaign' => 'Kondisi kelas yang sudah sangat rapuh dan bantuan buku bacaan untuk siswa',
             'jenis_donasi' => 'uang',
-            'status' => 'berlangsung',
+            'status' => 'valid',
             'catatan_campaign' => ' ',
             'tanggal_selesai' => '2024-12-12',
     ]);
 
         DB::table('campaigns')->insert([
             'id' => 2,
-            'id_sekolah' => 2,
+            'id_sekolah' => 1,
             'nama_campaign' => 'Perbaikan Ruang Kepala Sekolah',
             'deskripsi_campaign' => 'Kondisi kelas yang sudah sangat rapuh dan bantuan buku bacaan untuk siswa',
-            'jenis_donasi' => 'uang',
-            'status' => 'berlangsung',
+            'jenis_donasi' => 'barang',
+            'status' => 'valid',
             'catatan_campaign' => ' ',
             'tanggal_selesai' => '2024-12-12',
     ]);

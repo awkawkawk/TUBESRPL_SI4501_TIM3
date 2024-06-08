@@ -25,7 +25,7 @@
                 @foreach ($campaigns as $campaign)
                     <div class="w-full lg:max-w-full lg:flex mb-4">
                         <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t-lg lg:rounded-t-none lg:rounded-l-lg text-center overflow-hidden"
-                            style="background-image: url('{{ asset('img/campaigns/' . $campaign->foto) }}')"
+                            style="background-image: url('{{ asset('img/campaigns/' . $campaign->foto_campaign) }}')"
                             title="Campaign Anda">
                         </div>
                         <div

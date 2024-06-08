@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('status');
             $table->string('jasa_kirim')->nullable();
             $table->string('nomor_resi')->nullable();
+            $table->string('jenis_donasi')->nullable();
             $table->timestamps();
         });
     }
