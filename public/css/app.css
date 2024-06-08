@@ -1909,6 +1909,9 @@ input:checked + .toggle-bg {
   justify-content: space-between;
 }
 
+.justify-around {
+  justify-content: space-around;
+}
 .gap-10 {
   gap: 2.5rem;
 }
