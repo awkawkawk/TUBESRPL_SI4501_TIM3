@@ -1,5 +1,5 @@
 <?php
-// app/Http/Controllers/CampaignController.php
+// app/Httap/Controllers/CampaignController.php
 
 // app/Http/Controllers/CampaignController.php
 
@@ -38,7 +38,7 @@ class CampaignController extends Controller
             }
             $campaign->save();
 
-            dd("berhasil save");
+            // dd("berhasil save");
             // return redirect()->route('campaigns.index')->with('success', 'Kampanye berhasil ditambahkan!'); ini route belum ada
         } catch (\Throwable $e) {
             dd($e->getMessage());
@@ -59,7 +59,7 @@ class CampaignController extends Controller
         return view('create', compact('campaigns'));
     }
 
-
+    
     // public function store(Request $request)
     // {
     //     $request->validate([
