@@ -18,9 +18,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DetailsCampaignController;
-use App\Http\Controllers\RiwayatCampaignController;
-use App\Http\Controllers\RegisteredSchoolController;
-use App\Http\Controllers\SchoolVerificationController;
 use App\Http\Controllers\CampaignVerificationController;
 
 // Route::get('/', function () {
