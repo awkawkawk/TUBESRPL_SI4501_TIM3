@@ -12,6 +12,7 @@ use App\Models\MoneyDonation;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Log;
 
 class DonationItemController extends Controller
 {
@@ -59,7 +60,7 @@ class DonationItemController extends Controller
 
     public function storeItems(Request $request)
     {
-        
+
         $donationData = $request->session()->get('item');
 
         // Simpan data donasi ke tabel Donasi
@@ -71,6 +72,7 @@ class DonationItemController extends Controller
             'status' => 'Proses Pengiriman',
             'jasa_kirim' => $donationData['jasa_kirim'],
             'nomor_resi' => $donationData['nomor_resi'],
+            'jenis_donasi' => 'barang',
         ]);
 
         // Simpan data barang donasi ke tabel ItemDonasi
@@ -88,5 +90,79 @@ class DonationItemController extends Controller
         // Redirect atau kirim response sesuai kebutuhan
         return redirect('/donation')->with('success', 'Terimakasih Donasinya Orang Baik');
     }
+
+    //edit item
+    public function editItem()
+    {
+        $donation = Donation::with(['user', 'moneyDonations', 'donationItems'])->get();
+        return view('managedonation.edititem', compact('donation'));
+    }
+
+    public function showform_editItem($id)
+    {
+        $formdonation = Donation::with(['user', 'moneyDonations', 'donationItems'])->findOrFail($id);
+        $selectedCampaign = Campaign::findOrFail($id);
+        $namaSekolah = $selectedCampaign->school->nama_sekolah;
+        $targetDonasi = Target::where('id_campaign', $formdonation->id_campaign)->where('nama_barang', '!=', 'Uang')->get();
+        return view('managedonation.formedititem', compact('formdonation', 'selectedCampaign', 'namaSekolah', 'targetDonasi'));
+    }
+
+    public function updateItem(Request $request, $id)
+    {
+
+    Log::info('updateItem method called');
+    $request->validate([
+        'nama_barang.*' => 'required',
+        'jumlah_barang.*' => 'required|numeric',
+        'jasa_kirim' => 'nullable|required',
+        'nomor_resi' => 'nullable|required',
+        'pesan' => 'nullable',
+    ]);
+
+    $formdonation = Donation::findOrFail($id);
+    $formdonation->jasa_kirim = $request->jasa_kirim;
+    $formdonation->nomor_resi = $request->nomor_resi;
+    $formdonation->pesan = $request->pesan;
+    $formdonation->save();
+
+    // Hapus item donasi lama
+    $formdonation->donationItems()->delete();
+
+    // Buat item donasi baru
+    for ($i = 0; $i < count($request->nama_barang); $i++) {
+        $donationItem = new ItemDonation();
+        $donationItem->id_donasi = $formdonation->id;
+        $donationItem->nama_barang = $request->nama_barang[$i];
+        $donationItem->jumlah_barang = $request->jumlah_barang[$i];
+        $donationItem->save();
+    }
+
+    $selectedCampaignId = $request->id_campaign;
+    $selectedCampaign = Campaign::findOrFail($selectedCampaignId);
+
+    // $request->session()->put('donation', $request->all());
+    // $request->session()->put('campaign_id', $selectedCampaignId);
+    // $request->session()->put('donation_id', $id);
+    // $request->session()->put('formdonation', $formdonation->id);
+
+    // return redirect()->route('donationItem.edit');
+
+    // return redirect()->route('donationItem.edit')->with('success', 'Donasi berhasil di edit');
+    return view('managedonation.edititem');
+    }
+
+
+    public function destroy($id)
+    {
+
+        $donation = Donation::findOrFail($id);
+
+        ItemDonation::where('id_donasi', $id)->delete();
+
+        $donation->delete();
+
+        return redirect()->route('donationItem.edit', ['id' => $id])->with('success', 'Donasi berhasil dihapus');
+    }
+
 
 }

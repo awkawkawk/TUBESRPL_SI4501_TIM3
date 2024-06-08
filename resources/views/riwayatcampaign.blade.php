@@ -163,7 +163,7 @@
                                 <!-- Status -->
                                 <div class="mt-4 w-full col-span-4 lg:col-span-2">
                                     <!-- Konten Tombol Status -->
-                                    @if ($campaign->status == 'Sedang Berjalan')
+                                    @if ($campaign->status == 'valid')
                                         <div class="flex items-center">
                                             <button class="text-white font-bold py-2 px-8 rounded-lg"
                                                 style="background-color: #42BB4E;">
@@ -173,13 +173,13 @@
                                             <a href="{{ route('lihat.donatur', ['campaignId' => $campaign->id]) }}"
                                                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded-lg flex ms-auto">
                                                 Lihat Donatur
-                                                <span class="ml-2">
+                                                {{-- <span class="ml-2">
                                                     <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24"
                                                         stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
                                                     </svg>
-                                                </span>
+                                                </span> --}}
                                             </a>
                                         </div>
                                     @elseif($campaign->status == 'Selesai')
@@ -193,13 +193,13 @@
                                             <a href="{{ route('lihat.donatur', ['campaignId' => $campaign->id]) }}"
                                                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded-lg relative flex items-center">
                                                 Lihat Donatur
-                                                <span class="ml-2">
+                                                {{-- <span class="ml-2">
                                                     <svg class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24"
                                                         stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
                                                     </svg>
-                                                </span>
+                                                </span> --}}
                                             </a>
                                         </div>
                                     @elseif($campaign->status == 'Menunggu Verifikasi')
