@@ -95,7 +95,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/campaign/detail/{id}', [DetailsCampaignController::class, 'showDetails'])->name('show.details');
 
 Route::get('/campaigns/create', [CampaignController::class, 'create'])->name('campaigns.create');
+Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.index');
 Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns.store');
+Route::delete('/campaigns/{campaign}', [CampaignController::class, 'destroy'])->name('campaigns.destroy');
+Route::get('/campaigns/{campaign}/edit', [CampaignController::class, 'edit'])->name('campaigns.edit');
+Route::put('/campaigns/{campaign}', [CampaignController::class, 'update'])->name('campaigns.update');
+Route::get('/campaigns/history', [CampaignController::class, 'history'])->name('campaigns.history');
 
 //riwayat campaign
 Route::get('/campaign/riwayat', [RiwayatCampaignController::class, 'index'])->name('campaign.riwayat');

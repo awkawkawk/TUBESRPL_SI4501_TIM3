@@ -17,11 +17,12 @@ return new class extends Migration
             $table->string('nama_campaign');
             $table->string('foto_campaign')->nullable();
             $table->text('deskripsi_campaign');
-            $table->enum('jenis_donasi', ['uang', 'barang', 'uang_barang']);
-            $table->string('status')->nullable();
+            $table->string('status');
+//             $table->enum('jenis_donasi', ['uang', 'barang', 'uang_barang']);
+//             $table->string('status')->nullable();
             $table->text('catatan_campaign')->nullable();
+            $table->enum('jenis_donasi');
             $table->integer('percentage_collected')->default(0);
-            $table->date('tanggal_selesai');
             $table->timestamps();
         });
 
