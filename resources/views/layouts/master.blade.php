@@ -228,6 +228,15 @@
                 </li>
 
                 <li>
+                    <a href="{{ route('pencairan.history') }}" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
+                        <svg class="h-4 w-4 text-zinc-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>
+                            <rect x="3" y="4" width="18" height="4" rx="2" />  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+                            <line x1="10" y1="12" x2="14" y2="12" /></svg>
+                        <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Riwayat Pencairan</span>
+                    </a>
+                </li>
+
+                <li>
                     <a href="{{ route('dashboard_edufund') }}" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
                           <svg class="h-4 w-4 text-zinc-500" fill="none"  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M10 3.2a9 9 0 1 0 10.8 10.8a1 1 0 0 0 -1 -1h-3.8a4.1 4.1 0 1 1 -5 -5v-4a.9 .9 0 0 0 -1 -.8" />

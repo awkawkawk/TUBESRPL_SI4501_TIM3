@@ -27,13 +27,16 @@ class RiwayatCampaignTest extends DuskTestCase
                     ->assertPathIs('/login')
                     ->type('email', 'smpn1bahagia@gmail.com')
                     ->type('password', '12345678')
-                    ->press('LOG IN')
+                    ->press('MASUK')
                     ->assertPathIs('/')
+                    ->screenshot('testlogin')
                     ->assertSee('Campaign Populer')
                     ->assertSee('Riwayat Campaign')
                     ->clickLink('Riwayat Campaign')
                     ->assertPathIs('/campaign/riwayat')
-                    ->assertSee('Riwayat Donasi Sekolahmu');
+                    ->screenshot('testriwayatcampaign')
+                    ->assertSee('Riwayat Donasi Sekolahmu')
+                    ;
                 });
 
         // $user = User::firstOrCreate(

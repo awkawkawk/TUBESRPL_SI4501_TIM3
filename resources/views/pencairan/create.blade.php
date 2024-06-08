@@ -131,7 +131,7 @@
                         </div>
                         <!-- Button Lanjutkan Pembayaran -->
                         <button type="submit" class="mt-2 w-full bg-primary text-white font-bold py-2 px-8 rounded-lg">
-                            Lanjutkan Pembayaran
+                            Ajukan Pencairan Dana
                         </button>
                     </form>
                 </div>

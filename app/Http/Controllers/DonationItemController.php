@@ -81,7 +81,7 @@ class DonationItemController extends Controller
                 'id_donasi' => $donation->id,
                 'nama_barang' => $namaBarang,
                 'jumlah_barang' => $donationData['jumlah_barang'][$index],
-                 'status' => 'dikirim',
+                'status' => 'dikirim',
             ]);
         }
 
@@ -141,15 +141,11 @@ class DonationItemController extends Controller
     $selectedCampaignId = $request->id_campaign;
     $selectedCampaign = Campaign::findOrFail($selectedCampaignId);
 
-    // $request->session()->put('donation', $request->all());
-    // $request->session()->put('campaign_id', $selectedCampaignId);
-    // $request->session()->put('donation_id', $id);
-    // $request->session()->put('formdonation', $formdonation->id);
-
     // return redirect()->route('donationItem.edit');
 
     // return redirect()->route('donationItem.edit')->with('success', 'Donasi berhasil di edit');
     return view('managedonation.edititem');
+    // return redirect('/edit/donation/item');
     }
 
 

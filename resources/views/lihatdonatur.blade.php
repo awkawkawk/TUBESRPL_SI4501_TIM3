@@ -20,7 +20,7 @@
 
 
             <div class="w-full lg:max-w-full lg:flex">
-                <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t-lg lg:rounded-t-none lg:rounded-l-lg text-center overflow-hidden" style="background-image: url('{{  asset('img/campaigns/' . $campaign->foto)  }}')" title="Campaign Anda">
+                <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t-lg lg:rounded-t-none lg:rounded-l-lg text-center overflow-hidden" style="background-image: url('{{  asset('img/campaigns/' . $campaign->foto_campaign)  }}')" title="Campaign Anda">
                 </div>
                 <div class="border border-gray-200 bg-white rounded-b-lg lg:rounded-b-none lg:rounded-r-lg p-4 flex flex-col justify-between leading-normal flex-grow">
                     <div class="mb-8 grid grid-cols-4 gap-x-4 lg:gap-x-8" style="grid-template-columns: 2fr 1fr 1fr 0.5fr">
