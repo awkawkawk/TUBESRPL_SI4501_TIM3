@@ -18,6 +18,7 @@ class Donation extends Model
         'status',
         'jasa_kirim',
         'nomor_resi',
+        'jenis_donasi',
     ];
 
     // Definisikan relasi dengan model Campaign
@@ -44,6 +45,11 @@ class Donation extends Model
     }
 
     public function donationMoney()
+    {
+        return $this->hasMany(MoneyDonation::class, 'id_donasi');
+    }
+
+    public function moneyDonations()
     {
         return $this->hasMany(MoneyDonation::class, 'id_donasi');
     }
