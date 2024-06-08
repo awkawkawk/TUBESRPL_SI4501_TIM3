@@ -29,7 +29,7 @@ export default {
             colors: {
                 black: "#4D4D4D",
                 primary: "#EB5231",
-                primarylight: "#FF7051",
+                primarydark: "#bc4227",
             },
         },
     },
