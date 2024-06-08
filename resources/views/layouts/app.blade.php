@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="resources\css\app.css">
+
 </head>
 
 <body>
@@ -244,7 +244,7 @@
 
     <div class="flex h-screen flex-col sm:ml-64">
         <div
-            class="scrollbar-thumb-rounded-full scrollbar scrollbar-thin scrollbar-thumb-gray-100 mt-16 flex h-32 flex-1 overflow-y-auto overflow-y-scroll rounded-tl-lg bg-gray-100 p-4">
+            class="scrollbar-thumb-rounded-full scrollbar scrollbar-thin scrollbar-thumb-gray-100 mt-16 flex min-h-screen flex-1 overflow-y-auto overflow-y-scroll rounded-tl-lg bg-gray-100 p-4">
             @yield('content')
 
             <!-- Page Content -->

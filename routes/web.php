@@ -11,6 +11,8 @@ use App\Http\Controllers\RiwayatCampaignController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\DonationItemController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\DonaturController;
 use App\Http\Controllers\RequestPencairanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SchoolController;
@@ -68,6 +70,20 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/verifikasi-campaign', [CampaignVerificationController::class, 'showVerificationPage'])->name('verifikasi.campaign');
 
+// Rute untuk menampilkan formulir edit
+Route::get('edit/donatur/{id}', [DonaturController::class, 'edit'])->name('admin.donatur.edit');
+Route::get('/donatur', [DonaturController::class, 'index'])->name('admin.donatur.index');
+
+// Rute untuk memperbarui data donatur
+Route::put('edit/donatur/{id}', [DonaturController::class, 'update'])->name('admin.donatur.update');
+Route::get('/donatur/{id}', [DonaturController::class, 'destroy'])->name('admin.donatur.destroy');
+
+
+Route::get('/riwayat/donatur', function () {
+    return view('lihatdonatur');
+});
+
+Route::get('/verifikasi-sekolah', [SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
     Route::post('/verifikasi-campaign/{id}', [CampaignVerificationController::class, 'respondVerification'])->name('response.verification.campaign');
 
     Route::get('/donation/item/summary', function () {
@@ -95,7 +111,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/campaign/detail/{id}', [DetailsCampaignController::class, 'showDetails'])->name('show.details');
 
 Route::get('/campaigns/create', [CampaignController::class, 'create'])->name('campaigns.create');
+Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.index');
 Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns.store');
+Route::delete('/campaigns/{campaign}', [CampaignController::class, 'destroy'])->name('campaigns.destroy');
+Route::get('/campaigns/{campaign}/edit', [CampaignController::class, 'edit'])->name('campaigns.edit');
+Route::put('/campaigns/{campaign}', [CampaignController::class, 'update'])->name('campaigns.update');
+Route::get('/campaigns/history', [CampaignController::class, 'history'])->name('campaigns.history');
 
 //riwayat campaign
 Route::get('/campaign/riwayat', [RiwayatCampaignController::class, 'index'])->name('campaign.riwayat');
@@ -157,6 +178,22 @@ Route::get('/pencairan/history', [RequestPencairanController::class, 'history'])
 //test fe
 Route::get('/managedonation/money/edit/id', function () {
     return view('managedonation/formeditmoney');
+});
+
+Route::prefix('admin')->group(function () {
+    Route::prefix('manage/berita')->group(function () {
+        Route::get('/news', [NewsController::class, 'index'])->name('admin.berita.index');
+        Route::get('/create', [NewsController::class, 'create'])->name('admin.berita.create');
+        Route::post('/news', [NewsController::class, 'store'])->name('admin.berita.store');
+        Route::get('/{id}/edit', [NewsController::class, 'edit'])->name('admin.berita.edit');
+        Route::post('/{id}', [NewsController::class, 'update'])->name('admin.berita.update');
+        Route::delete('/{id}', [NewsController::class, 'destroy'])->name('admin.berita.delete');
+        Route::get('/{id}', [NewsController::class, 'detail'])->name('admin.berita.detail');
+    });
+});
+
+Route::get('/donatur/edit', function () {
+    return view('donatur/editdonatur');
 });
 
 require __DIR__.'/auth.php';
