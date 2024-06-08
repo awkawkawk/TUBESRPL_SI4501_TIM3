@@ -11,6 +11,7 @@ use App\Http\Controllers\RiwayatCampaignController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\DonationItemController;
+use App\Http\Controllers\ReportingProofController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\DonaturController;
 use App\Http\Controllers\RequestPencairanController;
@@ -153,6 +154,7 @@ Route::delete('/donation/item/delete/{id}', [DonationItemController::class, 'des
 
 Route::middleware('roles:admin')->group(function () {
     Route::get('/verifikasi-sekolah', [SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
+    Route::get('/proof', [ReportingProofController::class, 'index'])->name('report.proof');
     Route::post('/verifikasi-sekolah/{id}', [SchoolVerificationController::class, 'respondVerification'])->name('response.verification');
 });
 
