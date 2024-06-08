@@ -92,7 +92,6 @@ Route::middleware('roles:admin')->group(function () {
     Route::get('/verifikasi-campaign', [CampaignVerificationController::class, 'showVerificationPage'])->name('verifikasi.campaign');
     Route::post('/verifikasi-campaign/{id}', [CampaignVerificationController::class, 'respondVerification'])->name('response.verification.campaign');
 
-
     // manage money donation
     Route::get('/edit/donation/money', [DonationController::class, 'editMoney'])->name('donationMoney.edit');
     Route::get('/edit/donation/money/{id}', [DonationController::class, 'showform_editMoney'])->name('moneyform.edit');
