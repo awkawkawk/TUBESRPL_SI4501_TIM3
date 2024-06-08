@@ -8,6 +8,8 @@ use App\Http\Controllers\CampaignController;
 use App\Http\Controllers\DonationController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\DonationItemController;
+use App\Http\Controllers\SchoolController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\DetailsCampaignController;
 use App\Http\Controllers\RiwayatCampaignController;
 use App\Http\Controllers\RegisteredSchoolController;
@@ -98,5 +100,7 @@ Route::middleware('roles:sekolah')->group(function () {
 Route::get('/unauthorized', function () {
     return response()->view('errors.unauthorized', [], 403);
 });
+
+Route::resource('schools', SchoolController::class);
 
 require __DIR__ . '/auth.php';
