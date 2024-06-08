@@ -28,11 +28,9 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        // $request->user()->fill($request->validated());
-        // dd($request->hasFile('edit-photo'));
         if ($request->hasFile('edit-photo')) {
             $image = $request->file('edit-photo');
-            // dd($request);
+           
 
             // Baca isi gambar dan konversi ke base64
             // dd($image);
@@ -86,8 +84,19 @@ class ProfileController extends Controller
             $request->user()->email_verified_at = null;
         }
 
-        $request->user()->save();
+        // Retrieve the currently authenticated user
+        $user = Auth::user();
 
+        // Update the user model with the validated data
+        $user->nama = $request->input('name');
+        $user->phone = $request->input('phone');
+        $user->email = $request->input('email');
+
+        // Save the updated user model
+        $user->save();
+
+        // $request->user()->save();
+        // dd($request->user());
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 

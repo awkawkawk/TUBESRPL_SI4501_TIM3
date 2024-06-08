@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('targets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_campaign')->constrained('campaigns');
+            $table->foreignId('id_campaign')->constrained('campaigns')->onDelete('cascade');
             $table->string('nama_barang');
             $table->integer('jumlah_barang');
             $table->timestamps();
