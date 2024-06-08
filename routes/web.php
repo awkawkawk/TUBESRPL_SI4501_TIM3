@@ -16,6 +16,7 @@ use App\Http\Controllers\UserController;
 
 
 
+
 Route::get('/', function () {
     return view('index');
 })->name('/');
@@ -99,5 +100,8 @@ Route::get('/campaign/detail/{id}', [DetailsCampaignController::class, 'showDeta
 require __DIR__.'/auth.php';
 
 Route::resource('schools', SchoolController::class);
+
+Route::get('/schools/profile/{id}', [SchoolController::class, 'show'])->name('schools.show');
+
 
 

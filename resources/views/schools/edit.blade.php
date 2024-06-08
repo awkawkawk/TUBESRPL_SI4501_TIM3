@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Facades\Storage;
+@endphp
+
 @extends('layouts.master')
 
 @section('content')
@@ -37,7 +41,7 @@
             <label for="logo_sekolah" class="block text-sm font-medium text-gray-700">Logo Sekolah</label>
             <input type="file" name="logo_sekolah" id="logo_sekolah" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
             @if($school->logo_sekolah)
-                <img src="{{ asset('storage/' . $school->logo_sekolah) }}" alt="Logo Sekolah" class="mt-4 w-20 h-20 object-cover">
+                <img src="{{  Storage::url($school->logo_sekolah) }}" alt="Logo Sekolah" class="mt-4 w-20 h-20 object-cover"referrerpolicy="no-referrer">
             @endif
         </div>
 
@@ -70,7 +74,7 @@
             <label for="bukti_id_pendaftar" class="block text-sm font-medium text-gray-700">Bukti ID Pendaftar</label>
             <input type="file" name="bukti_id_pendaftar" id="bukti_id_pendaftar" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
             @if($school->bukti_id_pendaftar)
-                <img src="{{ asset('storage/' . $school->bukti_id_pendaftar) }}" alt="Bukti ID Pendaftar" class="mt-4 w-20 h-20 object-cover">
+                <img src="{{ Storage::url($school->bukti_id_pendaftar) }}" alt="Bukti ID Pendaftar" class="mt-4 w-20 h-20 object-cover"referrerpolicy="no-referrer">
             @endif
         </div>
 

@@ -9,6 +9,7 @@ use App\Models\Campaign;
 use App\Http\Requests\StoreschoolRequest;
 use App\Http\Requests\UpdateschoolRequest;
 use Illuminate\Support\Facades\DB;
+
 class SchoolController extends Controller
 {
     public function index()
@@ -100,6 +101,10 @@ class SchoolController extends Controller
 
         return redirect()->route('schools.index')->with('success', 'Sekolah berhasil dihapus.');
     }
+    public function show($id)
+    {
+        $school = School::findOrFail($id);
+        return view('schools.show', compact('school'));
+    }
 
-    // Metode lain di controller...
 }
