@@ -16,7 +16,6 @@
  </head>
 
  <body>
-
      <nav class="fixed top-0 z-50 w-full bg-white font-sans">
          <div class="px-3 py-3 lg:px-5 lg:pl-3">
              <div class="flex items-center">
@@ -134,86 +133,15 @@
                      Masuk
                  </a>
 
-                     <a href="{{ route('register') }}"
-                         class="rounded-md px-3 py-2 text-sm text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-3">
-                         Daftar
-                     </a>
+                {{-- <a href="{{ route('register') }}"
+                    class="rounded-md px-3 py-2 text-sm text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-3">
+                    Daftar
+                </a> --}}
              @endauth
-
          </div>
          </div>
      </nav>
-
-     <aside id="logo-sidebar"
-         class="fixed left-0 top-0 z-40 h-screen w-52 -translate-x-full bg-white pt-20 transition-transform md:translate-x-0"
-         aria-label="Sidebar">
-         <div class="h-full overflow-y-auto bg-white px-3 pb-4">
-             <ul class="space-y-2 font-medium">
-                 <li>
-                     <a href="#" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
-                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                             class="h-4 w-4 text-gray-500 transition duration-75 group-hover:text-gray-900">
-                             <path
-                                 d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
-                             <path
-                                 d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
-                         </svg>
-
-
-                         <span class="ms-3 text-sm">Beranda</span>
-                     </a>
-                 </li>
-                 <li>
-                     <a href="{{route('search.result')}}" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
-
-                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
-                             class="h-4 w-4 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900">
-                             <path fill-rule="evenodd"
-                                 d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
-                                 clip-rule="evenodd" />
-                         </svg>
-
-                         <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Cari</span>
-                     </a>
-                 </li>
-                 @auth
-                 <li>
-                     <a href="{{ route('campaign.riwayat') }}"
-                         class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
-
-                         <svg class="h-4 w-4 text-zinc-500" width="24" height="24" viewBox="0 0 24 24"
-                             stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                             stroke-linejoin="round">
-                             <path stroke="none" d="M0 0h24v24H0z" />
-                             <polyline points="12 8 12 12 14 14" />
-                             <path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5" />
-                         </svg>
-
-                         <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Riwayat Donasi</span>
-                     </a>
-                 </li>
-
-                 <li>
-                     <a href="{{ route('index.donation') }}"
-                         class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
-
-                         <svg class="h-4 w-4 text-zinc-500" fill="none" viewBox="0 0 24 24"
-                             stroke="currentColor">
-                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                 d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 00.707.293h3.172a1 1 0 00.707-.293l2.414-2.414a1 1 0 01.707-.293H20" />
-                         </svg>
-
-
-                         <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Donasi Sekarang</span>
-                     </a>
-                 </li>
-                 @endauth
-
-             </ul>
-         </div>
-     </aside>
-
-     <div class="flex h-screen flex-col md:ml-56">
+     <div class="flex h-screen flex-col">
          <div
              class="scrollbar-thumb-rounded-full scrollbar scrollbar-thin scrollbar-thumb-gray-600 mt-16 flex h-32 flex-1 overflow-y-auto overflow-y-scroll rounded-tl-[1.25rem] bg-gray-100 p-4">
              @yield('content')

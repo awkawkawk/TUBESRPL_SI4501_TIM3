@@ -7,13 +7,7 @@
             </a>
             <p class="mb-2 text-xs font-normal text-black">{{ $location }}</p>
             <p class="mb-4 text-sm font-normal text-black">{{ $description }}</p>
-            <div class="mb-1 flex w-full text-xs font-medium">
-                <p>Terkumpul</p>
-                <p class="text-primary ms-auto font-bold">{{ $percentageCollected }}%</p>
-            </div>
-            <div class="h-1.5 w-full rounded-full bg-gray-200">
-                <div class="bg-primary h-1.5 rounded-full" style="width: {{ $percentageCollected }}%"></div>
-            </div>
+            {{ $slot }}
         </div>
     </a>
 </div>

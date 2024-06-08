@@ -38,7 +38,7 @@ class CampaignController extends Controller
             }
             $campaign->save();
 
-            // dd("berhasil save");
+            dd("berhasil save");
             // return redirect()->route('campaigns.index')->with('success', 'Kampanye berhasil ditambahkan!'); ini route belum ada
         } catch (\Throwable $e) {
             dd($e->getMessage());
