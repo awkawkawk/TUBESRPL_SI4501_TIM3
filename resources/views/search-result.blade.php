@@ -25,9 +25,10 @@
                     @else
                         <ul>
                             @foreach ($campaigns as $campaign)
+                            {{-- {{$campaign}} --}}
                                 <x-campaign-card link="#"
                                     {{-- link="{{ route('campaign.show', $campaign->id) }}" --}}
-                                    image-path="{{ $campaign->image_path }}" alt-text="{{ $campaign->nama_campaign }}"
+                                    imagePath="{{$campaign->foto_campaign}}" alt-text="{{ $campaign->nama_campaign }}"
                                     title="{{ $campaign->nama_campaign }}" location="{{ $campaign->school->alamat_sekolah }}"
                                     description="{{ $campaign->deskripsi_campaign }}"
                                     percentage-collected="{{ $campaign->percentage_collected }}" />
