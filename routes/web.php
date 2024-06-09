@@ -2,24 +2,25 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\DonaturController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CampaignController;
-use App\Http\Controllers\RegisteredSchoolController;
-use App\Http\Controllers\SchoolVerificationController;
-use App\Http\Controllers\RiwayatCampaignController;
 use App\Http\Controllers\DonationController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\DonationItemController;
 use App\Http\Controllers\ReportingProofController;
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\DonaturController;
-use App\Http\Controllers\RequestPencairanController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\SchoolController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\DetailsCampaignController;
+use App\Http\Controllers\RiwayatCampaignController;
+use App\Http\Controllers\RegisteredSchoolController;
+use App\Http\Controllers\RequestPencairanController;
+use App\Http\Controllers\SchoolVerificationController;
 use App\Http\Controllers\CampaignVerificationController;
+use App\Http\Controllers\DonationVerificationController;
 
 // Route::get('/', function () {
 //     return view('index');
@@ -47,7 +48,7 @@ Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns
 
 Route::get('/search', [SearchController::class, 'search'])->name('search.result');
 Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('admin/dashboard', [DashboardController::class, 'index'])->name('dashboard.admin');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -81,8 +82,10 @@ Route::get('/riwayat/donatur', function () {
     return view('lihatdonatur');
 });
 
+Route::get('/verifikasi-donasi', [DonationVerificationController::class, 'showVerificationPage'])->name('verifikasi.donasi');
+Route::post('/verifikasi-donasi/{id}', [DonationVerificationController::class, 'respondVerification'])->name('response.verification.donation');
 Route::get('/verifikasi-sekolah', [SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
-    Route::post('/verifikasi-campaign/{id}', [CampaignVerificationController::class, 'respondVerification'])->name('response.verification.campaign');
+Route::post('/verifikasi-campaign/{id}', [CampaignVerificationController::class, 'respondVerification'])->name('response.verification.campaign');
 
     Route::get('/donation/item/summary', function () {
         return view('donation/summaryItems');
@@ -173,6 +176,10 @@ Route::get('/pencairan', [RequestPencairanController::class, 'index'])->name('li
 Route::get('/pencairan/{RequestPencairan}/request', [RequestPencairanController::class, 'request'])->name('pencairan.request');
 Route::put('/pencairan/{RequestPencairan}', [RequestPencairanController::class, 'create'])->name('pencairan.create');
 Route::get('/pencairan/history', [RequestPencairanController::class, 'history'])->name('pencairan.history');
+
+Route::get('admin/pencairan', [RequestPencairanController::class, 'AdminIndex'])->name('admin.list.pencairan');
+Route::get('admin/pencairan/{RequestPencairan}/{History}/acc', [RequestPencairanController::class, ''])->name('pencairan.acc');
+Route::put('admin/pencairan/{RequestPencairan}/{History}', [RequestPencairanController::class, 'adminVerification'])->name('pencairan.response');
 
 //test fe
 Route::get('/managedonation/money/edit/id', function () {

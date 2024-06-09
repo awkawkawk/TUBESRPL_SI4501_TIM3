@@ -1,7 +1,9 @@
 @extends('layouts.master')
 
+@section('title', 'Halaman Utama - EduFund')
+
 @section('content')
-    <div class="flex h-fit w-full flex-wrap">
+    <div class="flex h-fit w-full flex-wrap items-center justify-center">
         @if (session('success'))
             <div id="toast-success"
                 class="mb-4 flex w-full items-center rounded-lg bg-white p-4 text-gray-500 shadow dark:bg-gray-800 dark:text-gray-400"
@@ -28,7 +30,7 @@
                 </button>
             </div>
         @endif
-        <div id="default-carousel" class="relative mb-8 h-64 w-full drop-shadow-xl lg:h-44 lg:w-1/3" data-carousel="slide">
+        <div id="default-carousel" class="relative mb-8 w-4/5 drop-shadow-xl h-96" data-carousel="slide">
             <!-- Carousel wrapper -->
             <div class="relative me-4 h-full overflow-hidden rounded-lg">
                 <!-- Item 1 -->
@@ -83,10 +85,10 @@
                 </button> --}}
             </div>
         </div>
-        <div class="h-80 w-full lg:h-44 lg:w-2/3">
+        <div class="h-80 lg:h-44 w-4/5">
             <div
-                class="me-16 ms-16 h-8 rounded-t-lg bg-gradient-to-r from-gray-500 to-gray-400 p-1 text-center font-bold tracking-wide text-white">
-                Donasi Sekarang!
+                class="me-16 ms-16 h-8 rounded-t-lg bg-gradient-to-r from-gray-800 to-gray-600 p-1 text-center font-bold tracking-wide text-white">
+                Donasi Terakhir Anda!
             </div>
             <div id="controls-carousel" class="relative h-full w-full lg:h-36" data-carousel="slide">
                 <!-- Carousel wrapper -->
@@ -137,28 +139,29 @@
                 </button>
             </div>
         </div>
-        <div class="col-span-3 mt-16 lg:mt-4 items-center justify-center">
+        <div class="col-span-3 mt-16 w-full lg:mt-4">
             <p class="h1 mb-2 block text-center text-xl font-semibold text-black">Campaign Populer</p>
             <p class="mx-auto mb-8 w-1/2 text-center text-sm font-light text-black">Mereka butuh uluran tangan kita. Karena
                 sedikit
                 bantuan
                 dari kita adalah harapan besar bagi mereka.</p>
-            <div class="flex flex-wrap justify-center gap-4 text-left">
-                @foreach (range(1, 8) as $index)
+            <div class="flex flex-wrap justify-center gap-4 text-left" id="campaign-cards-container"></div>
+            {{-- @foreach (range(1, $numberOfIterations) as $index)
                     <x-campaign-card link="#" image-path="img/Untitled-1.png"
                         alt-text="Deskripsi gambar SMAN Arara 1" title="SMAN Arara 1" location="Arara, Jawa Barat"
                         description="Butuh donasi untuk memperbaiki kerusakan sekolah" percentage-collected="90" />
-                @endforeach
-                <div class="w-full text-center">
-                    <button type="button"
-                        class="mt-4 inline-flex h-10 items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Lihat
-                        semua <svg class="ms-4 h-3 w-3 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 10 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M5 1v12m0 0 4-4m-4 4L1 9" />
-                        </svg></button>
-                </div>
-                <div class="mt-6 grid h-24 w-2/3 grid-cols-3 gap-10 rounded-lg bg-gray-700">
+                @endforeach --}}
+            <div class="w-full text-center">
+                <button type="button" onclick="renderCampaignCards(@json($campaigns))"
+                    class="mt-4 inline-flex h-10 items-center rounded-lg bg-primary px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Lihat
+                    semua <svg class="ms-4 h-3 w-3 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 10 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 1v12m0 0 4-4m-4 4L1 9" />
+                    </svg></button>
+            </div>
+            <div class="flex w-full text-center items-center justify-center">
+                <div class="mt-6 grid h-24 w-4/5 grid-cols-3 gap-10 rounded-lg bg-gradient-to-r from-primary to-primarylight">
                     <div class="flex flex-col items-center justify-center">
                         <p class="text-center text-sm text-white">Sekolah Terbantu</p>
                         <p class="mt-1 text-2xl font-bold text-white">25.000</p>
@@ -173,9 +176,37 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
 
+
     </div>
+
+    </div>
+    <script>
+        var renderedCampaignsIndex = 0; // Variabel untuk melacak indeks kampanye yang sudah dirender
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var campaigns = @json($campaigns);
+            renderCampaignCards(campaigns);
+        });
+
+        function renderCampaignCards(campaigns) {
+            var screenWidth = window.innerWidth;
+            var numOfCards = Math.floor(screenWidth / 272);
+            var cardsContainer = document.getElementById('campaign-cards-container');
+
+            // Render kampanye baru sebanyak numOfCards yang belum dirender
+            for (var i = 0; i < numOfCards && renderedCampaignsIndex < campaigns.length; i++) {
+                var campaign = campaigns[renderedCampaignsIndex];
+                cardsContainer.innerHTML += `
+                <x-campaign-card link="/campaign/detail/${campaign.id}"
+                    image-path="${campaign.foto_campaign}" alt-text="${campaign.nama_campaign}"
+                    title="${campaign.nama_campaign}" location="${campaign.school.alamat_sekolah}"
+                    description="${campaign.deskripsi_campaign}" percentage-collected="${campaign.percentage_collected}" />
+            `;
+                renderedCampaignsIndex++;
+            }
+        }
+    </script>
+
 @endsection

@@ -20,7 +20,7 @@
 
 
             <div class="w-full lg:max-w-full lg:flex">
-                <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t-lg lg:rounded-t-none lg:rounded-l-lg text-center overflow-hidden" style="background-image: url('{{  asset('img/campaigns/' . $campaign->foto)  }}')" title="Campaign Anda">
+                <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-r-lg text-center overflow-hidden" style="background-image: url('{{  $campaign->foto_campaign  }}')" title="Campaign Anda">
                 </div>
                 <div class="border border-gray-200 bg-white rounded-b-lg lg:rounded-b-none lg:rounded-r-lg p-4 flex flex-col justify-between leading-normal flex-grow">
                     <div class="mb-8 grid grid-cols-4 gap-x-4 lg:gap-x-8" style="grid-template-columns: 2fr 1fr 1fr 0.5fr">
@@ -203,7 +203,7 @@
                         <!-- Profil Donatur -->
                         <div class="flex justify-center items-center ml-8 mt-6">
                             <div class="rounded-full overflow-hidden w-20 h-20 flex justify-center items-center">
-                                <img src="{{ asset('img/campaigns/' . $donation->user->profile_picture) }}" alt="" class="object-cover w-full h-full" />
+                                <img src="{{ $donation->user->profile_picture }}" alt="" class="object-cover w-full h-full" />
                             </div>
                         </div>
 
@@ -273,7 +273,7 @@
                             <p class="mb-4 mr-6 text-sm font-normal text-black dark:text-gray-400">{{ $donation->pesan }}</p>
                             <p class="mb-1 text-xs font-normal text-black dark:text-gray-400">Donasi Masuk : {{ $donation->created_at->format('d F Y') }}</p>
                             <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">
-                                @if($donation->status == 'Valid')
+                                @if($donation->status == 'valid')
                                     Donasi Terverifikasi: {{ $donation->updated_at->format('d F Y') }}
                                 @else
                                     Donasi Terverifikasi: Sedang diverifikasi admin

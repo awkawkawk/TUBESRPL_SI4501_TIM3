@@ -89,7 +89,7 @@ class DonationController extends Controller
             'id_campaign' => $donationData['id_campaign'],
             'pesan' => $donationData['pesan'],
             'syarat_ketentuan' => $request->has('syarat_ketentuan') ? true : false,
-            'status' => 'Menunggu Verifikasi',
+            'status' => 'pending',
             'jenis_donasi' => 'uang',
         ]);
 
@@ -102,27 +102,7 @@ class DonationController extends Controller
             'nominal' => $donationData['nominal'],
         ]);
 
-        $idCampaign = $moneyDonation->donation->id_campaign;
-
-        $existingRequestPencairan = RequestPencairan::whereHas('moneyDonation.donation', function ($query) use ($idCampaign) {
-            $query->where('id_campaign', $idCampaign);
-        })->first();
-
-        if ($existingRequestPencairan) {
-            $existingRequestPencairan->nominal_terkumpul += $donationData['nominal'];
-            $existingRequestPencairan->save();
-        } else {
-            RequestPencairan::create([
-                'id_money_donation' => $moneyDonation->id,
-                'nominal_terkumpul' => $donationData['nominal'],
-                'nominal_sisa' => 0,
-                'status' => 'Pending',
-            ]);
-        }
-
-
         $request->session()->forget('donation');
-
 
         return redirect('/donation')->with('success', 'Terimakasih Donasinya Orang Baik');
     }

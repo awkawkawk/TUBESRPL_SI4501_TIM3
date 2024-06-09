@@ -17,8 +17,11 @@ class LandingPageController extends Controller
             $user = Auth::user();
 
             // Check if the logged-in user is an admin or school
-            if ($user->tipe_user === 'admin' || $user->tipe_user === 'sekolah') {
+            if ($user->tipe_user === 'sekolah') {
                 return view('index', compact('campaigns'));
+            }
+            elseif ($user->tipe_user === 'admin') {
+                return redirect(route('dashboard.admin'));
             }
         } else {
             // If the user is not logged in or logged-in user is a donator

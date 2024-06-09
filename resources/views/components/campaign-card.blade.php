@@ -1,6 +1,6 @@
 <div class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow">
     <a href="{{ $link ?? '#' }}">
-        <img class="h-64 rounded-t-lg object-cover" src="{{ asset($imagePath) }}" alt="{{ $altText ?? '' }}" />
+        <img class="h-64 rounded-t-lg object-cover" src="{{ $imagePath }}" alt="{{ $altText ?? '' }}" />
         <div class="p-5">
             <a href="{{ $link ?? '#' }}">
                 <h5 class="text-xl font-bold tracking-tight text-black">{{ $title }}</h5>

@@ -21,10 +21,10 @@
                 {{-- <p class="h1 text-l mb-2 block font-semibold text-black" style="margin-bottom: 1rem;">Details</p> --}}
                 <div class="flex w-full">
                     <div class="flex flex-wrap col-span-1 w-2/3 h-fit">
-                        <div class="rounded-lg border border-gray-200 bg-white flex">
+                        <div class="rounded-lg border border-gray-200 bg-white w-full flex">
                             @foreach ($details as $detail)
-                                <div class="w-1/2">
-                                    <img class="h-full rounded-lg object-cover" src="{{ asset('img/Untitled-1.png') }}"
+                                <div class="w-1/2 object-cover">
+                                    <img class="h-full rounded-lg object-cover" src="{{ $detail->foto_campaign }}"
                                         alt="">
                                 </div>
                                 <div class="w-1/2 p-4">
@@ -125,14 +125,14 @@
                                                 </div>
                                             </div>
 
-                                        <div class="mb-1 mt-4 flex w-full text-sm font-medium">
+                                        {{-- <div class="mb-1 mt-4 flex w-full text-sm font-medium">
                                             <p>Terkumpul</p>
                                             <p class="text-primary ms-auto font-bold">20%</p>
                                         </div>
                                         <div class="h-1.5 w-full rounded-full bg-gray-200">
                                             <div class="bg-primary h-1.5 rounded-full" style="width: 20%;">
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="flex justify-center items-center mt-4">
                                             <a href="{{ route('donations.form', ['id' => $detail->id]) }}"

@@ -200,7 +200,7 @@
                 var campaign = campaigns[renderedCampaignsIndex];
                 cardsContainer.innerHTML += `
                 <x-campaign-card link="/campaign/detail/${campaign.id}"
-                    image-path="${campaign.image_path}" alt-text="${campaign.nama_campaign}"
+                    image-path="${campaign.foto_campaign}" alt-text="${campaign.nama_campaign}"
                     title="${campaign.nama_campaign}" location="${campaign.school.alamat_sekolah}"
                     description="${campaign.deskripsi_campaign}" percentage-collected="${campaign.percentage_collected}" />
             `;
