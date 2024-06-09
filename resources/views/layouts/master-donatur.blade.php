@@ -10,13 +10,15 @@
      @vite(['public/css/app.css', 'resources/js/app.js'])
      <link rel="preconnect" href="https://fonts.googleapis.com">
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+     <link
+         href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap"
+         rel="stylesheet">
      <link rel="stylesheet" href="{{ asset('css/app.css') }}">
      @cloudinaryJS
  </head>
 
  <body>
-     <nav class="fixed top-0 z-50 w-full bg-white font-sans">
+     <nav class="fixed top-0 z-50 w-full bg-white bg-gradient-to-r from-gray-900 to-gray-700 font-sans">
          <div class="px-3 py-3 lg:px-5 lg:pl-3">
              <div class="flex items-center">
                  <div class="flex items-center justify-start rtl:justify-end">
@@ -34,7 +36,7 @@
 
                      {{-- Logo --}}
                      <a href="/" class="ms-2 flex md:me-24">
-                         <img src="{{ asset('assets/img/EduFundv2-text.png') }}" class="ms-6 w-24" alt="EduFund" />
+                         <img src="{{ asset('assets/img/EduFundv2-text.png') }}" class="ms-6 h-14" alt="EduFund" />
                          <span class="self-center whitespace-nowrap text-xl font-semibold sm:text-2xl"></span>
                      </a>
                  </div>
@@ -81,59 +83,77 @@
 
              {{-- Tombol --}}
              @auth
-                 <div class="ms-auto hidden w-full items-center justify-between md:order-2 md:flex md:w-auto"
-                     id="navbar-search">
-                     <button type="button" class="flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300"
-                         aria-expanded="false" data-dropdown-toggle="dropdown-user">
-                         <span class="sr-only">Buka menu pengguna</span>
-                         <img class="h-8 w-8 rounded-full object-cover"
-                             src="{{ Auth::user()->profile_picture ? Auth::user()->profile_picture : asset('assets/img/default_profile_picture.jpg') }}"
-                             referrerpolicy="no-referrer" alt="foto pengguna">
+                 <div class="ms-auto flex gap-8">
+                     <a href="{{ route('index.donation') }}"
+                         class="rounded-md px-3 py-2 text-sm text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-2">
+                         Donasi Sekarang
+                     </a>
 
-                     </button>
-                 </div>
-                 <div class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded bg-white text-base shadow"
-                     id="dropdown-user">
-                     <div class="px-4 py-3" role="none">
-                         <p class="text-sm text-gray-900" role="none">
-                             {{ Auth::user()->name }}
-                         </p>
-                         <p class="truncate text-sm font-medium text-gray-900" role="none">
-                             {{ Auth::user()->email }}
-                         </p>
+                     <a href="{{ route('register.school.form') }}"
+                         class="rounded-md px-3 py-2 text-sm text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-2">
+                         Daftarkan Sekolah
+                     </a>
+                     <div class="hidden w-full items-center justify-between md:order-2 md:flex md:w-auto"
+                         id="navbar-search">
+                         <button type="button"
+                             class="flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300"
+                             aria-expanded="false" data-dropdown-toggle="dropdown-user">
+                             <span class="sr-only">Buka menu pengguna</span>
+                             <img class="h-8 w-8 rounded-full object-cover"
+                                 src="{{ Auth::user()->profile_picture ? Auth::user()->profile_picture : asset('assets/img/default_profile_picture.jpg') }}"
+                                 referrerpolicy="no-referrer" alt="foto pengguna">
+
+                         </button>
                      </div>
-                     <ul class="py-1" role="none">
-                         <li>
-                             <a href="{{ route('profile.edit') }}"
-                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                 role="menuitem">Profil</a>
-                         </li>
-                         <li>
-                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                 role="menuitem">Pengaturan</a>
-                         </li>
-                         <li>
-                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                 role="menuitem">Pendapatan</a>
-                         </li>
-                         <li>
-                             <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                 role="menuitem"
-                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
-                             <form id="logout-form" method="POST" action="{{ route('logout') }}"
-                                 style="display: none;">
-                                 @csrf
-                             </form>
-                         </li>
-                     </ul>
+                     <div class="z-50 my-4 hidden list-none divide-y divide-gray-100 rounded bg-white text-base shadow"
+                         id="dropdown-user">
+                         <div class="px-4 py-3" role="none">
+                             <p class="text-sm text-gray-900" role="none">
+                                 {{ Auth::user()->nama }}
+                             </p>
+                             <p class="truncate text-sm font-medium text-gray-900" role="none">
+                                 {{ Auth::user()->email }}
+                             </p>
+                         </div>
+                         <ul class="py-1" role="none">
+                             <li>
+                                 <a href="{{ route('profile.edit') }}"
+                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                     role="menuitem">Profil</a>
+                             </li>
+                             <li>
+                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                     role="menuitem"
+                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Keluar</a>
+                                 <form id="logout-form" method="POST" action="{{ route('logout') }}"
+                                     style="display: none;">
+                                     @csrf
+                                 </form>
+                             </li>
+                         </ul>
+                     </div>
                  </div>
              @else
-                 <a href="{{ route('login') }}"
-                     class="ms-auto rounded-md px-3 py-2 text-sm text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-2">
-                     Masuk
-                 </a>
+                 <div class="ms-auto flex gap-8">
+                     <a href="{{ route('index.donation') }}"
+                         class="ms-auto rounded-md px-3 py-2 text-sm text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                         Donasi Sekarang
+                     </a>
 
-                {{-- <a href="{{ route('register') }}"
+                     <a href="{{ route('register.school.form') }}"
+                         class="ms-auto rounded-md px-3 py-2 text-sm text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                         Daftarkan Sekolah
+                     </a>
+                     <a href="{{ route('login') }}" class="">
+                         <button
+                             class="text-primarylight ms-auto rounded-lg rounded-md bg-white px-6 py-2 text-sm font-semibold ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                             Masuk
+                         </button>
+                     </a>
+                 </div>
+
+
+                 {{-- <a href="{{ route('register') }}"
                     class="rounded-md px-3 py-2 text-sm text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-3">
                     Daftar
                 </a> --}}
@@ -143,7 +163,7 @@
      </nav>
      <div class="flex h-screen flex-col">
          <div
-             class="scrollbar-thumb-rounded-full scrollbar scrollbar-thin scrollbar-thumb-gray-600 mt-16 flex h-32 flex-1 overflow-y-auto overflow-y-scroll rounded-tl-[1.25rem] bg-gray-100 p-4">
+             class="scrollbar-thumb-rounded-full scrollbar scrollbar-thin scrollbar-thumb-opacity-0 mt-16 flex h-32 flex-1 overflow-y-auto overflow-x-hidden overflow-y-scroll rounded-tl-[1.25rem] bg-gray-100">
              @yield('content')
          </div>
      </div>

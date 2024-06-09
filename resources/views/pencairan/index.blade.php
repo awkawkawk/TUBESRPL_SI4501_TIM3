@@ -12,8 +12,8 @@
                             <path stroke="rgb(75, 85, 101)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M13 5H1m0 0 4 4M1 5l4-4" />
                         </svg>
-                        <a href="/" class="text-sm font-light text-gray-700 text-justify"
-                            style="margin-left: 8px;"><b>Kembali ke halaman utama</b></a>
+                        <a href="{{ url()->previous()}}" class="text-sm font-light text-gray-700 text-justify"
+                            style="margin-left: 8px;"><b>Kembali</b></a>
                     </div>
                 </div>
             </div>
@@ -42,7 +42,7 @@
                     <p class="h1 mb-2 mt-2 block text-l font-bold text-black" >Kuota Pencairan</p>
                     <p class="h1 mb-1 block text-l font-normal text-black">
                         Rp.
-               
+
                         @if (is_null($d->id_tahap_pencairan))
                             {{ number_format($d->nominal_terkumpul, 0, ',', '.') }}
                         @else

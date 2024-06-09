@@ -1,7 +1,7 @@
-@extends('layouts.master')
+@extends('layouts.master-donatur')
 @section('title', 'Pencarian - EduFund')
 @section('content')
-    <div class="grid h-fit w-full grid-flow-row">
+    <div class="grid h-fit w-full grid-flow-row p-8">
         <div class="col-span-2 md:col-span-1">
             <div class="mt-4 text-left">
                 <div class="mb-8 flex items-center">
@@ -10,8 +10,8 @@
                         <path stroke="rgb(75, 85, 101)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M13 5H1m0 0 4 4M1 5l4-4" />
                     </svg>
-                    <a href="/" class="text-justify text-sm font-light text-gray-700"
-                        style="margin-left: 8px;"><b>Kembali ke halaman utama</b></a>
+                    <a href="{{ url()->previous()}}" class="text-justify text-sm font-light text-gray-700"
+                        style="margin-left: 8px;"><b>Kembali</b></a>
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
                     @else
                             @foreach ($campaigns as $campaign)
                                 <x-campaign-card link="/campaign/detail/{{$campaign->id}}" {{-- link="{{ route('campaign.show', $campaign->id) }}" --}}
-                                    image-path="{{ $campaign->image_path }}" alt-text="{{ $campaign->nama_campaign }}"
+                                    image-path="{{ $campaign->foto_campaign }}" alt-text="{{ $campaign->nama_campaign }}"
                                     title="{{ $campaign->nama_campaign }}"
                                     location="{{ $campaign->school->alamat_sekolah }}"
                                     description="{{ $campaign->deskripsi_campaign }}"
