@@ -81,7 +81,9 @@ class RiwayatCampaignController extends Controller
 
         $groupedDonationItems = $campaign->donations
             ->flatMap(function ($donation) {
-                return $donation->donationItems;
+                if ($donation->status === 'valid') {
+                    return $donation->donationItems;
+                }
             })
             ->groupBy('nama_barang')
             ->map(function ($items, $nama_barang) {
@@ -94,9 +96,11 @@ class RiwayatCampaignController extends Controller
         $campaign->groupedDonationItems = $groupedDonationItems->isEmpty() ? collect() : $groupedDonationItems;
 
         $totalDonationMoney = $campaign->donations
-            ->flatMap(function ($donation) {
+        ->flatMap(function ($donation) {
+            if ($donation->status === 'valid') {
                 return $donation->donationMoney;
-            })
+            }
+        })
             ->sum('nominal');
 
         $campaign->totalDonationMoney = $totalDonationMoney;

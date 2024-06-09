@@ -64,7 +64,7 @@
                                             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                                         </div>
 
-                                        <x-primary-button class="bg-primary my-6 flex w-full text-center hover:bg-primarydark">
+                                        <x-primary-button id="daftar" class="bg-primary my-6 flex w-full text-center hover:bg-primarydark">
                                             {{ __('Daftar') }}
                                         </x-primary-button>
                                         {{-- <a class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"

@@ -209,7 +209,7 @@
                                                 Menunggu Verifikasi
                                             </button>
                                         </div>
-                                    @elseif($campaign->status == 'ditolak')
+                                    @elseif($campaign->status == 'rejected')
                                         <div class="flex items-center">
                                             <button
                                                 class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-8 rounded-lg">

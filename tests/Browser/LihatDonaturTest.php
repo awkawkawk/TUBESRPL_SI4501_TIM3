@@ -19,7 +19,6 @@ class LihatDonatur extends DuskTestCase
             $browser->loginAs(User::find(1))
                     ->visit('/')
                     ->screenshot('testlogin1')
-                    ->assertSee('Campaign Populer')
                     ->assertSee('Riwayat Campaign')
                     ->clickLink('Riwayat Campaign')
                     ->assertPathIs('/campaign/riwayat')

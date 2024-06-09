@@ -127,7 +127,7 @@ class RequestPencairanController extends Controller
      public function history()
     {
 
-       $donasi = Histories::all();
+       $donasi = History::all();
 
 
        return view('pencairan.history', compact('donasi'));

@@ -1,7 +1,8 @@
-@extends('layouts.master')
+@extends('layouts.master-donatur')
 
 @section('content')
 
+<div class="grid h-fit w-full grid-flow-row p-8">
 <div class="grid h-fit w-full grid-flow-row">
     <div class="md:col-span-1">
         <div class="mt-4 text-left">
@@ -73,6 +74,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 
 @endsection
