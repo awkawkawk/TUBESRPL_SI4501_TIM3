@@ -19,7 +19,7 @@
 
  </head>
 
-<body>
+ <body>
 
      <nav class="fixed top-0 z-50 w-full bg-white">
          <div class="px-3 py-3 lg:px-5 lg:pl-3">
@@ -195,7 +195,7 @@
                                      stroke="currentColor">
                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                          d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0
-                                                    002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
+                                                        002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
                                  </svg>
                                  <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Tambah Campaign</span>
                              </a>
@@ -347,7 +347,7 @@
                                      stroke="currentColor">
                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                          d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2
-                                            2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                                                2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                                  </svg>
                                  <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Berita</span>
                              </a>
@@ -364,8 +364,10 @@
 
      <div class="flex h-screen flex-col md:ml-56">
          <div
-             class="scrollbar-thumb-rounded-full scrollbar scrollbar-thin scrollbar-thumb-opacity-0 mt-16 flex h-32 flex-1 overflow-y-auto overflow-x-hidden overflow-y-scroll rounded-tl-[1.25rem bg-gray-100">
-             @yield('content')
+             class="scrollbar-thumb-rounded-full scrollbar scrollbar-thin scrollbar-thumb-opacity-0 rounded-tl-[1.25rem mt-16 flex h-32 flex-1 overflow-y-auto overflow-x-hidden overflow-y-scroll bg-gray-100">
+             <div class="p-8">
+                 @yield('content')
+             </div>
          </div>
      </div>
 
