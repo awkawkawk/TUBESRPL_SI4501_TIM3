@@ -114,7 +114,7 @@
                     </div>
                     <div class="mr-2 mt-4">
                     <a href="{{ route('admin.donatur.destroy', ['id' => $donatur->id]) }}">
-                            <button class="text-white font-bold py-2 px-2 rounded-lg mt-4 flex items-center justify-center"
+                            <button id="removeButton" class="text-white font-bold py-2 px-2 rounded-lg mt-4 flex items-center justify-center"
                                 style="background-color: #f57171;">
                                 <svg class="h-6 w-6 text-stone-500" width="24" height="24" viewBox="0 0 24 24"
                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
