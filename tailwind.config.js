@@ -25,11 +25,16 @@ export default {
                 '"Noto Color Emoji"',
             ],
         },
-        extend: {},
+        extend: {
+            colors: {
+                black: "#4D4D4D",
+                primary: "#EB5231",
+                primarydark: "#bc4227",
+            },
+        },
     },
     plugins: [
         require("flowbite/plugin"),
         require("tailwind-scrollbar")({ nocompatible: true }),
     ],
 };
-

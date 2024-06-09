@@ -141,13 +141,29 @@ class CampaignController extends Controller
         return redirect()->route('campaign.riwayat')->with('success', 'Campaign berhasil diperbarui!');
     }
 
+    public function destroy(Campaign $campaign)
+    {
+        // Delete the campaign's image from storage
+        if ($campaign->photo_campaign) {
+            Storage::disk('public')->delete($campaign->photo_campaign);
+        }
+
+        // Delete associated targets
+        $campaign->targets()->delete();
+
+        // Delete the campaign
+        $campaign->delete();
+
+        return redirect()->route('campaigns.index')->with('success', 'Campaign deleted successfully.');
+    }
+
 
     public function history()
     {
         $donations = Donation::all();;
         return view('campaign.history', compact('donations'));
     }
-
+    
     // public function store(Request $request)
     // {
     //     $request->validate([
@@ -175,5 +191,3 @@ class CampaignController extends Controller
     //     return redirect()->route('daftar')->with('success', 'Campaign berhasil ditambahkan!');
     // }
 }
-
-

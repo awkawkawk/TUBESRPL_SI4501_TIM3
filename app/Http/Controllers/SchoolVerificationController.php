@@ -9,11 +9,15 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use App\Http\Controllers\Controller;
+use Cloudinary\Api\Upload\UploadApi;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Routing\Route;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\Rules\Password;
+use Cloudinary\Configuration\Configuration;
 use Illuminate\Validation\ValidationException;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class SchoolVerificationController extends Controller
 {
@@ -39,8 +43,19 @@ class SchoolVerificationController extends Controller
             'bukti_id_pendaftar' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
         ]);
 
-        // Jika validasi berhasil, simpan data sekolah ke dalam database
-        $schoolVerification = school::create([
+        // Konfigurasi Cloudinary
+        // Configuration::instance([
+        //     'cloud' => [
+        //         'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
+        //         'api_key' => env('CLOUDINARY_API_KEY'),
+        //         'api_secret' => env('CLOUDINARY_API_SECRET'),
+        //     ],
+        //     'url' => [
+        //         'secure' => true,
+        //     ],
+        // ]);
+
+        $schoolData = [
             'nama_sekolah' => $validatedData['nama_sekolah'],
             'alamat_sekolah' => $validatedData['alamat_sekolah'],
             'no_telepon_sekolah' => $validatedData['no_telepon_sekolah'],
@@ -51,73 +66,53 @@ class SchoolVerificationController extends Controller
             'identitas_pendaftar' => $validatedData['identitas_pendaftar'],
             'bukti_id_pendaftar' => $validatedData['bukti_id_pendaftar'],
             'status' => 'perlu diverifikasi',
-        ]);
+        ];
+
+        // Ambil gambar dari form request
+        if ($request->hasFile('logo_sekolah')) {
+            $image = $request->file('logo_sekolah')->getRealPath();
+
+            // Unggah gambar ke Cloudinary ke dalam folder 'logo_sekolah'
+            $uploadResult = cloudinary()->upload($image, [
+                'folder' => 'logo_sekolah',
+            ])->getSecurePath();
+
+            // Ambil URL gambar yang diunggah
+            // $imageUrl = $uploadResult['secure_url'];
+
+            // Tambahkan URL gambar ke dalam array data sekolah
+            $schoolData['logo_sekolah'] = $uploadResult;
+        }
+
+        if ($request->hasFile('bukti_id_pendaftar')) {
+            $file = $request->file('bukti_id_pendaftar')->getRealPath();
+
+            // Unggah file ke Cloudinary ke dalam folder 'bukti'
+            $uploadResult = cloudinary()
+                ->upload($file, [
+                    'folder' => 'bukti',
+                ])
+                ->getSecurePath();
+
+            // Ambil URL file yang diunggah
+            // $fileUrl = $uploadResult['secure_url'];
+
+            // Tambahkan URL file ke dalam array data sekolah
+            $schoolData['bukti_id_pendaftar'] = $uploadResult;
+        }
+
+        // Jika validasi berhasil, simpan data sekolah ke dalam database
+        $schoolVerification = school::create($schoolData);
 
         $user = User::create([
             'nama' => $validatedData['nama_sekolah'],
             'email' => $validatedData['email_sekolah'],
+            'profile_picture' => $schoolData['logo_sekolah'],
             'password' => Hash::make($validatedData['password']), // Menggunakan Hash untuk menyimpan password terenkripsi
             'phone' => $validatedData['no_telepon_sekolah'],
             'tipe_user' => 'sekolah', // atau tipe user lain yang sesuai
             'id_sekolah' => $schoolVerification->id,
         ]);
-
-        // Ambil gambar dari form request
-        if ($request->hasFile('logo_sekolah')) {
-            $image = $request->file('logo_sekolah');
-            dd($request);
-
-            // Baca isi gambar dan konversi ke base64
-            $imageData = file_get_contents($image->path());
-            $base64Image = base64_encode($imageData);
-
-            // Buat permintaan ke Imgur API
-            $response = Http::withHeaders([
-                'Authorization' => 'Client-ID c2fe122c365bf4a',
-
-            ])
-                ->timeout(32400)
-                ->post('https://api.imgur.com/3/image', [
-                    'image' => $base64Image,
-                ]);
-
-            // Ambil respons JSON
-            $responseData = $response->json();
-
-            // Ambil URL gambar yang diunggah
-            $imageUrl = $responseData['data']['link'];
-
-            // Lakukan sesuatu dengan URL gambar, misalnya, simpan ke database atau tampilkan
-            // Misalnya, Anda dapat menyimpan URL gambar ke dalam kolom 'logo_sekolah' pada data sekolah
-            $schoolVerification->update(['logo_sekolah' => $imageUrl]);
-        }
-
-        if ($request->hasFile('bukti_id_pendaftar')) {
-            $file = $request->file('bukti_id_pendaftar');
-
-            // Baca isi file dan konversi ke base64
-            $fileData = file_get_contents($file->path());
-            $base64File = base64_encode($fileData);
-
-            // Buat permintaan ke Imgur API
-            $response = Http::withHeaders([
-                'Authorization' => 'Client-ID c2fe122c365bf4a',
-            ])
-                ->timeout(32400)
-                ->post('https://api.imgur.com/3/image', [
-                    'image' => $base64File,
-                ]);
-
-            // Ambil respons JSON
-            $responseData = $response->json();
-
-            // Ambil URL file yang diunggah
-            $fileUrl = $responseData['data']['link'];
-
-            // Lakukan sesuatu dengan URL file, misalnya, simpan ke database atau tampilkan
-            // Misalnya, Anda dapat menyimpan URL file ke dalam kolom 'bukti_id_pendaftar' pada data sekolah
-            $schoolVerification->update(['bukti_id_pendaftar' => $fileUrl]);
-        }
 
         return redirect('/')->with('success', 'Registrasi sekolah berhasil. Silahkan tunggu verifikasi dari admin :)');
     }
