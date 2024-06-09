@@ -37,8 +37,8 @@
                 <div class="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-lg sm:rounded-lg">
                     <p class="h1 mb-1 mt-2 block text-xl font-semibold text-black">
                     </p> <!-- Nama Campaign Yang Dipilih -->
-                    <p class="text-s mb-2 font-normal text-black dark:text-gray-400">
-                        Asal Sekolah</p> <!-- Asal Sekolah -->
+                    <p class="mb-2 text-s font-normal text-black dark:text-gray-400">
+                       Form Pencairan Dana</p> <!-- Asal Sekolah -->
 
                     <hr>
                     <form method="POST" action="{{ route('pencairan.create', $RequestPencairan->id) }}" method="POST"
@@ -173,8 +173,8 @@
                             <x-input-error :messages="$errors->get('nama_pemilik')" class="mt-2" />
                         </div>
                         <!-- Button Lanjutkan Pembayaran -->
-                        <button type="submit" class="bg-primary mt-2 w-full rounded-lg px-8 py-2 font-bold text-white">
-                            Lanjutkan Pembayaran
+                        <button type="submit" class="mt-2 w-full bg-primary text-white font-bold py-2 px-8 rounded-lg">
+                            Ajukan Pencairan Dana
                         </button>
                     </form>
                 </div>

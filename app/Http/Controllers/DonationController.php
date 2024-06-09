@@ -100,6 +100,7 @@ class DonationController extends Controller
             'nama_pemilik' => $donationData['nama_pemilik'],
             'nomor_rekening' => $donationData['nomor_rekening'],
             'nominal' => $donationData['nominal'],
+            'status' => 'pending',
         ]);
 
         $request->session()->forget('donation');

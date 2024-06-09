@@ -239,46 +239,21 @@
                             </p>
                             @endforeach
                         </div>
-                        {{-- <div>
-                            <p class="h1 mb-2 block text-sm font-semibold text-black mt-6">Telah Menyumbangkan</p>
-                            <p class="mb-1 mt-1 text-sm font-normal text-black dark:text-gray-400 flex items-center">
-                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" width="24" height="24" viewBox="0 0 24 24" stroke="none">
-                                    <circle cx="12" cy="12" r="10" fill="#42BB4E" />
-                                    <path d="M9 12l2 2l4 -4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                                <span class="mr-1">Meja</span>
-                                <span>10</span>
-                            </p>
-                            <p class="mb-1 text-sm font-normal text-black dark:text-gray-400 flex items-center">
-                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" width="24" height="24" viewBox="0 0 24 24" stroke="none">
-                                    <circle cx="12" cy="12" r="10" fill="#42BB4E" />
-                                    <path d="M9 12l2 2l4 -4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                                <span class="mr-1">Kursi</span>
-                                <span>10</span>
-                            </p>
-                            <p class="mb-1 text-sm font-normal text-black dark:text-gray-400 flex items-center">
-                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" width="24" height="24" viewBox="0 0 24 24" stroke="none">
-                                    <circle cx="12" cy="12" r="10" fill="#42BB4E" />
-                                    <path d="M9 12l2 2l4 -4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                                <span class="mr-1">Uang</span>
-                                <span>500.000</span>
-                            </p>
-                        </div> --}}
+
 
                         <!-- Doa Donatur -->
                         <div>
                             <p class="h1 mb-2 block text-sm font-semibold text-black mt-6">Doa Dari Donaturmu</p>
                             <p class="mb-4 mr-6 text-sm font-normal text-black dark:text-gray-400">{{ $donation->pesan }}</p>
                             <p class="mb-1 text-xs font-normal text-black dark:text-gray-400">Donasi Masuk : {{ $donation->created_at->format('d F Y') }}</p>
-                            <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">
+
+                            {{-- <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">
                                 @if($donation->status == 'valid')
                                     Donasi Terverifikasi: {{ $donation->updated_at->format('d F Y') }}
                                 @else
                                     Donasi Terverifikasi: Sedang diverifikasi admin
                                 @endif
-                            </p>
+                            </p> --}}
                         </div>
                     </div>
                 </div>

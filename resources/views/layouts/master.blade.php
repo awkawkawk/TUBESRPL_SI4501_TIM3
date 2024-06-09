@@ -68,6 +68,8 @@
                             <span class="sr-only">Cari</span>
                         </button>
                     </div>
+
+
                     <button data-collapse-toggle="navbar-search" type="button"
                         class="inline-flex h-10 w-10 items-center justify-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 md:hidden"
                         aria-controls="navbar-search" aria-expanded="false">
@@ -152,7 +154,7 @@
         <div class="h-full overflow-y-auto bg-white px-3 pb-4">
             <ul class="space-y-2 font-medium">
                 <li>
-                    <a href="#" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
+                    <a href="{{ route('index') }}" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             class="h-4 w-4 text-gray-500 transition duration-75 group-hover:text-gray-900">
                             <path
@@ -160,24 +162,34 @@
                             <path
                                 d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
                         </svg>
-
-
                         <span class="ms-3 text-sm">Beranda</span>
                     </a>
                 </li>
+
+
                 <li>
                     <a href="#" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
-
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                             class="h-4 w-4 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900">
                             <path fill-rule="evenodd"
                                 d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
                                 clip-rule="evenodd" />
                         </svg>
-
                         <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Cari</span>
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{ route('campaigns.create') }}" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
+                        <svg class="h-4 w-4 text-zinc-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0
+                            002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z"/>
+                          </svg>
+                        <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Tambah Campaign</span>
+                    </a>
+                </li>
+
                 <li>
                     <a href="{{ route('campaign.riwayat') }}" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
                         <svg class="h-4 w-4 text-zinc-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
@@ -217,7 +229,16 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('dashboard') }}" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
+                    <a href="{{ route('pencairan.history') }}" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
+                        <svg class="h-4 w-4 text-zinc-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>
+                            <rect x="3" y="4" width="18" height="4" rx="2" />  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+                            <line x1="10" y1="12" x2="14" y2="12" /></svg>
+                        <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Riwayat Pencairan</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('dashboard_edufund') }}" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
                           <svg class="h-4 w-4 text-zinc-500" fill="none"  viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"stroke-linecap="round" stroke-linejoin="round">
                             <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M10 3.2a9 9 0 1 0 10.8 10.8a1 1 0 0 0 -1 -1h-3.8a4.1 4.1 0 1 1 -5 -5v-4a.9 .9 0 0 0 -1 -.8" />
                             <path d="M15 3.5a9 9 0 0 1 5.5 5.5h-4.5a9 9 0 0 0 -1 -1v-4.5" /></svg>
@@ -225,9 +246,36 @@
                     </a>
                 </li>
 
+                {{-- !!! start here !!! --}}
 
+                <li>
+                    <a href="{{ route('verifikasi.sekolah') }}" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
+                        <svg class="h-4 w-4 text-zinc-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+                        fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="3" y1="21" x2="21" y2="21" />
+                        <path d="M5 21v-14l8 -4v18" />  <path d="M19 21v-10l-6 -4" />  <line x1="9" y1="9" x2="9" y2="9.01" />  <line x1="9" y1="12" x2="9" y2="12.01" />
+                        <line x1="9" y1="15" x2="9" y2="15.01" />  <line x1="9" y1="18" x2="9" y2="18.01" /></svg>
+                        <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Verifikasi Sekolah</span>
+                    </a>
+                </li>
 
+                <li>
+                    <a href="{{ route('verifikasi.campaign') }}" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
+                        <svg class="h-4 w-4 text-zinc-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+                          </svg>
+                        <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Verifikasi Campaign</span>
+                    </a>
+                </li>
 
+                <li>
+                    <a href="{{ route('admin.berita.index') }}" class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
+                        <svg class="h-4 w-4 text-zinc-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2
+                            2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/>
+                          </svg>
+                        <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Berita</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </aside>

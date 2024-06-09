@@ -182,7 +182,7 @@
                                                 </span> --}}
                                             </a>
                                         </div>
-                                    @elseif($campaign->status == 'Selesai')
+                                    @elseif($campaign->status == 'selesai')
                                         <div class="flex justify-center items-center">
                                             <button
                                                 class="bg-zinc-500 hover:bg-zinc-600 text-white font-bold py-2 px-8 rounded-lg">

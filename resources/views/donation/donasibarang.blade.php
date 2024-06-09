@@ -50,13 +50,13 @@
                     <!-- Input Jasa Kirim -->
                     <div class="mb-4 mt-6">
                         <label class="block font-medium text-sm text-gray-700" for="nama">Layanan Jasa Kirim</label>
-                        <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="jasa_kirim" type="text" name="jasa_kirim" placeholder="Anda dapat mengisinya nanti">
+                        <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="jasa_kirim" type="text" name="jasa_kirim" placeholder="Jasa kirim yang digunakan">
                     </div>
 
                     <!-- Input Nomor Rekening -->
                     <div class="mb-6">
                         <label class="block font-medium text-sm text-gray-700" for="nomor_rekening">Nomor Resi Pengiriman</label>
-                        <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="nomor_resi" type="text" name="nomor_resi" placeholder="Anda dapat mengisinya nanti">
+                        <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="nomor_resi" type="text" name="nomor_resi" placeholder="Nomor resi pengiriman barang">
                     </div>
 
                     <!-- Input Pesan -->

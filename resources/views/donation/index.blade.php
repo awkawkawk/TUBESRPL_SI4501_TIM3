@@ -66,7 +66,7 @@
 
                         <!-- Tombol "Donasi Barang" pada setiap card campaign -->
                         <div class="flex justify-center items-center mt-4">
-                            <a href="{{ route('donations.form.items', ['id' => $campaign->id]) }}" class="bg-primary text-white font-bold py-2 px-8 rounded-lg">
+                            <a href="{{ route('donations.form.items', ['id' => $campaign->id]) }}" class="bg-primary text-white font-bold py-2 px-6 rounded-lg">
                             Donasi Barang
                             </a>
                         </div>
