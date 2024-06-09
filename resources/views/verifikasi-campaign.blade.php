@@ -10,15 +10,15 @@
                         <path stroke="rgb(75, 85, 101)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M13 5H1m0 0 4 4M1 5l4-4" />
                     </svg>
-                    <a href="/" class="text-justify text-sm font-light text-gray-700"
-                        style="margin-left: 8px;"><b>Kembali ke halaman utama</b></a>
+                    <a href="{{ url()->previous()}}" class="text-justify text-sm font-light text-gray-700"
+                        style="margin-left: 8px;"><b>Kembali</b></a>
                 </div>
             </div>
         </div>
 
         <div class="col-span-3 md:col-span-2">
             <div class="mb-4 text-left" style="margin-left: 2rem; margin-right: 2rem;">
-                <p class="h1 text-l mb-2 block font-semibold text-black" style="margin-bottom: 1rem;">Verifikasi campaign
+                <p class="h1 text-l mb-2 block font-semibold text-black" style="margin-bottom: 1rem;">Verifikasi Campaign
                 </p>
                 <div class="flex w-full flex-wrap">
                     {{-- {{$campaigns}} --}}

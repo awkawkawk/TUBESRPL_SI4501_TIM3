@@ -39,18 +39,21 @@ class NewsController extends Controller
             'content' => 'required|string',
             'release_date' => 'required|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'link' => 'required|string',
         ]);
         $dataToUpdate = $request->except(['image']);
         // Mengunggah gambar jika ada
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $fileName = $request->name . '-' . $request->specialist . '-' . date('YmdHis') . '.' . $image->getClientOriginalExtension();
-            $destination = 'storage/news_photo';
-            $image->move($destination, $fileName);
-            $dataToUpdate['image'] = $fileName;
-          }
-        
-     
+         if ($request->hasFile('image')) {
+            $file = $request->file('image')->getRealPath();
+            $uploadResult = cloudinary()
+                ->upload($file, [
+                    'folder' => 'berita',
+                ])
+                ->getSecurePath();
+            $dataToUpdate['image'] = $uploadResult;
+        }
+
+        // dd($dataToUpdate);
 
         News::create($dataToUpdate);
 
@@ -70,6 +73,7 @@ class NewsController extends Controller
             'content' => 'required|string',
             'release_date' => 'required|date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'link' => 'required|string',
         ]);
 
         $news = News::findOrFail($id);
@@ -77,14 +81,15 @@ class NewsController extends Controller
         $dataToUpdate = $request->except(['image']);
         // Mengunggah gambar jika ada
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $fileName = $request->name . '-' . $request->specialist . '-' . date('YmdHis') . '.' . $image->getClientOriginalExtension();
-            $destination = 'storage/news_photo';
-            $image->move($destination, $fileName);
-            $dataToUpdate['image'] = $fileName;
-          }
-        
-     
+            $file = $request->file('image')->getRealPath();
+            $uploadResult = cloudinary()
+                ->upload($file, [
+                    'folder' => 'berita',
+                ])
+                ->getSecurePath();
+            $dataToUpdate['image'] = $uploadResult;
+        }
+
         $news->update($dataToUpdate);
 
         return redirect()->route('admin.berita.index')->with('success', 'News successfully updated');
@@ -95,9 +100,9 @@ class NewsController extends Controller
         $news = News::findOrFail($id);
 
         // Delete the image
-        if (Storage::exists('storage/news_photo/'.$news->image)) {
-            Storage::delete('storage/news_photo/'.$news->image);
-        }
+        // if (Storage::exists('storage/news_photo/'.$news->image)) {
+        //     Storage::delete('storage/news_photo/'.$news->image);
+        // }
 
         $news->delete();
 

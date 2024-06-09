@@ -10,8 +10,8 @@
                         <path stroke="rgb(75, 85, 101)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M13 5H1m0 0 4 4M1 5l4-4" />
                     </svg>
-                    <a href="/" class="text-sm font-light text-gray-700 text-justify"
-                        style="margin-left: 8px;"><b>Kembali ke halaman utama</b></a>
+                    <a href="{{ url()->previous()}}" class="text-sm font-light text-gray-700 text-justify"
+                        style="margin-left: 8px;"><b>Kembali</b></a>
                 </div>
             </div>
         </div>
@@ -23,14 +23,15 @@
 
 
                 @foreach ($campaigns as $campaign)
-                    <div class="w-full lg:max-w-full lg:flex mb-4">
-                        <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-lg text-center overflow-hidden"
-                            style="background-image: url('{{  $campaign->foto_campaign }}')"
-                            title="Campaign Anda">
-                        </div>
-                        <div
-                            class="border border-gray-200 bg-white rounded-b-lg lg:rounded-b-none lg:rounded-r-lg p-4 flex flex-col justify-between leading-normal flex-grow">
-                            <div class="mb-8 grid grid-cols-4 gap-x-4 lg:gap-x-8" style="grid-template-columns: 1fr 2fr">
+                <div class="w-full lg:max-w-full lg:flex mb-4">
+                    <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-l-lg text-center overflow-hidden"
+                    style="background-image: url('{{  $campaign->foto_campaign }}')"
+                    title="Campaign Anda">
+                    </div>
+                    <div
+                    class="border border-gray-200 bg-white rounded-b-lg lg:rounded-b-none lg:rounded-r-lg p-4 flex flex-col justify-between leading-normal flex-grow">
+                    <a href="/campaign/detail/{{$campaign->id}}" referrerpolicy="no-referrer">
+                    <div class="mb-8 grid grid-cols-4 gap-x-4 lg:gap-x-8" style="grid-template-columns: 1fr 2fr">
                                 <!-- Identitas Sekolah -->
                                 <div>
                                     <!-- Konten Identitas Sekolah -->
@@ -53,7 +54,7 @@
                                             @endif --}}
                                     </div>
                                 </div>
-
+                                </a>
                                 <!-- Donasi Masuk dan Target Donasi -->
                                 <div class="mb-2 grid grid-cols-2 gap-x-4 lg:gap-x-8"
                                     style="grid-template-columns: 1fr 1fr;">
@@ -221,7 +222,6 @@
                                         </div>
                                     @endif
                                 </div>
-
 
                             </div>
                         </div>
