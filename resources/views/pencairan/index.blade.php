@@ -19,10 +19,10 @@
             </div>
 
         @foreach ($request as $d)
-            <div class="flex mt-4 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                <div class="flex-1 flex justify-center items-center">
+            <div class="mt-6 flex overflow-hidden bg-white px-6 py-4 shadow-md sm:rounded-lg">
+                <div class="flex flex-1 items-center justify-center">
                     @unless ($d->MoneyDonation->Donation->Campaign->foto_campaign === null)
-                        <img src="{{ asset('storage/cover_images/' . $d->MoneyDonation->Donation->Campaign->foto_campaign) }}"
+                        <img class="rounded-lg" src="{{ $d->MoneyDonation->Donation->Campaign->foto_campaign }}"
                             alt="{{ $d->MoneyDonation->Donation->Campaign->nama_campaign }}" style="background-image: cover">
                     @else
                         <img src="https://via.placeholder.com/640x480.png/F6F5F2?text=NoImageAvailable" alt="No Image"
@@ -39,19 +39,27 @@
                     <p class="h1 mb-1 block text-l font-normal text-black">Rp.  {{ number_format($d->nominal_terkumpul, 0, ',', '.') }}</p>
                 </div>
                 <div class="flex-1 flex flex-col justify-center items-center">
-                    <p class="h1 mb-2 mt-2 block text-l font-bold text-black" >Sisa Donasi</p>
+                    <p class="h1 mb-2 mt-2 block text-l font-bold text-black" >Kuota Pencairan</p>
                     <p class="h1 mb-1 block text-l font-normal text-black">
                         Rp.
+               
                         @if (is_null($d->id_tahap_pencairan))
-                        {{ number_format($d->nominal_terkumpul, 0, ',', '.') }}
+                            {{ number_format($d->nominal_terkumpul, 0, ',', '.') }}
                         @else
-                        {{ number_format($d->nominal_sisa, 0, ',', '.') }}
-                        @endif</p>
+                            {{ number_format($d->nominal_sisa, 0, ',', '.') }}
+                        @endif
+                    </h3>
                 </div>
-                <div class="flex-1 flex justify-center items-center">
-                    <a href="{{ route('pencairan.request', $d->id) }}"
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Cairkan
-                        Dana</a>
+                <div class="flex flex-1 items-center justify-center">
+                    @if ($d->status==='pending' || $d->id_tahap_pencairan===NULL)
+                        <button class="rounded bg-gray-500 px-4 py-2 font-bold text-white disabled" disabled >Pending</button>
+                    @elseif ($d->id_tahap_pencairan===2 && $d->MoneyDonation->Donation->Campaign->status != 'selesai')
+                        <button class="rounded bg-gray-500 px-4 py-2 font-bold text-white disabled" disabled >Tunggu Campaign Selesai</button>
+                    @else
+                        <a href="{{ route('pencairan.request', $d->id) }}"
+                            class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Cairkan
+                            Dana</a>
+                    @endif
                 </div>
             </div>
         @endforeach

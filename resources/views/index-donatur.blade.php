@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master-donatur')
 
 @section('title', 'Halaman Utama - EduFund')
 

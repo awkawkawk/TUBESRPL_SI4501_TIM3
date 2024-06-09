@@ -3,12 +3,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Target;
 use App\Models\Campaign;
 use App\Models\Donation;
-use App\Models\Target;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class CampaignController extends Controller
 {
@@ -28,29 +29,38 @@ class CampaignController extends Controller
 
     public function store(Request $request)
     {
-
         if ($request->hasFile('photo')) {
-            $photoPath = $request->file('photo')->store('campaign_photos', 'public');
+            $file = $request->file('photo')->getRealPath();
+
+            // Unggah file ke Cloudinary ke dalam folder 'bukti'
+            $uploadResult = cloudinary()
+                ->upload($file, [
+                    'folder' => 'bukti',
+                ])
+                ->getSecurePath();
         }
 
         $campaign = Campaign::create([
             'nama_campaign' => $request->nama_campaign,
-            'foto_campaign' => $photoPath,
+            'foto_campaign' => $uploadResult,
             'deskripsi_campaign' => $request->description,
-            'id_sekolah' => 1, // Assuming the user is authenticated as a school // auth()->user->id
+            'id_sekolah' => Auth::user()->id_sekolah, // Assuming the user is authenticated as a school // auth()->user->id
             'status' => 'pending',
+            'jenis_donasi' => $request->input('jenis_donasi')
         ]);
+
 
         // Handle targets based on jenis_donasi
         $jenisDonasi = $request->input('jenis_donasi');
 
-        if ($jenisDonasi == 'money') {
+        if ($jenisDonasi == 'uang') {
             $campaign->targets()->create([
                 'nama_barang' => 'Uang',
                 'jumlah_barang' => $request->input('target_uang'),
             ]);
-        } elseif ($jenisDonasi == 'goods' || $jenisDonasi == 'money_and_goods') {
-            if ($jenisDonasi == 'money_and_goods') {
+        } elseif ($jenisDonasi == 'barang' || $jenisDonasi == 'uang_barang') {
+
+            if ($jenisDonasi == 'uang_barang') {
                 $campaign->targets()->create([
                     'nama_barang' => 'Uang',
                     'jumlah_barang' => $request->input('target_uang'),
@@ -102,13 +112,13 @@ class CampaignController extends Controller
         // Handle targets based on jenis_donasi
         $jenisDonasi = $request->input('jenis_donasi');
 
-        if ($jenisDonasi == 'money') {
+        if ($jenisDonasi == 'uang') {
             $campaign->targets()->create([
                 'nama_barang' => 'Uang',
                 'jumlah_barang' => $request->input('target_uang'),
             ]);
-        } elseif ($jenisDonasi == 'goods' || $jenisDonasi == 'money_and_goods') {
-            if ($jenisDonasi == 'money_and_goods') {
+        } elseif ($jenisDonasi == 'barang' || $jenisDonasi == 'uang_barang') {
+            if ($jenisDonasi == 'uang_barang') {
                 $campaign->targets()->create([
                     'nama_barang' => 'Uang',
                     'jumlah_barang' => $request->input('target_uang'),

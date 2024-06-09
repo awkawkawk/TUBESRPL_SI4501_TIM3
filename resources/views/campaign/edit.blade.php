@@ -57,11 +57,11 @@
                     $goodsCount = $campaign->targets->where('nama_barang', '!=', 'Uang')->count();
                     $jenisDonasi = '';
                     if ($uangCount == 1 && $goodsCount == 0) {
-                        $jenisDonasi = 'money';
+                        $jenisDonasi = 'uang';
                     } elseif ($uangCount > 0 && $goodsCount > 0) {
-                        $jenisDonasi = 'money_and_goods';
+                        $jenisDonasi = 'uang_barang';
                     } elseif ($goodsCount > 0) {
-                        $jenisDonasi = 'goods';
+                        $jenisDonasi = 'barang';
                     }
                 @endphp
 
@@ -72,19 +72,19 @@
                         </label>
                         <select id="jenis_donasi" name="jenis_donasi" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring-blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
                             <option value="">Pilih Jenis Sumbangan</option>
-                            <option value="money" {{ $jenisDonasi == 'money' ? 'selected' : '' }}>Uang</option>
-                            <option value="goods" {{ $jenisDonasi == 'goods' ? 'selected' : '' }}>Barang</option>
-                            <option value="money_and_goods" {{ $jenisDonasi == 'money_and_goods' ? 'selected' : '' }}>Uang dan Barang</option>
+                            <option value="uang" {{ $jenisDonasi == 'uang' ? 'selected' : '' }}>Uang</option>
+                            <option value="barang" {{ $jenisDonasi == 'barang' ? 'selected' : '' }}>Barang</option>
+                            <option value="uang_barang" {{ $jenisDonasi == 'uang_barang' ? 'selected' : '' }}>Uang dan Barang</option>
                         </select>
                     </div>
                 </div>
 
-                <div id="target_uang" class="{{ $jenisDonasi == 'money' || $jenisDonasi == 'money_and_goods' ? '' : 'hidden' }} mt-4">
+                <div id="target_uang" class="{{ $jenisDonasi == 'uang' || $jenisDonasi == 'uang_barang' ? '' : 'hidden' }} mt-4">
                     <label for="target_uang" class="block text-gray-700 text-base font-bold mb-2">Target Donasi Uang</label>
                     <input type="number" id="target_uang" name="target_uang" min="0" value="{{ $campaign->targets->firstWhere('nama_barang', 'Uang')->jumlah_barang ?? '' }}" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring-blue-500 focus:border-blue-500 w-full transition-all duration-150" placeholder="Input Nominal">
                 </div>
 
-                <div id="nama_barang" class="{{ $jenisDonasi == 'goods' || $jenisDonasi == 'money_and_goods' ? '' : 'hidden' }} mt-4">
+                <div id="nama_barang" class="{{ $jenisDonasi == 'barang' || $jenisDonasi == 'uang_barang' ? '' : 'hidden' }} mt-4">
                     <label class="block text-gray-700 text-base font-bold mb-2">Target Barang</label>
                     <div id="goodsContainer" class="flex flex-wrap -mx-3 mb-6">
                         @foreach ($campaign->targets as $target)
@@ -183,11 +183,11 @@
         donationMoney.style.display = "none";
         donationGoods.style.display = "none";
 
-        if (donationType === "money") {
+        if (donationType === "uang") {
             donationMoney.style.display = "block";
-        } else if (donationType === "goods") {
+        } else if (donationType === "barang") {
             donationGoods.style.display = "block";
-        } else if (donationType === "money_and_goods") {
+        } else if (donationType === "uang_barang") {
             donationMoney.style.display = "block";
             donationGoods.style.display = "block";
         }

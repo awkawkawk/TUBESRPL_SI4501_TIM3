@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\History;
 use App\Models\MethodPayment;
 use App\Models\MoneyDonation;
 use App\Models\TahapPencairan;
@@ -41,6 +42,6 @@ class RequestPencairan extends Model
 
     public function historyPencairan()
     {
-        return $this->hasMany(Histories::class, 'id_money_donation');
+        return $this->hasMany(History::class, 'id_request_pencairan');
     }
 }
