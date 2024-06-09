@@ -148,6 +148,17 @@ class DonationItemController extends Controller
         // return redirect('/edit/donation/item');
     }
 
+//     $selectedCampaignId = $request->id_campaign;
+//     $selectedCampaign = Campaign::findOrFail($selectedCampaignId);
+
+//     return redirect()->route('donationItem.edit');
+
+//     // return redirect()->route('donationItem.edit')->with('success', 'Donasi berhasil di edit');
+//     // return view('managedonation.edititem');
+//     return redirect('/edit/donation/item');
+//     }
+
+
     public function destroy($id)
     {
         $donation = Donation::findOrFail($id);

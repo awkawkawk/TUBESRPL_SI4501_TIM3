@@ -2,8 +2,8 @@
     $totalCampaign = array_sum($campaignChartData);
 @endphp
 
-<div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-4">
-    <div class="w-full relative mb-4">
+<div class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-4 xl:col-span-4">
+    {{-- <div class="w-full relative mb-4"> --}}
         <div class="flex-auto p-4 bg-white">
             <p class="mb-1 text-slate-700 dark:text-slate-400 text-l">Total Campaign</p>
             <div class="border-b border-dashed border-slate-300 dark:border-slate-700/40 my-3"></div>
@@ -31,5 +31,5 @@
             </div><!--end grid-->
 
         </div><!--end card-body-->
-    </div><!--end card-->
+    {{-- </div><!--end card--> --}}
 </div><!--end col-->

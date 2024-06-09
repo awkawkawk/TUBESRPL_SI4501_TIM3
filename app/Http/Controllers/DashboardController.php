@@ -17,7 +17,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-       $donasi = Donation::where('jenis_donasi','uang');
+       $donasi = Donation::all();
        $table = RequestPencairan::all();
        $item = ItemDonation::all();
        $metode = MethodPayment::all();
@@ -26,6 +26,7 @@ class DashboardController extends Controller
        $totalsaldo = RequestPencairan::sum('nominal_terkumpul');
        $totalrequest = RequestPencairan::sum('nominal_sisa');
        $totalcair = $totalsaldo - $totalrequest;
+
 
 
     // Chart graph
@@ -57,6 +58,12 @@ class DashboardController extends Controller
             Donation::where('status','valid')->count(),
             // dd(Donation::where('status','valid'))
         ];
+
+        $ItemChartData =  [
+            $item->where('status', 'dikirim')->count(),
+            $item->where('status', 'diterima')->count(),
+        ];
+
         $ItemChartLabel =[
             'Dikirim',
             'Diterima'
