@@ -51,7 +51,9 @@
                     </h3>
                 </div>
                 <div class="flex flex-1 items-center justify-center">
-                    @if ($d->status==='pending' || $d->id_tahap_pencairan===NULL)
+                    @if ($d->status==='pending' && $d->id_tahap_pencairan===NULL)
+                        <button class="rounded bg-gray-500 px-4 py-2 font-bold text-white disabled" disabled >Pending</button>
+                    @elseif ($d->status==='pending')
                         <button class="rounded bg-gray-500 px-4 py-2 font-bold text-white disabled" disabled >Pending</button>
                     @elseif ($d->id_tahap_pencairan===2 && $d->MoneyDonation->Donation->Campaign->status != 'selesai')
                         <button class="rounded bg-gray-500 px-4 py-2 font-bold text-white disabled" disabled >Tunggu Campaign Selesai</button>

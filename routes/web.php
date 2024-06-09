@@ -65,7 +65,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/donation/item/{id}', [DonationItemController::class, 'showFormItem'])->name('donations.form.items');
     Route::post('/donation/item/{id}', [DonationItemController::class, 'postFormItem'])->name('donations.post.form.items');
     Route::post('/donation/storeItems', [DonationItemController::class, 'storeItems'])->name('donations.storeItems');
-
 });
 
 // ! ADMIN
@@ -111,7 +110,6 @@ Route::prefix('admin')->group(function () {
             Route::post('/{id}', [NewsController::class, 'update'])->name('admin.berita.update');
             Route::delete('/{id}', [NewsController::class, 'destroy'])->name('admin.berita.delete');
             Route::get('/{id}', [NewsController::class, 'detail'])->name('admin.berita.detail');
-
         });
     });
 });
@@ -150,6 +148,7 @@ Route::get('/unauthorized', function () {
     return response()->view('errors.unauthorized', [], 403);
 });
 
+// Rute untuk menampilkan semua sekolah
 Route::get('schools', [SchoolController::class, 'index'])->name('schools.index');
 Route::get('schools/create', [SchoolController::class, 'create'])->name('schools.create');
 Route::post('schools', [SchoolController::class, 'store'])->name('schools.store');
