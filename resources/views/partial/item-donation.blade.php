@@ -2,7 +2,7 @@
     $totalItem = array_sum($ItemChartData);
 @endphp
 
-<div class="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4 xl:col-span-4">
+<div class="col-span-4 sm:col-span-4 md:col-span-6 lg:col-span-4 xl:col-span-4">
     <div class="w-full relative mb-4">
         <div class="flex-auto p-4 bg-white">
             <p class="mb-1 text-slate-700 dark:text-slate-400 text-l">Donasi Barang</p>

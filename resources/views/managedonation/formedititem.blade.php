@@ -22,7 +22,7 @@
                 <p class="mb-2 text-s font-normal text-black dark:text-gray-400">{{ $selectedCampaign->school->nama_sekolah }}</p> <!-- Asal Sekolah -->
                 <hr>
                 <form method="POST" action="{{ route('donations.edit', ['id' => $formdonation->id]) }}" onsubmit="return confirm('Apakah Anda yakin ingin mengubah data donasi ini?');" style="margin: 0 auto;">
-                    @method('PUT')
+    
                     @csrf
                      <!-- old value -->
                      <div class="mb-2 mt-6 flex flex-wrap">

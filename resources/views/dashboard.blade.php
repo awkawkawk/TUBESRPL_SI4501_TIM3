@@ -31,8 +31,8 @@
             @include('partial.item-donation', [
                 'ItemChartData' => $ItemChartData,
             ])
-
         </div>
+
         <div class="grid grid-cols-4 w-full gap-6">
             <div class=" bg-white">
                 <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
@@ -42,8 +42,8 @@
                                 <p class="text-gray-800 font-semibold dark:text-slate-400 text-lg uppercase">
                                     Rp. {{ number_format($totalnominal, 2, ',', '.') }}
                                 </p>
-                                <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">Jumlah Donasi
-                                    Uang Terkumpul</h3>
+                                <h4 class="my-4 font-semibold dark:text-slate-200">Jumlah Donasi
+                                    Uang Terkumpul</h4>
                             </div>
                             <div class="self-center">
                                 <i data-lucide="shopping-cart" class=" h-16 w-16 stroke-primary-500/30"></i>
@@ -60,7 +60,7 @@
                                 <p class="text-gray-800 font-semibold dark:text-slate-400 text-lg uppercase"> Rp.
                                     {{ number_format($totalcair, 2, ',', '.') }}
                                 </p>
-                                <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">Jumlah Donasi
+                                <h3 class="my-4 font-semibold dark:text-slate-200">Jumlah Donasi
                                     Uang Dicairkan</h3>
                             </div>
                             <div class="self-center">
@@ -79,7 +79,7 @@
                                 <p class="text-gray-800 font-semibold dark:text-slate-400 text-lg uppercase">
                                     {{ $totalItem }}
                                 </p>
-                                <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">Jumlah Donasi
+                                <h3 class="my-4 font-semibold dark:text-slate-200">Jumlah Donasi
                                     Barang</h3>
                             </div>
                             <div class="self-center">
@@ -97,7 +97,7 @@
                             <div class="self-center">
                                 <p class="text-gray-800 font-semibold dark:text-slate-400 text-lg uppercase">
                                     {{ $schoolCount }}</p>
-                                <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">Jumlah Sekolah
+                                <h3 class="my-4 font-semibold dark:text-slate-200">Jumlah Sekolah
                                     Terbantu</h3>
                             </div>
                             <div class="self-center">

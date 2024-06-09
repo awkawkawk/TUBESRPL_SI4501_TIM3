@@ -76,7 +76,7 @@ Route::middleware('auth')->group(function () {
     // manage item donation
     Route::get('/edit/donation/item', [DonationItemController::class, 'editItem'])->name('donationItem.edit');
     Route::get('/edit/donation/item/{id}', [DonationItemController::class, 'showform_editItem'])->name('itemform.edit');
-    Route::put('/edit/donation/item/{id}', [DonationItemController::class, 'updateItem'])->name('donations.edit');
+    Route::post('/edit/donation/item/{id}', [DonationItemController::class, 'updateItem'])->name('donations.edit');
     Route::delete('/donation/item/delete/{id}', [DonationItemController::class, 'destroy'])->name('donations.item.destroy');
 
 
@@ -99,7 +99,7 @@ Route::middleware('roles:admin')->group(function () {
     Route::post('/verifikasi-donasi/{id}', [DonationVerificationController::class, 'respondVerification'])->name('response.verification.donation');
     Route::get('/verifikasi-sekolah', [SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
     Route::post('/verifikasi-campaign/{id}', [CampaignVerificationController::class, 'respondVerification'])->name('response.verification.campaign');
-  
+
     // manage money donation
     Route::get('/edit/donation/money', [DonationController::class, 'editMoney'])->name('donationMoney.edit');
     Route::get('/edit/donation/money/{id}', [DonationController::class, 'showform_editMoney'])->name('moneyform.edit');
@@ -117,7 +117,7 @@ Route::middleware('roles:admin')->group(function () {
             Route::post('/{id}', [NewsController::class, 'update'])->name('admin.berita.update');
             Route::delete('/{id}', [NewsController::class, 'destroy'])->name('admin.berita.delete');
             Route::get('/{id}', [NewsController::class, 'detail'])->name('admin.berita.detail');
-          
+
         });
     });
 
@@ -129,7 +129,7 @@ Route::middleware('roles:admin')->group(function () {
   Route::get('/verifikasi-sekolah', [SchoolVerificationController::class, 'showVerificationPage'])->name('verifikasi.sekolah');
   Route::get('/proof', [ReportingProofController::class, 'index'])->name('report.proof');
   Route::post('/verifikasi-sekolah/{id}', [SchoolVerificationController::class, 'respondVerification'])->name('response.verification');
-  
+
   Route::get('admin/pencairan', [RequestPencairanController::class, 'AdminIndex'])->name('admin.list.pencairan');
   Route::get('admin/pencairan/{RequestPencairan}/{History}/acc', [RequestPencairanController::class, ''])->name('pencairan.acc');
   Route::put('admin/pencairan/{RequestPencairan}/{History}', [RequestPencairanController::class, 'adminVerification'])->name('pencairan.response');
