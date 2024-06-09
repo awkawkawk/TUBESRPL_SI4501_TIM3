@@ -57,8 +57,9 @@
                                         <td>Rp. {{ number_format($m->nominal_pencairan, 0, ',', '.') }}</td>
                                         <td>
                                             @unless ($m->pendukung === null)
-                                                <img src="{{ asset('storage/cover_images/' . $m->pendukung) }}"
-                                                    alt="{{ $m->id }}" class="img-responsive" style="max-width: 100px">
+                                                <a href="{{$m->pendukung}}" target="_blank"><button class="text-blue-500">Lihat</button></a>
+                                                {{-- <img src="{{ $m->pendukung }}"
+                                                    alt="{{ $m->id }}" class="img-responsive" style="max-width: 100px"> --}}
                                             @else
                                                 <img src="https://via.placeholder.com/640x480.png/F6F5F2?text=NoImageAvailable"
                                                     alt="No Image" class="img-responsive" style="max-width: 100px">

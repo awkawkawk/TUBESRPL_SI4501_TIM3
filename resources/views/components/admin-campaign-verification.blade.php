@@ -1,4 +1,4 @@
-<div class="mb-8 w-1/2 pe-8" school-verification-id="{{ $verificationId }}">
+<div class="mb-8 pe-8" school-verification-id="{{ $verificationId }}">
     <div class="rounded-lg border border-gray-200 bg-white shadow-sm">
         <div class="flex items-center px-5 py-3">
             <img src="{{ $profile }}" alt="{{ $alt }}" class="h-10 w-10 rounded-full object-cover" referrerpolicy="no-referrer">
@@ -34,12 +34,12 @@
             <p class="mb-2 text-sm font-normal text-black text-wrap">{{ $schoolPhone }}</p> --}}
         </div>
         <div class="inline-flex w-full rounded-md shadow-sm" role="group">
-            <button type="button" data-modal-target="confirm-modal" data-modal-toggle="confirm-modal"
+            <button type="button" data-modal-target="confirm-modal{{$verificationId}}" data-modal-toggle="confirm-modal{{$verificationId}}"
                 class="w-1/2 rounded-bl-lg border-gray-200 bg-green-600 px-4 py-3 text-sm font-medium text-white hover:bg-green-800 hover:text-gray-100 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500">
                 Konfirmasi
             </button>
 
-            <button type="button" data-modal-target="decline-modal" data-modal-toggle="decline-modal"
+            <button type="button" data-modal-target="decline-modal{{$verificationId}}" data-modal-toggle="decline-modal{{$verificationId}}"
                 class="w-1/2 rounded-br-lg border-gray-200 bg-red-600 px-4 py-3 text-sm font-medium text-white hover:bg-red-800 hover:text-gray-100 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500">
                 Tolak
             </button>
@@ -48,7 +48,7 @@
 </div>
 
 <!-- Confirm modal -->
-<div id="confirm-modal" tabindex="-1" aria-hidden="true"
+<div id="confirm-modal{{$verificationId}}" tabindex="-1" aria-hidden="true"
     class="top-50 fixed left-0 right-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden md:inset-0">
     <div class="relative max-h-full w-full max-w-2xl p-4">
         <!-- Modal content -->
@@ -60,7 +60,7 @@
                 </h3>
                 <button type="button"
                     class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-                    data-modal-hide="confirm-modal">
+                    data-modal-hide="confirm-modal{{$verificationId}}">
                     <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -84,7 +84,7 @@
                 <button type="submit" name="response" value="confirm"
                     class="rounded-lg bg-green-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ya,
                     saya yakin</button>
-                <button data-modal-hide="confirm-modal" type="button"
+                <button data-modal-hide="confirm-modal{{$verificationId}}" type="button"
                     class="ms-3 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">Batal</button>
             </div>
         </div>
@@ -92,7 +92,7 @@
 </div>
 
 <!-- Decline modal -->
-<div id="decline-modal" tabindex="-1" aria-hidden="true"
+<div id="decline-modal{{$verificationId}}" tabindex="-1" aria-hidden="true"
     class="top-50 fixed left-0 right-0 z-50 hidden h-[calc(100%-1rem)] max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden md:inset-0">
     <div class="relative max-h-full w-full max-w-2xl p-4">
         <!-- Modal content -->
@@ -104,7 +104,7 @@
                 </h3>
                 <button type="button"
                     class="ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
-                    data-modal-hide="decline-modal">
+                    data-modal-hide="decline-modal{{$verificationId}}">
                     <svg class="h-3 w-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 14 14">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -132,7 +132,7 @@
                     class="rounded-lg bg-red-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ya,
                     tolak</button>
 
-                <button data-modal-hide="decline-modal" type="button"
+                <button data-modal-hide="decline-modal{{$verificationId}}" type="button"
                     class="ms-3 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">Batal</button>
             </div>
         </div>
