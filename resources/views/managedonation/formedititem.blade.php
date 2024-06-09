@@ -21,15 +21,15 @@
                 <p class="h1 mt-2 mb-1 block text-xl font-semibold text-black" >{{ $selectedCampaign->nama_campaign }}</p> <!-- Nama Campaign Yang Dipilih -->
                 <p class="mb-2 text-s font-normal text-black dark:text-gray-400">{{ $selectedCampaign->school->nama_sekolah }}</p> <!-- Asal Sekolah -->
                 <hr>
-                <form method="POST" action="{{ route('donations.edit', ['id' => $formdonation->id]) }}" onsubmit="return confirm('Apakah Anda yakin ingin mengubah data donasi ini?');" style="margin: 0 auto;">
+                <form method="POST" action="{{ route('donations.edit', ['id' => $formdonation->id]) }}" style="margin: 0 auto;">
                     @method("PUT")
                     @csrf
                      <!-- old value -->
                      <div class="mb-2 mt-6 flex flex-wrap">
                         <div class="w-full md:w-3/6 pr-1">
                             <label class="block font-medium text-sm text-gray-700" for="nama_barang">Barang Donasi Lama</label>
-                            @foreach ($formdonation->donationItems as $item)
-                                <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="nama_barang_1" name="nama_barang[]" required>
+                            @foreach ($formdonation->donationItems as $index => $item)
+                                <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="nama_barang_{{ $index }}" name="nama_barang[]" required>
                                     <option value="{{ $item->nama_barang }}" selected>{{ $item->nama_barang }}</option>
                                     @foreach ($targetDonasi as $target)
                                         <option value="{{ $target->nama_barang }}">{{ $target->nama_barang }}</option>
@@ -40,9 +40,9 @@
 
                         <!-- Buat elemen untuk input jumlah barang -->
                         <div class="w-full md:w-2/6 pl-3">
-                            <label class="block font-medium text-sm text-gray-700" for="jumlah_barang_1">Jumlah Barang</label>
-                            @foreach ($formdonation->donationItems as $item)
-                            <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" type="number" name="jumlah_barang[]" value="{{ $item->jumlah_barang}}" required>
+                            <label class="block font-medium text-sm text-gray-700" for="jumlah_barang_{{ $index }}">Jumlah Barang</label>
+                            @foreach ($formdonation->donationItems as $index => $item)
+                            <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="jumlah_barang_{{ $index }}" type="number" name="jumlah_barang[]" value="{{ $item->jumlah_barang}}" required>
                             @endforeach
                         </div>
 
@@ -84,7 +84,7 @@
 
 
 <script>
-var rowCounter = 1;
+var rowCounter = 100;
 
     function addRow() {
         rowCounter++;
@@ -97,7 +97,7 @@ var rowCounter = 1;
         selectContainer.classList.add('w-full', 'md:w-3/6', 'pr-1');
         selectContainer.innerHTML = `
             <label class="block font-medium text-sm text-gray-700" for="nama_barang_${rowCounter}">Barang Donasi</label>
-            <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" name="nama_barang[]" required>
+            <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="nama_barang_${rowCounter}" name="nama_barang[]" required>
                 <option value="" disabled selected style="font-size: 14px;">Pilih Barang</option>
                 @foreach ($targetDonasi as $target)
                     <option value="{{ $target->nama_barang }}" style="font-size: 14px;">{{ $target->nama_barang }}</option>
@@ -111,7 +111,7 @@ var rowCounter = 1;
         inputContainer.classList.add('w-full', 'md:w-2/6', 'pl-3');
         inputContainer.innerHTML = `
         <label class="block font-medium text-sm text-gray-700" for="jumlah_barang_${rowCounter}">Jumlah Barang</label>
-        <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" type="number" name="jumlah_barang[]" required>
+        <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" type="number" id="jumlah_barang_${rowCounter}" name="jumlah_barang[]" required>
         `;
         newRow.appendChild(inputContainer);
 
@@ -136,3 +136,5 @@ var rowCounter = 1;
 </script>
 @endsection
 
+
+{{-- <form method="POST" action="{{ route('donations.edit', ['id' => $formdonation->id]) }}" onsubmit="return confirm('Apakah Anda yakin ingin mengubah data donasi ini?');" style="margin: 0 auto;"> --}}

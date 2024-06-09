@@ -26,6 +26,7 @@ class DonationController extends Controller
 
     public function showForm($id)
     {
+
         // Mengambil data campaign berdasarkan ID yang dipilih
         $selectedCampaign = Campaign::findOrFail($id);
         $namaSekolah = $selectedCampaign->school->nama_sekolah;
@@ -118,7 +119,8 @@ class DonationController extends Controller
     public function showform_editMoney($id)
     {
         $formdonation = Donation::with(['user', 'moneyDonations', 'donationItems'])->findOrFail($id);
-        $selectedCampaign = Campaign::findOrFail($id);
+        $selectedCampaign = Campaign::findOrFail($formdonation->id_campaign);
+        // dd('dddd');
         $namaSekolah = $selectedCampaign->school->nama_sekolah;
         $metodePembayaran = MethodPayment::all();
         return view('managedonation.formeditmoney', compact('formdonation', 'selectedCampaign', 'namaSekolah', 'metodePembayaran'));

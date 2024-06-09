@@ -143,12 +143,12 @@
 
                                 <form action="{{ route('donations.item.destroy', ['id' => $donations->id]) }}"
                                     method="POST"
-                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus donasi ini?');"
+                                    {{-- onsubmit="return confirm('Apakah Anda yakin ingin menghapus donasi ini?');" --}}
                                     style="display: inline;">
                                     @csrf
                                     @method('DELETE')
                                     <button
-                                        class="mt-4 flex items-center justify-center rounded-lg px-2 py-2 font-bold text-white"
+                                    id="button-delete" class="mt-4 flex items-center justify-center rounded-lg px-2 py-2 font-bold text-white"
                                         style="background-color: #f57171;">
                                         <svg class="h-6 w-6 text-stone-500" width="24" height="24"
                                             viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
