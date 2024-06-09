@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\MethodPayment;
+use App\Models\MoneyDonation;
+use App\Models\TahapPencairan;
+use App\Models\RequestPencairan;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Histories extends Model
+class History extends Model
 {
     use HasFactory;
     protected $table = 'histories';
@@ -37,7 +41,7 @@ class Histories extends Model
     }
     public function requestPencairan()
     {
-        return $this->belongsTo(RequestPencairan::class, 'id_request_pencairan');
+        return $this->belongsTo(RequestPencairan::class, 'id)request_pencairan');
     }
 
 }

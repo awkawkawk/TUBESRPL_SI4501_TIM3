@@ -1,3 +1,7 @@
+@php
+    use Illuminate\Support\Facades\Storage;
+@endphp
+
 @extends('layouts.master')
 
 @section('content')
@@ -37,7 +41,7 @@
                 <svg class="w-4 h-4 mr-2 text-gray-800 dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 14 10" style="margin-right: 8px;">
                     <path stroke="rgb(75, 85, 101)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
                 </svg>
-                <a href="/" class="text-sm font-light text-gray-700 text-justify" style="margin-left: 8px;"><b>Kembali ke halaman utama</b></a>
+                <a href="{{ url()->previous()}}" class="text-sm font-light text-gray-700 text-justify" style="margin-left: 8px;"><b>Kembali</b></a>
             </div>
         </div>
     </div>
@@ -60,7 +64,7 @@
 
                     <div class="flex justify-center items-center mt-2">
                         <div class="rounded-full overflow-hidden w-20 h-20 flex justify-center items-center">
-                            <img src="{{ asset('storage/' . $school->logo_sekolah) }}" alt="Logo Sekolah" class="object-cover w-full h-full" />
+                            <img src="{{  Storage::url($school->logo_sekolah) }}" alt="Logo Sekolah" class="object-cover w-full h-full"referrerpolicy="no-referrer"/>
                         </div>
                     </div>
 
@@ -97,7 +101,7 @@
                     </div>
 
                     <!-- Actions -->
-                    <div class="flex flex-col space-y-2 mt-6">
+                    <div class="flex flex-col space-y-2  mt-6">
                         <div class="flex space-x-4">
                             <a href="{{ route('schools.edit', $school->id) }}" class="text-white font-bold py-2 px-2 rounded-lg bg-yellow-500 flex items-center justify-center">
                                 <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -107,7 +111,7 @@
 
                             <form action="{{ route('schools.destroy', $school->id) }}" method="POST">
                                 @csrf
-                                @method('DELETE')
+                                @method('DELETE')   
                                 <button type="submit" class="text-white font-bold py-2 px-2 rounded-lg bg-red-500 flex items-center justify-center">
                                     <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>

@@ -11,16 +11,15 @@
                     <path stroke="rgb(75, 85, 101)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M13 5H1m0 0 4 4M1 5l4-4" />
                 </svg>
-                <a href="/" class="text-sm font-light text-gray-700 text-justify" style="margin-left: 8px;"><b>Kembali
-                        ke halaman utama</b></a>
+                <a href="{{ url()->previous()}}" class="text-sm font-light text-gray-700 text-justify" style="margin-left: 8px;"><b>Kembali</b></a>
             </div>
         </div>
     </div>
     <div class="mb-2">
-    
+
     </div>
-   
-   
+
+
     <p class="h1 mb-2 mt-2 ml-2 mb-4 block text-l font-semibold text-black">Manage Donatur</p>
     @if(session('success'))
             <div class="flex items-center p-4 w-full mb-4  mr-14 text-sm text-green-800 border border-green-300 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400 dark:border-green-800 w-4/4"
@@ -44,7 +43,7 @@
                     </svg>
                 </button>
             </div>
-           
+
         @endif
     <div class="col-span-2 h-auto">
         <div class="h-auto w-full rounded-lg border border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800">

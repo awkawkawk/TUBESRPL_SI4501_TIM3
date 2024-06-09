@@ -18,7 +18,7 @@ class LoginTest extends DuskTestCase
     public function testExample(): void
     {
         $user = User::factory()->create([
-            'email' => 'test@gmail.com',
+            'email' => 'test2@gmail.com',
             'password' => Hash::make('12345678'), // Hash the password
         ]);
 
@@ -33,7 +33,7 @@ class LoginTest extends DuskTestCase
                     ->press('LOG IN')
                     ->assertPathIs('/')
                     ->assertSee('Campaign Populer')
-                    
+
                 ;
 
         });

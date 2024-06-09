@@ -119,7 +119,7 @@ class SchoolVerificationController extends Controller
 
     public function showVerificationPage()
     {
-        $schools = school::where('status', 'perlu diverifikasi')->get();
+        $schools = school::where('status', 'pending')->get();
         return view('verifikasi-sekolah', compact('schools'));
     }
 
@@ -137,7 +137,7 @@ class SchoolVerificationController extends Controller
             $pesan = $request->input('catatan');
 
             // Buat link WhatsApp dengan nomor penerima dan pesan
-            $url = "https://wa.me/$nomorPendaftar?text=" . urlencode("Maaf, pendaftaran Anda ditolak karena: $pesan");
+            $url = "https://wa.me/$nomorPendaftar?text=" . urlencode("Maaf, pendaftaran Anda ditolak karena: ");
             $schoolVerification->update(['status' => 'ditolak']);
             return redirect()->away($url);
         }

@@ -10,7 +10,7 @@
                             d="M13 5H1m0 0 4 4M1 5l4-4" />
                     </svg>
                     <a href="{{ route('list.pencairan') }}" class="text-sm font-light text-gray-700 text-justify"
-                        style="margin-left: 8px;"><b>Kembali ke halaman utama</b></a>
+                        style="margin-left: 8px;"><b>Kembali</b></a>
                 </div>
             </div>
         </div>
