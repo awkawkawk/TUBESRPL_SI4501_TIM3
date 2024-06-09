@@ -7,11 +7,11 @@
         <div class="flex-auto p-4 bg-white">
             <p class="mb-1 text-slate-700 dark:text-slate-400 text-l">Total Campaign</p>
             <div class="border-b border-dashed border-slate-300 dark:border-slate-700/40 my-3"></div>
-            <div class="grid grid-cols-2 gap-4 mb-8">
+            <div class="flex gap-4 mb-8">
                 <div class="col-span-1 sm:col-span-6">
                     <div id="total_campaign" class="apex-charts -mb-4"></div>
                 </div><!--end col-->
-                <div class="col-span-1 sm:col-span-6 self-center">
+                <div class="flex-1 self-center">
                     <ol class="list-none list-inside mb-3">
                         <li class="mb-1 text-slate-700 dark:text-slate-400 text-m">
                             {{ $totalCampaign }} Campaign

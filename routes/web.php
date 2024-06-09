@@ -148,7 +148,14 @@ Route::get('/unauthorized', function () {
     return response()->view('errors.unauthorized', [], 403);
 });
 
-Route::resource('schools', SchoolController::class);
+Route::get('schools', [SchoolController::class, 'index'])->name('schools.index');
+Route::get('schools/create', [SchoolController::class, 'create'])->name('schools.create');
+Route::post('schools', [SchoolController::class, 'store'])->name('schools.store');
+Route::get('schools/{id}/edit', [SchoolController::class, 'edit'])->name('schools.edit');
+Route::put('schools/{id}', [SchoolController::class, 'update'])->name('schools.update');
+Route::delete('schools/{id}', [SchoolController::class, 'destroy'])->name('schools.destroy');
+Route::get('schools/{id}', [SchoolController::class, 'show'])->name('schools.show');
+
 
 //test fe
 Route::get('/managedonation/money/edit/id', function () {

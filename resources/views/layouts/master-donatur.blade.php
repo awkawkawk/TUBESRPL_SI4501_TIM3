@@ -18,7 +18,7 @@
  </head>
 
  <body>
-     <nav class="fixed top-0 z-50 w-full bg-white font-sans">
+     <nav class="fixed top-0 z-50 w-full bg-white bg-gradient-to-r from-gray-900 to-gray-700 font-sans">
          <div class="px-3 py-3 lg:px-5 lg:pl-3">
              <div class="flex items-center">
                  <div class="flex items-center justify-start rtl:justify-end">
@@ -83,7 +83,7 @@
 
              {{-- Tombol --}}
              @auth
-                 <div class="ms-auto flex gap-8 ">
+                 <div class="ms-auto flex gap-8">
                      <a href="{{ route('index.donation') }}"
                          class="rounded-md px-3 py-2 text-sm text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-2">
                          Donasi Sekarang
@@ -134,21 +134,22 @@
                      </div>
                  </div>
              @else
-             <div class="ms-auto flex gap-8 ">
+                 <div class="ms-auto flex gap-8">
                      <a href="{{ route('index.donation') }}"
-                     class="ms-auto rounded-md px-3 py-2 text-sm text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-2">
-                     Donasi Sekarang
-                 </a>
+                         class="ms-auto rounded-md px-3 py-2 text-sm text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                         Donasi Sekarang
+                     </a>
 
-                 <a href="{{ route('register.school.form') }}"
-                     class="ms-auto rounded-md px-3 py-2 text-sm text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-2">
-                     Daftarkan Sekolah
-                 </a>
-
-                 <a href="{{ route('login') }}"
-                     class="ms-auto rounded-md px-3 py-2 text-sm text-primarydark font-semibold ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-2">
-                     Masuk
-                 </a>
+                     <a href="{{ route('register.school.form') }}"
+                         class="ms-auto rounded-md px-3 py-2 text-sm text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                         Daftarkan Sekolah
+                     </a>
+                     <a href="{{ route('login') }}" class="">
+                         <button
+                             class="text-primarylight ms-auto rounded-lg rounded-md bg-white px-6 py-2 text-sm font-semibold ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                             Masuk
+                         </button>
+                     </a>
                  </div>
 
 
@@ -162,7 +163,7 @@
      </nav>
      <div class="flex h-screen flex-col">
          <div
-             class="scrollbar-thumb-rounded-full scrollbar scrollbar-thin scrollbar-thumb-opacity-0 mt-16 flex h-32 flex-1 overflow-y-auto overflow-x-hidden overflow-y-scroll rounded-tl-[1.25rem] bg-gray-100 ">
+             class="scrollbar-thumb-rounded-full scrollbar scrollbar-thin scrollbar-thumb-opacity-0 mt-16 flex h-32 flex-1 overflow-y-auto overflow-x-hidden overflow-y-scroll rounded-tl-[1.25rem] bg-gray-100">
              @yield('content')
          </div>
      </div>

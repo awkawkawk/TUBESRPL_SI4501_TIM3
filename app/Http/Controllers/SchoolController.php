@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\School;
 use App\Models\User;
+use App\Models\School;
 use App\Models\Campaign;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class SchoolController extends Controller
@@ -57,13 +58,16 @@ class SchoolController extends Controller
         return redirect()->route('schools.index')->with('success', 'School created successfully.');
     }
 
-    public function edit(School $school)
+    public function edit($id)
     {
+        $school = School::findOrFail($id);
         return view('schools.edit', compact('school'));
     }
 
-    public function update(Request $request, School $school)
+    public function update(Request $request, $id)
     {
+        $school = School::findOrFail($id);
+
         $request->validate([
             'logo_sekolah' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
             'nama_sekolah' => 'required|string|max:255',
@@ -82,13 +86,13 @@ class SchoolController extends Controller
         if ($request->hasFile('logo_sekolah')) {
             $uploadedFileUrl = Cloudinary::upload($request->file('logo_sekolah')->getRealPath(), [
                 'folder' => 'logo_sekolah'
-            ])->getSecureUrl();
+            ])->getSecurePath();
             $data['logo_sekolah'] = $uploadedFileUrl;
         }
         if ($request->hasFile('bukti_id_pendaftar')) {
             $uploadedFileUrl = Cloudinary::upload($request->file('bukti_id_pendaftar')->getRealPath(), [
                 'folder' => 'bukti'
-            ])->getSecureUrl();
+            ])->getSecurePath();
             $data['bukti_id_pendaftar'] = $uploadedFileUrl;
         }
 

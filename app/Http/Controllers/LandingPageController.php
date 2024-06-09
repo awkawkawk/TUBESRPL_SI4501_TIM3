@@ -13,7 +13,7 @@ class LandingPageController extends Controller
     public function index()
     {
         // Retrieve all campaigns and news
-        $campaigns = Campaign::with('school')->get();
+        $campaigns = Campaign::with('school')->where('status','valid')->get();
         $news = News::all();
 
         // Check if the user is logged in
@@ -27,7 +27,7 @@ class LandingPageController extends Controller
             // Check if the logged-in user is a school
             elseif ($user->tipe_user === 'sekolah') {
                 // Retrieve the campaigns created by the logged-in school, ordered by creation date
-                $campaignsLatest = Campaign::where('id_sekolah', $user->id)
+                $campaignsLatest = Campaign::where('id_sekolah', $user->id_sekolah)->where('status','valid')
                     ->latest()
                     ->limit(6)
                     ->get();
@@ -57,7 +57,7 @@ class LandingPageController extends Controller
             }
         } else {
             // If the user is not logged in, display random campaigns
-            $campaignsLatest = Campaign::inRandomOrder()->limit(6)->get();
+            $campaignsLatest = Campaign::inRandomOrder()->where('status','valid')->limit(6)->get();
             return view('index-donatur', compact('campaigns', 'news', 'campaignsLatest'));
         }
     }

@@ -19,12 +19,12 @@
 
  </head>
 
- <body>
+<body>
 
      <nav class="fixed top-0 z-50 w-full bg-white">
          <div class="px-3 py-3 lg:px-5 lg:pl-3">
              <div class="flex items-center">
-                 <div class="flex  items-center justify-start rtl:justify-end">
+                 <div class="flex items-center justify-start rtl:justify-end">
                      <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar"
                          aria-controls="logo-sidebar" type="button"
                          class="inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 sm:hidden">
@@ -47,22 +47,23 @@
                  {{-- Pencarian --}}
                  <form action="{{ route('search.result') }}" method="GET">
                      @csrf
-                     <div class="flex md:order-1 pl-6">
+                     <div class="flex pl-6 md:order-1">
                          <div class="relative hidden w-96 md:block">
                              <input type="text" id="search-navbar"
-                                 class="text-sm text-gray-900 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 ps-4 focus:border-gray-500 focus:ring-0"
+                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 ps-4 text-sm text-gray-900 focus:border-gray-500 focus:ring-0"
                                  placeholder="Cari..." name="keyword" value="{{ $query ?? '' }}">
-                             <button type="submit" class="cursor-pointer  absolute inset-y-0 end-4 flex items-center ps-3">
+                             <button type="submit"
+                                 class="absolute inset-y-0 end-4 flex cursor-pointer items-center ps-3">
                                  <svg class="h-4 w-4 text-gray-500" aria-hidden="true"
                                      xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                          stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                  </svg>
                                  <span class="sr-only">Ikon pencarian</span>
-                                </button>
+                             </button>
                              <button type="submit" data-collapse-toggle="navbar-search" aria-controls="navbar-search"
                                  aria-expanded="false"
-                                 class="focus:ring- me-1     rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-gray-200 md:hidden">
+                                 class="focus:ring- me-1 rounded-lg p-2.5 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-gray-200 md:hidden">
                                  <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                      fill="none" viewBox="0 0 20 20">
                                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -194,7 +195,7 @@
                                      stroke="currentColor">
                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                          d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0
-                                                002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
+                                                    002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
                                  </svg>
                                  <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Tambah Campaign</span>
                              </a>
@@ -346,7 +347,7 @@
                                      stroke="currentColor">
                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                          d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2
-                                        2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                                            2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                                  </svg>
                                  <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Berita</span>
                              </a>
@@ -363,7 +364,7 @@
 
      <div class="flex h-screen flex-col md:ml-56">
          <div
-             class="scrollbar-thumb-rounded-full scrollbar scrollbar-thin scrollbar-thumb-opacity-0 mt-16 flex h-32 flex-1 overflow-y-auto overflow-x-hidden overflow-y-scroll rounded-tl-[1.25rem] bg-gray-100">
+             class="scrollbar-thumb-rounded-full scrollbar scrollbar-thin scrollbar-thumb-opacity-0 mt-16 flex h-32 flex-1 overflow-y-auto overflow-x-hidden overflow-y-scroll rounded-tl-[1.25rem bg-gray-100">
              @yield('content')
          </div>
      </div>

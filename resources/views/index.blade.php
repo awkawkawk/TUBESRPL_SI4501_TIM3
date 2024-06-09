@@ -3,7 +3,7 @@
 @section('title', 'Halaman Utama - EduFund')
 
 @section('content')
-    <div class="flex h-fit w-full flex-wrap items-center justify-center">
+    <div class="flex h-fit w-full flex-wrap mt-8 items-center justify-center">
         @if (session('success'))
             <div id="toast-success"
                 class="mb-4 flex w-full items-center rounded-lg bg-white p-4 text-gray-500 shadow dark:bg-gray-800 dark:text-gray-400"
@@ -130,7 +130,7 @@
     </div>
 </div>
 
-<div class="flex w-full items-center justify-center text-center">
+<div class="flex w-full mb-8 items-center justify-center text-center">
     <div class="from-primary to-primarylight mt-6 grid w-4/5 grid-cols-4 gap-10 rounded-lg bg-gradient-to-r p-4">
         <a href="{{ route('search.result') }}"
             class="hover:bg-primarydark group flex flex-col items-center rounded-lg p-2">
