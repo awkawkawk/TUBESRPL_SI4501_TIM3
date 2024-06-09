@@ -24,7 +24,10 @@
                 <form method="POST" action="{{ route('donation.summary') }}" style="margin: 0 auto;">
                     @csrf
                     <!-- Input-hidden -->
-                    <input type="hidden" name="id_campaign" value="{{ $selectedCampaign->id }}">
+                    <div class="mb-4 mt-6">
+                        <label class="block font-medium text-sm text-gray-700" for="nominal">Kode Campaign</label>
+                        <input class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full text-lg" type="text" id="id_campaign" name="id_campaign" value="{{ $selectedCampaign->id }}" required>
+                    </div>
                     <!-- Input Nominal Donasi -->
                     <div class="mb-4 mt-6">
                         <label class="block font-medium text-sm text-gray-700" for="nominal">Nominal Donasi</label>

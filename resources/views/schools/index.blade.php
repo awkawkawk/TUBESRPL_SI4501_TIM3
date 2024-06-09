@@ -64,7 +64,7 @@
 
                     <div class="flex justify-center items-center mt-2">
                         <div class="rounded-full overflow-hidden w-20 h-20 flex justify-center items-center">
-                            <img src="{{  Storage::url($school->logo_sekolah) }}" alt="Logo Sekolah" class="object-cover w-full h-full"referrerpolicy="no-referrer"/>
+                            <img src="{{  $school->logo_sekolah }}" alt="Logo Sekolah" class="object-cover w-full h-full"referrerpolicy="no-referrer"/>
                         </div>
                     </div>
 
@@ -111,7 +111,7 @@
 
                             <form action="{{ route('schools.destroy', $school->id) }}" method="POST">
                                 @csrf
-                                @method('DELETE')   
+                                @method('DELETE')
                                 <button type="submit" class="text-white font-bold py-2 px-2 rounded-lg bg-red-500 flex items-center justify-center">
                                     <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>

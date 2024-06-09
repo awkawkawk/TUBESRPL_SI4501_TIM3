@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use App\Models\Campaign;
+use App\Models\Donation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,7 @@ class LandingPageController extends Controller
     public function index()
     {
         // Retrieve all campaigns and news
-        $campaigns = Campaign::with('school')->get();
+        $campaigns = Campaign::with('school')->where('status','valid')->get();
         $news = News::all();
 
         // Check if the user is logged in
@@ -27,7 +28,7 @@ class LandingPageController extends Controller
             // Check if the logged-in user is a school
             elseif ($user->tipe_user === 'sekolah') {
                 // Retrieve the campaigns created by the logged-in school, ordered by creation date
-                $campaignsLatest = Campaign::where('id_sekolah', $user->id)
+                $campaignsLatest = Campaign::where('id_sekolah', $user->id_sekolah)->where('status','valid')
                     ->latest()
                     ->limit(6)
                     ->get();
@@ -35,7 +36,7 @@ class LandingPageController extends Controller
                 // Check if there are any campaigns created by the school
                 if ($campaignsLatest->isEmpty()) {
                     // If no campaigns created, display random campaigns
-                    $campaignsLatest = Campaign::inRandomOrder()->limit(6)->get();
+                    $campaignsLatest = Campaign::inRandomOrder()->where('status','valid')->limit(6)->get();
                 }
 
                 return view('index', compact('campaignsLatest', 'news', 'campaigns'));
@@ -49,7 +50,7 @@ class LandingPageController extends Controller
                     $campaignsLatest = collect([$latestDonation->campaign]);
                 } else {
                     // If no latest donation, display random campaigns
-                    $campaignsLatest = Campaign::inRandomOrder()->limit(6)->get();
+                    $campaignsLatest = Campaign::inRandomOrder()->where('status','valid')->limit(6)->get();
                 }
 
                 // Return the view with the campaigns
@@ -57,7 +58,7 @@ class LandingPageController extends Controller
             }
         } else {
             // If the user is not logged in, display random campaigns
-            $campaignsLatest = Campaign::inRandomOrder()->limit(6)->get();
+            $campaignsLatest = Campaign::inRandomOrder()->where('status','valid')->limit(6)->get();
             return view('index-donatur', compact('campaigns', 'news', 'campaignsLatest'));
         }
     }
