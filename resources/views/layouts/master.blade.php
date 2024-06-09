@@ -195,7 +195,7 @@
                                      stroke="currentColor">
                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                          d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0
-                                                        002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
+                                                                    002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
                                  </svg>
                                  <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Tambah Campaign</span>
                              </a>
@@ -284,6 +284,32 @@
                          </li>
 
                          <li>
+                             <a href="{{ route('verifikasi.campaign') }}"
+                                 class="group flex items-center rounded-lg p-2 text-gray-800 hover:bg-gray-100">
+                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     stroke-width="1.5" stroke="currentColor" class="size-4">
+                                     <path stroke-linecap="round" stroke-linejoin="round"
+                                         d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                                 </svg>
+                                 <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Manage Donatur</span>
+                             </a>
+                         </li>
+
+                         <li>
+                             <a href="{{ route('verifikasi.campaign') }}"
+                                 class="group flex items-center rounded-lg p-2 text-gray-800 hover:bg-gray-100">
+                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     stroke-width="1.5" stroke="currentColor" class="size-4">
+                                     <path stroke-linecap="round" stroke-linejoin="round"
+                                         d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0 0 12 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75Z" />
+                                 </svg>
+
+
+                                 <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Manage Sekolah</span>
+                             </a>
+                         </li>
+
+                         <li>
                              <a href="{{ route('admin.list.pencairan') }}"
                                  class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
                                  <svg class="h-4 w-4 text-zinc-500" fill="none" viewBox="0 0 24 24"
@@ -296,7 +322,7 @@
                          </li>
 
                          <li>
-                             <a href="{{ route('pencairan.history') }}"
+                             <a href="{{ route('pencairan.history.admin') }}"
                                  class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
                                  <svg class="h-4 w-4 text-zinc-500" width="24" height="24" viewBox="0 0 24 24"
                                      stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -341,13 +367,26 @@
                          </li>
 
                          <li>
+                             <a href="{{ route('verifikasi.campaign') }}"
+                                 class="group flex items-center rounded-lg p-2 text-gray-800 hover:bg-gray-100">
+                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     stroke-width="1" stroke="currentColor" class="size-4">
+                                     <path stroke-linecap="round" stroke-linejoin="round"
+                                         d="M7.5 7.5h-.75A2.25 2.25 0 0 0 4.5 9.75v7.5a2.25 2.25 0 0 0 2.25 2.25h7.5a2.25 2.25 0 0 0 2.25-2.25v-7.5a2.25 2.25 0 0 0-2.25-2.25h-.75m-6 3.75 3 3m0 0 3-3m-3 3V1.5m6 9h.75a2.25 2.25 0 0 1 2.25 2.25v7.5a2.25 2.25 0 0 1-2.25 2.25h-7.5a2.25 2.25 0 0 1-2.25-2.25v-.75" />
+                                 </svg>
+
+                                 <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Verifikasi Donasi</span>
+                             </a>
+                         </li>
+
+                         <li>
                              <a href="{{ route('admin.berita.index') }}"
                                  class="group flex items-center rounded-lg p-2 text-gray-900 hover:bg-gray-100">
                                  <svg class="h-4 w-4 text-zinc-500" fill="none" viewBox="0 0 24 24"
                                      stroke="currentColor">
                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                          d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2
-                                                2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                                                            2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
                                  </svg>
                                  <span class="text-s ms-3 flex-1 whitespace-nowrap text-sm">Berita</span>
                              </a>
@@ -365,7 +404,7 @@
      <div class="flex h-screen flex-col md:ml-56">
          <div
              class="scrollbar-thumb-rounded-full scrollbar scrollbar-thin scrollbar-thumb-opacity-0 rounded-tl-[1.25rem mt-16 flex h-32 flex-1 overflow-y-auto overflow-x-hidden overflow-y-scroll bg-gray-100">
-             <div class="p-8">
+             <div class="w-full p-8">
                  @yield('content')
              </div>
          </div>

@@ -36,7 +36,7 @@ class LandingPageController extends Controller
                 // Check if there are any campaigns created by the school
                 if ($campaignsLatest->isEmpty()) {
                     // If no campaigns created, display random campaigns
-                    $campaignsLatest = Campaign::inRandomOrder()->limit(6)->get();
+                    $campaignsLatest = Campaign::inRandomOrder()->where('status','valid')->limit(6)->get();
                 }
 
                 return view('index', compact('campaignsLatest', 'news', 'campaigns'));
@@ -50,7 +50,7 @@ class LandingPageController extends Controller
                     $campaignsLatest = collect([$latestDonation->campaign]);
                 } else {
                     // If no latest donation, display random campaigns
-                    $campaignsLatest = Campaign::inRandomOrder()->limit(6)->get();
+                    $campaignsLatest = Campaign::inRandomOrder()->where('status','valid')->limit(6)->get();
                 }
 
                 // Return the view with the campaigns

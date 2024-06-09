@@ -85,12 +85,12 @@
              @auth
                  <div class="ms-auto flex gap-8">
                      <a href="{{ route('index.donation') }}"
-                         class="rounded-md px-3 py-2 text-sm text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-2">
+                         class="rounded-md px-3 py-2 text-sm text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-2">
                          Donasi Sekarang
                      </a>
 
                      <a href="{{ route('register.school.form') }}"
-                         class="rounded-md px-3 py-2 text-sm text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-2">
+                         class="rounded-md px-3 py-2 text-sm text-white ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white md:order-2">
                          Daftarkan Sekolah
                      </a>
                      <div class="hidden w-full items-center justify-between md:order-2 md:flex md:w-auto"

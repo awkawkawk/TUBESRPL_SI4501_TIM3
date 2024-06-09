@@ -25,8 +25,8 @@
                      <!-- Pilih Barang Yang Disumbangkan -->
                     <div class="mb-2 mt-6 flex flex-wrap">
                         <div class="w-full md:w-3/6 pr-1">
-                            <label class="block font-medium text-sm text-gray-700" for="nama_barang">Barang Donasi</label>
-                            <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" name="nama_barang[]" required>
+                            <label class="block font-medium text-sm text-gray-700" for="nama_barang_1">Barang Donasi 1</label>
+                            <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="nama_barang_1" name="nama_barang[]" required>
                                 <option value="" disabled selected style="font-size: 14px;">Pilih Barang</option>
                                 @foreach ($targetDonasi as $target)
                                     <option value="{{ $target->nama_barang }}" style="font-size: 14px;">{{ $target->nama_barang }}</option>
@@ -36,11 +36,11 @@
 
                         <!-- Buat elemen untuk input jumlah barang -->
                         <div class="w-full md:w-2/6 pl-3">
-                            <label class="block font-medium text-sm text-gray-700" for="jumlah_barang">Jumlah Barang</label>
-                            <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" type="number" name="jumlah_barang[]" required>
+                            <label class="block font-medium text-sm text-gray-700" for="jumlah_barang_1">Jumlah Barang 1</label>
+                            <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="jumlah_barang_1" type="number" name="jumlah_barang[]" required>
                         </div>
                         <div class="w-full md:w-1/6 pl-8 mt-6">
-                            <button onclick="addRow()" style="width: 42px; height: 42px;" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" >+</button>
+                            <button onclick="addRow()" style="width: 42px; height: 42px;" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">+</button>
                         </div>
                     </div>
 
@@ -49,7 +49,7 @@
 
                     <!-- Input Jasa Kirim -->
                     <div class="mb-4 mt-6">
-                        <label class="block font-medium text-sm text-gray-700" for="nama">Layanan Jasa Kirim</label>
+                        <label class="block font-medium text-sm text-gray-700" for="jasa_kirim">Layanan Jasa Kirim</label>
                         <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="jasa_kirim" type="text" name="jasa_kirim" placeholder="Jasa kirim yang digunakan">
                     </div>
 
@@ -85,7 +85,10 @@
 
 
 <script>
+    var rowCounter = 1;
+
     function addRow() {
+        rowCounter++;
         // Buat elemen div baru untuk baris
         var newRow = document.createElement('div');
         newRow.classList.add('mb-2', 'flex', 'flex-wrap');
@@ -94,8 +97,8 @@
         var selectContainer = document.createElement('div');
         selectContainer.classList.add('w-full', 'md:w-3/6', 'pr-1');
         selectContainer.innerHTML = `
-            <label class="block font-medium text-sm text-gray-700" for="nama_barang">Barang Donasi</label>
-            <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" name="nama_barang[]" required>
+            <label class="block font-medium text-sm text-gray-700" for="nama_barang_${rowCounter}">Barang Donasi ${rowCounter} </label>
+            <select class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" name="nama_barang[]" id="nama_barang_${rowCounter}" required>
                 <option value="" disabled selected style="font-size: 14px;">Pilih Barang</option>
                 @foreach ($targetDonasi as $target)
                     <option value="{{ $target->nama_barang }}" style="font-size: 14px;">{{ $target->nama_barang }}</option>
@@ -108,8 +111,8 @@
         var inputContainer = document.createElement('div');
         inputContainer.classList.add('w-full', 'md:w-2/6', 'pl-3');
         inputContainer.innerHTML = `
-        <label class="block font-medium text-sm text-gray-700" for="jumlah_barang">Jumlah Barang</label>
-        <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" type="number" name="jumlah_barang[]" required>
+        <label class="block font-medium text-sm text-gray-700" for="jumlah_barang_${rowCounter}">Jumlah Barang ${rowCounter}</label>
+        <input style="font-size: 14px;" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" type="number" name="jumlah_barang[]" id="jumlah_barang_${rowCounter}" required>
         `;
         newRow.appendChild(inputContainer);
 
@@ -117,7 +120,7 @@
         var removeButtonContainer = document.createElement('div');
         removeButtonContainer.classList.add('w-full', 'md:w-1/6', 'pl-8', 'mt-1');
         removeButtonContainer.innerHTML = `
-            <button onclick="removeRow(this)" style="width: 42px; height: 42px;" class="mt-5 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">-</button>
+            <button id="removeButton_${rowCounter}" onclick="removeRow(this)" style="width: 42px; height: 42px;" class="mt-5 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">-</button>
         `;
         newRow.appendChild(removeButtonContainer);
 

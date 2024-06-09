@@ -119,6 +119,7 @@ Route::middleware('roles:admin')->group(function () {
     Route::get('admin/pencairan', [RequestPencairanController::class, 'AdminIndex'])->name('admin.list.pencairan');
     Route::get('admin/pencairan/{RequestPencairan}/{History}/acc', [RequestPencairanController::class, ''])->name('pencairan.acc');
     Route::put('admin/pencairan/{RequestPencairan}/{History}', [RequestPencairanController::class, 'adminVerification'])->name('pencairan.response');
+    Route::get('admin/pencairan/history', [RequestPencairanController::class, 'adminHistory'])->name('pencairan.history.admin');
 });
 
 // ! SEKOLAH
@@ -148,6 +149,7 @@ Route::get('/unauthorized', function () {
     return response()->view('errors.unauthorized', [], 403);
 });
 
+// Rute untuk menampilkan semua sekolah
 Route::get('schools', [SchoolController::class, 'index'])->name('schools.index');
 Route::get('schools/create', [SchoolController::class, 'create'])->name('schools.create');
 Route::post('schools', [SchoolController::class, 'store'])->name('schools.store');
