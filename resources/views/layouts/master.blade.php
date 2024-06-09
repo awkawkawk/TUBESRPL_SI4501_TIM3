@@ -116,7 +116,7 @@
                                  role="menuitem">Profil</a>
                          </li>
                          {{-- <li>
->>>>>>> 2c3b9540d2adca7fe85fd3bdf487574a80434198
+
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     role="menuitem">Pengaturan</a>
                             </li>
