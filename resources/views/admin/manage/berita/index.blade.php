@@ -21,7 +21,7 @@
             <p class="h1 mb-2 ml-14 block text-justify text-xl font-semibold text-black">Manage Berita</p>
             <div class="mb-8 mt-4 items-center">
                 <a href="{{ route('admin.berita.create') }}"
-                    class="bg-primary ml-14 rounded-lg px-8 py-2 font-bold text-white">
+                    id="tambah" class="bg-primary ml-14 rounded-lg px-8 py-2 font-bold text-white">
                     Tambah
                 </a>
             </div>
@@ -68,16 +68,16 @@
                                 <!-- Tombol "Donasi Uang" pada setiap card campaign -->
                                 <div class="items-center">
                                     <a href="{{ route('admin.berita.edit', ['id' => $new->id]) }}">
-                                        <button class="bg-primary rounded-lg px-8 py-2 font-bold text-white">Edit</button>
+                                        <button id="edit" class="bg-primary rounded-lg px-8 py-2 font-bold text-white">Edit</button>
                                     </a>
                                 </div>
 
                                 <!-- Tombol "Donasi Barang" pada setiap card campaign -->
                                 <form action="{{ route('admin.berita.delete', ['id' => $new->id]) }}" method="POST"
-                                    onsubmit="return confirm('Apakah Anda yakin ingin menghapus berita ini?');">
+                                    >
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="bg-primary rounded-lg px-8 py-2 font-bold text-white">
+                                    <button type="submit" id="delete-button" class="bg-primary rounded-lg px-8 py-2 font-bold text-white">
                                         Hapus
                                     </button>
                                 </form>

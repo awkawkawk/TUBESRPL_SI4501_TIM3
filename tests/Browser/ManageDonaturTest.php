@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use Database\Factories\UserFactory;
+use App\Models\User;
 
 class ManageDonaturTest extends DuskTestCase
 {
@@ -15,34 +16,31 @@ class ManageDonaturTest extends DuskTestCase
      */
     public function testExample(): void
     {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/')
-                    ->assertSee('Beranda')
-                    ->clickLink('Masuk')
-                    ->type('email', 'admin@gmail.com')
-                    ->type('password', 'password')
-                    ->press('LOG IN')
-                    
-                    //EditDonatur
-                    ->visit('http://127.0.0.1:8000/donatur')
-                    ->dump()
-                    ->press('.ml-4.mt-4 a button')
-                    ->assertSee('Edit Donatur')
-                    ->type('name', 'nama')
-                    ->type('email', 'test1@gmail.com')
-                    ->type('phone', '081234566')
+        $donationId = 14;
+
+        $this->browse(function (Browser $browser) use ($donationId) {
+            $browser->loginAs(User::find(14))
+                    ->visit('/admin/dashboard/edufund')
+                    // ->screenshot('test-donaturs')
+                    ->assertSee('Manage Donatur')
+                    ->clickLink('Manage Donatur')
+                    ->assertPathIs('/admin/donatur')
+                    ->assertSee('Manage Donatur')
+                    ->click('#edit')
+
+                    ->assertPathIs('/admin/edit/donatur/'.$donationId)
+                    ->type('name', 'donaturs')
+                    ->type('email', 'donaturs@gmail.com')
+                    ->type('phone', '0812233445566')
                     ->select('peran', 'donatur')
-                    ->screenshot('test_1')
                     ->press('SIMPAN')
-                    ->screenshot('test_2')
-                    ->assertPathIs('/donatur')
-                    
+                    ->assertPathIs('/admin/donatur')
                     
                     // DeleteDonatur
-                    ->visit('http://127.0.0.1:8000/donatur')
+                    ->visit('http://127.0.0.1:8000/admin/donatur')
                     ->dump()
                     ->press('#removeButton')
-                    ->screenshot('test_3')
+                    ->screenshot('test-donatur')
                     ;
         });
     }

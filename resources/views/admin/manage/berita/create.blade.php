@@ -53,7 +53,7 @@
                 <label for="link" class="block text-sm font-medium text-gray-700">Link Berita</label>
                 <input type="text" name="link" id="link" class="mt-1 block w-full" required>
             </div>
-            <div class="flex justify-end">
+            <div class="flex justify-end mb-6">
                 <button type="submit" class="bg-primary text-white font-bold py-2 px-8 rounded-lg">
                     Simpan
                 </button>

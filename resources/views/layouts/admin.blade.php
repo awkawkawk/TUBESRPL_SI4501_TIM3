@@ -79,7 +79,7 @@
                 @auth
                     <div class="ms-auto hidden w-full items-center justify-between md:order-2 md:flex md:w-auto"
                         id="navbar-search">
-                        <button type="button" class="flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300"
+                        <button type="button" id="klik" class="flex rounded-full bg-gray-800 text-sm focus:ring-4 focus:ring-gray-300"
                             aria-expanded="false" data-dropdown-toggle="dropdown-user">
                             <span class="sr-only">Buka menu pengguna</span>
                             <img class="h-8 w-8 rounded-full"
