@@ -11,8 +11,8 @@
                         <path stroke="rgb(75, 85, 101)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M13 5H1m0 0 4 4M1 5l4-4" />
                     </svg>
-                    <a href="/" class="text-justify text-sm font-light text-gray-700"
-                        style="margin-left: 8px;"><b>Kembali ke halaman utama</b></a>
+                    <a href="{{ url()->previous()}}" class="text-justify text-sm font-light text-gray-700"
+                        style="margin-left: 8px;"><b>Kembali</b></a>
                 </div>
             </div>
         </div>

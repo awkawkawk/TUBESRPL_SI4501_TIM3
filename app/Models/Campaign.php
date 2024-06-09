@@ -14,10 +14,9 @@ class Campaign extends Model
                         'nama_campaign',
                         'deskripsi_campaign',
                         'status',
+                        'jenis_donasi',
                         'catatan_campaign',
-                        'tanggal_dibuat',
-                        'tanggal_selesai',
-                        'foto'];
+                        'foto_campaign'];
 
     public function school()
     {

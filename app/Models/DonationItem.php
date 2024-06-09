@@ -9,5 +9,5 @@ class DonationItem extends Model
 {
     use HasFactory;
     protected $table = 'donation_items';
-    protected $fillable = ['id_donasi', 'nama_barang', 'jumlah_barang'];
+    protected $fillable = ['id_donasi', 'nama_barang', 'jumlah_barang', 'status'];
 }

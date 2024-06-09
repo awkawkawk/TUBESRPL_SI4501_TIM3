@@ -32,7 +32,6 @@ class ProfileController extends Controller
     {
         if ($request->hasFile('edit-photo')) {
             $image = $request->file('edit-photo');
-
             if ($image) {
                 // Read the contents of the image file and convert it to base64
                 $imageData = file_get_contents($image->path());
@@ -82,9 +81,18 @@ class ProfileController extends Controller
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
+        // Retrieve the currently authenticated user
+        $user = Auth::user();
+        // Update the user model with the validated data
+        $user->nama = $request->input('name');
+        $user->phone = $request->input('phone');
+        $user->email = $request->input('email');
 
-        $request->user()->fill($request->validated())->save();
+        // Save the updated user model
+        $user->save();
 
+        // $request->user()->save();
+        // dd($request->user());
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 

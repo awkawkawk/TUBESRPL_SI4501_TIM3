@@ -16,7 +16,7 @@ class CampaignVerificationController extends Controller
     public function showVerificationPage()
     {
         $campaigns = Campaign::with('school','targets')
-                    ->where('status', 'perlu diverifikasi')
+                    ->where('status', 'pending')
                     ->get();
         return view('verifikasi-campaign', compact('campaigns'));
     }
