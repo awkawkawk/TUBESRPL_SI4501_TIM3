@@ -365,7 +365,7 @@
      <div class="flex h-screen flex-col md:ml-56">
          <div
              class="scrollbar-thumb-rounded-full scrollbar scrollbar-thin scrollbar-thumb-opacity-0 rounded-tl-[1.25rem mt-16 flex h-32 flex-1 overflow-y-auto overflow-x-hidden overflow-y-scroll bg-gray-100">
-             <div class="p-8">
+             <div class="p-8 w-full">
                  @yield('content')
              </div>
          </div>
