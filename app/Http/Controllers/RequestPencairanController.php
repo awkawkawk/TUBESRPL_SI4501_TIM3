@@ -16,13 +16,14 @@ class RequestPencairanController extends Controller
 {
     public function index()
     {
-        $user=Auth::user();
+        $user = Auth::user();
         $school = $user->school;
 
         $request = RequestPencairan::whereHas('moneyDonation.donation.campaign', function ($query) use ($school) {
             $query->where('id_sekolah', $school->id);
         })->get();
-    return view('pencairan.index', compact('request', 'school'));}
+        return view('pencairan.index', compact('request', 'school'));
+    }
 
     public function request(RequestPencairan $RequestPencairan)
     {
@@ -57,7 +58,7 @@ class RequestPencairanController extends Controller
         return view('pencairan.create', compact('RequestPencairan', 'options', 'methodPayment'));
     }
 
-        public function create(Request $request, $id)
+    public function create(Request $request, $id)
     {
         $requestPencairan = RequestPencairan::findOrFail($id);
 
@@ -80,6 +81,7 @@ class RequestPencairanController extends Controller
 
         $requestPencairan->status = 'pending';
         $requestPencairan->id_tahap_pencairan = $tahapPencairan->id;
+        // dd($requestPencairan);
 
         if ($request->hasFile('pendukung')) {
             $file = $request->file('pendukung')->getRealPath();
@@ -98,19 +100,19 @@ class RequestPencairanController extends Controller
         $history = new History();
         $historyTahap = $request->input('tahap');
 
-                switch ($historyTahap) {
-                    case 'Tahap 1':
-                        $history->nominal_pencairan = $tahap1;
-                        break;
-                    case 'Tahap 2':
-                        $history->nominal_pencairan =  $tahap2;
-                        break;
-                    case 'Tahap 3':
-                        $history->nominal_pencairan = $tahap3;
-                        break;
-                    default:
-                        return redirect()->back()->with('error', 'Pilihan tahap tidak valid.');
-                }
+        switch ($historyTahap) {
+            case 'Tahap 1':
+                $history->nominal_pencairan = $tahap1;
+                break;
+            case 'Tahap 2':
+                $history->nominal_pencairan = $tahap2;
+                break;
+            case 'Tahap 3':
+                $history->nominal_pencairan = $tahap3;
+                break;
+            default:
+                return redirect()->back()->with('error', 'Pilihan tahap tidak valid.');
+        }
         $history->id_tahap_pencairan = $tahapPencairan->id;
         $history->status = 'pending';
         $history->id_method_payment = $request->metode_pembayaran;
@@ -124,26 +126,26 @@ class RequestPencairanController extends Controller
         return redirect()->route('list.pencairan')->with('success', 'Permintaan pencairan berhasil diperbarui.');
     }
 
-     public function history()
+    public function history()
     {
+        $donasi = History::all();
 
-       $donasi = Histories::all();
-
-
-       return view('pencairan.history', compact('donasi'));
+        return view('pencairan.history', compact('donasi'));
     }
 
     public function adminIndex()
     {
-       $donasi = MoneyDonation::all();
-       $request = RequestPencairan::where('status','pending')->with('historyPencairan')->get();
-    //    $requests = RequestPencairan::where('id_sekolah', $user->id)->get();
-    //    $campaigns = Campaign::where('id_sekolah', $user->id)->get();
+        $donasi = MoneyDonation::all();
+        $request = RequestPencairan::where('status', 'pending')->with('historyPencairan')->get();
+        //    $requests = RequestPencairan::where('id_sekolah', $user->id)->get();
+        //    $campaigns = Campaign::where('id_sekolah', $user->id)->get();
         // dd($request);
-    return view('pencairan.admin.index', compact('request', 'donasi'));
+        
+        return view('pencairan.admin.index', compact('request', 'donasi'));
     }
 
-    public function adminVerification(Request $request, $id, $idPencairan){
+    public function adminVerification(Request $request, $id, $idPencairan)
+    {
         // dd(RequestPencairan::findOrFail($id));
         $requestPencairan = RequestPencairan::findOrFail($id);
         $historyPencairan = History::findOrFail($idPencairan);
@@ -166,7 +168,13 @@ class RequestPencairanController extends Controller
         $historyPencairan->save();
         $requestPencairan->save();
 
-    return redirect()->route(('admin.list.pencairan'));
+        return redirect()->route('admin.list.pencairan');
     }
 
+    public function adminHistory()
+    {
+        $donasi = History::all();
+
+        return view('pencairan.history', compact('donasi'));
+    }
 }

@@ -57,7 +57,7 @@ class DonationVerificationController extends Controller
                     RequestPencairan::create([
                         'id_money_donation' => $moneyDonation->id,
                         'nominal_terkumpul' => $nominal,
-                        'nominal_sisa' => 0,
+                        'nominal_sisa' => $nominal,
                         'status' => 'pending',
                     ]);
                 }

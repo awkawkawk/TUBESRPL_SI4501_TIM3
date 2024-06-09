@@ -3,7 +3,7 @@
 @section('content')
     <div class="w-full">
         @if ($request->isEmpty())
-            <p class="text-center justify-center align-center">Tidak ada data yang perlu dicairkan.</p>
+            <p class="align-center justify-center text-center">Tidak ada data yang perlu dicairkan.</p>
         @else
             @foreach ($request as $d)
                 <div class="mt-6 flex overflow-hidden bg-white px-6 py-4 shadow-md sm:rounded-lg">
@@ -33,16 +33,32 @@
                     <div class="flex flex-1 flex-col items-center justify-center">
                         <h3>Pencairan</h3>
                         {{-- {{$d->historyPencairan}} --}}
-                        @foreach ($d->historyPencairan as $history)
-                            {{-- {{$history->nominal_pencairan}} --}}
-                            <h3>Rp. {{ number_format($history->nominal_pencairan, 0, ',', '.') }}</h3>
-                        @endforeach
+                        @php
+                            $latestHistory = $d->historyPencairan()->latest()->first();
+                        @endphp
+
+                        @if ($latestHistory)
+                            <h3>Rp. {{ number_format($latestHistory->nominal_pencairan, 0, ',', '.') }}</h3>
+                        @else
+                            <p>Belum ada riwayat pencairan.</p>
+                        @endif
+
+
+
 
                     </div>
                     <div class="flex flex-1 items-center justify-center">
                         <!-- Tombol untuk membuka modal -->
-                        <a class="cursor-pointer rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
-                            data-modal-target="transferModal" data-modal-toggle="transferModal">Cairkan Dana</a>
+                        @if ($d->id_tahap_pencairan == null)
+                            <button class="disabled rounded bg-gray-500 px-4 py-2 font-bold text-white"
+                                disabled>Pending</button>
+                        @elseif ($d->status === 'pending')
+                            <a class="cursor-pointer rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+                                data-modal-target="transferModal" data-modal-toggle="transferModal">Cairkan Dana</a>
+                        @else
+                            <a class="cursor-pointer rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+                                data-modal-target="transferModal" data-modal-toggle="transferModal">Cairkan Dana</a>
+                        @endif
 
                         <!-- Modal -->
                         <div id="transferModal" tabindex="-1" aria-hidden="true"
@@ -112,7 +128,7 @@
                         </div>
                     </div>
                 </div>
-                @endforeach
-                </div>
-            @endif
+            @endforeach
+    </div>
+    @endif
 @endsection

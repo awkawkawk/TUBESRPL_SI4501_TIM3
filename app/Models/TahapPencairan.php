@@ -23,6 +23,6 @@ class TahapPencairan extends Model
     public function historyPencairan()
 
     {
-        return $this->hasMany(Histories::class, 'id_money_donation');
+        return $this->hasMany(History::class, 'id_money_donation');
     }
 }

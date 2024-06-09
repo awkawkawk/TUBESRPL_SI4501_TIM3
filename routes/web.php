@@ -119,6 +119,7 @@ Route::middleware('roles:admin')->group(function () {
     Route::get('admin/pencairan', [RequestPencairanController::class, 'AdminIndex'])->name('admin.list.pencairan');
     Route::get('admin/pencairan/{RequestPencairan}/{History}/acc', [RequestPencairanController::class, ''])->name('pencairan.acc');
     Route::put('admin/pencairan/{RequestPencairan}/{History}', [RequestPencairanController::class, 'adminVerification'])->name('pencairan.response');
+    Route::get('admin/pencairan/history', [RequestPencairanController::class, 'adminHistory'])->name('pencairan.history.admin');
 });
 
 // ! SEKOLAH
