@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\School;
 use App\Models\User;
 use App\Models\Campaign;
-use App\Http\Requests\StoreschoolRequest;
-use App\Http\Requests\UpdateschoolRequest;
 use Illuminate\Support\Facades\DB;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+
 class SchoolController extends Controller
 {
     public function index()
@@ -40,10 +40,16 @@ class SchoolController extends Controller
 
         $data = $request->all();
         if ($request->hasFile('logo_sekolah')) {
-            $data['logo_sekolah'] = $request->file('logo_sekolah')->store('public/logos');
+            $uploadedFileUrl = Cloudinary::upload($request->file('logo_sekolah')->getRealPath(), [
+                'folder' => 'logo_sekolah'
+            ])->getSecurePath();
+            $data['logo_sekolah'] = $uploadedFileUrl;
         }
         if ($request->hasFile('bukti_id_pendaftar')) {
-            $data['bukti_id_pendaftar'] = $request->file('bukti_id_pendaftar')->store('public/identities');
+            $uploadedFileUrl = Cloudinary::upload($request->file('bukti_id_pendaftar')->getRealPath(), [
+                'folder' => 'bukti'
+            ])->getSecurePath();
+            $data['bukti_id_pendaftar'] = $uploadedFileUrl;
         }
 
         School::create($data);
@@ -74,10 +80,16 @@ class SchoolController extends Controller
 
         $data = $request->all();
         if ($request->hasFile('logo_sekolah')) {
-            $data['logo_sekolah'] = $request->file('logo_sekolah')->store('public/logos');
+            $uploadedFileUrl = Cloudinary::upload($request->file('logo_sekolah')->getRealPath(), [
+                'folder' => 'logo_sekolah'
+            ])->getSecureUrl();
+            $data['logo_sekolah'] = $uploadedFileUrl;
         }
         if ($request->hasFile('bukti_id_pendaftar')) {
-            $data['bukti_id_pendaftar'] = $request->file('bukti_id_pendaftar')->store('public/identities');
+            $uploadedFileUrl = Cloudinary::upload($request->file('bukti_id_pendaftar')->getRealPath(), [
+                'folder' => 'bukti'
+            ])->getSecureUrl();
+            $data['bukti_id_pendaftar'] = $uploadedFileUrl;
         }
 
         $school->update($data);
@@ -87,13 +99,10 @@ class SchoolController extends Controller
 
     public function destroy($id)
     {
-        // Gunakan DB transaction untuk memastikan konsistensi data
         DB::transaction(function () use ($id) {
-            // Hapus data yang berhubungan di tabel campaigns terlebih dahulu
             Campaign::where('id_sekolah', $id)->delete();
             User::where('id_sekolah', $id)->delete();
 
-            // Hapus sekolah
             $school = School::findOrFail($id);
             $school->delete();
         });
@@ -101,5 +110,9 @@ class SchoolController extends Controller
         return redirect()->route('schools.index')->with('success', 'Sekolah berhasil dihapus.');
     }
 
-    // Metode lain di controller...
+    public function show($id)
+    {
+        $school = School::findOrFail($id);
+        return view('schools.show', compact('school'));
+    }
 }
