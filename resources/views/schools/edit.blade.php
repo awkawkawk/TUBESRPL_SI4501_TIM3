@@ -3,7 +3,7 @@
 @endphp
 
 @extends('layouts.master')
-
+    
 @section('content')
 <div class="container mx-auto mt-10">
     <h2 class="text-2xl font-semibold mb-6">Edit Sekolah</h2>

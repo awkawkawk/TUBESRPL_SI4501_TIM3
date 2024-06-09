@@ -12,7 +12,7 @@
         <div class="p-8">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/3 mb-6 md:mb-0 text-center">
-                    <img src="{{ Storage::url($school->logo_sekolah) }}" alt="Logo Sekolah" class="w-48 h-48 object-cover rounded-full border-4 border-blue-600 mx-auto" referrerpolicy="no-referrer">
+                    <img src="{{ $school->logo_sekolah }}" alt="Logo Sekolah" class="w-48 h-48 object-cover rounded-full border-4 border-blue-600 mx-auto" referrerpolicy="no-referrer">
                 </div>
                 <div class="md:w-2/3 md:pl-10">
                     <h3 class="text-3xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 text-transparent bg-clip-text mb-6 shadow-md">Informasi Sekolah</h3>

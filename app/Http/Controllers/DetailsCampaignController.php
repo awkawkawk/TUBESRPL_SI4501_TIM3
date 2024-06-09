@@ -39,6 +39,9 @@ class DetailsCampaignController extends Controller
                     ->where('id', '!=', $id)
                     ->get();
 
+
+                    
+
         $donations = Donation::where('id_campaign', $id)->get();
 
         return view('donation-details', compact('details','otherDetails', 'donations'));
