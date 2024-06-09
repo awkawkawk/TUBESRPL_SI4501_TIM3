@@ -38,7 +38,7 @@
                                 location="{{ $campaign->school->alamat_sekolah }}"
                                 campaignName="{{ $campaign->nama_campaign }}" school="{{ $campaign->school->nama_sekolah }}"
                                 descriptionCampaign="{{ $campaign->deskripsi_campaign }}"
-                                createdAt="{{ $campaign->tanggal_dibuat }}">
+                                createdAt="{{ $campaign->created_at }}">
                             @foreach ($campaign->targets as $target)
                                 <p class="text-wrap mb-2 text-sm font-normal text-black">{{ $target->nama_barang }} : {{ $target->jumlah_barang }}</p>
                             @endforeach

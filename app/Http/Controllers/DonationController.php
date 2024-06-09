@@ -103,27 +103,7 @@ class DonationController extends Controller
             'status' => 'pending',
         ]);
 
-        $idCampaign = $moneyDonation->donation->id_campaign;
-
-        $existingRequestPencairan = RequestPencairan::whereHas('moneyDonation.donation', function ($query) use ($idCampaign) {
-            $query->where('id_campaign', $idCampaign);
-        })->first();
-
-        if ($existingRequestPencairan) {
-            $existingRequestPencairan->nominal_terkumpul += $donationData['nominal'];
-            $existingRequestPencairan->save();
-        } else {
-            RequestPencairan::create([
-                'id_money_donation' => $moneyDonation->id,
-                'nominal_terkumpul' => $donationData['nominal'],
-                'nominal_sisa' => 0,
-                'status' => 'Pending',
-            ]);
-        }
-
-
         $request->session()->forget('donation');
-
 
         return redirect('/donation')->with('success', 'Terimakasih Donasinya Orang Baik');
     }

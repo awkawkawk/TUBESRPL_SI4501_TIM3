@@ -4,18 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Models\school;
 use App\Models\Campaign;
+use App\Models\Donation;
 use App\Models\ItemDonation;
 use Illuminate\Http\Request;
 use App\Models\MethodPayment;
 use App\Models\MoneyDonation;
 use App\Models\RequestPencairan;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-       $donasi = MoneyDonation::all();
+       $donasi = Donation::where('jenis_donasi','uang');
        $table = RequestPencairan::all();
        $item = ItemDonation::all();
        $metode = MethodPayment::all();
@@ -29,7 +31,6 @@ class DashboardController extends Controller
     // Chart graph
        $campaign = Campaign::all();
 
-
         $campaignChartData =  [
             $campaign->where('status', 'valid')->count(),
             $campaign->where('status', 'pending')->count(),
@@ -40,7 +41,6 @@ class DashboardController extends Controller
             'Menunggu Verifikasi',
             'Tertolak',
                     ];
-
 
         $MoneyChartData =  [
             $donasi->where('status', 'valid')->count(),
@@ -53,16 +53,14 @@ class DashboardController extends Controller
             'Ditolak',
                     ];
 
-         $ItemChartData =  [
-            $item->where('status', 'dikirim')->count(),
-            $item->where('status', 'diterima')->count(),
+        $ItemChartData =  [
+            Donation::where('status','valid')->count(),
+            // dd(Donation::where('status','valid'))
         ];
         $ItemChartLabel =[
             'Dikirim',
             'Diterima'
                     ];
-
-
 
         $UsersBarData = DB::table('users')
             ->select(DB::raw('DATE_FORMAT(created_at, "%Y-%m") as month'), DB::raw('COUNT(*) as total'))

@@ -56,9 +56,9 @@
                         </label>
                         <select id="jenis_donasi" name="jenis_donasi" class="border-0 px-3 py-3 rounded text-sm shadow focus:ring blue-500 focus:border-blue-500 w-full ease-linear transition-all duration-150">
                             <option value="">Pilih Jenis Sumbangan</option>
-                            <option value="money">Uang</option>
-                            <option value="goods">Barang</option>
-                            <option value="money_and_goods">Uang dan Barang</option>
+                            <option value="uang">Uang</option>
+                            <option value="barang">Barang</option>
+                            <option value="uang_barang">Uang dan Barang</option>
                         </select>
                     </div>
                 </div>
@@ -191,11 +191,11 @@
         donationMoney.style.display = "none";
         donationGoods.style.display = "none";
 
-        if (donationType === "money") {
+        if (donationType === "uang") {
             donationMoney.style.display = "block";
-        } else if (donationType === "goods") {
+        } else if (donationType === "barang") {
             donationGoods.style.display = "block";
-        } else if (donationType === "money_and_goods") {
+        } else if (donationType === "uang_barang") {
             donationMoney.style.display = "block";
             donationGoods.style.display = "block";
         }

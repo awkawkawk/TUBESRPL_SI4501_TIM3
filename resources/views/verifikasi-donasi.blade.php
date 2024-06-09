@@ -1,19 +1,19 @@
 @extends('layouts.master')
 
 @section('content')
-<div class="grid h-fit w-full grid-flow-row">
-    <div class="col-span-2 md:col-span-1">
-        <div class="mt-4 text-left">
-            <div class="mb-8 flex items-center">
-                <svg class="mr-2 h-4 w-4 text-gray-800 dark:text-white" aria-hidden="true" fill="none"
-                viewBox="0 0 14 10" style="margin-right: 8px;">
-                <path stroke="rgb(75, 85, 101)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M13 5H1m0 0 4 4M1 5l4-4" />
-            </svg>
-            <a href="/" class="text-justify text-sm font-light text-gray-700"
-            style="margin-left: 8px;"><b>Kembali ke halaman utama</b></a>
-        </div>
-    </div>
+    <div class="grid h-fit w-full grid-flow-row">
+        <div class="col-span-2 md:col-span-1">
+            <div class="mt-4 text-left">
+                <div class="mb-8 flex items-center">
+                    <svg class="mr-2 h-4 w-4 text-gray-800 dark:text-white" aria-hidden="true" fill="none"
+                        viewBox="0 0 14 10" style="margin-right: 8px;">
+                        <path stroke="rgb(75, 85, 101)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 5H1m0 0 4 4M1 5l4-4" />
+                    </svg>
+                    <a href="/" class="text-justify text-sm font-light text-gray-700"
+                        style="margin-left: 8px;"><b>Kembali ke halaman utama</b></a>
+                </div>
+            </div>
         </div>
 
         <div class="col-span-3 md:col-span-2">
@@ -29,31 +29,95 @@
                                 class="flex w-full flex-wrap">
                                 @csrf
                                 @method('POST')
-                                <div class="mb-8 w-1/2 pe-8">
-                                    <div class="rounded-lg border border-gray-200 bg-white shadow-sm">
-                                        <div class="flex items-center px-5 py-3">
-                                            <img src="{{ $donation->user->profile_picture }}"
-                                                alt="{{ $donation->user->nama }}"
-                                                class="h-10 w-10 rounded-full object-cover" referrerpolicy="no-referrer">
-                                            <div class="ml-4">
-                                                <p class="font-bold text-black">{{ $donation->user->nama }}</p>
-                                                <p class="text-sm text-gray-600">{{ $donation->user->email }}</p>
+                                <div class="mb-8 w-96 pe-8">
+                                    <img src="{{ $donation->campaign->foto_campaign }}"
+                                        alt="{{ $donation->campaign->nama_campaign }}"
+                                        class="h-64 w-full rounded-t-lg object-cover" referrerpolicy="no-referrer">
+                                    <div class="bg-white shadow-sm">
+                                        <div class="w-full items-center px-5 py-3">
+                                            <div class="mb-2 flex border-b border-gray-500 pb-2 text-center">
+                                                <p class="text-wrap mr-auto text-xs font-normal text-black">
+                                                    {{ ucfirst($donation->jenis_donasi) }}</p>
+                                                <p class="text-wrap text-xs font-normal text-black">
+                                                    {{ $donation->created_at }}</p>
                                             </div>
+                                            <p class="font-bold text-black">{{ $donation->campaign->nama_campaign }}</p>
+                                            <p class="text-sm text-gray-600">
+                                                {{ $donation->campaign->school->nama_sekolah }}</p>
                                         </div>
-                                        <div class="h-48 overflow-y-auto p-5">
-                                            <h3 class="mb-2 font-bold text-black">Detail Donasi:</h3>
-                                            <h4 class="text-sm font-bold text-black">Campaign:</h4>
-                                            <p class="text-wrap mb-2 text-sm font-normal text-blue-500">
-                                                <a href="{{ route('/') }}">{{ $donation->campaign->nama_campaign }}</a>
-                                            </p>
-                                            <h4 class="text-sm font-bold text-black">Tanggal donasi:</h4>
-                                            <p class="text-wrap mb-2 text-sm font-normal text-black">
-                                                {{ $donation->tanggal_donasi }}</p>
-                                            <h4 class="text-sm font-bold text-black">Donasi:</h4>
-                                            @foreach ($donation->donation_items as $item)
-                                                <p class="text-wrap mb-2 text-sm font-normal text-black">
-                                                    {{ $item->nama_barang }} : {{ $item->jumlah_barang }}</p>
-                                            @endforeach
+                                        <div class="h-48 overflow-y-auto px-5">
+                                            @if (ucfirst($donation->jenis_donasi) === 'Uang')
+                                                <h4 class="text-sm font-bold text-black">Pembayaran:</h4>
+                                                @foreach ($donation->moneyDonations as $moneyDonation)
+                                                <p class="text-wrap text-sm font-normal text-black">
+                                                {{ $moneyDonation['nama_bank'] }} - {{$moneyDonation['nomor_rekening']}}</p>
+                                                    <div>
+                                                        <p class="h1 mb-2 block text-sm font-semibold text-black"
+                                                            style="margin-top:5px">Donasi Tersalurkan</p>
+                                                        <div class="card mb-2">
+                                                            <div class="card-body">
+                                                                <p
+                                                                    class="mb-1 flex items-center text-sm font-normal text-black dark:text-gray-400">
+                                                                    <svg class="mr-2 h-5 w-5 text-green-500" fill="none"
+                                                                        width="24" height="24" viewBox="0 0 24 24"
+                                                                        stroke="none">
+                                                                        <circle cx="12" cy="12" r="10"
+                                                                            fill="#42BB4E" />
+                                                                        <path d="M9 12l2 2l4 -4" stroke="white"
+                                                                            stroke-width="2" stroke-linecap="round"
+                                                                            stroke-linejoin="round" />
+                                                                    </svg>
+                                                                    <span class="mr-1">Uang</span>
+
+                                                                    <span>
+                                                                        Rp.
+                                                                        {{ number_format($moneyDonation["nominal"], 0, ',', '.') }}
+                                                                    </span>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                                @else
+                                                <h4 class="text-sm font-bold text-black">Pengiriman:</h4>
+                                                    <p class="text-wrap text-sm font-normal text-black">
+                                                {{ $donation->jasa_kirim}} - {{$donation->nomor_resi}}</p>
+
+                                                <div>
+                                                    <p class="h1 mb-2 block text-sm font-semibold text-black"
+                                                        style="margin-top:5px">Donasi Tersalurkan</p>
+                                                    <div class="card mb-2">
+                                                        <div class="card-body">
+                                                            @foreach ($donation->donationItems as $donationItem)
+                                                                <p
+                                                                    class="mb-1 flex items-center text-sm font-normal text-black dark:text-gray-400">
+                                                                    <svg class="mr-2 h-5 w-5 text-green-500" fill="none"
+                                                                        width="24" height="24" viewBox="0 0 24 24"
+                                                                        stroke="none">
+                                                                        <circle cx="12" cy="12" r="10"
+                                                                            fill="#42BB4E" />
+                                                                        <path d="M9 12l2 2l4 -4" stroke="white"
+                                                                            stroke-width="2" stroke-linecap="round"
+                                                                            stroke-linejoin="round" />
+                                                                    </svg>
+                                                                    <span
+                                                                        class="mr-1">{{ $donationItem['nama_barang'] }}</span>
+
+                                                                    <span>
+                                                                        @if ($donationItem['nama_barang'] == 'Uang')
+                                                                            Rp.
+                                                                            {{ number_format($donationItem['jumlah_barang'], 0, ',', '.') }}
+                                                                        @else
+                                                                            {{ number_format($donationItem['jumlah_barang'], 0, ',', '.') }}
+                                                                        @endif
+                                                                    </span>
+                                                                </p>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+
                                             {{-- <h4 class="text-sm font-bold text-black">Nomor Telepon:</h4>
                                             <p class="mb-2 text-sm font-normal text-black text-wrap">{{ $schoolPhone }}</p> --}}
                                         </div>
@@ -67,7 +131,7 @@
                                             <button type="button" data-modal-target="decline-modal"
                                                 data-modal-toggle="decline-modal"
                                                 class="w-1/2 rounded-br-lg border-gray-200 bg-red-600 px-4 py-3 text-sm font-medium text-white hover:bg-red-800 hover:text-gray-100 focus:z-10 focus:text-blue-700 focus:ring-2 focus:ring-blue-700 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white dark:focus:text-white dark:focus:ring-blue-500">
-                                                Tolak
+                                                Hapus
                                             </button>
                                         </div>
                                     </div>

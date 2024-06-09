@@ -24,8 +24,8 @@
 
                 @foreach ($campaigns as $campaign)
                     <div class="w-full lg:max-w-full lg:flex mb-4">
-                        <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t-lg lg:rounded-t-none lg:rounded-l-lg text-center overflow-hidden"
-                            style="background-image: url('{{ asset('img/campaigns/' . $campaign->foto_campaign) }}')"
+                        <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-lg text-center overflow-hidden"
+                            style="background-image: url('{{  $campaign->foto_campaign }}')"
                             title="Campaign Anda">
                         </div>
                         <div
@@ -45,12 +45,12 @@
                                             {{ $campaign->deskripsi_campaign }}</p>
                                         <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Dibuat Tanggal :
                                             {{ $campaign->created_at }}</p>
-                                        <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">
+                                        {{-- <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">
                                             @if ($campaign->status == 'Selesai')
                                                 Selesai Tanggal : {{ $campaign->tanggal_selesai }}
                                             @else
                                                 Selesai Tanggal : -
-                                            @endif
+                                            @endif --}}
                                     </div>
                                 </div>
 
@@ -208,7 +208,7 @@
                                                 Menunggu Verifikasi
                                             </button>
                                         </div>
-                                    @elseif($campaign->status == 'Ditolak')
+                                    @elseif($campaign->status == 'ditolak')
                                         <div class="flex items-center">
                                             <button
                                                 class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-8 rounded-lg">
