@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
+@section('title', 'Halaman Utama - EduFund')
+
 @section('content')
     <div class="flex h-fit w-full flex-wrap">
         @if (session('success'))
@@ -137,45 +139,72 @@
                 </button>
             </div>
         </div>
-        <div class="col-span-3 mt-16 lg:mt-4">
+        <div class="col-span-3 mt-16 w-full lg:mt-4">
             <p class="h1 mb-2 block text-center text-xl font-semibold text-black">Campaign Populer</p>
             <p class="mx-auto mb-8 w-1/2 text-center text-sm font-light text-black">Mereka butuh uluran tangan kita. Karena
                 sedikit
                 bantuan
                 dari kita adalah harapan besar bagi mereka.</p>
-            <div class="flex flex-wrap justify-center gap-4 text-left">
-                @foreach (range(1, 8) as $index)
+            <div class="flex flex-wrap justify-center gap-4 text-left" id="campaign-cards-container"></div>
+            {{-- @foreach (range(1, $numberOfIterations) as $index)
                     <x-campaign-card link="#" image-path="img/Untitled-1.png"
                         alt-text="Deskripsi gambar SMAN Arara 1" title="SMAN Arara 1" location="Arara, Jawa Barat"
                         description="Butuh donasi untuk memperbaiki kerusakan sekolah" percentage-collected="90" />
-                @endforeach
-                <div class="w-full text-center">
-                    <button type="button"
-                        class="mt-4 inline-flex h-10 items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Lihat
-                        semua <svg class="ms-4 h-3 w-3 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 10 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M5 1v12m0 0 4-4m-4 4L1 9" />
-                        </svg></button>
+                @endforeach --}}
+            <div class="w-full text-center">
+                <button type="button" onclick="renderCampaignCards(@json($campaigns))"
+                    class="mt-4 inline-flex h-10 items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Lihat
+                    semua <svg class="ms-4 h-3 w-3 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 10 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 1v12m0 0 4-4m-4 4L1 9" />
+                    </svg></button>
+            </div>
+            <div class="mt-6 grid h-24 w-11/12 w-full grid-cols-3 gap-10 rounded-lg bg-gray-700">
+                <div class="flex flex-col items-center justify-center">
+                    <p class="text-center text-sm text-white">Sekolah Terbantu</p>
+                    <p class="mt-1 text-2xl font-bold text-white">25.000</p>
                 </div>
-                <div class="mt-6 grid h-24 w-11/12 grid-cols-3 gap-10 rounded-lg bg-gray-700">
-                    <div class="flex flex-col items-center justify-center">
-                        <p class="text-center text-sm text-white">Sekolah Terbantu</p>
-                        <p class="mt-1 text-2xl font-bold text-white">25.000</p>
-                    </div>
-                    <div class="flex flex-col items-center justify-center">
-                        <p class="text-center text-sm text-white">Donasi Terkumpul</p>
-                        <p class="mt-1 text-2xl font-bold text-white">25.000</p>
-                    </div>
-                    <div class="flex flex-col items-center justify-center">
-                        <p class="text-center text-sm text-white">Total Donatur</p>
-                        <p class="mt-1 text-2xl font-bold text-white">25.000</p>
-                    </div>
+                <div class="flex flex-col items-center justify-center">
+                    <p class="text-center text-sm text-white">Donasi Terkumpul</p>
+                    <p class="mt-1 text-2xl font-bold text-white">25.000</p>
+                </div>
+                <div class="flex flex-col items-center justify-center">
+                    <p class="text-center text-sm text-white">Total Donatur</p>
+                    <p class="mt-1 text-2xl font-bold text-white">25.000</p>
                 </div>
             </div>
-
-
         </div>
 
+
     </div>
+
+    </div>
+    <script>
+        var renderedCampaignsIndex = 0; // Variabel untuk melacak indeks kampanye yang sudah dirender
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var campaigns = @json($campaigns);
+            renderCampaignCards(campaigns);
+        });
+
+        function renderCampaignCards(campaigns) {
+            var screenWidth = window.innerWidth - 240;
+            var numOfCards = Math.floor(screenWidth / 272);
+            var cardsContainer = document.getElementById('campaign-cards-container');
+
+            // Render kampanye baru sebanyak numOfCards yang belum dirender
+            for (var i = 0; i < numOfCards && renderedCampaignsIndex < campaigns.length; i++) {
+                var campaign = campaigns[renderedCampaignsIndex];
+                cardsContainer.innerHTML += `
+                <x-campaign-card link="/campaign/detail/${campaign.id}"
+                    image-path="${campaign.image_path}" alt-text="${campaign.nama_campaign}"
+                    title="${campaign.nama_campaign}" location="${campaign.school.alamat_sekolah}"
+                    description="${campaign.deskripsi_campaign}" percentage-collected="${campaign.percentage_collected}" />
+            `;
+                renderedCampaignsIndex++;
+            }
+        }
+    </script>
+
 @endsection
