@@ -16,4 +16,14 @@ class MethodPayment extends Model
         'nomor_rekening',
         'nama_pemilik',
     ];
+
+    public function requestPencairan()
+    {
+            return $this->hasMany(RequestPencairan::class, 'id_method_payment');
+    }
+
+    public function historyPencairan()
+    {
+        return $this->hasMany(History::class, 'id_money_donation');
+    }
 }

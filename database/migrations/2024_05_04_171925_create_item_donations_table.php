@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('item_donations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_donasi')->constrained('donations')->onDelete('cascade');
-            $table->string('nama_barang');
-            $table->integer('jumlah_barang');
+            $table->string('nama_barang')->nullable();
+            $table->integer('jumlah_barang')->nullable();
             $table->timestamps();
         });
     }

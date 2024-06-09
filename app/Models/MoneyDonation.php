@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MoneyDonation extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'id_donasi',
         'id_bank',
@@ -14,6 +15,7 @@ class MoneyDonation extends Model
         'nama_pemilik',
         'nomor_rekening',
         'nominal',
+        'status',
     ];
 
     public function donation()
@@ -26,5 +28,14 @@ class MoneyDonation extends Model
         return $this->belongsTo(Bank::class, 'id_bank');
     }
 
+    public function requestPencairan()
+    {
+        return $this->hasMany(RequestPencairan::class, 'id_money_donation');
+    }
+
+    public function historyPencairan()
+    {
+        return $this->hasMany(History::class, 'id_money_donation');
+    }
 
 }

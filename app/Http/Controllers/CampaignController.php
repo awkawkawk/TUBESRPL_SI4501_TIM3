@@ -1,64 +1,167 @@
 <?php
-// app/Http/Controllers/CampaignController.php
-
-// app/Http/Controllers/CampaignController.php
+// app/Httap/Controllers/CampaignController.php
 
 namespace App\Http\Controllers;
 
+use App\Models\Target;
 use App\Models\Campaign;
+use App\Models\Donation;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class CampaignController extends Controller
 {
-    public function store(Request $request)
-    {
-
-        try {
-            $request->validate([
-                // 'id_sekolah' => 'required|exists:schools,id', belum ada input untuk ini
-                'nama_campaign' => 'required|string',
-                'deskripsi_campaign' => 'required|string',
-                // 'status' => 'required|string', // di hapus aja karena dibawah ada code static value
-                'catatan_campaign' => 'nullable|string',
-                'tanggal_dibuat' => 'required|date',
-                'tanggal_selesai' => 'required|date'
-            ]);
-            $campaign = new Campaign();
-            $campaign->id_sekolah = auth()->id(); //sebelumnya ini menggunakan pake math random, tidak dianjurkan karena punya relasi dengan table schools
-            $campaign->nama_campaign = $request->nama_campaign;
-            $campaign->deskripsi_campaign = $request->deskripsi_campaign;
-            $campaign->status = 'Menunggu Verifikasi';
-            $campaign->jenis_donasi = $request->jenis_donasi; //sebelumnya belum ada field jenis_donasi padahal mandatory
-            $campaign->catatan_campaign = $request->catatan_campaign;
-            $campaign->tanggal_dibuat = $request->tanggal_dibuat;
-            $campaign->tanggal_selesai = $request->tanggal_selesai;
-            if ($request->hasFile('foto_campaign')) {
-                $campaign->foto_campaign = $request->file('foto_campaign')->store('public/campaign_photos');
-            }
-            $campaign->save();
-
-            dd("berhasil save");
-            // return redirect()->route('campaigns.index')->with('success', 'Kampanye berhasil ditambahkan!'); ini route belum ada
-        } catch (\Throwable $e) {
-            dd($e->getMessage());
-        }
-
-    }
 
     public function index()
     {
         $campaigns = Campaign::all();
-        return view('riwayatcampaign', compact('campaigns'));
+        return view('campaign.manage', compact('campaigns'));
     }
-    //untuk menampilkan riwayat
 
     public function create()
     {
         $campaigns = Campaign::all();
-        return view('create', compact('campaigns'));
+        return view('campaign.create', compact('campaigns'));
     }
 
+
+    public function store(Request $request)
+    {
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo')->getRealPath();
+
+            // Unggah file ke Cloudinary ke dalam folder 'bukti'
+            $uploadResult = cloudinary()
+                ->upload($file, [
+                    'folder' => 'bukti',
+                ])
+                ->getSecurePath();
+        }
+
+        $campaign = Campaign::create([
+            'nama_campaign' => $request->nama_campaign,
+            'foto_campaign' => $uploadResult,
+            'deskripsi_campaign' => $request->description,
+            'id_sekolah' => Auth::user()->id_sekolah, // Assuming the user is authenticated as a school // auth()->user->id
+            'status' => 'pending',
+            'jenis_donasi' => $request->input('jenis_donasi')
+        ]);
+
+
+        // Handle targets based on jenis_donasi
+        $jenisDonasi = $request->input('jenis_donasi');
+
+        if ($jenisDonasi == 'uang') {
+            $campaign->targets()->create([
+                'nama_barang' => 'Uang',
+                'jumlah_barang' => $request->input('target_uang'),
+            ]);
+        } elseif ($jenisDonasi == 'barang' || $jenisDonasi == 'uang_barang') {
+
+            if ($jenisDonasi == 'uang_barang') {
+                $campaign->targets()->create([
+                    'nama_barang' => 'Uang',
+                    'jumlah_barang' => $request->input('target_uang'),
+                ]);
+            }
+
+            $jumlahBarang = $request->input('jumlah_barang', []);
+            $jenisBarang = $request->input('jenis_barang', []);
+
+            foreach ($jenisBarang as $key => $namaBarang) {
+                if (isset($jumlahBarang[$key])) {
+                    $campaign->targets()->create([
+                        'nama_barang' => $namaBarang,
+                        'jumlah_barang' => $jumlahBarang[$key],
+                    ]);
+                }
+            }
+// dev
+            // dd("berhasil save");
+            // return redirect()->route('campaigns.index')->with('success', 'Kampanye berhasil ditambahkan!'); ini route belum ada
+//         } catch (\Throwable $e) {
+//             dd($e->getMessage());
+        }
+
+        return redirect()->route('campaign.riwayat')->with('success', 'Campaign berhasil ditambahkan!');
+    }
+
+    public function edit(Campaign $campaign)
+    {
+        return view('campaign.edit', compact('campaign'));
+    }
+
+    public function update(Request $request, Campaign $campaign)
+    {
+        // Handle photo upload if provided
+        if ($request->hasFile('photo')) {
+            $photoPath = $request->file('photo')->store('campaign_photos', 'public');
+            $campaign->foto_campaign = $photoPath;
+        }
+
+        // Update campaign details
+        $campaign->nama_campaign = $request->nama_campaign;
+        $campaign->deskripsi_campaign = $request->description;
+        $campaign->save();
+
+        // Delete existing targets
+        $campaign->targets()->delete();
+
+        // Handle targets based on jenis_donasi
+        $jenisDonasi = $request->input('jenis_donasi');
+
+        if ($jenisDonasi == 'uang') {
+            $campaign->targets()->create([
+                'nama_barang' => 'Uang',
+                'jumlah_barang' => $request->input('target_uang'),
+            ]);
+        } elseif ($jenisDonasi == 'barang' || $jenisDonasi == 'uang_barang') {
+            if ($jenisDonasi == 'uang_barang') {
+                $campaign->targets()->create([
+                    'nama_barang' => 'Uang',
+                    'jumlah_barang' => $request->input('target_uang'),
+                ]);
+            }
+
+            $jumlahBarang = $request->input('jumlah_barang', []);
+            $jenisBarang = $request->input('jenis_barang', []);
+
+            foreach ($jenisBarang as $key => $namaBarang) {
+                if (isset($jumlahBarang[$key])) {
+                    $campaign->targets()->create([
+                        'nama_barang' => $namaBarang,
+                        'jumlah_barang' => $jumlahBarang[$key],
+                    ]);
+                }
+            }
+        }
+
+        return redirect()->route('campaign.riwayat')->with('success', 'Campaign berhasil diperbarui!');
+    }
+
+    public function destroy(Campaign $campaign)
+    {
+        // Delete the campaign's image from storage
+        if ($campaign->photo_campaign) {
+            Storage::disk('public')->delete($campaign->photo_campaign);
+        }
+
+        // Delete associated targets
+        $campaign->targets()->delete();
+
+        // Delete the campaign
+        $campaign->delete();
+
+        return redirect()->route('campaigns.index')->with('success', 'Campaign deleted successfully.');
+    }
+
+    public function history()
+    {
+        $donations = Donation::all();;
+        return view('campaign.history', compact('donations'));
+    }
 
     // public function store(Request $request)
     // {
@@ -86,5 +189,4 @@ class CampaignController extends Controller
 
     //     return redirect()->route('daftar')->with('success', 'Campaign berhasil ditambahkan!');
     // }
-
 }

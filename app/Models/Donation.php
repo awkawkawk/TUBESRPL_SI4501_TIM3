@@ -2,8 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Campaign;
+use App\Models\ItemDonation;
+use App\Models\MethodPayment;
+use App\Models\MoneyDonation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Donation extends Model
 {
@@ -18,6 +23,7 @@ class Donation extends Model
         'status',
         'jasa_kirim',
         'nomor_resi',
+        'jenis_donasi',
     ];
 
     // Definisikan relasi dengan model Campaign
@@ -44,6 +50,11 @@ class Donation extends Model
     }
 
     public function donationMoney()
+    {
+        return $this->hasMany(MoneyDonation::class, 'id_donasi');
+    }
+
+    public function moneyDonations()
     {
         return $this->hasMany(MoneyDonation::class, 'id_donasi');
     }

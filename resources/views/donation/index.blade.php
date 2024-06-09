@@ -1,8 +1,8 @@
-@extends('layouts.master')
+@extends('layouts.master-donatur')
 
 @section('content')
 
-    <div class="grid h-fit w-full grid-flow-row">
+    <div class="grid h-fit w-full grid-flow-row p-8">
 
         <div class="md:col-span-1">
             <div class="mt-4 text-left">
@@ -10,7 +10,7 @@
                     <svg class="w-4 h-4 mr-2 text-gray-800 dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 14 10" style="margin-right: 8px;">
                         <path stroke="rgb(75, 85, 101)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
                     </svg>
-                    <a href="/" class="text-sm font-light text-gray-700 text-justify" style="margin-left: 8px;"><b>Kembali ke halaman utama</b></a>
+                    <a href="{{ url()->previous()}}" class="text-sm font-light text-gray-700 text-justify" style="margin-left: 8px;"><b>Kembali</b></a>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
                 @foreach ($campaigns as $campaign)
                 <div class="w-64 max-w-sm rounded-lg border border-gray-200 bg-white shadow">
                     <a href="{{ $link ?? '#' }}">
-                        <img class="h-64 rounded-t-lg object-cover" src="{{  asset('img/campaigns/' . $campaign->foto)  }}"
+                        <img class="h-64 rounded-t-lg object-cover" src="{{ $campaign->foto_campaign }}"
                             alt="{{ $altText ?? '' }}" />
                     </a>
                     <div class="p-5">
@@ -66,7 +66,7 @@
 
                         <!-- Tombol "Donasi Barang" pada setiap card campaign -->
                         <div class="flex justify-center items-center mt-4">
-                            <a href="{{ route('donations.form.items', ['id' => $campaign->id]) }}" class="bg-primary text-white font-bold py-2 px-8 rounded-lg">
+                            <a href="{{ route('donations.form.items', ['id' => $campaign->id]) }}" class="bg-primary text-white font-bold py-2 px-6 rounded-lg">
                             Donasi Barang
                             </a>
                         </div>
