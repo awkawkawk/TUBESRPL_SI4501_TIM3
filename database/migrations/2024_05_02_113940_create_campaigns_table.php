@@ -15,11 +15,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('id_sekolah')->constrained('schools');
             $table->string('nama_campaign');
-            $table->string('foto_campaign');
+            $table->string('foto_campaign')->nullable();
             $table->text('deskripsi_campaign');
             $table->string('status');
+//             $table->enum('jenis_donasi', ['uang', 'barang', 'uang_barang']);
+//             $table->string('status')->nullable();
             $table->text('catatan_campaign')->nullable();
-            $table->enum('jenis_donasi');
+            $table->enum('jenis_donasi', ['uang', 'barang', 'uang_barang']);
             $table->integer('percentage_collected')->default(0);
             $table->timestamps();
         });
