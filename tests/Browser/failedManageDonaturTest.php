@@ -8,19 +8,20 @@ use Tests\DuskTestCase;
 use Database\Factories\UserFactory;
 use App\Models\User;
 
-class ManageDonaturTest extends DuskTestCase
+class failedManageDonaturTest extends DuskTestCase
 {
     /**
      * A Dusk test example.
-     * @group managedonatur
+     * @group failedmanagedonatur
      */
     public function testExample(): void
     {
-        $donationId = 15;
+        $donationId = 16;
 
         $this->browse(function (Browser $browser) use ($donationId) {
             $browser->loginAs(User::find(3))
                     ->visit('/admin/dashboard/edufund')
+                    ->dump()
                     // ->screenshot('test-donaturs')
                     ->assertSee('Manage Donatur')
                     ->clickLink('Manage Donatur')
@@ -29,18 +30,15 @@ class ManageDonaturTest extends DuskTestCase
                     ->click('#edit')
 
                     ->assertPathIs('/admin/edit/donatur/'.$donationId)
-                    ->type('name', 'test1')
-                    ->type('email', 'test1@gmail.com')
-                    ->type('phone', '081223344465')
+                    ->type('name', '')
+                    ->type('email', 'invalid-email')
+                    ->type('phone', 'invalid-phone')
                     ->select('peran', 'donatur')
                     ->press('SIMPAN')
-                    // ->assertPathIs('/admin/donatur')
-                    
-                    // DeleteDonatur
-                    ->visit('/admin/donatur')
-                    ->dump()
-                    ->press('#removeButton')
-                    ->screenshot('test-donatur')
+                    ->assertPathIs('/admin/edit/donatur/'.$donationId)
+                    ->pause(2000)
+                    ->screenshot('failed-donatur')
+                  
                     ;
         });
     }
