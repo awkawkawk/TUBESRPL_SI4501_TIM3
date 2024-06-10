@@ -42,8 +42,9 @@
 
                             <div class="mt-2 flex items-center justify-center">
                                 <div class="flex h-20 w-20 items-center justify-center overflow-hidden rounded-full">
-                                    <img src="{{ $donations->user->profile_picture }}" referrerpolicy="no-referrer"
-                                        class="h-full w-full object-cover" />
+                                    {{-- <img src="{{ $donations->user->profile_picture }}" referrerpolicy="no-referrer" --}}
+                                    <img src="{{ asset('img/campaigns/' . $donations->user->profile_picture) }}" alt="" class="object-cover w-full h-full" 
+                                    class="h-full w-full object-cover" />
                                 </div>
                             </div>
 

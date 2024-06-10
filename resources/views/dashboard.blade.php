@@ -63,7 +63,7 @@
                         <div class="items-cente flex justify-between xl:gap-x-2">
                             <div class="self-center">
                                 <p class="text-lg font-semibold uppercase text-gray-800 dark:text-slate-400"> Rp.
-                                    {{ number_format($totalcair, 2, ',', '.') }}
+                                    {{ number_format($totalPencairan, 2, ',', '.') }}
                                 </p>
                                 <h3 class="my-4 text-[30px] font-semibold dark:text-slate-200">Jumlah Donasi
                                     Uang Dicairkan</h3>

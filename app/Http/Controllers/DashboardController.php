@@ -9,6 +9,7 @@ use App\Models\ItemDonation;
 use Illuminate\Http\Request;
 use App\Models\MethodPayment;
 use App\Models\MoneyDonation;
+use App\Models\History;
 use App\Models\RequestPencairan;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -26,6 +27,7 @@ class DashboardController extends Controller
        $totalsaldo = RequestPencairan::sum('nominal_terkumpul');
        $totalrequest = RequestPencairan::sum('nominal_sisa');
        $totalcair = $totalsaldo - $totalrequest;
+       $totalPencairan = History::where('status', 'approved')->sum('nominal_pencairan');
 
 
 
@@ -88,6 +90,6 @@ class DashboardController extends Controller
          })->toArray();
 
 
-    return view('dashboard', compact('totalcair','table','userChartLabels', 'userBarChart', 'donasiLineChart','donasiChartLabels', 'schoolCount','totalnominal', 'ItemChartLabel', 'ItemChartData','MoneyChartLabel' ,'MoneyChartData' ,'campaignChartLabel', 'campaignChartData', 'donasi', 'metode', 'campaign'));
+    return view('dashboard', compact('totalPencairan', 'totalcair','table','userChartLabels', 'userBarChart', 'donasiLineChart','donasiChartLabels', 'schoolCount','totalnominal', 'ItemChartLabel', 'ItemChartData','MoneyChartLabel' ,'MoneyChartData' ,'campaignChartLabel', 'campaignChartData', 'donasi', 'metode', 'campaign'));
     }
 }
