@@ -16,7 +16,7 @@
     </div>
     <div class="flex flex-wrap justify-between">
         <div class="bg-white rounded-md shadow-md p-6 w-2/3">
-            <form method="POST" action="{{ route('campaigns.update', $campaign->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('campaigns.update',    $campaign->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -109,7 +109,7 @@
                 </div>
 
                 <div class="mt-6">
-                    <button type="submit" formaction="{{ route('campaign.riwayat') }}" formmethod="get" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Update</button>
+                    <button type="submit" q class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Update</button>
                 </div>
             </form>
         </div>

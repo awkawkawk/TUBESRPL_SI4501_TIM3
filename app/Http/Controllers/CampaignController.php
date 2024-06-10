@@ -100,10 +100,14 @@ class CampaignController extends Controller
             $photoPath = $request->file('photo')->store('campaign_photos', 'public');
             $campaign->foto_campaign = $photoPath;
         }
-
+        
+        // return dd($request->jenis_barang);
+        
         // Update campaign details
+        // dd($campaign);  
         $campaign->nama_campaign = $request->nama_campaign;
         $campaign->deskripsi_campaign = $request->description;
+        //$campaign->id_sekolah = Auth::user()->id_sekolah; // Menetapkan id sekolah berdasarkan sekolah yang login
         $campaign->save();
 
         // Delete existing targets
