@@ -7,15 +7,15 @@ use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use App\Models\User;
 
-class ManageDonationMoneyTest extends DuskTestCase
+class ManageDonationMoney2Test extends DuskTestCase
 {
     /**
      * A Dusk test example.
-     * @group manage_donation_money
+     * @group manage_donation_money_2
      */
     public function testExample(): void
     {
-        $donationId = 18;
+        $donationId = 19;
 
         $this->browse(function (Browser $browser) use ($donationId)  {
             $browser->loginAs(User::find(3))
@@ -28,11 +28,11 @@ class ManageDonationMoneyTest extends DuskTestCase
                     ->click('#button-edit')
                     ->assertPathIs('/admin/edit/donation/money/' . $donationId)
                     ->screenshot('testmanage_money2')
-                    ->type('nominal', '5000000')
+                    ->type('nominal', 'teks')
                     ->screenshot('testmanage_money3')
-                    ->select('metode_pembayaran', '3')
+                    ->select('metode_pembayaran', '2')
                     ->screenshot('test4')
-                    ->type('nama_pemilik', 'Ryu Sun Jaeeee')
+                    ->type('nama_pemilik', 'Ryu Sun Jaee')
                     ->type('nomor_rekening', '19998888877')
                     ->type('pesan', 'test edit ')
                     ->assertSee('Lanjutkan Perubahan')
@@ -45,12 +45,12 @@ class ManageDonationMoneyTest extends DuskTestCase
                     ->screenshot('testmanage_money5')
 
 
-                    ->click('#button-delete')
-                    // ->assertSee('Apakah Anda yakin ingin menghapus donasi ini?')
-                    // ->waitForAlert()
-                    // ->assertDialogOpened('Apakah Anda yakin ingin menghapus donasi ini?')
-                    // ->acceptDialog()
-                    ->screenshot('testmanage_money6');
+                    // ->click('#button-delete')
+                    // // ->assertSee('Apakah Anda yakin ingin menghapus donasi ini?')
+                    // // ->waitForAlert()
+                    // // ->assertDialogOpened('Apakah Anda yakin ingin menghapus donasi ini?')
+                    // // ->acceptDialog()
+                    // ->screenshot('testmanage_money6');
 
 
                     ;

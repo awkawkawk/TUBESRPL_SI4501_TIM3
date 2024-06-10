@@ -97,7 +97,7 @@
                                         <option value="{{ $tahap }}"
                                             {{ in_array($tahap, ['Tahap 1', 'Tahap 2']) ? 'disabled' : '' }}>
                                             {{ $tahap }} - {{ $nominal }}</option>
-                                         <option value="{{ $tahap }}"
+                                         {{-- <option value="{{ $tahap }}"
                                             {{ in_array($tahap, ['Tahap 1', 'Tahap 2']) ? 'disabled' : '' }}>
                                             @if ($tahap == 'Tahap 1')
                                                 {{ $tahap }} -
@@ -108,8 +108,8 @@
                                             @elseif($tahap == 'Tahap 3')
                                                 {{ $tahap }}
                                             @endif
-                                            {{-- {{ $tahap }} - {{ 'Tahap 1' ? $nominal : $RequestPencairan->History }} --}}
-                                        </option>
+
+                                        </option> --}}
                                     @endforeach
                                 @elseif ($RequestPencairan->id_tahap_pencairan == 3)
                                     <option value="" disabled>Semua tahap pencairan telah dilakukan</option>
@@ -155,6 +155,8 @@
                             <textarea class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                 id="pesan" name="pesan" rows="4" placeholder="Masukkan pesan anda..."></textarea>
                         </div>
+
+                        @if ($RequestPencairan->id_tahap_pencairan == null)
                         <div class="mb-4 mt-6" id="pendukungField" style="display: none;">
                             <label required class="block text-sm font-medium text-gray-700" for="pendukung">Upload Bukti
                                 Penggunaan</label>
@@ -163,6 +165,17 @@
                                 id="pendukung" name="pendukung">
                             <x-input-error :messages="$errors->get('pendukung')" class="mt-2" />
                         </div>
+                        @else
+                        <div class="mb-4 mt-6" id="pendukungField" style="display: none;">
+                            <label required class="block text-sm font-medium text-gray-700" for="pendukung">Upload Bukti
+                                Penggunaan</label>
+                            <input type="file"
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                                id="pendukung" name="pendukung" required>
+                            <x-input-error :messages="$errors->get('pendukung')" class="mt-2" />
+                        </div>
+                        @endif
+
                         <!-- Checkbox Syarat dan Ketentuan -->
                         <div class="mb-4">
                             <label class="inline-flex items-center">

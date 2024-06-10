@@ -36,7 +36,7 @@ class SchoolController extends Controller
             'email_pendaftar' => 'required|email|max:255',
             'identitas_pendaftar' => 'required|string|max:255',
             'bukti_id_pendaftar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'status' => 'required|string|max:255',
+            'status' => 'pending',
         ]);
 
         $data = $request->all();

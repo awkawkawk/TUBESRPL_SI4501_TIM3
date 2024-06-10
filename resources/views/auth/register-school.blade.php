@@ -12,7 +12,7 @@
                                     <!-- Session Status -->
                                     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-                                    <form method="POST" action="{{ route('register.school') }}"" enctype="multipart/form-data">
+                                    <form method="POST" action="{{ route('register.school') }}" enctype="multipart/form-data">
                                         @csrf
 
                                         <p class="mb-4 mt-6">Silahkan daftarkan sekolah anda!</p>

@@ -13,6 +13,7 @@ class ItemDonation extends Model
         'id_donasi',
         'nama_barang',
         'jumlah_barang',
+        'status'
     ];
 
     public function donation()
@@ -20,5 +21,5 @@ class ItemDonation extends Model
         return $this->belongsTo(Donation::class, 'id_donasi');
     }
 
-    
+
 }

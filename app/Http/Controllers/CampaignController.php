@@ -42,7 +42,7 @@ class CampaignController extends Controller
 
         $campaign = Campaign::create([
             'nama_campaign' => $request->nama_campaign,
-            'foto_campaign' => $uploadResult,
+            // 'foto_campaign' => $uploadResult,
             'deskripsi_campaign' => $request->description,
             'id_sekolah' => Auth::user()->id_sekolah, // Assuming the user is authenticated as a school // auth()->user->id
             'status' => 'pending',

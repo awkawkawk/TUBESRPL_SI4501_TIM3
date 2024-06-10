@@ -42,21 +42,18 @@
                         @else
                             <p>Belum ada riwayat pencairan.</p>
                         @endif
-
-
-
-
                     </div>
+
                     <div class="flex flex-1 items-center justify-center">
                         <!-- Tombol untuk membuka modal -->
                         @if ($d->id_tahap_pencairan == null)
                             <button class="disabled rounded bg-gray-500 px-4 py-2 font-bold text-white"
                                 disabled>Pending</button>
                         @elseif ($d->status === 'pending')
-                            <a class="cursor-pointer rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+                            <a id="cairkan-dana" name="cairkan-dana" class="cursor-pointer rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
                                 data-modal-target="transferModal" data-modal-toggle="transferModal">Cairkan Dana</a>
                         @else
-                            <a class="cursor-pointer rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+                            <a id="cairkan-dana" name="cairkan-dana" class="cursor-pointer rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
                                 data-modal-target="transferModal" data-modal-toggle="transferModal">Cairkan Dana</a>
                         @endif
 
@@ -83,27 +80,17 @@
                                             </svg>
                                             <span class="sr-only">Close modal</span>
                                         </button>
+
+
                                     </div>
                                     <!-- Modal body -->
-                                    <div class="space-y-6 p-6">
+                                    <div class="space-y-12 p-6">
                                         @foreach ($d->historyPencairan as $history)
                                             <form id="uploadForm"
                                                 action="{{ route('pencairan.response', ['RequestPencairan' => $d->id, 'History' => $history->id]) }}"
                                                 method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('PUT')
-                                                {{-- <div class="mb-4">
-                                            <label for="id"
-                                                class="block text-sm font-medium text-gray-700 dark:text-gray-300">ID</label>
-                                            <input type="text" name="id" id="id"
-                                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white">
-                                        </div>
-                                        <div class="mb-4">
-                                            <label for="for"
-                                                class="block text-sm font-medium text-gray-700 dark:text-gray-300">For</label>
-                                            <input type="text" name="for" id="for"
-                                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:text-white"> --}}
-                                                {{-- </div> --}}
                                                 <div class="mb-4">
                                                     <label for="pendukung"
                                                         class="block text-sm font-medium text-gray-700 dark:text-gray-300">Upload
@@ -111,12 +98,13 @@
                                                     <input type="file" name="pendukung" id="pendukung"
                                                         class="block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 text-sm text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400">
                                                 </div>
-                                                <button type="submit"
+                                                <button type="submit" id="submit" name="submit"
                                                     class="focus:shadow-outline w-full rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none">Submit</button>
                                             </form>
                                         @endforeach
                                     </div>
                                     <!-- Modal footer -->
+
                                     <div
                                         class="flex items-center justify-end rounded-b border-t border-gray-200 p-4 dark:border-gray-600">
                                         <button type="button"
@@ -128,7 +116,10 @@
                         </div>
                     </div>
                 </div>
+
             @endforeach
     </div>
     @endif
 @endsection
+
+

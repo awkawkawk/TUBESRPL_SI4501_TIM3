@@ -59,6 +59,7 @@
                         @elseif ($d->id_tahap_pencairan === 2 && $d->MoneyDonation->Donation->Campaign->status != 'selesai')
                             <button class="disabled rounded bg-gray-500 px-4 py-2 font-bold text-white" disabled>Tunggu
                                 Campaign Selesai</button>
+                    
                         @else
                             <a id="cairkan-dana" href="{{ route('pencairan.request', $d->id) }}"
                                 class="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700">Cairkan

@@ -103,7 +103,7 @@
                                 <p class="text-lg font-semibold uppercase text-gray-800 dark:text-slate-400">
                                     {{ $schoolCount }}</p>
                                 <h3 class="my-4 text-[30px] font-semibold dark:text-slate-200">Jumlah Sekolah
-                                    Terbantu</h3>
+                                    Terdaftar</h3>
                             </div>
                             <div class="self-center">
                                 <i data-lucide="shopping-cart" class="stroke-primary-500/30 h-16 w-16"></i>
@@ -180,7 +180,7 @@
                                                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{ $index + 1 }}</td>
                                                 <td class="whitespace-nowrap px-6 py-4">
                                                     {{ $d->MoneyDonation->Donation->Campaign->nama_campaign }} </td>
-                                                <td class="whitespace-nowrap px-6 py-4"> {{ $d->nominal_terkumpul }} </td>
+                                                    <td class="whitespace-nowrap px-6 py-4">Rp. {{ number_format($d->nominal_terkumpul, 0, ',', '.') }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

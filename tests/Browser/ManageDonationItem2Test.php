@@ -8,11 +8,11 @@ use Tests\DuskTestCase;
 use App\Models\User;
 
 
-class ManageDonationItemTest extends DuskTestCase
+class ManageDonationItem2Test extends DuskTestCase
 {
     /**
      * A Dusk test example.
-     * @group manage_donation_item
+     * @group manage_donation_item_2
      */
     public function testExample(): void
     {
@@ -26,19 +26,20 @@ class ManageDonationItemTest extends DuskTestCase
                     ->assertPathIs('/admin/edit/donation/money')
                     ->assertSee('Daftar Donasi Masuk')
                     ->clickLink('Donasi Barang')
-                    ->screenshot('testmanage_item1')
+                    ->screenshot('testmanage2_item1')
                     ->click('#button-edit')
                     ->assertPathIs('/admin/edit/donation/item/' . $donationId)
                     ;
 
                     $browser->assertSee('Barang Donasi Lama')
                     ->select('#nama_barang_0', 'Buku')
-                    ->type('#jumlah_barang_0', '30')
+                    ->type('#jumlah_barang_0', 'teks')
                     ->select('#nama_barang_1', 'Penghapus')
-                    ->type('#jumlah_barang_1', '300')
+                    ->type('#jumlah_barang_1', 'teks2')
                     ->select('#nama_barang_3', 'Buku')
                     ->type('#jumlah_barang_3', '0')
-                    ->screenshot('testmanage_item2');
+                    ->screenshot('testmanage_item2')
+                    ->press('#removeButton_101');
 
                     $browser->press('+')
                     ->select('#nama_barang_101', 'Pensil')
@@ -60,7 +61,6 @@ class ManageDonationItemTest extends DuskTestCase
 
                     // ->click('#button-delete')
                     // ->screenshot('testmanage_item7')
-
                     ;
         });
     }

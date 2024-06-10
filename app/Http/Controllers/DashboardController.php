@@ -86,7 +86,7 @@ class DashboardController extends Controller
 
         $donasiChartLabels = $donasiLineData->pluck('month')->toArray();
         $donasiLineChart = $donasiLineData->pluck('total')->map(function($value) {
-        return number_format($value, 2, ',', '.'); // Format ke mata uang
+        return $value; // Format ke mata uang
          })->toArray();
 
 
