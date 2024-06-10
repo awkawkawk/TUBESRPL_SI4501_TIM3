@@ -46,8 +46,8 @@ class BeritaTest extends DuskTestCase
                     ->click('#edit')
                     ->assertPathIs('/admin/manage/berita/7/edit')  
                     ->assertSee('Tambah Berita')
-                    ->type('title', 'new title');
-                    // ->pause(5000);
+                    ->type('title', 'new title')
+                    ->pause(5000);
 
             // Set CKEditor content
             $browser->script("CKEDITOR.instances['content'].setData('Ini adalah konten berita baru');");
