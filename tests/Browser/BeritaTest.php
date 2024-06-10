@@ -27,36 +27,45 @@ class BeritaTest extends DuskTestCase
                     ->click('#tambah')
                     ->assertPathIs('/admin/manage/berita/create')
                     ->assertSee('Tambah Berita')
-                    ->type('title', 'title');
-
+                    ->type('title', 'titles');
+            
             // Set CKEditor content
             $browser->script("CKEDITOR.instances['content'].setData('Ini adalah konten berita');");
 
             // Attach image and fill other fields
             $browser->attach('image', public_path('/img/EduFund2.png'))
-                    ->type('release_date', 'date') 
-                    ->type('link','link news')
+                    ->type('release_date', 'valid_date')  
+                    ->type('link', 'link news')
                     ->press('Simpan')
                     // ->screenshot('testcreate')
                     ;
 
+            // Edit Berita
             $browser->visit('/admin/manage/berita/news')
                     ->assertSee('Manage Berita')
                     ->click('#edit')
-                    ->screenshot(('testedit-donatur'))
+                    ->assertPathIs('/admin/manage/berita/3/edit')  
+                    ->assertSee('Tambah Berita')
+                    ->type('title', 'new title');
 
+            // Set CKEditor content
+            $browser->script("CKEDITOR.instances['content'].setData('Ini adalah konten berita baru');");
+
+            // Attach image and fill other fields
+            $browser->attach('image', public_path('/img/EduFund2.png'))
+                    ->type('release_date', 'valid dates')  
+                    ->type('link', 'linknews')
+                    ->press('Tambah')
+                    // ->screenshot('testedit')
                     ;
             
-                    
-            // $browser->visit('/admin/manage/berita/news')
-            //         ->assertSee('Manage Berita')
-            //         ->click('#delete-button')
-            //         ->screenshot('test-delete')
-               
-            //         ;
-                    
-            
+             // Delete Berita
+            $browser->visit('/admin/manage/berita/news')
+                    ->assertSee('Manage Berita')
+                    ->click('#delete-button')
+                    ->screenshot('test-berita')
+                    ;
+
         });
     }
 }
-

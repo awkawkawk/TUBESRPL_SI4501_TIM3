@@ -55,7 +55,7 @@
                 <input type="text" name="link" id="link" class="mt-1 block w-full" value="{{$news->link}}">
             </div>
             <div class="flex justify-end">
-                <button type="submit" class="bg-primary text-white font-bold py-2 px-8 rounded-lg">
+                <button type="submit" id="tambah-button" class="bg-primary text-white font-bold py-2 px-8 rounded-lg mb-6">
                     Tambah
                 </button>
             </div>

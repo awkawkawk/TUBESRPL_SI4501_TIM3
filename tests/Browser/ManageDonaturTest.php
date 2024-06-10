@@ -16,10 +16,10 @@ class ManageDonaturTest extends DuskTestCase
      */
     public function testExample(): void
     {
-        $donationId = 14;
+        $donationId = 3;
 
         $this->browse(function (Browser $browser) use ($donationId) {
-            $browser->loginAs(User::find(14))
+            $browser->loginAs(User::find(3))
                     ->visit('/admin/dashboard/edufund')
                     // ->screenshot('test-donaturs')
                     ->assertSee('Manage Donatur')
@@ -28,10 +28,10 @@ class ManageDonaturTest extends DuskTestCase
                     ->assertSee('Manage Donatur')
                     ->click('#edit')
 
-                    ->assertPathIs('/admin/edit/donatur/'.$donationId)
-                    ->type('name', 'donaturs')
-                    ->type('email', 'donaturs@gmail.com')
-                    ->type('phone', '0812233445566')
+                    ->assertPathIs('/admin/edit/donation/item/' . $donationId)
+                    ->type('name', 'edufund')
+                    ->type('email', 'edufund@gmail.com')
+                    ->type('phone', '0812233444')
                     ->select('peran', 'donatur')
                     ->press('SIMPAN')
                     ->assertPathIs('/admin/donatur')
