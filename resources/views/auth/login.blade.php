@@ -46,7 +46,7 @@
                                         </div>
 
                                         <!-- Submit button -->
-                                        <div class="pb-1 pt-1 text-center">
+                                        <div id="Masuk" class="pb-1 pt-1 text-center">
                                             <x-primary-button class="bg-primary mb-2 flex w-full text-center hover:bg-primarydark">
                                                 {{ __('Masuk') }}
                                             </x-primary-button>

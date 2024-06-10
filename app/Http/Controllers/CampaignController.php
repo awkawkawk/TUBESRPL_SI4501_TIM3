@@ -157,6 +157,7 @@ class CampaignController extends Controller
         return redirect()->route('campaigns.index')->with('success', 'Campaign deleted successfully.');
     }
 
+
     public function history()
     {
         $donations = Donation::all();;

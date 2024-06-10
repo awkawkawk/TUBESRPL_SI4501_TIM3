@@ -30,9 +30,11 @@
                                 <div class="w-1/2 p-4">
                                     <div>
                                         <p class="text-xl font-bold text-black">{{ $detail->nama_campaign }}</p>
-                                        <p class="font-normal text-black">{{ $detail->school->nama_sekolah }}
-                                            <!-- <i>({{ $detail->school->alamat_sekolah }})</i> -->
-                                        </p>
+                                        <a href="{{route('schools/'$detail->id)}}">
+                                            <p class="font-normal text-black">{{ $detail->school->nama_sekolah }}
+                                                <!-- <i>({{ $detail->school->alamat_sekolah }})</i> -->
+                                            </p>
+                                        </a>
                                         <p class="mb-2 font-normal text-black">{{ $detail->school->alamat_sekolah }}</p>
                                         <p class="mb-2 text-sm font-normal text-black">{{ $detail->deskripsi_campaign }}</p>
                                         <p class="h1 mb-2 block text-sm font-semibold text-black" style="margin-top:5px">
