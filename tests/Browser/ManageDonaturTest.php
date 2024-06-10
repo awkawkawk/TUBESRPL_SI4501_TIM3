@@ -16,7 +16,7 @@ class ManageDonaturTest extends DuskTestCase
      */
     public function testExample(): void
     {
-        $donationId = 15;
+        $donationId = 16;
 
         $this->browse(function (Browser $browser) use ($donationId) {
             $browser->loginAs(User::find(3))
@@ -34,7 +34,6 @@ class ManageDonaturTest extends DuskTestCase
                     ->type('phone', '081223344465')
                     ->select('peran', 'donatur')
                     ->press('SIMPAN')
-                    // ->assertPathIs('/admin/donatur')
                     
                     // DeleteDonatur
                     ->visit('/admin/donatur')

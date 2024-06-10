@@ -38,7 +38,6 @@ class failedManageDonaturTest extends DuskTestCase
                     ->assertPathIs('/admin/edit/donatur/'.$donationId)
                     ->pause(2000)
                     ->screenshot('failed-donatur')
-                  
                     ;
         });
     }
