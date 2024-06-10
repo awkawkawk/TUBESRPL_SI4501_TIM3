@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="flex flex-wrap">
-        @foreach ($donations as $donate)
+        @foreach (auth::user()->donations as $donate)
         <div class="w-full flex justify-evenly bg-white rounded-xl mb-3">
             <div class="w-3/6 flex justify-start">
                 <img src="{{ Storage::url($donate->campaign->foto_campaign) }}" class="w-52 rounded-l-xl" alt="Campaign">

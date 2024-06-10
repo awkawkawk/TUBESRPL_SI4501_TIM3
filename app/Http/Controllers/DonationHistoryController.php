@@ -12,3 +12,4 @@ class DonationHistoryController extends Controller
         return view('riwayatdonasi', compact('histories'));
     }
 }
+

@@ -61,7 +61,47 @@ Route::middleware('auth')->group(function () {
     Route::post('/donation/money/summary', [DonationController::class, 'showSummary'])->name('donation.summary');
     Route::post('/donation/store', [DonationController::class, 'store'])->name('donations.store');
 
-    // Donasi Barang
+    Route::get('/campaign/detail/{id}', [DetailsCampaignController::class, 'showDetails'])->name('show.details');
+
+// Route::get('/campaigns/create', [CampaignController::class, 'create'])->name('campaigns.create');
+// Route::get('/campaigns', [CampaignController::class, 'index'])->name('campaigns.index');
+// Route::post('/campaigns', [CampaignController::class, 'store'])->name('campaigns.store');
+// Route::delete('/campaigns/{campaign}', [CampaignController::class, 'destroy'])->name('campaigns.destroy');
+// Route::get('/campaigns/{campaign}/edit', [CampaignController::class, 'edit'])->name('campaigns.edit');
+// Route::post('/update/{campaign}', [CampaignController::class, 'update'])->name('campaigns.update');
+// Route::get('/campaigns/history', [CampaignController::class, 'history'])->name('campaigns.history');
+
+// //riwayat campaign
+// Route::get('/campaign/riwayat', [RiwayatCampaignController::class, 'index'])->name('campaign.riwayat');
+// Route::get('/campaign/riwayat/donatur/{campaignId}', [RiwayatCampaignController::class, 'donatur'])->name('lihat.donatur');
+
+// money donation
+// Route::get('/donation', [DonationController::class, 'index'])->name('index.donation');
+// Route::get('/donation/money/{id}', [DonationController::class, 'showForm'])->name('donations.form');
+// Route::get('/donation/money/summary', [DonationController::class, 'showSummary'])->name('donation.summary.get');
+// Route::post('/donation/money/summary', [DonationController::class, 'showSummary'])->name('donation.summary');
+// Route::post('/donation/store', [DonationController::class, 'store'])->name('donations.store');
+
+// // manage money donation
+// Route::get('/edit/donation/money', [DonationController::class, 'editMoney'])->name('donationMoney.edit');
+// Route::get('/edit/donation/money/{id}', [DonationController::class, 'showform_editMoney'])->name('moneyform.edit');
+// Route::post('/edit/donation/money/summary', [DonationController::class, 'showSummaryEdit'])->name('donation.summary.edit');
+// Route::put('/edit/donation/update/{id}', [DonationController::class, 'update'])->name('donations.update');
+// Route::delete('/donation/delete/{id}', [DonationController::class, 'destroy'])->name('donations.destroy');
+
+
+// item donation
+// Route::get('/donation/item/{id}', [DonationItemController::class, 'showFormItem'])->name('donations.form.items');
+// Route::post('/donation/item/{id}', [DonationItemController::class, 'postFormItem'])->name('donations.post.form.items');
+// Route::post('/donation/storeItems', [DonationItemController::class, 'storeItems'])->name('donations.storeItems');
+
+// manage item donation
+// Route::get('/edit/donation/item', [DonationItemController::class, 'editItem'])->name('donationItem.edit');
+// Route::get('/edit/donation/item/{id}', [DonationItemController::class, 'showform_editItem'])->name('itemform.edit');
+// Route::put('/edit/donation/item/{id}', [DonationItemController::class, 'updateItem'])->name('donations.edit');
+// Route::delete('/donation/item/delete/{id}', [DonationItemController::class, 'destroy'])->name('donations.item.destroy');
+
+
     Route::get('/donation/item/{id}', [DonationItemController::class, 'showFormItem'])->name('donations.form.items');
     Route::post('/donation/item/{id}', [DonationItemController::class, 'postFormItem'])->name('donations.post.form.items');
     Route::post('/donation/storeItems', [DonationItemController::class, 'storeItems'])->name('donations.storeItems');
