@@ -44,7 +44,7 @@ class DetailsCampaignController extends Controller
         $otherDetails = Campaign::with('school')->where('status', 'valid')->where('id', '!=', $id)->get();
 
 
-                    
+
 
         $donations = Donation::where('id_campaign', $id)->get();
 
