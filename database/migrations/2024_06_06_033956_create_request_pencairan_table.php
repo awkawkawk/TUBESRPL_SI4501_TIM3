@@ -14,7 +14,7 @@ return new class extends Migration
          Schema::create('request_pencairan', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_money_donation');
-            $table->enum('status', ['pending', 'approved'])->default('pending');
+            $table->enum('status', ['pending', 'approved', NULL])->default('pending');
             $table->decimal('nominal_terkumpul', 10, 2)->nullable();
             $table->decimal('nominal_sisa', 10, 2)->nullable();
             $table->unsignedBigInteger('id_tahap_pencairan')->nullable();

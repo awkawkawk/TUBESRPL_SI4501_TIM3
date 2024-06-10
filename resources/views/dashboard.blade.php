@@ -4,15 +4,15 @@
 
 @extends('layouts.master')
 @section('content')
-    <div class="flex flex-col gap-4 w-full">
-        <div class="grid grid-cols-3 w-full gap-6">
+    <div class="mx-4 flex w-full flex-col gap-4">
+        <div class="grid w-full grid-cols-3 gap-6">
             <div class="col-span-3">
-                <div class="w-full relative mb-4">
-                    <div class="flex-auto p-4 bg-white">
-                        <div class="border-b border-dashed border-slate-300 dark:border-slate-700/40 my-3"></div>
-                        <div class="grid grid-cols-12 gap-4 mb-8">
+                <div class="relative mb-4 w-full">
+                    <div class="flex-auto bg-white p-4">
+                        <div class="my-3 border-b border-dashed border-slate-300 dark:border-slate-700/40"></div>
+                        <div class="mb-8 grid grid-cols-12 gap-4">
                             <div class="col-span-12 sm:col-span-6">
-                                <p class="text-gray-800 font-semibold dark:text-slate-400 text-lg uppercase">Edu Fund
+                                <p class="text-lg font-semibold uppercase text-gray-800 dark:text-slate-400">Edu Fund
                                     Dashboard
                                 </p>
                             </div><!--end col-->
@@ -20,88 +20,93 @@
                     </div><!--end card-body-->
                 </div><!--end card-->
             </div><!--end col-->
-        </div>
-        <div class="grid grid-cols-3 w-full gap-6">
-            @include('partial.total-campaign', [
-                'campaignChartData' => $campaignChartData,
-            ])
-            @include('partial.money-donation', [
-                'MoneyChartData' => $MoneyChartData,
-            ])
-            @include('partial.item-donation', [
-                'ItemChartData' => $ItemChartData,
-            ])
+            <div class="grid w-full grid-cols-3 relative gap-6">
+                @include('partial.total-campaign', [
+                    'campaignChartData' => $campaignChartData,
+                ])
 
+            </div>
+            <div class="grid w-full grid-cols-3 relative gap-6">
+                @include('partial.money-donation', [
+                    'MoneyChartData' => $MoneyChartData,
+                ])
+            </div>
+            <div class="grid w-full grid-cols-3 relative gap-6">
+                @include('partial.item-donation', [
+                    'ItemChartData' => $ItemChartData,
+                ])
+
+            </div>
         </div>
-        <div class="grid grid-cols-4 w-full gap-6">
-            <div class=" bg-white">
-                <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
+        <div class="grid w-full grid-cols-4 gap-6">
+            <div class="bg-white">
+                <div class="relative mb-4 w-full rounded-md bg-white shadow-sm dark:bg-gray-900 dark:shadow-slate-700/10">
                     <div class="flex-auto p-4">
-                        <div class="flex justify-between xl:gap-x-2 items-cente">
+                        <div class="items-cente flex justify-between xl:gap-x-2">
                             <div class="self-center">
-                                <p class="text-gray-800 font-semibold dark:text-slate-400 text-lg uppercase">
+                                <p class="text-lg font-semibold uppercase text-gray-800 dark:text-slate-400">
                                     Rp. {{ number_format($totalnominal, 2, ',', '.') }}
                                 </p>
-                                <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">Jumlah Donasi
+                                <h3 class="my-4 text-[30px] font-semibold dark:text-slate-200">Jumlah Donasi
                                     Uang Terkumpul</h3>
                             </div>
                             <div class="self-center">
-                                <i data-lucide="shopping-cart" class=" h-16 w-16 stroke-primary-500/30"></i>
+                                <i data-lucide="shopping-cart" class="stroke-primary-500/30 h-16 w-16"></i>
                             </div>
                         </div>
                     </div><!--end card-body-->
                 </div> <!--end inner-grid-->
             </div>
-            <div class=" bg-white">
-                <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
+            <div class="bg-white">
+                <div class="relative mb-4 w-full rounded-md bg-white shadow-sm dark:bg-gray-900 dark:shadow-slate-700/10">
                     <div class="flex-auto p-4">
-                        <div class="flex justify-between xl:gap-x-2 items-cente">
+                        <div class="items-cente flex justify-between xl:gap-x-2">
                             <div class="self-center">
-                                <p class="text-gray-800 font-semibold dark:text-slate-400 text-lg uppercase"> Rp.
+                                <p class="text-lg font-semibold uppercase text-gray-800 dark:text-slate-400"> Rp.
                                     {{ number_format($totalcair, 2, ',', '.') }}
                                 </p>
-                                <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">Jumlah Donasi
+                                <h3 class="my-4 text-[30px] font-semibold dark:text-slate-200">Jumlah Donasi
                                     Uang Dicairkan</h3>
                             </div>
                             <div class="self-center">
-                                <i data-lucide="shopping-cart" class=" h-16 w-16 stroke-primary-500/30"></i>
+                                <i data-lucide="shopping-cart" class="stroke-primary-500/30 h-16 w-16"></i>
                             </div>
                         </div>
 
                     </div><!--end card-body-->
                 </div> <!--end inner-grid-->
             </div>
-            <div class=" bg-white">
-                <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
+            <div class="bg-white">
+                <div class="relative mb-4 w-full rounded-md bg-white shadow-sm dark:bg-gray-900 dark:shadow-slate-700/10">
                     <div class="flex-auto p-4">
-                        <div class="flex justify-between xl:gap-x-2 items-cente">
+                        <div class="items-cente flex justify-between xl:gap-x-2">
                             <div class="self-center">
-                                <p class="text-gray-800 font-semibold dark:text-slate-400 text-lg uppercase">
+                                <p class="text-lg font-semibold uppercase text-gray-800 dark:text-slate-400">
                                     {{ $totalItem }}
                                 </p>
-                                <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">Jumlah Donasi
+                                <h3 class="my-4 text-[30px] font-semibold dark:text-slate-200">Jumlah Donasi
                                     Barang</h3>
                             </div>
                             <div class="self-center">
-                                <i data-lucide="shopping-cart" class=" h-16 w-16 stroke-primary-500/30"></i>
+                                <i data-lucide="shopping-cart" class="stroke-primary-500/30 h-16 w-16"></i>
                             </div>
                         </div>
 
                     </div><!--end card-body-->
                 </div> <!--end inner-grid-->
             </div>
-            <div class=" bg-white">
-                <div class="bg-white shadow-sm dark:shadow-slate-700/10 dark:bg-gray-900  rounded-md w-full relative mb-4">
+            <div class="bg-white">
+                <div class="relative mb-4 w-full rounded-md bg-white shadow-sm dark:bg-gray-900 dark:shadow-slate-700/10">
                     <div class="flex-auto p-4">
-                        <div class="flex justify-between xl:gap-x-2 items-cente">
+                        <div class="items-cente flex justify-between xl:gap-x-2">
                             <div class="self-center">
-                                <p class="text-gray-800 font-semibold dark:text-slate-400 text-lg uppercase">
+                                <p class="text-lg font-semibold uppercase text-gray-800 dark:text-slate-400">
                                     {{ $schoolCount }}</p>
-                                <h3 class="my-4 font-semibold text-[30px] dark:text-slate-200">Jumlah Sekolah
+                                <h3 class="my-4 text-[30px] font-semibold dark:text-slate-200">Jumlah Sekolah
                                     Terbantu</h3>
                             </div>
                             <div class="self-center">
-                                <i data-lucide="shopping-cart" class=" h-16 w-16 stroke-primary-500/30"></i>
+                                <i data-lucide="shopping-cart" class="stroke-primary-500/30 h-16 w-16"></i>
                             </div>
                         </div>
 
@@ -109,31 +114,31 @@
                 </div> <!--end inner-grid-->
             </div>
         </div>
-        <div class="grid grid-cols-2 w-full gap-4">
-            <div class=" bg-white">
+        <div class="grid w-full grid-cols-2 gap-4">
+            <div class="bg-white">
                 <h1>
-                    <div class="flex-auto p-4 ">
+                    <div class="flex-auto p-4">
                         <div class="">
                             <div id="donasi_masuk" class="apex-charts"></div>
                         </div>
                     </div>
                 </h1>
             </div>
-            <div class=" bg-white">
-                <div class="flex-auto p-4 ">
+            <div class="bg-white">
+                <div class="flex-auto p-4">
                     <div class="">
                         <div id="total_user" class="apex-charts"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="grid grid-cols-2 w-full gap-4">
-            <div class=" bg-white">
+        <div class="grid w-full grid-cols-2 gap-4">
+            <div class="bg-white">
                 <div class="flex flex-col">
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                             <div class="overflow-hidden">
-                                <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
+                                <table class="text-surface min-w-full text-left text-sm font-light dark:text-white">
                                     <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
                                         <tr>
                                             <th scope="col" class="px-6 py-4">#</th>
@@ -156,12 +161,12 @@
                     </div>
                 </div>
             </div>
-            <div class=" bg-white">
+            <div class="bg-white">
                 <div class="flex flex-col">
                     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                             <div class="overflow-hidden">
-                                <table class="min-w-full text-left text-sm font-light text-surface dark:text-white">
+                                <table class="text-surface min-w-full text-left text-sm font-light dark:text-white">
                                     <thead class="border-b border-neutral-200 font-medium dark:border-white/10">
                                         <tr>
                                             <th scope="col" class="px-6 py-4">#</th>

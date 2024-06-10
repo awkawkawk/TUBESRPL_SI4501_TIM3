@@ -23,4 +23,15 @@ class school extends Model
         'bukti_id_pendaftar',
         'status'
     ];
+
+    public function campaign()
+    {
+        return $this->hasMany(Campaign::class);
+    }
+    public function user()
+    {
+        return $this->hasMany(User::class);
+    }
+
 }
+

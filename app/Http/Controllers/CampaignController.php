@@ -33,12 +33,16 @@ class CampaignController extends Controller
             $file = $request->file('photo')->getRealPath();
 
             // Unggah file ke Cloudinary ke dalam folder 'bukti'
-            
+            $uploadResult = cloudinary()
+                ->upload($file, [
+                    'folder' => 'bukti',
+                ])
+                ->getSecurePath();
         }
 
         $campaign = Campaign::create([
             'nama_campaign' => $request->nama_campaign,
-            'foto_campaign' => $file,
+            'foto_campaign' => $uploadResult,
             'deskripsi_campaign' => $request->description,
             'id_sekolah' => Auth::user()->id_sekolah, // Assuming the user is authenticated as a school // auth()->user->id
             'status' => 'pending',
@@ -118,7 +122,7 @@ class CampaignController extends Controller
                 'jumlah_barang' => $request->input('target_uang'),
             ]);
         } elseif ($jenisDonasi == 'barang' || $jenisDonasi == 'uang_barang') {
-            if ($jenisDonasi == 'money_and_goods') {
+            if ($jenisDonasi == 'uang_barang') {
                 $campaign->targets()->create([
                     'nama_barang' => 'Uang',
                     'jumlah_barang' => $request->input('target_uang'),
@@ -163,7 +167,7 @@ class CampaignController extends Controller
         $donations = Donation::all();;
         return view('campaign.history', compact('donations'));
     }
-    
+
     // public function store(Request $request)
     // {
     //     $request->validate([

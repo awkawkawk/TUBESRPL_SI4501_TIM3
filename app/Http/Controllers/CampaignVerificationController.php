@@ -15,9 +15,7 @@ class CampaignVerificationController extends Controller
 
     public function showVerificationPage()
     {
-        $campaigns = Campaign::with('school','targets')
-                    ->where('status', 'perlu diverifikasi')
-                    ->get();
+        $campaigns = Campaign::with('school', 'targets')->where('status', 'pending')->get();
         return view('verifikasi-campaign', compact('campaigns'));
     }
 
@@ -26,13 +24,12 @@ class CampaignVerificationController extends Controller
         $campaignsVerification = Campaign::findOrFail($id);
 
         if ($request->input('response') == 'confirm') {
+            // dd('valid' , $campaignsVerification);
             $campaignsVerification->update(['status' => 'valid']);
         } elseif ($request->input('response') == 'decline') {
             // Ambil pesan catatan dari request
             $pesan = $request->input('catatan');
-
-            // Buat link WhatsApp dengan nomor penerima dan pesan
-            $campaignsVerification->update(['status' => 'ditolak'],['catatan_campaign'=>$pesan]);
+            $campaignsVerification->update(['status' => 'ditolak', 'catatan_campaign' => $pesan]);
         }
 
         return redirect()->back()->with('success', 'Respon berhasil disimpan');

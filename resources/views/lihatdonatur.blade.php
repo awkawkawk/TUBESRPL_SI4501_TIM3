@@ -9,7 +9,7 @@
                 <svg class="w-4 h-4 mr-2 text-gray-800 dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 14 10" style="margin-right: 8px;">
                     <path stroke="rgb(75, 85, 101)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
                 </svg>
-                <a href="/" class="text-sm font-light text-gray-700 text-justify" style="margin-left: 8px;"><b>Kembali ke halaman utama</b></a>
+                <a href="{{ url()->previous()}}" class="text-sm font-light text-gray-700 text-justify" style="margin-left: 8px;"><b>Kembali</b></a>
             </div>
         </div>
     </div>
@@ -20,7 +20,7 @@
 
 
             <div class="w-full lg:max-w-full lg:flex">
-                <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t-lg lg:rounded-t-none lg:rounded-l-lg text-center overflow-hidden" style="background-image: url('{{  asset('img/campaigns/' . $campaign->foto)  }}')" title="Campaign Anda">
+                <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-r-lg text-center overflow-hidden" style="background-image: url('{{  $campaign->foto_campaign  }}')" title="Campaign Anda">
                 </div>
                 <div class="border border-gray-200 bg-white rounded-b-lg lg:rounded-b-none lg:rounded-r-lg p-4 flex flex-col justify-between leading-normal flex-grow">
                     <div class="mb-8 grid grid-cols-4 gap-x-4 lg:gap-x-8" style="grid-template-columns: 2fr 1fr 1fr 0.5fr">
@@ -203,7 +203,7 @@
                         <!-- Profil Donatur -->
                         <div class="flex justify-center items-center ml-8 mt-6">
                             <div class="rounded-full overflow-hidden w-20 h-20 flex justify-center items-center">
-                                <img src="{{ asset('img/campaigns/' . $donation->user->profile_picture) }}" alt="" class="object-cover w-full h-full" />
+                                <img src="{{ $donation->user->profile_picture }}" alt="" class="object-cover w-full h-full" />
                             </div>
                         </div>
 
@@ -239,46 +239,21 @@
                             </p>
                             @endforeach
                         </div>
-                        {{-- <div>
-                            <p class="h1 mb-2 block text-sm font-semibold text-black mt-6">Telah Menyumbangkan</p>
-                            <p class="mb-1 mt-1 text-sm font-normal text-black dark:text-gray-400 flex items-center">
-                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" width="24" height="24" viewBox="0 0 24 24" stroke="none">
-                                    <circle cx="12" cy="12" r="10" fill="#42BB4E" />
-                                    <path d="M9 12l2 2l4 -4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                                <span class="mr-1">Meja</span>
-                                <span>10</span>
-                            </p>
-                            <p class="mb-1 text-sm font-normal text-black dark:text-gray-400 flex items-center">
-                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" width="24" height="24" viewBox="0 0 24 24" stroke="none">
-                                    <circle cx="12" cy="12" r="10" fill="#42BB4E" />
-                                    <path d="M9 12l2 2l4 -4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                                <span class="mr-1">Kursi</span>
-                                <span>10</span>
-                            </p>
-                            <p class="mb-1 text-sm font-normal text-black dark:text-gray-400 flex items-center">
-                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" width="24" height="24" viewBox="0 0 24 24" stroke="none">
-                                    <circle cx="12" cy="12" r="10" fill="#42BB4E" />
-                                    <path d="M9 12l2 2l4 -4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                                <span class="mr-1">Uang</span>
-                                <span>500.000</span>
-                            </p>
-                        </div> --}}
+
 
                         <!-- Doa Donatur -->
                         <div>
                             <p class="h1 mb-2 block text-sm font-semibold text-black mt-6">Doa Dari Donaturmu</p>
                             <p class="mb-4 mr-6 text-sm font-normal text-black dark:text-gray-400">{{ $donation->pesan }}</p>
                             <p class="mb-1 text-xs font-normal text-black dark:text-gray-400">Donasi Masuk : {{ $donation->created_at->format('d F Y') }}</p>
-                            <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">
-                                @if($donation->status == 'Valid')
+
+                            {{-- <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">
+                                @if($donation->status == 'valid')
                                     Donasi Terverifikasi: {{ $donation->updated_at->format('d F Y') }}
                                 @else
                                     Donasi Terverifikasi: Sedang diverifikasi admin
                                 @endif
-                            </p>
+                            </p> --}}
                         </div>
                     </div>
                 </div>

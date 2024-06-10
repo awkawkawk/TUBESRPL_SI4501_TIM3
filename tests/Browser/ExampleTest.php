@@ -10,7 +10,6 @@ class ExampleTest extends DuskTestCase
 {
     /**
      * A basic browser test example.
-     * @contoh
      */
     public function testBasicExample(): void
     {
