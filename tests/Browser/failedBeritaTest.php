@@ -6,12 +6,13 @@ use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use App\Models\User;
 
-class failedBeritaTest extends DuskTestCase
+class FailedBeritaTest extends DuskTestCase
 {
     /**
-     * A Dusk test example.
+     * Test creating a news item with missing title.
+     * @group failed
      */
-    public function testExample(): void
+    public function testCreateNews(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->loginAs(User::find(3))
@@ -27,46 +28,47 @@ class failedBeritaTest extends DuskTestCase
                     ->click('#tambah')
                     ->assertPathIs('/admin/manage/berita/create')
                     ->assertSee('Tambah Berita')
-                    ->type('title', 'titles');
-            
+                    ->type('title', '');
+
             // Set CKEditor content
-            $browser->script("CKEDITOR.instances['content'].setData('Ini adalah konten berita');");
+            $browser->script("if (typeof CKEDITOR !== 'undefined') { CKEDITOR.instances['content'].setData('Ini adalah konten berita'); }");
 
             // Attach image and fill other fields
             $browser->attach('image', public_path('/img/EduFund2.png'))
                     ->type('release_date', 'valid_date')  
                     ->type('link', 'link news')
                     ->press('Simpan')
-                    // ->screenshot('testcreate')
-                    ;
+                    ->assertPathIs('/admin/manage/berita/create')
+                    ->pause(2000)
+                    ->screenshot('testcreate');
+        });
+    }
 
-            // Edit Berita
-            $browser->visit('/admin/manage/berita/news')
+    /**
+     * Test editing a news item with missing release date.
+     * @group failed
+     */
+    public function testEditNews(): void
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->loginAs(User::find(3))
+                    ->visit('/admin/manage/berita/news')
                     ->assertSee('Manage Berita')
                     ->click('#edit')
-                    ->assertPathIs('/admin/manage/berita/6/edit')  
+                    ->assertPathIs('/admin/manage/berita/8/edit')  
                     ->assertSee('Tambah Berita')
-                    ->type('title', 'new title')
-                    ->pause(5000);
+                    ->type('title', 'new title');
 
             // Set CKEditor content
-            $browser->script("CKEDITOR.instances['content'].setData('Ini adalah konten berita baru');");
+            $browser->script("if (typeof CKEDITOR !== 'undefined') { CKEDITOR.instances['content'].setData('Ini adalah konten berita baru'); }");
 
             // Attach image and fill other fields
             $browser->attach('image', public_path('/img/EduFund2.png'))
-                    ->type('release_date', 'valid dates')  
+                    ->type('release_date', '')  
                     ->type('link', 'linknews')
                     ->press('Tambah')
-                    // ->screenshot('testedit')
-                    ;
-            
-             // Delete Berita
-            $browser->visit('/admin/manage/berita/news')
-                    ->assertSee('Manage Berita')
-                    ->click('#delete-button')
-                    ->screenshot('test-berita')
-                    ;
-
+                    ->assertPathIs('/admin/manage/berita/8/edit')  
+                    ->screenshot('testedit');
         });
     }
 }
