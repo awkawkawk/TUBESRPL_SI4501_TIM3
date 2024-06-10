@@ -49,7 +49,7 @@
                      @csrf
                      <div class="flex pl-6 md:order-1">
                          <div class="relative hidden w-96 md:block">
-                             <input type="text" id="search-navbar"
+                             <input type="text" id="`"
                                  class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2 ps-4 text-sm text-gray-900 focus:border-gray-500 focus:ring-0"
                                  placeholder="Cari..." name="keyword" value="{{ $query ?? '' }}">
                              <button type="submit"

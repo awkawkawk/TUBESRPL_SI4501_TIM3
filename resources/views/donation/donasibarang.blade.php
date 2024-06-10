@@ -69,10 +69,11 @@
                     <div class="mb-4">
                         <label class="inline-flex items-center">
                             <input class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" type="checkbox" name="syarat_dan_ketentuan" required>
-                            <span class="ms-2 text-sm text-gray-600">Saya menyetujui syarat dan ketentuan</span>
+                            <span class="ms-2 text-sm text-gray-600">Saya menyetujui </span> <a class="ms-1 text-sm text-blue-500 cursor-pointer" data-modal-target="terms-modal"
+                                        data-modal-toggle="terms-modal">syarat dan ketentuan</a>
                         </label>
                     </div>
-
+                    <x-syarat-dan-ketentuan />
                     <!-- Button Lanjutkan Pembayaran -->
                     <button type="submit" class="mt-2 w-full bg-primary text-white font-bold py-2 px-8 rounded-lg">
                         Lanjutkan Donasi Anda
