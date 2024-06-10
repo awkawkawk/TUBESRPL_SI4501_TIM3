@@ -65,7 +65,7 @@ class SchoolVerificationController extends Controller
             'email_pendaftar' => $validatedData['email_pendaftar'],
             'identitas_pendaftar' => $validatedData['identitas_pendaftar'],
             'bukti_id_pendaftar' => $validatedData['bukti_id_pendaftar'],
-            'status' => 'perlu diverifikasi',
+            'status' => 'pending',
         ];
 
         // Ambil gambar dari form request
