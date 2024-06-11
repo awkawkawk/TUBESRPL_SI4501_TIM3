@@ -14,6 +14,7 @@ class Campaign extends Model
                         'nama_campaign',
                         'deskripsi_campaign',
                         'status',
+                        'jenis_donasi',
                         'catatan_campaign',
                         'foto_campaign'];
 

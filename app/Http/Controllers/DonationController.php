@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\Models\RequestPencairan;
 
-
-
 class DonationController extends Controller
 {
     public function index()
@@ -22,7 +20,6 @@ class DonationController extends Controller
         $campaigns = Campaign::where('status', 'valid')->get();
         return view('donation.index', compact('campaigns'));
     }
-
 
     public function showForm($id)
     {
@@ -34,7 +31,6 @@ class DonationController extends Controller
         // Menampilkan view dengan data campaign yang dipilih
         return view('donation.donasiuang', compact('selectedCampaign', 'metodePembayaran'));
     }
-
 
     public function showSummary(Request $request)
     {
@@ -71,10 +67,8 @@ class DonationController extends Controller
         $selectedCampaign = Campaign::findOrFail($selectedCampaignId);
 
         // Kembalikan view dengan data yang diperlukan
-        return view('donation.summary', compact('nama_bank','tujuan_pembayaran', 'nomor_rekening', 'nomor_rek', 'pentransfer', 'nominal', 'selectedCampaign', 'metode_pembayaran', 'nama_pemilik', 'waktu_donasi'));
+        return view('donation.summary', compact('nama_bank', 'tujuan_pembayaran', 'nomor_rekening', 'nomor_rek', 'pentransfer', 'nominal', 'selectedCampaign', 'metode_pembayaran', 'nama_pemilik', 'waktu_donasi'));
     }
-
-
 
     public function store(Request $request)
     {
@@ -83,13 +77,12 @@ class DonationController extends Controller
         $methodPayment = MethodPayment::findOrFail($donationData['metode_pembayaran']);
         $namaBank = $methodPayment->metode_pembayaran;
 
-
         $donation = Donation::create([
             'id_user' => auth()->id(),
             'id_campaign' => $donationData['id_campaign'],
             'pesan' => $donationData['pesan'],
             'syarat_ketentuan' => $request->has('syarat_ketentuan') ? true : false,
-            'status' => 'Menunggu Verifikasi',
+            'status' => 'pending',
             'jenis_donasi' => 'uang',
         ]);
 
@@ -100,29 +93,10 @@ class DonationController extends Controller
             'nama_pemilik' => $donationData['nama_pemilik'],
             'nomor_rekening' => $donationData['nomor_rekening'],
             'nominal' => $donationData['nominal'],
+            'status' => 'pending',
         ]);
 
-        $idCampaign = $moneyDonation->donation->id_campaign;
-
-        $existingRequestPencairan = RequestPencairan::whereHas('moneyDonation.donation', function ($query) use ($idCampaign) {
-            $query->where('id_campaign', $idCampaign);
-        })->first();
-
-        if ($existingRequestPencairan) {
-            $existingRequestPencairan->nominal_terkumpul += $donationData['nominal'];
-            $existingRequestPencairan->save();
-        } else {
-            RequestPencairan::create([
-                'id_money_donation' => $moneyDonation->id,
-                'nominal_terkumpul' => $donationData['nominal'],
-                'nominal_sisa' => 0,
-                'status' => 'Pending',
-            ]);
-        }
-
-
         $request->session()->forget('donation');
-
 
         return redirect('/donation')->with('success', 'Terimakasih Donasinya Orang Baik');
     }
@@ -137,7 +111,7 @@ class DonationController extends Controller
     public function showform_editMoney($id)
     {
         $formdonation = Donation::with(['user', 'moneyDonations', 'donationItems'])->findOrFail($id);
-        $selectedCampaign = Campaign::findOrFail($id);
+        $selectedCampaign = $formdonation->campaign;
         $namaSekolah = $selectedCampaign->school->nama_sekolah;
         $metodePembayaran = MethodPayment::all();
         return view('managedonation.formeditmoney', compact('formdonation', 'selectedCampaign', 'namaSekolah', 'metodePembayaran'));
@@ -176,25 +150,27 @@ class DonationController extends Controller
         $request->session()->put('donation_id', $request->id_donasi);
         $request->session()->put('formdonation', $formdonation->id);
 
-        return view('managedonation.summarymoney', compact('nama_bank','tujuan_pembayaran', 'nomor_rekening', 'nomor_rek', 'pentransfer', 'nominal', 'selectedCampaign', 'metode_pembayaran', 'nama_pemilik', 'waktu_donasi'));
+        return view('managedonation.summarymoney', compact('nama_bank', 'tujuan_pembayaran', 'nomor_rekening', 'nomor_rek', 'pentransfer', 'nominal', 'selectedCampaign', 'metode_pembayaran', 'nama_pemilik', 'waktu_donasi'));
     }
 
-
-
     public function update(Request $request, $id)
-    {
-        $donationData = $request->session()->get('donation');
-        $campaignId = $request->session()->get('campaign_id');
-        $donationId = $request->session()->get('donation_id');
-        $formdonationId = $request->session()->get('formdonation');
+{
+    $donationData = $request->session()->get('donation');
+    $donationId = $request->session()->get('donation_id');
 
-        $donation = Donation::findOrFail($donationId);
+    if (!$donationData || !$donationId) {
+        // Handle missing session data appropriately
+        return redirect()->back()->withErrors('Session data is missing.');
+    }
 
+    $donation = Donation::findOrFail($donationId);
+
+    DB::transaction(function () use ($donation, $donationData) {
         $donation->update([
             'pesan' => $donationData['pesan'],
         ]);
 
-        $moneyDonation = MoneyDonation::where('id_donasi', $donation->id)->first();
+        $moneyDonation = MoneyDonation::where('id_donasi', $donation->id)->firstOrFail();
 
         $methodPayment = MethodPayment::findOrFail($donationData['metode_pembayaran']);
         $namaBank = $methodPayment->metode_pembayaran;
@@ -206,21 +182,21 @@ class DonationController extends Controller
             'nomor_rekening' => $donationData['nomor_rekening'],
             'nominal' => $donationData['nominal'],
         ]);
+    });
 
-        return redirect()->route('donationMoney.edit'); // Ganti dengan rute tujuan setelah update
-    }
+    return redirect()->route('donationMoney.edit'); // Adjust the route as necessary
+}
 
     public function destroy($id)
     {
-
         $donation = Donation::findOrFail($id);
 
         MoneyDonation::where('id_donasi', $id)->delete();
 
         $donation->delete();
 
-        return redirect()->route('donationMoney.edit', ['id' => $id])->with('success', 'Donasi berhasil dihapus');
+        return redirect()
+            ->route('donationMoney.edit', ['id' => $id])
+            ->with('success', 'Donasi berhasil dihapus');
     }
-
-
 }

@@ -10,8 +10,8 @@
                         <path stroke="rgb(75, 85, 101)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M13 5H1m0 0 4 4M1 5l4-4" />
                     </svg>
-                    <a href="/" class="text-sm font-light text-gray-700 text-justify"
-                        style="margin-left: 8px;"><b>Kembali ke halaman utama</b></a>
+                    <a href="{{ url()->previous()}}" class="text-sm font-light text-gray-700 text-justify"
+                        style="margin-left: 8px;"><b>Kembali</b></a>
                 </div>
             </div>
         </div>
@@ -23,14 +23,15 @@
 
 
                 @foreach ($campaigns as $campaign)
-                    <div class="w-full lg:max-w-full lg:flex mb-4">
-                        <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t-lg lg:rounded-t-none lg:rounded-l-lg text-center overflow-hidden"
-                            style="background-image: url('{{ asset('img/campaigns/' . $campaign->foto) }}')"
-                            title="Campaign Anda">
-                        </div>
-                        <div
-                            class="border border-gray-200 bg-white rounded-b-lg lg:rounded-b-none lg:rounded-r-lg p-4 flex flex-col justify-between leading-normal flex-grow">
-                            <div class="mb-8 grid grid-cols-4 gap-x-4 lg:gap-x-8" style="grid-template-columns: 1fr 2fr">
+                <div class="w-full lg:max-w-full lg:flex mb-4">
+                    <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-l-lg text-center overflow-hidden"
+                    style="background-image: url('{{  $campaign->foto_campaign }}')"
+                    title="Campaign Anda">
+                    </div>
+                    <div
+                    class="border border-gray-200 bg-white rounded-b-lg lg:rounded-b-none lg:rounded-r-lg p-4 flex flex-col justify-between leading-normal flex-grow">
+                    <a href="/campaign/detail/{{$campaign->id}}" referrerpolicy="no-referrer">
+                    <div class="mb-8 grid grid-cols-4 gap-x-4 lg:gap-x-8" style="grid-template-columns: 1fr 2fr">
                                 <!-- Identitas Sekolah -->
                                 <div>
                                     <!-- Konten Identitas Sekolah -->
@@ -44,16 +45,16 @@
                                         <p class="mb-4 text-sm font-normal text-black dark:text-gray-400">
                                             {{ $campaign->deskripsi_campaign }}</p>
                                         <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">Dibuat Tanggal :
-                                            {{ $campaign->tanggal_dibuat }}</p>
-                                        <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">
+                                            {{ $campaign->created_at }}</p>
+                                        {{-- <p class="mb-2 text-xs font-normal text-black dark:text-gray-400">
                                             @if ($campaign->status == 'Selesai')
                                                 Selesai Tanggal : {{ $campaign->tanggal_selesai }}
                                             @else
                                                 Selesai Tanggal : -
-                                            @endif
+                                            @endif --}}
                                     </div>
                                 </div>
-
+                                </a>
                                 <!-- Donasi Masuk dan Target Donasi -->
                                 <div class="mb-2 grid grid-cols-2 gap-x-4 lg:gap-x-8"
                                     style="grid-template-columns: 1fr 1fr;">
@@ -182,7 +183,7 @@
                                                 </span> --}}
                                             </a>
                                         </div>
-                                    @elseif($campaign->status == 'Selesai')
+                                    @elseif($campaign->status == 'selesai')
                                         <div class="flex justify-center items-center">
                                             <button
                                                 class="bg-zinc-500 hover:bg-zinc-600 text-white font-bold py-2 px-8 rounded-lg">
@@ -202,13 +203,13 @@
                                                 </span> --}}
                                             </a>
                                         </div>
-                                    @elseif($campaign->status == 'Menunggu Verifikasi')
+                                    @elseif($campaign->status == 'pending')
                                         <div class="flex">
                                             <button class="bg-primary text-white font-bold py-2 px-8 rounded-lg">
                                                 Menunggu Verifikasi
                                             </button>
                                         </div>
-                                    @elseif($campaign->status == 'Ditolak')
+                                    @elseif($campaign->status == 'ditolak')
                                         <div class="flex items-center">
                                             <button
                                                 class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-8 rounded-lg">
@@ -221,7 +222,6 @@
                                         </div>
                                     @endif
                                 </div>
-
 
                             </div>
                         </div>

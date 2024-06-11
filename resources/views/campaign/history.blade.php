@@ -15,10 +15,10 @@
         </div>
     </div>
     <div class="flex flex-wrap">
-        @foreach (auth::user()->donations as $donate)
+        @foreach ($donations as $donate)
         <div class="w-full flex justify-evenly bg-white rounded-xl mb-3">
             <div class="w-3/6 flex justify-start">
-                <img src="{{ Storage::url($donate->campaign->foto_campaign) }}" class="w-52 rounded-l-xl" alt="Campaign">
+                <img src="https://res.cloudinary.com/dmgrpklyt/image/upload/v1717966388/bukti/mxrjkt6woyqfhtcyszrz.png" class="w-52 rounded-l-xl" alt="Campaign">
                 <div class="px-4 py-5">
                     <h1 class="font-bold text-xl">{{ $donate->campaign->nama_campaign }}</h1>
                     <p class="italic">{{ substr($donate->campaign->deskripsi_campaign,0,20) }}</p>

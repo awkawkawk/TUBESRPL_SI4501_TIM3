@@ -33,12 +33,16 @@ class CampaignController extends Controller
             $file = $request->file('photo')->getRealPath();
 
             // Unggah file ke Cloudinary ke dalam folder 'bukti'
-            
+            $uploadResult = cloudinary()
+                ->upload($file, [
+                    'folder' => 'bukti',
+                ])
+                ->getSecurePath();
         }
 
         $campaign = Campaign::create([
             'nama_campaign' => $request->nama_campaign,
-            'foto_campaign' => $file,
+            'foto_campaign' => $uploadResult,
             'deskripsi_campaign' => $request->description,
             'id_sekolah' => Auth::user()->id_sekolah, // Assuming the user is authenticated as a school // auth()->user->id
             'status' => 'pending',
@@ -96,14 +100,10 @@ class CampaignController extends Controller
             $photoPath = $request->file('photo')->store('campaign_photos', 'public');
             $campaign->foto_campaign = $photoPath;
         }
-        
-        // return dd($request->jenis_barang);
-        
+
         // Update campaign details
-        // dd($campaign);  
         $campaign->nama_campaign = $request->nama_campaign;
         $campaign->deskripsi_campaign = $request->description;
-        //$campaign->id_sekolah = Auth::user()->id_sekolah; // Menetapkan id sekolah berdasarkan sekolah yang login
         $campaign->save();
 
         // Delete existing targets
@@ -118,7 +118,7 @@ class CampaignController extends Controller
                 'jumlah_barang' => $request->input('target_uang'),
             ]);
         } elseif ($jenisDonasi == 'barang' || $jenisDonasi == 'uang_barang') {
-            if ($jenisDonasi == 'money_and_goods') {
+            if ($jenisDonasi == 'uang_barang') {
                 $campaign->targets()->create([
                     'nama_barang' => 'Uang',
                     'jumlah_barang' => $request->input('target_uang'),
@@ -157,13 +157,12 @@ class CampaignController extends Controller
         return redirect()->route('campaigns.index')->with('success', 'Campaign deleted successfully.');
     }
 
-
     public function history()
     {
-        $donations = Donation::all();;
+        $donations = Donation::all();
+        
         return view('campaign.history', compact('donations'));
     }
-    
     // public function store(Request $request)
     // {
     //     $request->validate([
@@ -191,3 +190,4 @@ class CampaignController extends Controller
     //     return redirect()->route('daftar')->with('success', 'Campaign berhasil ditambahkan!');
     // }
 }
+

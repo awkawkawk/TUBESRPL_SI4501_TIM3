@@ -9,30 +9,33 @@ use App\Models\MethodPayment;
 use App\Models\MoneyDonation;
 use App\Models\TahapPencairan;
 use App\Models\RequestPencairan;
-use App\Models\Histories;
+use App\Models\History;
 use Illuminate\Support\Facades\Auth;
 
 class RequestPencairanController extends Controller
 {
     public function index()
     {
-       $user = Auth::user();
-       $donasi = MoneyDonation::all();
-       $request = RequestPencairan::all();
-    //    $requests = RequestPencairan::where('id_sekolah', $user->id)->get();
-    //    $campaigns = Campaign::where('id_sekolah', $user->id)->get();
+        $user = Auth::user();
+        $school = $user->school;
 
-    return view('pencairan.index', compact('request', 'donasi'));
+        $request = RequestPencairan::whereHas('moneyDonation.donation.campaign', function ($query) use ($school) {
+            $query->where('id_sekolah', $school->id);
+        })->get();
+        return view('pencairan.index', compact('request', 'school'));
     }
-
 
     public function request(RequestPencairan $RequestPencairan)
     {
         $totalNominal = $RequestPencairan->nominal_terkumpul;
         $sisanominal = $RequestPencairan->nominal_sisa;
-        $tahap1 = $totalNominal * 0.3;
+        // $tahap1 = $totalNominal * 0.3;
+        // $tahap2 = $totalNominal * 0.4;
+        // $tahap3 = $totalNominal * 0.3;
+
+        $tahap1 = $totalNominal * 0.4;
         $tahap2 = $totalNominal * 0.4;
-        $tahap3 = $totalNominal * 0.3;
+        $tahap3 = $sisanominal;
 
         // if ($sisanominal == 0) {
         //     $tahap3 = $totalNominal;
@@ -55,8 +58,7 @@ class RequestPencairanController extends Controller
         return view('pencairan.create', compact('RequestPencairan', 'options', 'methodPayment'));
     }
 
-
-        public function create(Request $request, $id)
+    public function create(Request $request, $id)
     {
         $requestPencairan = RequestPencairan::findOrFail($id);
 
@@ -70,67 +72,52 @@ class RequestPencairanController extends Controller
 
         $totalNominal = $requestPencairan->nominal_terkumpul;
         $sisanominal = $requestPencairan->nominal_sisa;
-        $tahap1 = $totalNominal * 0.3;
+        // $tahap1 = $totalNominal * 0.3;
+        // $tahap2 = $totalNominal * 0.4;
+        // $tahap3 = $totalNominal * 0.3;
+        $tahap1 = $totalNominal * 0.4;
         $tahap2 = $totalNominal * 0.4;
-        $tahap3 = $totalNominal * 0.3;
+        $tahap3 = $sisanominal;
 
-        switch ($selectedTahap) {
-            case 'Tahap 1':
-                $requestPencairan->nominal_sisa = $totalNominal - $tahap1;
-                break;
-            case 'Tahap 2':
-                $requestPencairan->nominal_sisa = $totalNominal - $tahap2 - $tahap1;
-                break;
-            case 'Tahap 3':
-                $requestPencairan->nominal_sisa = $totalNominal - $tahap3 - $tahap2 - $tahap3;
-                break;
-            default:
-                return redirect()->back()->with('error', 'Pilihan tahap tidak valid.');
-        }
-
-        $requestPencairan->status = 'Pending';
+        $requestPencairan->status = 'pending';
         $requestPencairan->id_tahap_pencairan = $tahapPencairan->id;
-
+        // dd($requestPencairan);
 
         if ($request->hasFile('pendukung')) {
-            $pendukung = $request->file('pendukung');
-            $filename = time() . '.' . $pendukung->getClientOriginalExtension();
-            $pendukung->storeAs('public/cover_images', $filename);
-            $requestPencairan->pendukung = $filename;
+            $file = $request->file('pendukung')->getRealPath();
+            $uploadResult = cloudinary()
+                ->upload($file, [
+                    'folder' => 'pencairan/bukti_penggunaan',
+                ])
+                ->getSecurePath();
+            $requestPencairan->pendukung = $uploadResult;
         }
 
         $requestPencairan->nama_pemilik = $request->input('nama_pemilik');
         $requestPencairan->nomor_rekening = $request->input('nomor_rekening');
         $requestPencairan->id_method_payment = $request->metode_pembayaran;
 
-
-        $history = new Histories();
+        $history = new History();
         $historyTahap = $request->input('tahap');
 
-                switch ($historyTahap) {
-                    case 'Tahap 1':
-                        $history->nominal_pencairan = $tahap1;
-                        break;
-                    case 'Tahap 2':
-                        $history->nominal_pencairan =  $tahap2;
-                        break;
-                    case 'Tahap 3':
-                        $history->nominal_pencairan = $tahap3;
-                        break;
-                    default:
-                        return redirect()->back()->with('error', 'Pilihan tahap tidak valid.');
-                }
+        switch ($historyTahap) {
+            case 'Tahap 1':
+                $history->nominal_pencairan = $tahap1;
+                break;
+            case 'Tahap 2':
+                $history->nominal_pencairan = $tahap2;
+                break;
+            case 'Tahap 3':
+                $history->nominal_pencairan = $tahap3;
+                break;
+            default:
+                return redirect()->back()->with('error', 'Pilihan tahap tidak valid.');
+        }
         $history->id_tahap_pencairan = $tahapPencairan->id;
-        $history->status = 'Pending';
+        $history->status = 'pending';
         $history->id_method_payment = $request->metode_pembayaran;
         $history->nama_pemilik = $request->input('nama_pemilik');
         $history->nomor_rekening = $request->input('nomor_rekening');
-        if ($request->hasFile('pendukung')) {
-            $pendukung = $request->file('pendukung');
-            $filename = time() . '.' . $pendukung->getClientOriginalExtension();
-            $pendukung->storeAs('public/cover_images', $filename);
-            $history->pendukung = $filename;
-        }
         $history->id_money_donation = $requestPencairan->id_money_donation;
         $history->id_request_pencairan = $requestPencairan->id;
         $history->save();
@@ -139,17 +126,55 @@ class RequestPencairanController extends Controller
         return redirect()->route('list.pencairan')->with('success', 'Permintaan pencairan berhasil diperbarui.');
     }
 
-
-
-
-
-     public function history()
+    public function history()
     {
+        $donasi = History::all();
 
-       $donasi = Histories::all();
-
-
-       return view('pencairan.history', compact('donasi'));
+        return view('pencairan.history', compact('donasi'));
     }
 
+    public function adminIndex()
+    {
+        $donasi = MoneyDonation::all();
+        $request = RequestPencairan::where('status', 'pending')->with('historyPencairan')->get();
+        //    $requests = RequestPencairan::where('id_sekolah', $user->id)->get();
+        //    $campaigns = Campaign::where('id_sekolah', $user->id)->get();
+        // dd($request);
+        
+        return view('pencairan.admin.index', compact('request', 'donasi'));
+    }
+
+    public function adminVerification(Request $request, $id, $idPencairan)
+    {
+        // dd(RequestPencairan::findOrFail($id));
+        $requestPencairan = RequestPencairan::findOrFail($id);
+        $historyPencairan = History::findOrFail($idPencairan);
+
+        $requestPencairan->status = 'approved';
+        $historyPencairan->status = 'approved';
+
+        $requestPencairan->nominal_sisa = $requestPencairan->nominal_terkumpul - $historyPencairan->nominal_pencairan;
+
+        if ($request->hasFile('pendukung')) {
+            $file = $request->file('pendukung')->getRealPath();
+            $uploadResult = cloudinary()
+                ->upload($file, [
+                    'folder' => 'pencairan/bukti_pencairan',
+                ])
+                ->getSecurePath();
+            $historyPencairan->pendukung = $uploadResult;
+        }
+
+        $historyPencairan->save();
+        $requestPencairan->save();
+
+        return redirect()->route('admin.list.pencairan');
+    }
+
+    public function adminHistory()
+    {
+        $donasi = History::all();
+
+        return view('pencairan.history', compact('donasi'));
+    }
 }

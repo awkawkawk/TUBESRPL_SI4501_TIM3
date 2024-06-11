@@ -8,7 +8,7 @@
                 <svg class="w-4 h-4 mr-2 text-gray-800 dark:text-white" aria-hidden="true" fill="none" viewBox="0 0 14 10" style="margin-right: 8px;">
                     <path stroke="rgb(75, 85, 101)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
                 </svg>
-                <a href="/" class="text-sm font-light text-gray-700 text-justify" style="margin-left: 8px;"><b>Kembali</b></a>
+                <a href="{{ url()->previous()}}" class="text-sm font-light text-gray-700 text-justify" style="margin-left: 8px;"><b>Kembali</b></a>
             </div>
         </div>
     </div>
@@ -24,17 +24,14 @@
         @foreach ($campaigns as $campaign)
         <div class="w-1/3 px-5">
             <div class="relative w-full max-w-lg min-h-[750px] rounded-3xl">
-                <img src="{{ Storage::url($campaign->foto_campaign) }}" alt="Sample Image" class="absolute inset-0 w-full min-h-600 rounded-t-3xl object-cover z-10">
+                <img src="https://res.cloudinary.com/dmgrpklyt/image/upload/v1717966388/bukti/mxrjkt6woyqfhtcyszrz.png" alt="Sample Image" class="absolute inset-0 w-full min-h-600 rounded-t-3xl object-cover z-10">
 
                 <div class="absolute inset-0 flex flex-col items-center justify-end bg-white bg-opacity-0 min-h-[800px]  z-20 text-center">
                     <!-- Your content goes here -->
                     <div class="p-5 bg-white rounded-3xl w-full text-left min-h-[620px]">
                         <h3 class="font-bold text-xl block w-full">{{ $campaign->nama_campaign}}</h3>
                         <p class="text-sm py-5">{{ $campaign->deskripsi_campaign }}</p>
-                        <div class="w-full flex justify-between pb-2">
-                            <span>Terkumpul</span>
-                            <span class="text-red-500 text-right font-bold">{{ $campaign->percentage_collected }}%</span>
-                        </div>
+
                         <div class="w-full bg-gray-300 rounded-full h-2">
                             <div class="bg-red-500 h-full rounded-full" style="width: {{ $campaign->percentage_collected}}%;"></div>
                         </div>
