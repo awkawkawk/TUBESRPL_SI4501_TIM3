@@ -38,6 +38,7 @@
                                         {{ $school->no_telepon_sekolah }}
                                     </td>
                                 </tr>
+                                
                                 <tr>
                                     <th class="py-3 px-6 bg-black font-medium text-left text-white">Email Sekolah</th>
                                     <td class="py-3 px-6 flex items-center">

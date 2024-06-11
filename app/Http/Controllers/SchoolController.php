@@ -97,6 +97,7 @@ class SchoolController extends Controller
         }
 
         $school->update($data);
+        
 
         return redirect()->route('schools.index')->with('success', 'School updated successfully.');
     }
