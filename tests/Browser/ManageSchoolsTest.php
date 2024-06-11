@@ -35,6 +35,7 @@ class ManageSchoolsTest extends DuskTestCase
                     ->screenshot('AfterManage')
                     ->pause(5000)
                     ->screenshot('afterdelete');
+                    
         });
     }
 }

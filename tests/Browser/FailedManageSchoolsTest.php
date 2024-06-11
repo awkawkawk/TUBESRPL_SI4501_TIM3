@@ -32,6 +32,7 @@ class FailedManageSchoolsTest extends DuskTestCase
                     ->attach('logo_sekolah', __DIR__.'/EduFund.png')
                     ->press('Update') // Menekan tombol submit;
                     ->screenshot('AfterManage');
+                    
         });
     }
 }
