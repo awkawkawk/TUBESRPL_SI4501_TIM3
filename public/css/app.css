@@ -1516,11 +1516,6 @@ input:checked + .toggle-bg {
   height: 3rem;
 }
 
-.size-4 {
-  width: 1rem;
-  height: 1rem;
-}
-
 .size-5 {
   width: 1.25rem;
   height: 1.25rem;
@@ -1539,6 +1534,11 @@ input:checked + .toggle-bg {
 .size-9 {
   width: 2.25rem;
   height: 2.25rem;
+}
+
+.size-4 {
+  width: 1rem;
+  height: 1rem;
 }
 
 .h-1 {

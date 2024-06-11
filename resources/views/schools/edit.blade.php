@@ -1,12 +1,20 @@
-@php
-    use Illuminate\Support\Facades\Storage;
-@endphp
+// resources/views/schools/edit.blade.php
 
 @extends('layouts.master')
 
 @section('content')
 <div class="container p-8 mx-auto mt-10">
     <h2 class="text-2xl font-semibold mb-6">Edit Sekolah</h2>
+
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
 
     <form action="{{ route('schools.update', $school->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -28,6 +36,9 @@
         <div class="mb-4">
             <label for="no_telepon_sekolah" class="block text-sm font-medium text-gray-700">Nomor Telepon Sekolah</label>
             <input type="text" name="no_telepon_sekolah" id="no_telepon_sekolah" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ old('no_telepon_sekolah', $school->no_telepon_sekolah) }}" required>
+            @error('no_telepon_sekolah')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
 
         <!-- Email Sekolah -->
@@ -41,7 +52,7 @@
             <label for="logo_sekolah" class="block text-sm font-medium text-gray-700">Logo Sekolah</label>
             <input type="file" name="logo_sekolah" id="logo_sekolah" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
             @if($school->logo_sekolah)
-                <img src="{{ $school->logo_sekolah }}" alt="Logo Sekolah" class="mt-4 w-20 h-20 object-cover"referrerpolicy="no-referrer">
+                <img src="{{ $school->logo_sekolah }}" alt="Logo Sekolah" class="mt-4 w-20 h-20 object-cover" referrerpolicy="no-referrer">
             @endif
         </div>
 
@@ -55,6 +66,9 @@
         <div class="mb-4">
             <label for="no_hp_pendaftar" class="block text-sm font-medium text-gray-700">Nomor HP Pendaftar</label>
             <input type="text" name="no_hp_pendaftar" id="no_hp_pendaftar" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" value="{{ old('no_hp_pendaftar', $school->no_hp_pendaftar) }}" required>
+            @error('no_hp_pendaftar')
+                <span class="text-red-500 text-sm">{{ $message }}</span>
+            @enderror
         </div>
 
         <!-- Email Pendaftar -->
@@ -74,7 +88,7 @@
             <label for="bukti_id_pendaftar" class="block text-sm font-medium text-gray-700">Bukti ID Pendaftar</label>
             <input type="file" name="bukti_id_pendaftar" id="bukti_id_pendaftar" class="mt-1 block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none">
             @if($school->bukti_id_pendaftar)
-                <img src="{{ $school->bukti_id_pendaftar }}" alt="Bukti ID Pendaftar" class="mt-4 w-20 h-20 object-cover"referrerpolicy="no-referrer">
+                <img src="{{ $school->bukti_id_pendaftar }}" alt="Bukti ID Pendaftar" class="mt-4 w-20 h-20 object-cover" referrerpolicy="no-referrer">
             @endif
         </div>
 

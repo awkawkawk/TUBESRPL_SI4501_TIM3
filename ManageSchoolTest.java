@@ -6,7 +6,7 @@ use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 use App\Models\User;
 
-class LoginTest extends DuskTestCase
+class ManageSchoolTest extends DuskTestCase
 {
     /**
      * A Dusk test example.
@@ -14,8 +14,7 @@ class LoginTest extends DuskTestCase
     public function testExample(): void
     {
         $this->browse(function (Browser $browser) {
-            $browser->loginAs(User::find(4))
-                    ->visit('schools');
+            $browser->visit('/schools');
         });
     }
 }

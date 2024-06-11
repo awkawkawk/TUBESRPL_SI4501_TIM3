@@ -30,7 +30,7 @@
                                 <div class="w-1/2 p-4">
                                     <div>
                                         <p class="text-xl font-bold text-black">{{ $detail->nama_campaign }}</p>
-                                        <a href="{{route('schools/'$detail->id)}}">
+                                        <a href="{{ route('schools.show', $detail->id) }}">
                                             <p class="font-normal text-black">{{ $detail->school->nama_sekolah }}
                                                 <!-- <i>({{ $detail->school->alamat_sekolah }})</i> -->
                                             </p>

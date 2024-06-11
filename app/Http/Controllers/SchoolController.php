@@ -72,7 +72,7 @@ class SchoolController extends Controller
             'logo_sekolah' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048|nullable',
             'nama_sekolah' => 'required|string|max:255',
             'alamat_sekolah' => 'required|string|max:255',
-            'no_telepon_sekolah' => 'required|string|max:15',
+            'no_telepon_sekolah' => 'required|string|max:15|min:11',
             'email_sekolah' => 'required|email|max:255',
             'nama_pendaftar' => 'required|string|max:255',
             'no_hp_pendaftar' => 'required|string|max:15',
@@ -102,17 +102,28 @@ class SchoolController extends Controller
     }
 
     public function destroy($id)
-    {
-        DB::transaction(function () use ($id) {
-            Campaign::where('id_sekolah', $id)->delete();
-            User::where('id_sekolah', $id)->delete();
+{
+    DB::transaction(function () use ($id) {
+        // Hapus entri terkait di tabel `targets`
+        $campaigns = Campaign::where('id_sekolah', $id)->get();
+        foreach ($campaigns as $campaign) {
+            DB::table('targets')->where('id_campaign', $campaign->id)->delete();
+        }
 
-            $school = School::findOrFail($id);
-            $school->delete();
-        });
+        // Hapus entri di tabel `campaigns`
+        Campaign::where('id_sekolah', $id)->delete();
 
-        return redirect()->route('schools.index')->with('success', 'Sekolah berhasil dihapus.');
-    }
+        // Hapus entri di tabel `users`
+        User::where('id_sekolah', $id)->delete();
+
+        // Hapus entri di tabel `schools`
+        $school = School::findOrFail($id);
+        $school->delete();
+    });
+
+    return redirect()->route('schools.index')->with('success', 'Sekolah berhasil dihapus.');
+}
+
 
     public function show($id)
     {
