@@ -38,6 +38,11 @@ class CampaignController extends Controller
                     'folder' => 'bukti',
                 ])
                 ->getSecurePath();
+            $uploadResult = cloudinary()
+                ->upload($file, [
+                    'folder' => 'bukti',
+                ])
+                ->getSecurePath();
         }
 
         $campaign = Campaign::create([

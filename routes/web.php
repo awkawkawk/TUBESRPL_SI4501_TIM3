@@ -162,7 +162,6 @@ Route::delete('schools/{id}', [SchoolController::class, 'destroy'])->name('schoo
 Route::get('schools/{id}', [SchoolController::class, 'show'])->name('schools.show');
 
 
-
 //test fe
 Route::get('/managedonation/money/edit/id', function () {
     return view('managedonation/formeditmoney');

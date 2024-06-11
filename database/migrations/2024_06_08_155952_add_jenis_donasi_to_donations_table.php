@@ -9,20 +9,20 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    // public function up(): void
-    // {
-    //     Schema::table('donations', function (Blueprint $table) {
-    //         $table->string('jenis_donasi');
-    //     });
-    // }
+    public function up(): void
+    {
+        Schema::table('donations', function (Blueprint $table) {
+            $table->string('jenis_donasi');
+        });
+    }
 
-    // /**
-    //  * Reverse the migrations.
-    //  */
-    // public function down(): void
-    // {
-    //      Schema::table('donations', function (Blueprint $table) {
-    //         $table->dropColumn('jenis_donasi');
-    //     });
-    // }
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+         Schema::table('donations', function (Blueprint $table) {
+            $table->dropColumn('jenis_donasi');
+        });
+    }
 };
