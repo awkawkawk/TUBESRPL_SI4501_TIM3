@@ -28,28 +28,18 @@ class RiwayatCampaignController extends Controller
         $campaigns->each(function ($campaign) {
             $groupedDonationItems = $campaign->donations
                 ->flatMap(function ($donation) {
-        $campaigns->each(function ($campaign) {
-            $groupedDonationItems = $campaign->donations
-                ->flatMap(function ($donation) {
                     return $donation->donationItems;
-                })
-                ->groupBy('nama_barang')
-                ->map(function ($items, $nama_barang) {
                 })
                 ->groupBy('nama_barang')
                 ->map(function ($items, $nama_barang) {
                     return [
                         'nama_barang' => $nama_barang,
                         'jumlah_barang' => $items->sum('jumlah_barang'),
-                        'jumlah_barang' => $items->sum('jumlah_barang'),
                     ];
                 });
 
             $campaign->groupedDonationItems = $groupedDonationItems->isEmpty() ? collect() : $groupedDonationItems;
-            $campaign->groupedDonationItems = $groupedDonationItems->isEmpty() ? collect() : $groupedDonationItems;
 
-            $totalDonationMoney = $campaign->donations
-                ->flatMap(function ($donation) {
             $totalDonationMoney = $campaign->donations
                 ->flatMap(function ($donation) {
                     return $donation->donationMoney;
@@ -83,63 +73,17 @@ class RiwayatCampaignController extends Controller
                     }
                 })
                 ->sum('nominal');
-                })
-                ->sum('nominal');
 
-            $campaign->totalDonationMoney = $totalDonationMoney;
-        });
-
-        $campaigns->each(function ($campaign) {
-            $groupedDonationItems = $campaign->donations
-                ->flatMap(function ($donation) {
-                    if ($donation->status === 'valid') {
-                        return $donation->donationItems;
-                    }
-                })
-                ->groupBy('nama_barang')
-                ->map(function ($items, $nama_barang) {
-                    return [
-                        'nama_barang' => $nama_barang,
-                        'jumlah_barang' => $items->sum('jumlah_barang'),
-                    ];
-                });
-
-            $campaign->groupedDonationItems = $groupedDonationItems->isEmpty() ? collect() : $groupedDonationItems;
-
-            $totalDonationMoney = $campaign->donations
-                ->flatMap(function ($donation) {
-                    if ($donation->status === 'valid') {
-                        return $donation->donationMoney;
-                    }
-                })
-                ->sum('nominal');
-
-            $campaign->totalDonationMoney = $totalDonationMoney;
-        });
             $campaign->totalDonationMoney = $totalDonationMoney;
         });
 
         return view('riwayatcampaign', compact('campaigns'));
     }
-    }
 
     public function donatur($campaignId)
     {
         $campaign = Campaign::with('targets', 'donations', 'donations.donationItems', 'donations.donationMoney')->findOrFail($campaignId);
-    {
-        $campaign = Campaign::with('targets', 'donations', 'donations.donationItems', 'donations.donationMoney')->findOrFail($campaignId);
 
-        $groupedDonationItems = $campaign->donations
-            ->flatMap(function ($donation) {
-                return $donation->donationItems;
-            })
-            ->groupBy('nama_barang')
-            ->map(function ($items, $nama_barang) {
-                return [
-                    'nama_barang' => $nama_barang,
-                    'jumlah_barang' => $items->sum('jumlah_barang'),
-                ];
-            });
         $groupedDonationItems = $campaign->donations
             ->flatMap(function ($donation) {
                 return $donation->donationItems;
@@ -153,13 +97,7 @@ class RiwayatCampaignController extends Controller
             });
 
         $campaign->groupedDonationItems = $groupedDonationItems->isEmpty() ? collect() : $groupedDonationItems;
-        $campaign->groupedDonationItems = $groupedDonationItems->isEmpty() ? collect() : $groupedDonationItems;
 
-        $totalDonationMoney = $campaign->donations
-            ->flatMap(function ($donation) {
-                return $donation->donationMoney;
-            })
-            ->sum('nominal');
         $totalDonationMoney = $campaign->donations
             ->flatMap(function ($donation) {
                 return $donation->donationMoney;
@@ -167,15 +105,10 @@ class RiwayatCampaignController extends Controller
             ->sum('nominal');
 
         $campaign->totalDonationMoney = $totalDonationMoney;
-        $campaign->totalDonationMoney = $totalDonationMoney;
 
         // Ambil semua donasi untuk kampanye ini
         $donations = Donation::where('id_campaign', $campaignId)->get();
-        // Ambil semua donasi untuk kampanye ini
-        $donations = Donation::where('id_campaign', $campaignId)->get();
 
-        return view('lihatdonatur', compact('campaign', 'donations'));
-    }
         return view('lihatdonatur', compact('campaign', 'donations'));
     }
 }
