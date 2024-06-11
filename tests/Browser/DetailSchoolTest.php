@@ -24,7 +24,6 @@ class DetailSchoolTest extends DuskTestCase
                     ->clickLink('SMA 9')
                     ->screenshot('AfterManage');
 
-
         });
     }
 }
